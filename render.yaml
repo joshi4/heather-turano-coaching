@@ -2,7 +2,8 @@ services:
   - type: web
     name: htc-blog
     env: docker
-    dockerFilePath: ./blog/Dockerfile
+    dockerfilePath: ./blog/Dockerfile
+    dockerContext: ./blog
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/website.git
     disk:
