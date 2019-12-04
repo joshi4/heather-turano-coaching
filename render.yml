@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: htc-blog
+    env: docker
+    dockerFilePath: ./blog/Dockerfile
+    dockerContext: ./blog
+    repo: https://gitlab.com/imaginedelements/heather-turano-coaching/website
+    branch: master
+    disk:
+      name: ghost
+      mountPath: /var/lib/ghost/content
+      sizeGB: 10
+    envVars:
+      - key: url
+        value: https://blog.heatherturanocoaching.com
