@@ -4,7 +4,7 @@ services:
     env: docker
     dockerFilePath: ./blog/Dockerfile
     dockerContext: ./blog
-    repo: https://gitlab.com/imaginedelements/heather-turano-coaching/website
+    repo: https://gitlab.com/imaginedelements/heather-turano-coaching/website.git
     branch: master
     disk:
       name: ghost
