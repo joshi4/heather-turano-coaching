@@ -7,7 +7,7 @@ services:
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/website.git
     domains:
-      - https://ghost.heatherturanocoaching.com
+      - ghost.heatherturanocoaching.com
     disk:
       name: ghost
       mountPath: /var/lib/ghost/content
@@ -24,7 +24,7 @@ services:
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/website.git
     domains:
-      - https://community.heatherturanocoaching.com
+      - community.heatherturanocoaching.com
     envVars:
       - key: COMMENTO_ORIGIN
         value: https://community.heatherturanocoaching.com
