@@ -22,7 +22,7 @@ services:
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/website.git
     envVars:
       - key: COMMENTO_ORIGIN
-        value: https://test-commento.onrender.com
+        value: https://htc-commento.onrender.com
       - key: COMMENTO_POSTGRES
         fromDatabase:
           name: htc-commento-db-prod
