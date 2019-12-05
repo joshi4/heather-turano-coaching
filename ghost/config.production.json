@@ -11,12 +11,20 @@
     }
   },
   "mail": {
-    "transport": "Direct"
+    "transport": "SMTP",
+    "from": "'Heather Turano' <me@heatherturanocoaching.com>",
+    "options": {
+      "service": "Mailgun",
+      "host": "smtp.mailgun.org",
+      "port": 465,
+      "secureConnection": true,
+      "auth": {
+        "user": "postmaster@mg.heatherturanocoaching.com"
+      }
+    }
   },
   "logging": {
-    "transports": [
-      "stdout"
-    ]
+    "transports": ["stdout"]
   },
   "paths": {
     "contentPath": "/var/lib/ghost/content"
