@@ -13,3 +13,22 @@ services:
     envVars:
       - key: url
         value: https://blog.heatherturanocoaching.com
+  - type: web
+    name: htc-community
+    env: docker
+    dockerfilePath: ./commento/Dockerfile
+    dockerContext: ./commento
+    branch: master
+    repo: https://gitlab.com/imaginedelements/heather-turano-coaching/website.git
+    envVars:
+      - key: COMMENTO_ORIGIN
+        value: https://test-commento.onrender.com
+      - key: COMMENTO_POSTGRES
+        fromDatabase:
+          name: htc_commento_db
+          property: connectionString
+
+databases:
+  - name: htc-commento-db-prod
+    databaseName: htc_commento_db_prod
+    user: admin_prod
