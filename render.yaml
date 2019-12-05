@@ -25,7 +25,7 @@ services:
         value: https://test-commento.onrender.com
       - key: COMMENTO_POSTGRES
         fromDatabase:
-          name: htc_commento_db
+          name: htc-commento-db-prod
           property: connectionString
 
 databases:
