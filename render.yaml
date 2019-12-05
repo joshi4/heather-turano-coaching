@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: htc-blog
+    name: htc-ghost
     env: docker
-    dockerfilePath: ./blog/Dockerfile
-    dockerContext: ./blog
+    dockerfilePath: ./ghost/Dockerfile
+    dockerContext: ./ghost
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/website.git
     disk:
@@ -14,7 +14,7 @@ services:
       - key: url
         value: https://blog.heatherturanocoaching.com
   - type: web
-    name: htc-community
+    name: htc-commento
     env: docker
     dockerfilePath: ./commento/Dockerfile
     dockerContext: ./commento
