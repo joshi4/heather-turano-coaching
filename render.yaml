@@ -30,6 +30,16 @@ services:
     envVars:
       - key: COMMENTO_ORIGIN
         value: https://community.heatherturanocoaching.com
+      - key: COMMENTO_SMTP_HOST
+        value: smtp.mailgun.org
+      - key: COMMENTO_SMTP_PORT
+        value: 587
+      - key: COMMENTO_SMTP_USERNAME
+        value: postmaster@mg.heatherturanocoaching.com
+      - key: COMMENTO_SMTP_FROM_ADDRESS
+        value: "'Heather Turano' <me@heatherturanocoaching.com>"
+      - key: COMMENTO_SMTP_PASSWORD
+        sync: false
       - key: COMMENTO_POSTGRES
         fromDatabase:
           name: htc-commento-db-prod
