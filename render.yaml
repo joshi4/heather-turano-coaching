@@ -6,13 +6,16 @@ services:
     dockerContext: ./ghost
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/website.git
+    domains:
+      - https://ghost.heatherturanocoaching.com
     disk:
       name: ghost
       mountPath: /var/lib/ghost/content
       sizeGB: 10
     envVars:
       - key: url
-        value: https://blog.heatherturanocoaching.com
+        value: https://ghost.heatherturanocoaching.com
+
   - type: web
     name: htc-commento
     env: docker
@@ -20,9 +23,11 @@ services:
     dockerContext: ./commento
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/website.git
+    domains:
+      - https://community.heatherturanocoaching.com
     envVars:
       - key: COMMENTO_ORIGIN
-        value: https://htc-commento.onrender.com
+        value: https://community.heatherturanocoaching.com
       - key: COMMENTO_POSTGRES
         fromDatabase:
           name: htc-commento-db-prod
