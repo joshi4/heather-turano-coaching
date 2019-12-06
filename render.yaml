@@ -8,6 +8,7 @@ services:
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/website.git
     domains:
       - ghost.heatherturanocoaching.com
+      - ghost.livelifemindful.com
     disk:
       name: ghost
       mountPath: /var/lib/ghost/content
@@ -27,6 +28,7 @@ services:
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/website.git
     domains:
       - community.heatherturanocoaching.com
+      - community.livelifemindful.com
     envVars:
       - key: COMMENTO_ORIGIN
         value: https://community.heatherturanocoaching.com
