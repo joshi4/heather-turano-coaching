@@ -1,0 +1,13 @@
+@import "../index";
+
+.lg {
+  @include font-title--lg;
+}
+
+.md {
+  @include font-title--md;
+}
+
+.sm {
+  @include font-title--sm;
+}

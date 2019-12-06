@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> should render correctly 1`] = `
+<button
+  className="primary"
+  disabled={false}
+  onClick={null}
+  onSubmit={null}
+  type="button"
+>
+  <Label
+    copy={null}
+    size="lg"
+  >
+    i am a button
+  </Label>
+</button>
+`;

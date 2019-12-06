@@ -1,0 +1,15 @@
+@import "../index";
+
+button {
+  &.primary {
+    @include button--primary;
+  }
+
+  &.secondary {
+    @include button--secondary;
+  }
+
+  &.destructive {
+    @include button--destructive;
+  }
+}
