@@ -7,7 +7,6 @@ services:
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/website.git
     domains:
-      - ghost.heatherturanocoaching.com
       - ghost.livelifemindful.com
     disk:
       name: ghost
@@ -15,7 +14,7 @@ services:
       sizeGB: 10
     envVars:
       - key: url
-        value: https://ghost.heatherturanocoaching.com
+        value: https://ghost.livelifemindful.com
       - key: mail__options__auth__pass
         sync: false
 
@@ -27,11 +26,10 @@ services:
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/website.git
     domains:
-      - community.heatherturanocoaching.com
       - community.livelifemindful.com
     envVars:
       - key: COMMENTO_ORIGIN
-        value: https://community.heatherturanocoaching.com
+        value: https://community.livelifemindful.com
       - key: COMMENTO_SMTP_HOST
         value: smtp.mailgun.org
       - key: COMMENTO_SMTP_PORT
