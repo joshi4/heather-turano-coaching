@@ -9,7 +9,7 @@ services:
       - dev.livelifemindful.com
 
   - type: web
-    name: htc-ghost
+    name: HTC Ghost
     env: docker
     dockerfilePath: ./ghost/Dockerfile
     dockerContext: ./ghost
@@ -28,7 +28,7 @@ services:
         sync: false
 
   - type: web
-    name: htc-commento
+    name: HTC Commento
     env: docker
     dockerfilePath: ./commento/Dockerfile
     dockerContext: ./commento
