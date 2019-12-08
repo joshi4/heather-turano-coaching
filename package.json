@@ -6,6 +6,7 @@
   "scripts": {
     "clean": "lerna clean --yes && lerna exec -- rimraf lib/ dist/",
     "bootstrap": "lerna bootstrap --force-local --hoist",
+    "bootstrap:ci": "lerna bootstrap",
     "version": "npm run build && lerna version --yes",
     "reset": "npm run clean && npm run bootstrap",
     "release": "npm run build && lerna publish --yes",
@@ -14,7 +15,7 @@
     "update": "npm run check -- -u && npm run bootstrap",
     "test": "jest",
     "lint:fix": "eslint './packages/**/src/**/*.js' --fix",
-    "build:legacy": "lerna run build --scope=@heather-turano-coaching/legacy"
+    "build:legacy": "lerna run build --scope=@heather-turano-coaching/legacy --stream"
   },
   "repository": {
     "type": "git",
