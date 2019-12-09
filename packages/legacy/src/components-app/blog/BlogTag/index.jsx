@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import { kebabCase } from "lodash";
 import { Link as GatsbyLink } from "gatsby";
 
-import "./index.module.scss";
 import { Caption } from "../../../components/typography";
+
+import "./index.module.scss";
 
 const BlogTag = ({ tag }) => (
   <GatsbyLink styleName="blog-tag" to={`/tags/${kebabCase(tag)}/`}>

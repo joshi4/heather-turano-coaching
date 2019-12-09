@@ -15,7 +15,8 @@
     "update": "npm run check -- -u && npm run bootstrap",
     "test": "jest",
     "lint:fix": "eslint './packages/**/src/**/*.js' --fix",
-    "build:legacy": "lerna run build --scope=@heather-turano-coaching/legacy --stream"
+    "build:legacy": "lerna run build --scope=@heather-turano-coaching/legacy --stream",
+    "dev:legacy": "lerna run dev --scope=@heather-turano-coaching/legacy --stream"
   },
   "repository": {
     "type": "git",

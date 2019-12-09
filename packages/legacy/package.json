@@ -9,9 +9,8 @@
     "url": "git@gitlab.com:imaginedelements/heather-turano-coaching/live-life-mindful.git"
   },
   "scripts": {
-    "start": "npm run develop",
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "dev": "gatsby develop",
     "serve": "gatsby serve",
     "storybook": "start-storybook"
   },
@@ -27,7 +26,6 @@
     "date-fns": "^2.8.1",
     "formik": "^2.0.6",
     "lodash": "^4.17.15",
-    "netlify-cms": "^2.9.7",
     "netlify-cms-app": "^2.9.7",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
