@@ -5,6 +5,7 @@ services:
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
     buildCommand: npm run bootstrap:ci && npm run build:legacy
+    staticPublishPath: ./packages/legacy/public
     domains:
       - dev.livelifemindful.com
 
