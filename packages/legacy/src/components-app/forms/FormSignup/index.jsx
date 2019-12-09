@@ -7,7 +7,7 @@ import {
   FormNetlify
 } from "../../../components/forms";
 import { FormField } from "../../../components/inputs";
-import { Button } from "../../../components/buttons";
+import { Button } from "../../../components/buttons/Button";
 
 const FormSignup = ({
   name,
