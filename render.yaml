@@ -35,6 +35,20 @@ services:
     envVars:
       - key: url
         value: https://ghost.livelifemindful.com
+      - key: mail__transport
+        value: SMTP
+      - key: mail__from
+        value: "'Heather Turano' <heather@livelifemindful.com>"
+      - key: mail__options__service
+        value: Mailgun
+      - key: mail__options__host
+        value: smtp.mailgun.org
+      - key: mail__options__port
+        value: 465
+      - key: mail__options__secureConnection
+        value: true
+      - key: mail__options__auth__user
+        value: postmaster@mail.livelifemindful.com
       - key: mail__options__auth__pass
         sync: false
 
@@ -55,9 +69,9 @@ services:
       - key: COMMENTO_SMTP_PORT
         value: 587
       - key: COMMENTO_SMTP_USERNAME
-        value: postmaster@mg.heatherturanocoaching.com
+        value: postmaster@mail.livelifemindful.com
       - key: COMMENTO_SMTP_FROM_ADDRESS
-        value: "'Heather Turano' <me@heatherturanocoaching.com>"
+        value: "'Heather Turano' <heather@livelifemindful.com>"
       - key: COMMENTO_SMTP_PASSWORD
         sync: false
       - key: COMMENTO_POSTGRES
@@ -66,6 +80,6 @@ services:
           property: connectionString
 
 databases:
-  - name: HTC | Commento DB
+  - name: htc-commento-db-prod
     databaseName: htc_commento_db_prod
     user: admin_prod

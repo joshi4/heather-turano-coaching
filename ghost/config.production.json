@@ -10,19 +10,6 @@
       "filename": "/var/lib/ghost/content/data/ghost.db"
     }
   },
-  "mail": {
-    "transport": "SMTP",
-    "from": "'Heather Turano' <me@heatherturanocoaching.com>",
-    "options": {
-      "service": "Mailgun",
-      "host": "smtp.mailgun.org",
-      "port": 465,
-      "secureConnection": true,
-      "auth": {
-        "user": "postmaster@mg.heatherturanocoaching.com"
-      }
-    }
-  },
   "logging": {
     "transports": ["stdout"]
   },
