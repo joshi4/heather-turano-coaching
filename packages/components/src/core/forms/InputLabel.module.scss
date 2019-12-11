@@ -1,0 +1,5 @@
+@import "./_forms.styles";
+
+.input-label {
+  @include input-label;
+}

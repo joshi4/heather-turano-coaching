@@ -1,0 +1,15 @@
+@import "./_button.styles.scss";
+
+button {
+  &.primary {
+    @include button--primary;
+  }
+
+  &.secondary {
+    @include button--secondary;
+  }
+
+  &.destructive {
+    @include button--destructive;
+  }
+}

@@ -1,0 +1,11 @@
+@import "~@heather-turano-coaching/styles/core";
+
+.item {
+  & + .item {
+    margin-top: 30px;
+
+    @include respond_desktop {
+      margin-top: 50px !important;
+    }
+  }
+}

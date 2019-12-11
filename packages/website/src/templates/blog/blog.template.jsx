@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Markdown } from "../../components/typography";
 
 import { Section } from "../../components-app/layouts";
-import { BlogCardList } from "../../components-static";
+import { BlogCardList } from "../../components";
 import { FormSignup } from "../../components-app/forms";
 import FormConatiner from "../../components/forms/FormContainer";
 

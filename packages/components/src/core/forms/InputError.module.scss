@@ -1,0 +1,5 @@
+@import "./_forms.styles";
+
+.input-error {
+  @include input-error;
+}

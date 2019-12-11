@@ -17,10 +17,8 @@
   "license": "MIT",
   "main": "index.js",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.25",
-    "@fortawesome/free-brands-svg-icons": "^5.11.2",
-    "@fortawesome/pro-light-svg-icons": "^5.11.2",
-    "@fortawesome/react-fontawesome": "^0.1.8",
+    "@heather-turano-coaching/components": "^1.0.0",
+    "@heather-turano-coaching/styles": "^1.0.0",
     "animatewithsass": "^3.2.1",
     "bulma": "^0.8.0",
     "date-fns": "^2.8.1",
