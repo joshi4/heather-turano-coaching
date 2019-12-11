@@ -1,0 +1,14 @@
+@import "../index";
+
+.xl {
+  @include font-heading--xl;
+}
+.lg {
+  @include font-heading--lg;
+}
+.md {
+  @include font-heading--md;
+}
+.sm {
+  @include font-heading--sm;
+}

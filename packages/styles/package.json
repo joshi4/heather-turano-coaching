@@ -1,0 +1,25 @@
+{
+  "name": "@heather-turano-coaching/styles",
+  "version": "1.0.0",
+  "description": "Sass and Styled Component styles for Heather Turano Coaching, LLC projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:imaginedelements/heather-turano-coaching/live-life-mindful.git"
+  },
+  "keywords": [
+    "heather",
+    "turano",
+    "coaching",
+    "heather-turano-coaching",
+    "live",
+    "life",
+    "mindful",
+    "live-life-mindful"
+  ],
+  "author": "Drew DeCarme (drew@imaginedelements.com)",
+  "license": "MIT"
+}

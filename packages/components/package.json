@@ -1,0 +1,29 @@
+{
+  "name": "@heather-turano-coaching/components",
+  "version": "1.0.0",
+  "description": "React component library for Heather Turano Coaching, LLC",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:imaginedelements/heather-turano-coaching/live-life-mindful.git"
+  },
+  "keywords": [
+    "heather",
+    "turano",
+    "coaching",
+    "live",
+    "life",
+    "mindful",
+    "heather-turano-coaching",
+    "live-life-mindful",
+    "react",
+    "components",
+    "component-library",
+    "typescript"
+  ],
+  "author": "Drew DeCarme (drew@imaginedelements.com)",
+  "license": "MIT"
+}

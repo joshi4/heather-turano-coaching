@@ -16,7 +16,9 @@
     "test": "jest",
     "lint:fix": "eslint './packages/**/src/**/*.js' --fix",
     "build:legacy": "lerna run build --scope=@heather-turano-coaching/legacy --stream",
-    "dev:legacy": "lerna run dev --scope=@heather-turano-coaching/legacy --stream"
+    "dev:legacy": "lerna run dev --scope=@heather-turano-coaching/legacy --stream",
+    "build:website": "lerna run build --scope=@heather-turano-coaching/website --stream",
+    "dev:website": "lerna run dev --scope=@heather-turano-coaching/website --stream"
   },
   "repository": {
     "type": "git",
