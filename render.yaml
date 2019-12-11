@@ -8,7 +8,6 @@ services:
     staticPublishPath: ./packages/legacy/public
     domains:
       - legacy.livelifemindful.com
-      - legacy.heatherturanocoaching.com
 
   - type: web
     name: HTC | Live Life Mindful | Website
@@ -19,7 +18,6 @@ services:
     staticPublishPath: ./packages/website/public
     domains:
       - dev.livelifemindful.com
-      - dev.heatherturanocoaching.com
 
   - type: web
     name: HTC | Live Life Mindful | Ghost Blog
@@ -30,7 +28,6 @@ services:
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
     domains:
       - ghost.livelifemindful.com
-      - ghost.heatherturanocoaching.com
     disk:
       name: ghost
       mountPath: /var/lib/ghost/content
@@ -50,7 +47,6 @@ services:
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
     domains:
       - community.livelifemindful.com
-      - community.heatherturanocoaching.com
     envVars:
       - key: COMMENTO_ORIGIN
         value: https://community.livelifemindful.com
