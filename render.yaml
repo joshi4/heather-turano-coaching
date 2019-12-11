@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: HTC - Legacy
+    name: HTC | Legacy | Website
     env: static
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
@@ -11,7 +11,7 @@ services:
       - legacy.heatherturanocoaching.com
 
   - type: web
-    name: HTC - Live Life Mindful Website
+    name: HTC | Live Life Mindful | Website
     env: static
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
@@ -22,7 +22,7 @@ services:
       - dev.heatherturanocoaching.com
 
   - type: web
-    name: HTC - Ghost Blog
+    name: HTC | Live Life Mindful | Ghost Blog
     env: docker
     dockerfilePath: ./ghost/Dockerfile
     dockerContext: ./ghost
@@ -42,7 +42,7 @@ services:
         sync: false
 
   - type: web
-    name: HTC - Commento
+    name: HTC | Commento
     env: docker
     dockerfilePath: ./commento/Dockerfile
     dockerContext: ./commento
