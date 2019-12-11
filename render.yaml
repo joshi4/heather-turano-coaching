@@ -70,6 +70,6 @@ services:
           property: connectionString
 
 databases:
-  - name: HTC - Commento DB
+  - name: HTC | Commento DB
     databaseName: htc_commento_db_prod
     user: admin_prod
