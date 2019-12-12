@@ -1,0 +1,84 @@
+@import "./typography.styles";
+
+p {
+  &.caption {
+    &.xl {
+      @include font-caption--xl;
+    }
+    &.lg {
+      @include font-caption--lg;
+    }
+    &.md {
+      @include font-caption--md;
+    }
+    &.sm {
+      @include font-caption--sm;
+    }
+    &.xs {
+      @include font-caption--xs;
+    }
+  }
+
+  &.text {
+    &.xl {
+      @include font-text--xl;
+    }
+    &.lg {
+      @include font-text--lg;
+    }
+    &.md {
+      @include font-text--md;
+    }
+    &.sm {
+      @include font-text--sm;
+    }
+    &.xs {
+      @include font-text--xs;
+    }
+
+    & + .txt {
+      margin-top: 20px;
+    }
+  }
+
+  &.paragraph {
+    &.xl {
+      @include font-paragraph--xl;
+    }
+    &.lg {
+      @include font-paragraph--lg;
+    }
+    &.md {
+      @include font-paragraph--md;
+    }
+    &.sm {
+      @include font-paragraph--sm;
+    }
+    &.xs {
+      @include font-paragraph--xs;
+    }
+
+    & + .paragraph {
+      margin-top: 20px;
+    }
+  }
+}
+
+p.label,
+label {
+  &.xl {
+    @include font-label--xl;
+  }
+  &.lg {
+    @include font-label--lg;
+  }
+  &.md {
+    @include font-label--md;
+  }
+  &.sm {
+    @include font-label--sm;
+  }
+  &.xs {
+    @include font-label--xs;
+  }
+}

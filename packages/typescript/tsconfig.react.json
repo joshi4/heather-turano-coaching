@@ -2,7 +2,7 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "target": "es5",
-    "lib": ["es5", "es6", "es7", "es2017", "dom"],
+    "lib": ["es5", "es6", "es7", "es2017", "DOM"],
     "module": "commonjs",
     "skipLibCheck": true,
     "esModuleInterop": true,

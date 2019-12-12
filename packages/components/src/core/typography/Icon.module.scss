@@ -1,17 +1,17 @@
-@import "../index";
+@import "./typography.styles";
 
 .icon {
-  &.hxl {
-    @include font-icon--heading-xl;
+  &.h1 {
+    @include font-icon--heading-h1;
   }
-  &.hlg {
-    @include font-icon--heading-lg;
+  &.h2 {
+    @include font-icon--heading-h2;
   }
-  &.hmd {
-    @include font-icon--heading-md;
+  &.h3 {
+    @include font-icon--heading-h3;
   }
-  &.hsm {
-    @include font-icon--heading-sm;
+  &.h4 {
+    @include font-icon--heading-h4;
   }
   &.xl {
     @include font-icon--xl;

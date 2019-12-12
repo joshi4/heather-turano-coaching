@@ -1,12 +1,13 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-import base, { filename } from "paths.macro";
 
-import { Markdown } from ".";
+import { Markdown } from "./Markdown";
 
-import { createStory } from "../../../.storybook/utils";
+export default {
+  component: Markdown,
+  title: "Core|Typography/Markdown"
+};
 
-storiesOf(createStory(base, filename), module).add("basic", () => (
+export const basic = () => (
   <Markdown>
     <div>
       <h1>Curabitur blandit tempus porttitor</h1>
@@ -126,4 +127,4 @@ storiesOf(createStory(base, filename), module).add("basic", () => (
       </p>
     </div>
   </Markdown>
-));
+);
