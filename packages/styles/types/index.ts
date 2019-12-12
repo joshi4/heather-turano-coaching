@@ -8,6 +8,8 @@ export type Color =
   | "grayscale"
   | "lightscale"
   | "destructive"
+  | "success"
+  | "warning"
   | "error";
 
 export type Position = "left" | "right" | "center";
