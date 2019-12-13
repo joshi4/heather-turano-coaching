@@ -5,3 +5,5 @@ export * from "./navigation";
 export * from "./layouts";
 export * from "./images";
 export * from "./forms";
+export * from "./content";
+export * from "./buttons";

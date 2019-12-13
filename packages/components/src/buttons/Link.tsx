@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Link as GatsbyLink, GatsbyLinkProps } from "gatsby";
 
-import "./index.module.scss";
+import "./Link.module.scss";
 
 export const Link: FC<Omit<GatsbyLinkProps<{}>, "ref">> = ({
   children,
