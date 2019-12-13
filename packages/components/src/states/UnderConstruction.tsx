@@ -1,13 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 
-import logo from "../../../img/logo.png";
+import "./UnderConstruction.module.scss";
 
-import "./index.module.scss";
-
-export const UnderConstruction = () => (
+export const UnderConstruction: FC<{ img: string }> = ({ img }) => (
   <div styleName="placeholder">
-    <img src={logo} alt="under construction - heather turano coaching logo" />
+    <img src={img} alt="under construction - heather turano coaching logo" />
   </div>
 );
-
-export default UnderConstruction;
