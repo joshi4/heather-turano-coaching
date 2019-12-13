@@ -17,8 +17,8 @@
   "license": "MIT",
   "main": "index.js",
   "dependencies": {
-    "@heather-turano-coaching/components": "^1.0.0",
-    "@heather-turano-coaching/styles": "^1.0.0",
+    "@heather-turano-coaching/components": "^0.1.0",
+    "@heather-turano-coaching/styles": "^0.1.0",
     "animatewithsass": "^3.2.1",
     "bulma": "^0.8.0",
     "date-fns": "^2.8.1",
