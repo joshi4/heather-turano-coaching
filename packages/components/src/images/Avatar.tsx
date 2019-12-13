@@ -1,18 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 
-import "./index.module.scss";
+import "./Avatar.module.scss";
 
-const Avatar = ({ image, alt }) => (
+export interface AvatarProps {
+  image: string;
+  alt: string;
+}
+
+export const Avatar: FC<AvatarProps> = ({ image, alt }) => (
   <div styleName="avatar">
     <div />
     <img src={image} alt={alt} />
   </div>
 );
-
-Avatar.propTypes = {
-  image: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired
-};
-
-export default Avatar;

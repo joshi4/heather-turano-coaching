@@ -1,15 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 
-import "./index.module.scss";
+import "./HeroImage.module.scss";
 
-export const HeroImage = ({ img, alt }) => (
+export interface HeroImageProps {
+  image: string;
+  alt: string;
+}
+
+export const HeroImage: FC<HeroImageProps> = ({ image, alt }) => (
   <div styleName="hero-img">
-    <img src={img} alt={alt} />
+    <img src={image} alt={alt} />
   </div>
 );
-
-HeroImage.propTypes = {
-  img: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired
-};

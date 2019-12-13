@@ -1,34 +1,36 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 
 import { HeroImage } from "./HeroImage";
-import { Heading, Paragraph } from "../../../components/typography";
+import { Heading, Copy } from "../typography";
 
-import "./index.module.scss";
+import "./Hero.module.scss";
 
-const Hero = ({ img, alt, title, subTitle, children }) => (
+export interface HeroProps {
+  image: string;
+  alt: string;
+  title: string;
+  subTitle: string;
+}
+
+export const Hero: FC<HeroProps> = ({
+  image,
+  alt,
+  title,
+  subTitle,
+  children
+}) => (
   <section styleName="hero">
-    <HeroImage img={img} alt={alt} />
+    <HeroImage image={image} alt={alt} />
     <div styleName="top">
       <div>
-        <Heading size="xl" copy={`'${title}'`} color="lightscale-0" />
+        <Heading size="h2" copy={`'${title}'`} color="lightscale-0" />
         <div styleName="block sm">
-          <Paragraph size="xl" color="lightscale-0">
+          <Copy type="paragraph" size="xl" color="lightscale-0">
             {subTitle}
-          </Paragraph>
+          </Copy>
         </div>
       </div>
       <div styleName="block lg">{children}</div>
     </div>
   </section>
 );
-
-Hero.propTypes = {
-  children: PropTypes.any.isRequired,
-  img: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  subTitle: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired
-};
-
-export default Hero;
