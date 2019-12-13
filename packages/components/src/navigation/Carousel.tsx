@@ -1,47 +1,30 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { useState, FC, ReactNode } from "react";
 
-import "./index.module.scss";
+import "./Carousel.module.scss";
 
-class Carousel extends Component {
-  static propTypes = {
-    entries: PropTypes.array.isRequired,
-    children: PropTypes.func.isRequired
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentlyViewingEntry: 0
-    };
-    this.goToEntry = this.goToEntry.bind(this);
-  }
-
-  goToEntry(index) {
-    this.setState({
-      currentlyViewingEntry: index
-    });
-  }
-
-  render() {
-    const { entries, children } = this.props;
-    const { currentlyViewingEntry } = this.state;
-    return (
-      <div styleName="Carousel">
-        <div>{children({ ...entries[currentlyViewingEntry] })}</div>
-        <footer>
-          {entries.map((_, index) => (
-            <button
-              type="button"
-              key={index.toString()}
-              styleName={`bubble ${
-                index === currentlyViewingEntry ? "active" : ""
-              }`}
-              onClick={() => this.goToEntry(index)}
-            />
-          ))}
-        </footer>
-      </div>
-    );
-  }
+export interface CarouselProps {
+  entries: any[];
+  children: (props: any) => ReactNode;
 }
+
+export const Carousel: FC<CarouselProps> = ({ entries, children }) => {
+  const [currentEntry, setCurrentEntry] = useState(0);
+
+  const goToEntry = (index: number) => setCurrentEntry(index);
+
+  return (
+    <div styleName="carousel">
+      <div>{children({ ...entries[currentEntry] })}</div>
+      <footer>
+        {entries.map((_: any, index: number) => (
+          <button
+            type="button"
+            key={index.toString()}
+            styleName={`bubble ${index === currentEntry ? "active" : ""}`}
+            onClick={() => goToEntry(index)}
+          />
+        ))}
+      </footer>
+    </div>
+  );
+};
