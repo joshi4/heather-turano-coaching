@@ -1,14 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 
-import "./index.module.scss";
+import "./BlogLayout.module.scss";
 
-const BlogLayout = ({ children }) => (
+export const BlogLayout: FC = ({ children }) => (
   <section styleName="blog-layout">{children}</section>
 );
-
-BlogLayout.propTypes = {
-  children: PropTypes.node.isRequired
-};
-
-export default BlogLayout;

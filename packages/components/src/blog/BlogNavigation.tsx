@@ -1,43 +1,39 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 
-import { Link } from "../../../components/links";
-import { Icon, Label } from "../../../components/typography";
-import "./index.module.scss";
+import { Link } from "../buttons-links";
+import { Icon, Copy } from "../typography";
 
-const BlogNavigation = ({ pagePrev, pageNext }) => (
+import "./BlogNavigation.module.scss";
+
+export interface BlogNavigationProps {
+  pagePrev?: string;
+  pageNext?: string;
+}
+
+export const BlogNavigation: FC<BlogNavigationProps> = ({
+  pagePrev,
+  pageNext
+}) => (
   <footer styleName="blog-footer">
     <div styleName="link left">
       {pagePrev && (
         <Link to={pagePrev}>
           <Icon icon="long-arrow-left" size="lg" color="accent-0" />
-          <Label size="lg" color="accent-0">
+          <Copy type="label" size="lg" color="accent-0">
             Older stuff
-          </Label>
+          </Copy>
         </Link>
       )}
     </div>
     <div styleName="link right">
       {pageNext && (
         <Link to={pageNext}>
-          <Label size="lg" color="accent-0">
+          <Copy type="label" size="lg" color="accent-0">
             Newer stuff
-          </Label>
+          </Copy>
           <Icon icon="long-arrow-right" size="lg" color="accent-0" />
         </Link>
       )}
     </div>
   </footer>
 );
-
-BlogNavigation.propTypes = {
-  pagePrev: PropTypes.string,
-  pageNext: PropTypes.string
-};
-
-BlogNavigation.defaultProps = {
-  pagePrev: null,
-  pageNext: null
-};
-
-export default BlogNavigation;

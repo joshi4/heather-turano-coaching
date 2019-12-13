@@ -1,14 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 
-import "./index.module.scss";
+import "./BlogContainer.module.scss";
 
-const BlogContainer = ({ children }) => (
+export const BlogContainer: FC = ({ children }) => (
   <section styleName="blog">{children}</section>
 );
-
-BlogContainer.propTypes = {
-  children: PropTypes.node.isRequired
-};
-
-export default BlogContainer;

@@ -1,12 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 
-import "./index.module.scss";
+import "./BlogList.module.scss";
 
-const BlogList = ({ children }) => <ul styleName="blog-list">{children}</ul>;
-
-BlogList.propTypes = {
-  children: PropTypes.any.isRequired
-};
-
-export default BlogList;
+export const BlogList: FC = ({ children }) => (
+  <ul styleName="blog-list">{children}</ul>
+);

@@ -1,17 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 
-import {
-  Heading,
-  Icon,
-  Label,
-  Paragraph
-} from "../../../components/typography";
-import { Link } from "../../../components/links";
+import { Heading, Icon, Copy } from "../typography";
+import { Link } from "../buttons-links";
 
-import "./index.module.scss";
+import "./BlogHeader.module.scss";
 
-const BlogHeader = ({
+export interface BlogHeaderProps {
+  title: string;
+  description?: string;
+  backLinkRoute: string;
+  backLinkText: string;
+  dateCreated: string;
+  author: string;
+}
+
+export const BlogHeader: FC<BlogHeaderProps> = ({
   title,
   description,
   backLinkRoute,
@@ -24,45 +27,32 @@ const BlogHeader = ({
       <div styleName="link">
         <Link to={backLinkRoute}>
           <Icon icon="long-arrow-left" size="md" color="accent-0" />
-          <Label size="md" color="accent-0">
+          <Copy type="label" size="md" color="accent-0">
             {backLinkText}
-          </Label>
+          </Copy>
         </Link>
       </div>
       <div styleName="date">
         <div>
-          <Paragraph size="md" color="grayscale-3">
+          <Copy type="paragraph" size="md" color="grayscale-3">
             <span>{dateCreated}</span>
             <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-          </Paragraph>
+          </Copy>
         </div>
         <div>
-          <Paragraph size="md" color="secondary-0">
+          <Copy type="paragraph" size="md" color="secondary-0">
             <span>Written by {author}</span>
-          </Paragraph>
+          </Copy>
         </div>
       </div>
-      <Heading size="xl">{title}</Heading>
+      <Heading size="h2">{title}</Heading>
       {description ? (
         <div styleName="description">
-          <Paragraph size="h6">{description}</Paragraph>
+          <Copy type="paragraph" size="xxl">
+            {description}
+          </Copy>
         </div>
       ) : null}
     </div>
   </header>
 );
-
-BlogHeader.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  backLinkRoute: PropTypes.string.isRequired,
-  backLinkText: PropTypes.string.isRequired,
-  dateCreated: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired
-};
-
-BlogHeader.defaultProps = {
-  description: null
-};
-
-export default BlogHeader;

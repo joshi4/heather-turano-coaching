@@ -1,18 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 
-import {
-  Title,
-  Label,
-  Paragraph,
-  Caption,
-  Icon
-} from "../../../components/typography";
-import { Link } from "../../../components/links";
+import { Title, Copy, Icon } from "../typography";
+import { Link } from "../buttons-links";
 
-import "./index.module.scss";
+import "./BlogCard.module.scss";
 
-const BlogCard = ({
+export interface BlogCard {
+  title: string;
+  dateCreated: string;
+  prompt: string;
+  blogLinkRoute: string;
+  thumbnail: string;
+  thumbnailAlt: string;
+  category: string;
+}
+
+const BlogCard: FC<BlogCard> = ({
   category,
   title,
   prompt,
@@ -22,27 +25,31 @@ const BlogCard = ({
   blogLinkRoute
 }) => (
   <li styleName="container">
-    <Title size="sm">{category}</Title>
+    <Title size="h4">{category}</Title>
     <div styleName="post">
       <article styleName="img">
         <img src={thumbnail} alt={thumbnailAlt} />
       </article>
       <article styleName="summary">
         <header>
-          <Label size="xl">{title}</Label>
+          <Copy type="label" size="xl">
+            {title}
+          </Copy>
           <div styleName="date">
-            <Caption size="sm" color="grayscale-2">
+            <Copy type="caption" size="sm" color="grayscale-2">
               {dateCreated}
-            </Caption>
+            </Copy>
           </div>
         </header>
         <div>
-          <Paragraph size="md">{prompt}</Paragraph>
+          <Copy type="paragraph" size="md">
+            {prompt}
+          </Copy>
         </div>
         <Link to={blogLinkRoute}>
-          <Label size="md" color="accent-0">
+          <Copy type="label" size="md" color="accent-0">
             Keep Reading
-          </Label>
+          </Copy>
           <Icon icon="long-arrow-right" size="md" color="accent-0" />
         </Link>
       </article>
@@ -63,15 +70,3 @@ const BlogCard = ({
     </div>
   </li>
 );
-
-BlogCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  dateCreated: PropTypes.string.isRequired,
-  prompt: PropTypes.string.isRequired,
-  blogLinkRoute: PropTypes.string.isRequired,
-  thumbnail: PropTypes.string.isRequired,
-  thumbnailAlt: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired
-};
-
-export default BlogCard;
