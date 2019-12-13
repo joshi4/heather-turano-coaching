@@ -8,24 +8,28 @@ export default {
 };
 
 export const base = () => <Input name="default" />;
-export const text = <Input name="text" type="text" />;
-export const number = <Input name="number" type="number" />;
-export const email = <Input name="email" type="email" />;
-export const search = <Input name="search" type="search" />;
-export const password = <Input name="password" type="password" />;
-export const primaryWithPlaceholder = (
+export const text = () => <Input name="text" type="text" />;
+export const number = () => <Input name="number" type="number" />;
+export const email = () => <Input name="email" type="email" />;
+export const search = () => <Input name="search" type="search" />;
+export const password = () => <Input name="password" type="password" />;
+export const primaryWithPlaceholder = () => (
   <Input name="with-placeholder" placeholder="Text placeholder" />
 );
-export const primaryWithValue = <Input name="with-value" value="Text value" />;
-export const primaryWithLabel = <Input name="with-label" label="Text label" />;
-export const primaryWithLabelAndPlacenolder = (
+export const primaryWithValue = () => (
+  <Input name="with-value" value="Text value" />
+);
+export const primaryWithLabel = () => (
+  <Input name="with-label" label="Text label" />
+);
+export const primaryWithLabelAndPlacenolder = () => (
   <Input
     name="with-label-and-placeholder"
     label="Text label and placeholder"
     placeholder="placeholder"
   />
 );
-export const primaryInvalidWithLabel = (
+export const primaryInvalidWithLabel = () => (
   <Input
     name="invalid-with-label"
     label="Invalid textarea"
@@ -33,7 +37,7 @@ export const primaryInvalidWithLabel = (
     isValid={false}
   />
 );
-export const primaryInvalidWithLabelAndErrorMessage = (
+export const primaryInvalidWithLabelAndErrorMessage = () => (
   <Input
     name="invalid-with-label-and-error-message"
     label="Invalid textarea"
@@ -43,20 +47,20 @@ export const primaryInvalidWithLabelAndErrorMessage = (
   />
 );
 export const secondary = () => <Input styleType="secondary" name="default" />;
-export const secondaryWithPlaceholder = (
+export const secondaryWithPlaceholder = () => (
   <Input
     styleType="secondary"
     name="with-placeholder"
     placeholder="Text placeholder"
   />
 );
-export const secondaryWithValue = (
+export const secondaryWithValue = () => (
   <Input styleType="secondary" name="with-value" value="Text value" />
 );
-export const secondaryWithLabel = (
+export const secondaryWithLabel = () => (
   <Input styleType="secondary" name="with-label" label="Text label" />
 );
-export const secondaryWithLabelAndPlacenolder = (
+export const secondaryWithLabelAndPlacenolder = () => (
   <Input
     styleType="secondary"
     name="with-label-and-placeholder"
@@ -64,7 +68,7 @@ export const secondaryWithLabelAndPlacenolder = (
     placeholder="placeholder"
   />
 );
-export const secondaryInvalidWithLabel = (
+export const secondaryInvalidWithLabel = () => (
   <Input
     styleType="secondary"
     name="invalid-with-label"
@@ -73,7 +77,7 @@ export const secondaryInvalidWithLabel = (
     isValid={false}
   />
 );
-export const secondaryInvalidWithLabelAndErrorMessage = (
+export const secondaryInvalidWithLabelAndErrorMessage = () => (
   <Input
     styleType="secondary"
     name="invalid-with-label-and-error-message"

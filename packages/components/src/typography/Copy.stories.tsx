@@ -28,7 +28,7 @@ export const caption = () => (
 );
 export const captionWithColor = () => (
   <>
-    <Copy type="caption" size="xl" color="error">
+    <Copy type="caption" size="xl" color="invalid">
       Caption xl
     </Copy>
     <Copy type="caption" size="lg" color="grayscale">
@@ -66,7 +66,7 @@ export const paragraph = () => (
 );
 export const paragraphWithColor = () => (
   <>
-    <Copy type="paragraph" size="xl" color="error">
+    <Copy type="paragraph" size="xl" color="invalid">
       Paragraph xl
     </Copy>
     <Copy type="paragraph" size="lg" color="grayscale">
@@ -104,7 +104,7 @@ export const label = () => (
 );
 export const labelWithColor = () => (
   <>
-    <Copy type="label" size="xl" color="error">
+    <Copy type="label" size="xl" color="invalid">
       Label xl
     </Copy>
     <Copy type="label" size="lg" color="grayscale">
@@ -142,7 +142,7 @@ export const text = () => (
 );
 export const textWithColor = () => (
   <>
-    <Copy type="text" size="xl" color="error">
+    <Copy type="text" size="xl" color="invalid">
       Label xl
     </Copy>
     <Copy type="text" size="lg" color="grayscale">

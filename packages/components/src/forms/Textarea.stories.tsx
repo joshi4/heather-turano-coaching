@@ -8,23 +8,23 @@ export default {
 };
 
 export const base = () => <Textarea name="default" />;
-export const primaryWithPlaceholder = (
+export const primaryWithPlaceholder = () => (
   <Textarea name="with-placeholder" placeholder="Textarea placeholder" />
 );
-export const primaryWithValue = (
+export const primaryWithValue = () => (
   <Textarea name="with-value" value="Textarea value" />
 );
-export const primaryWithLabel = (
+export const primaryWithLabel = () => (
   <Textarea name="with-label" label="Textarea label" />
 );
-export const primaryWithLabelAndPlacenolder = (
+export const primaryWithLabelAndPlacenolder = () => (
   <Textarea
     name="with-label-and-placeholder"
     label="Textarea label and placeholder"
     placeholder="placeholder"
   />
 );
-export const primaryInvalidWithLabel = (
+export const primaryInvalidWithLabel = () => (
   <Textarea
     name="invalid-with-label"
     label="Invalid textarea"
@@ -32,7 +32,7 @@ export const primaryInvalidWithLabel = (
     isValid={false}
   />
 );
-export const primaryInvalidWithLabelAndErrorMessage = (
+export const primaryInvalidWithLabelAndErrorMessage = () => (
   <Textarea
     name="invalid-with-label-and-error-message"
     label="Invalid textarea"
@@ -44,20 +44,20 @@ export const primaryInvalidWithLabelAndErrorMessage = (
 export const secondary = () => (
   <Textarea styleType="secondary" name="default" />
 );
-export const secondaryWithPlaceholder = (
+export const secondaryWithPlaceholder = () => (
   <Textarea
     styleType="secondary"
     name="with-placeholder"
     placeholder="Textarea placeholder"
   />
 );
-export const secondaryWithValue = (
+export const secondaryWithValue = () => (
   <Textarea styleType="secondary" name="with-value" value="Textarea value" />
 );
-export const secondaryWithLabel = (
+export const secondaryWithLabel = () => (
   <Textarea styleType="secondary" name="with-label" label="Textarea label" />
 );
-export const secondaryWithLabelAndPlacenolder = (
+export const secondaryWithLabelAndPlacenolder = () => (
   <Textarea
     styleType="secondary"
     name="with-label-and-placeholder"
@@ -65,7 +65,7 @@ export const secondaryWithLabelAndPlacenolder = (
     placeholder="placeholder"
   />
 );
-export const secondaryInvalidWithLabel = (
+export const secondaryInvalidWithLabel = () => (
   <Textarea
     styleType="secondary"
     name="invalid-with-label"
@@ -74,7 +74,7 @@ export const secondaryInvalidWithLabel = (
     isValid={false}
   />
 );
-export const secondaryInvalidWithLabelAndErrorMessage = (
+export const secondaryInvalidWithLabelAndErrorMessage = () => (
   <Textarea
     styleType="secondary"
     name="invalid-with-label-and-error-message"

@@ -1,2 +1,2 @@
-export * from "./BlogTag";
-export * from "./BlogTagGroup";
+export * from "./Tag";
+export * from "./TagGroup";
