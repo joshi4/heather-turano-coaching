@@ -1,11 +1,11 @@
 // include fonts and functions to make the base & variables
-@import "./functions/index";
+@import "./functions/functions";
 
 // import variables to be used for base
-@import "./variables/index";
+@import "./variables/variables";
 
 // import mixins that use variables
-@import "./mixins/index";
+@import "./mixins/mixins";
 
 // import the base font definitions
-@import "./fonts/index";
+@import "./fonts/fonts";

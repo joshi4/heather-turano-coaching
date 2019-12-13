@@ -16,8 +16,12 @@
     "test": "jest",
     "lint:fix": "eslint './packages/**/src/**/*.js' --fix",
     "build:legacy": "lerna run build --scope=@heather-turano-coaching/legacy --stream",
-    "dev:legacy": "lerna run dev --scope=@heather-turano-coaching/legacy",
     "build:website": "lerna run build --scope=@heather-turano-coaching/website --stream",
+    "build:components": "lerna run build --scope=@heather-turano-coaching/components --stream",
+    "build:ds": "lerna run build --scope=@heather-turano-coaching/design-system --stream",
+    "dev:ds": "lerna run start --scope=@heather-turano-coaching/design-system --stream",
+    "dev:components": "lerna run start --scope=@heather-turano-coaching/components --stream",
+    "dev:legacy": "lerna run dev --scope=@heather-turano-coaching/legacy",
     "dev:website": "cd /Users/drewdecarme/git-imagined/heather-turano-coaching/live-life-mindful/packages/website && npm run dev --scope=@heather-turano-coaching/website"
   },
   "repository": {

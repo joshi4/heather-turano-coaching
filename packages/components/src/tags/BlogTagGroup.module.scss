@@ -1,4 +1,4 @@
-@import "~@heather-turano-coaching/styles/core";
+@import "~@heather-turano-coaching/styles/core/index";
 
 .tag-group {
   @include make_flex(row, flex-start, flex-start);

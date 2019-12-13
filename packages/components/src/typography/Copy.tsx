@@ -1,20 +1,16 @@
 import React, { FC } from "react";
 
-import { DOMType__Paragraph } from "@heather-turano-coaching/typescript/types";
-import {
-  Primitive_Size,
-  Primitive_Color
-} from "@heather-turano-coaching/styles/types";
+import { Primitive, DOM } from "@heather-turano-coaching/design-system";
 
 import { TypColor } from "./TypColor";
 
-import "./Copy.module.scss";
 import { CopyTypes } from "./_typography.types";
+import "./Copy.module.scss";
 
-export type CopyProps = DOMType__Paragraph & {
+export type CopyProps = DOM.Paragraph & {
   type: CopyTypes;
-  size?: Primitive_Size;
-  color?: Primitive_Color;
+  size?: Primitive.Size;
+  color?: Primitive.Color;
   copy?: string | undefined;
 };
 

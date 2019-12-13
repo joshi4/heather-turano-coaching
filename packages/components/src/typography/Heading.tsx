@@ -1,16 +1,15 @@
 import React, { FC } from "react";
 
-import { Primitive_Color } from "@heather-turano-coaching/styles/types";
-import { DOMType__Heading } from "@heather-turano-coaching/typescript/types";
+import { Primitive, DOM } from "@heather-turano-coaching/design-system";
 
 import { TypColor } from "./TypColor";
 
 import { HeadingSize, headingSizeMap } from "./_typography.types";
 import "./Heading.module.scss";
 
-export type HeadingProps = DOMType__Heading & {
+export type HeadingProps = DOM.Heading & {
   size?: HeadingSize;
-  color?: Primitive_Color;
+  color?: Primitive.Color;
   copy?: string | undefined;
 };
 

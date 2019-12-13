@@ -1,7 +1,7 @@
-export type Primitive_Size = "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
-export type Primitive_Position = "left" | "right" | "center";
-export type Primitive_Layout = "inline" | "stacked" | "standalone";
-export type Primitive_Color =
+export type Size = "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
+export type Position = "left" | "right" | "center";
+export type Layout = "inline" | "stacked" | "standalone";
+export type Color =
   | "primary"
   | "secondary"
   | "accent"

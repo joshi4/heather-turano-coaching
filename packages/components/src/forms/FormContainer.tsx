@@ -1,9 +1,10 @@
 import React, { FC } from "react";
 
-import "./FormContainer.module";
-import { Primitive_Layout } from "@heather-turano-coaching/styles/types";
+import { Primitive } from "@heather-turano-coaching/design-system";
 
-export const FormConatiner: FC<{ layout?: Primitive_Layout }> = ({
+import "./FormContainer.module";
+
+export const FormConatiner: FC<{ layout?: Primitive.Layout }> = ({
   layout = "",
   children
 }) => <div styleName={layout}>{children}</div>;

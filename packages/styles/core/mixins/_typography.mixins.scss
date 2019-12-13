@@ -218,16 +218,16 @@
   }
 }
 
-@mixin font-icon--heading-xl {
+@mixin font-icon--heading-h1 {
   @include icon__base(heading-xl);
 }
-@mixin font-icon--heading-lg {
+@mixin font-icon--heading-h2 {
   @include icon__base(heading-lg);
 }
-@mixin font-icon--heading-md {
+@mixin font-icon--heading-h3 {
   @include icon__base(heading-md);
 }
-@mixin font-icon--heading-sm {
+@mixin font-icon--heading-h4 {
   @include icon__base(heading-sm);
 }
 @mixin font-icon--xl {

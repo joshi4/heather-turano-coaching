@@ -1,15 +1,14 @@
 import React, { FC } from "react";
 
-import { DOMType__Button } from "@heather-turano-coaching/typescript/types";
-import { Primitive_Color } from "@heather-turano-coaching/styles/types";
+import { Primitive, DOM } from "@heather-turano-coaching/design-system";
 
 import { Icon, Copy } from "../typography";
 
 import "./Button.module.scss";
 
-export type ButtonProps = DOMType__Button & {
+export type ButtonProps = DOM.Button & {
   label: string;
-  styleType?: Primitive_Color;
+  styleType?: Primitive.Color;
   loading?: boolean;
 };
 
