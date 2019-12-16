@@ -23,9 +23,9 @@ export const Hero: FC<HeroProps> = ({
     <HeroImage image={image} alt={alt} />
     <div styleName="top">
       <div>
-        <Heading size="h2" copy={`'${title}'`} color="lightscale-0" />
+        <Heading size="h2" copy={`'${title}'`} color="lightscale" />
         <div styleName="block sm">
-          <Copy type="paragraph" size="xl" color="lightscale-0">
+          <Copy type="paragraph" size="xl" color="lightscale">
             {subTitle}
           </Copy>
         </div>

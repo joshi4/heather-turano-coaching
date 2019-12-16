@@ -1,16 +1,17 @@
 import React, { FC } from "react";
 
-import { DOM, Primitive } from "@heather-turano-coaching/design-system";
+import { DOM } from "@heather-turano-coaching/design-system";
 
 import { Control, Label, Error, ErrorProps } from "./base";
 
+import { InputStyleType } from "./_forms.types";
 import "./Textarea.module.scss";
 
 export type TextareaProps = DOM.Textarea &
   ErrorProps & {
     name: string;
     label?: string;
-    styleType?: Primitive.InputStyleType;
+    styleType?: InputStyleType;
     isValid?: boolean;
   };
 

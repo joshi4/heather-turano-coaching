@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 
 import { Tag, TagProps } from "./Tag";
-import "./index.module.scss";
+
+import "./TagGroup.module.scss";
 
 export interface TagGroup {
   tags?: TagProps[];

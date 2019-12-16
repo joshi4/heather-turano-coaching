@@ -1,15 +1,16 @@
 import React, { FC } from "react";
+import { DOM } from "@heather-turano-coaching/design-system";
 
 import { Control, Label, Error, ErrorProps } from "./base";
 
 import "./Input.module.scss";
-import { DOM, Primitive } from "@heather-turano-coaching/design-system";
+import { InputStyleType } from "./_forms.types";
 
 export type InputProps = DOM.Input &
   ErrorProps & {
     name: string;
     label?: string;
-    styleType?: Primitive.InputStyleType;
+    styleType?: InputStyleType;
     isValid?: boolean;
     type?: "text" | "email" | "password" | "search" | "number";
   };

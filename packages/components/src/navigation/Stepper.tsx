@@ -36,12 +36,12 @@ export const Stepper: FC<StepperProps> = ({ steps, children }) => {
                   size="lg"
                   color={(() => {
                     if (isActive) {
-                      return "secondary-0";
+                      return "secondary";
                     }
                     if (isPassed) {
-                      return "secondary-2";
+                      return "secondary";
                     }
-                    return "grayscale-2";
+                    return "grayscale";
                   })()}
                 >
                   {label}
@@ -58,12 +58,12 @@ export const Stepper: FC<StepperProps> = ({ steps, children }) => {
                   size="h4"
                   color={(() => {
                     if (isActive) {
-                      return "secondary-0";
+                      return "secondary";
                     }
                     if (isPassed) {
-                      return "secondary-2";
+                      return "secondary";
                     }
-                    return "grayscale-2";
+                    return "grayscale";
                   })()}
                 />
               </button>

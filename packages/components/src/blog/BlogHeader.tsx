@@ -26,21 +26,21 @@ export const BlogHeader: FC<BlogHeaderProps> = ({
     <div styleName="page-header">
       <div styleName="link">
         <Link to={backLinkRoute}>
-          <Icon icon="long-arrow-left" size="md" color="accent-0" />
-          <Copy type="label" size="md" color="accent-0">
+          <Icon icon="long-arrow-left" size="md" color="accent" />
+          <Copy type="label" size="md" color="accent">
             {backLinkText}
           </Copy>
         </Link>
       </div>
       <div styleName="date">
         <div>
-          <Copy type="paragraph" size="md" color="grayscale-3">
+          <Copy type="paragraph" size="md" color="grayscale">
             <span>{dateCreated}</span>
             <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
           </Copy>
         </div>
         <div>
-          <Copy type="paragraph" size="md" color="secondary-0">
+          <Copy type="paragraph" size="md" color="secondary">
             <span>Written by {author}</span>
           </Copy>
         </div>

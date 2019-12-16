@@ -18,8 +18,8 @@ export const BlogNavigation: FC<BlogNavigationProps> = ({
     <div styleName="link left">
       {pagePrev && (
         <Link to={pagePrev}>
-          <Icon icon="long-arrow-left" size="lg" color="accent-0" />
-          <Copy type="label" size="lg" color="accent-0">
+          <Icon icon="long-arrow-left" size="lg" color="accent" />
+          <Copy type="label" size="lg" color="accent">
             Older stuff
           </Copy>
         </Link>
@@ -28,10 +28,10 @@ export const BlogNavigation: FC<BlogNavigationProps> = ({
     <div styleName="link right">
       {pageNext && (
         <Link to={pageNext}>
-          <Copy type="label" size="lg" color="accent-0">
+          <Copy type="label" size="lg" color="accent">
             Newer stuff
           </Copy>
-          <Icon icon="long-arrow-right" size="lg" color="accent-0" />
+          <Icon icon="long-arrow-right" size="lg" color="accent" />
         </Link>
       )}
     </div>

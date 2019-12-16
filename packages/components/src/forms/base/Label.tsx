@@ -19,11 +19,7 @@ export const Label: FC<LabelProps> = ({
   <>
     {label && (
       <label htmlFor={htmlFor} styleName="input-label">
-        <Copy
-          type="label"
-          size="sm"
-          color={isValid ? "secondary-0" : "invalid-0"}
-        >
+        <Copy type="label" size="sm" color={isValid ? "secondary" : "error"}>
           {label}
         </Copy>
       </label>

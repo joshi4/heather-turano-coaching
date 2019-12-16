@@ -15,7 +15,9 @@
     "test": "tsdx test",
     "lint": "tsdx lint"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "typescript": "^3.7.3"
+  },
   "devDependencies": {
     "@heather-turano-coaching/typescript": "^0.1.0",
     "@types/jest": "^24.0.23",
@@ -23,5 +25,8 @@
     "tsdx": "^0.11.0",
     "tslib": "^1.10.0",
     "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "polished": "^3.4.2"
   }
 }

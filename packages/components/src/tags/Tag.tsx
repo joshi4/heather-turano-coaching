@@ -4,7 +4,7 @@ import { Link as GatsbyLink } from "gatsby";
 
 import { Copy } from "../typography";
 
-import "./index.module.scss";
+import "./Tag.module.scss";
 
 export interface TagProps {
   value: string;
@@ -12,7 +12,7 @@ export interface TagProps {
 
 export const Tag: FC<TagProps> = ({ value }) => (
   <GatsbyLink styleName="blog-tag" to={`/tags/${kebabCase(value)}/`}>
-    <Copy type="caption" size="sm" color="lightscale-3">
+    <Copy type="caption" size="sm" color="lightscale">
       {value}
     </Copy>
   </GatsbyLink>

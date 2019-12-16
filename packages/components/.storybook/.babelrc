@@ -1,9 +1,10 @@
 {
   "plugins": [
     [
-      "babel-plugin-react-css-modules",
+      "react-css-modules",
       {
-        "generateScopedName": "[local]--[hash:base64:5]",
+        "generateScopedName": "[local]__[hash:base64:5]",
+        "webpackHotModuleReloading": true,
         "filetypes": {
           ".scss": {
             "syntax": "postcss-scss",
