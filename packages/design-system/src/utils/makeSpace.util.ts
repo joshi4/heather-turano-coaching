@@ -1,35 +1,23 @@
-export const makeSpace = () => "16px";
+import { Space } from "primitives";
+type SpaceTypes = "dynamic" | "custom";
 
-interface CSSPositionOffsets {
-  top: number;
-  right: number;
-  bottom: number;
-  left: number;
-}
+type MakeSpace = (types: SpaceTypes, space: Space | undefined) => string;
 
-type InsetCategories = "dynamic" | "custom";
-
-interface MakeInsetParams {
-  type: InsetCategories;
-  sizes?: CSSPositionOffsets;
-}
-
-type MakeInset = (params: MakeInsetParams) => string;
-
-export const makeInset: MakeInset = ({
-  type = "dynamic",
-  sizes: { top = 0, right = 0, bottom = 0, left = 0 } = {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0
+export const makeSpace: MakeSpace = (type = "dynamic", space = undefined) => {
+  if (space && type === "dynamic") {
+    return space;
   }
-}) => {
-  if (type !== "custom") {
-    return `padding: ${top} ${right} ${bottom} ${left}`;
+  if (space && type === "custom") {
+    console.warn(
+      "You're using a space that is defined outside of the parameters of the design system. Use with caution."
+    );
   }
-  console.warn(
-    "You're using a size that is defined outside of the parameters of the design system. Boy I do hope you know what you're doing..."
-  );
-  return `padding: ${top} ${right} ${bottom} ${left}`;
+  return "0";
 };
+
+export interface CSSPositionOffsets {
+  top: Space;
+  right: Space;
+  bottom: Space;
+  left: Space;
+}
