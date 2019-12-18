@@ -49,8 +49,8 @@ interface ResponsiveInterface {
  * makeResponsive({ beginAt: "tabletLandscape", endAt: "desktop", style: ``});
  * ```
  *
- * @param beginAt at this viewport size, apply the style (defaults to 0)
- * @param endAt at this viewport size, stop applying the style (optional)
+ * @param beginAt this viewport size, apply the style (defaults to 0)
+ * @param endAt this viewport size, stop applying the style (optional)
  */
 export const makeResponsive = ({
   beginAt = undefined,
@@ -75,7 +75,7 @@ export const makeResponsive = ({
   }
   if (beginAt && !endAt) {
     return `
-      @media (min-width: ${responsiveBreakpoints[endAt]}px) {
+      @media (min-width: ${responsiveBreakpoints[beginAt]}px) {
         ${style};
       }
     `;

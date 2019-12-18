@@ -30,7 +30,7 @@ export const Input: FC<InputProps> = ({
       id={name}
       name={name}
       type={type}
-      styleName={`input-${type} ${styleType} ${!isValid ? "invalid" : ""}`}
+      styleName={`input-${type} ${styleType} ${!isValid ? "error" : ""}`}
       {...restProps}
     />
     <Error errorMessage={errorMessage} />

@@ -1,6 +1,9 @@
 import { mix } from "polished";
 
-import Color, { ColorScalable, ColorStatic } from "primitives/color.primitive";
+import Color, {
+  ColorScalable,
+  ColorStatic
+} from "../primitives/color.primitive";
 
 /**
  * @todo Convert ColorHex to actual type-checked regex value
@@ -9,8 +12,8 @@ import Color, { ColorScalable, ColorStatic } from "primitives/color.primitive";
 type ColorHex = string;
 type ColorScales = [ColorHex, ColorHex, ColorHex, ColorHex, ColorHex];
 type ColorScalePosition = 0 | 1 | 2 | 3 | 4;
-type ColorBlendRatios = 0.2 | 0.4 | 0.6 | 0.8 | 1;
-type ColorCategories = "scalable" | "static" | "custom";
+type ColorBlendRatios = 0.2 | 0.4 | 0.6 | 0.8 | 0;
+type ColorTypes = "scalable" | "static" | "custom";
 
 type ColorValueScalable = { [key in ColorScalable]: ColorHex };
 type ColorValueStatic = { [key in ColorStatic]: ColorHex };
@@ -20,7 +23,7 @@ type ColorMapStatic = { [key in ColorStatic]: ColorHex };
 type ColorMapCustom = any;
 
 type ColorMaps = ColorMapScalable | ColorMapStatic | ColorMapCustom;
-type Colors = { [key in ColorCategories]: ColorMaps };
+type Colors = { [key in ColorTypes]: ColorMaps };
 
 const scalableColorValues: ColorValueScalable = {
   primary: "#bf9f5a",
@@ -48,7 +51,7 @@ const createColorScale = (hex: ColorScalable): ColorScales => [
   createColor(0.4, hex),
   createColor(0.6, hex),
   createColor(0.8, hex),
-  createColor(1, hex)
+  createColor(0, hex)
 ];
 
 const scalableColorMap: ColorMapScalable = {
@@ -79,13 +82,11 @@ const colors: Colors = {
   }
 };
 
-type MakeColorParams = {
-  type: ColorCategories;
+type MakeColor = (options: {
+  type: ColorTypes;
   color: Color;
   scale?: ColorScalePosition;
-};
-
-type MakeColor = (params: MakeColorParams) => ColorHex;
+}) => ColorHex;
 
 export const makeColor: MakeColor = ({ type, color, scale = 4 }) => {
   if (type === "scalable") {

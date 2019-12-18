@@ -12,7 +12,7 @@ export const allTypes = () => (
     <Button label="primary" styleType="primary" />
     <Button label="secondary" styleType="secondary" />
     <Button label="accent" styleType="accent" />
-    <Button label="destructive" styleType="invalid" />
+    <Button label="destructive" styleType="error" />
     <Button label="success" styleType="success" />
     <Button label="success" styleType="success" />
   </>

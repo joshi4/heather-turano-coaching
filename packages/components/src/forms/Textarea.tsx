@@ -28,7 +28,7 @@ export const Textarea: FC<TextareaProps> = ({
     <textarea
       id={name}
       name={name}
-      styleName={`input-textarea ${styleType} ${!isValid ? "invalid" : ""}`}
+      styleName={`input-textarea ${styleType} ${!isValid ? "error" : ""}`}
       {...restProps}
     />
     <Error errorMessage={errorMessage} />

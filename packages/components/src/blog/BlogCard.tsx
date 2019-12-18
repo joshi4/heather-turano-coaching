@@ -36,7 +36,7 @@ const BlogCard: FC<BlogCard> = ({
             {title}
           </Copy>
           <div styleName="date">
-            <Copy type="caption" size="sm" color="grayscale-2">
+            <Copy type="caption" size="sm" color="grayscale">
               {dateCreated}
             </Copy>
           </div>
@@ -47,10 +47,10 @@ const BlogCard: FC<BlogCard> = ({
           </Copy>
         </div>
         <Link to={blogLinkRoute}>
-          <Copy type="label" size="md" color="accent-0">
+          <Copy type="label" size="md" color="accent">
             Keep Reading
           </Copy>
-          <Icon icon="long-arrow-right" size="md" color="accent-0" />
+          <Icon icon="long-arrow-right" size="md" color="accent" />
         </Link>
       </article>
       {/* <ul styleName="quick-links">

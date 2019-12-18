@@ -1,6 +1,11 @@
 import React, { FC } from "react";
 
-import { Primitive, DOM } from "@heather-turano-coaching/design-system";
+import {
+  Primitive,
+  DOM,
+  makeSize,
+  makeColor
+} from "@heather-turano-coaching/design-system";
 
 import { Icon, Copy } from "../typography";
 
@@ -11,6 +16,9 @@ export type ButtonProps = DOM.Button & {
   styleType?: Primitive.Color;
   loading?: boolean;
 };
+
+console.log(makeSize({ size: "sm" }));
+console.log(makeColor({ type: "scalable", color: "primary" }));
 
 export const Button: FC<ButtonProps> = ({
   label,

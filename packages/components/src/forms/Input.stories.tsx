@@ -31,7 +31,7 @@ export const primaryWithLabelAndPlacenolder = () => (
 );
 export const primaryInvalidWithLabel = () => (
   <Input
-    name="invalid-with-label"
+    name="error-with-label"
     label="Invalid textarea"
     placeholder="placeholder"
     isValid={false}
@@ -39,7 +39,7 @@ export const primaryInvalidWithLabel = () => (
 );
 export const primaryInvalidWithLabelAndErrorMessage = () => (
   <Input
-    name="invalid-with-label-and-error-message"
+    name="error-with-label-and-error-message"
     label="Invalid textarea"
     placeholder="placeholder"
     isValid={false}
@@ -71,7 +71,7 @@ export const secondaryWithLabelAndPlacenolder = () => (
 export const secondaryInvalidWithLabel = () => (
   <Input
     styleType="secondary"
-    name="invalid-with-label"
+    name="error-with-label"
     label="Invalid textarea"
     placeholder="placeholder"
     isValid={false}
@@ -80,7 +80,7 @@ export const secondaryInvalidWithLabel = () => (
 export const secondaryInvalidWithLabelAndErrorMessage = () => (
   <Input
     styleType="secondary"
-    name="invalid-with-label-and-error-message"
+    name="error-with-label-and-error-message"
     label="Invalid textarea"
     placeholder="placeholder"
     isValid={false}
