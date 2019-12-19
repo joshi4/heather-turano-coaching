@@ -16,6 +16,7 @@
     "lint": "tsdx lint"
   },
   "peerDependencies": {
+    "polished": "^3.4.2",
     "typescript": "^3.7.3"
   },
   "devDependencies": {
@@ -24,11 +25,10 @@
     "@types/jest": "^24.0.24",
     "@types/styled-components": "^4.4.1",
     "husky": "^3.1.0",
+    "polished": "^3.4.2",
     "tsdx": "^0.11.0",
     "tslib": "^1.10.0",
+    "styled-components": "^4.4.1",
     "typescript": "^3.7.3"
-  },
-  "dependencies": {
-    "polished": "^3.4.2"
   }
 }

@@ -1,12 +1,11 @@
 import { mix } from "polished";
 
-import Color, {
-  ColorScalable,
-  ColorStatic
-} from "../primitives/color.primitive";
+import * as Primitive from "../types/primitive";
+import { ColorScalable, ColorStatic } from "../types/primitive/color.primitive";
 
 /**
  * @todo Convert ColorHex to actual type-checked regex value
+ * once this issue has been closed
  * https://github.com/Microsoft/TypeScript/issues/6579
  */
 type ColorHex = string;
@@ -84,13 +83,12 @@ const colors: Colors = {
 
 type MakeColor = (options: {
   type: ColorTypes;
-  color: Color;
+  color: Primitive.Color;
   scale?: ColorScalePosition;
 }) => ColorHex;
 
 export const makeColor: MakeColor = ({ type, color, scale = 4 }) => {
   if (type === "scalable") {
-    console.log(colors[type][color]);
     return colors[type][color][scale];
   }
   if (type === "static") {

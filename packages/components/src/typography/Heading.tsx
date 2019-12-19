@@ -1,14 +1,24 @@
 import React, { FC } from "react";
 
-import { Primitive, DOM } from "@heather-turano-coaching/design-system";
+import {
+  Primitive,
+  Composite,
+  DOM
+} from "@heather-turano-coaching/design-system";
 
 import { TypColor } from "./TypColor";
 
-import { HeadingSize, headingSizeMap } from "./_typography.types";
 import "./Heading.module.scss";
+import {
+  StyledH1,
+  StyledH2,
+  StyledH3,
+  StyledH4,
+  StyledH5
+} from "./_typography.styles";
 
 export type HeadingProps = DOM.Heading & {
-  size?: HeadingSize;
+  size?: Composite.HeadingSizes;
   color?: Primitive.Color;
   copy?: string | undefined;
 };
@@ -19,43 +29,42 @@ export const Heading: FC<HeadingProps> = ({
   copy = undefined,
   children = undefined
 }) => {
-  const translatedSize = headingSizeMap[size];
   switch (size) {
     case "h1":
       return (
-        <h1 styleName={translatedSize}>
+        <StyledH1>
           <TypColor color={color}>{copy || children}</TypColor>
-        </h1>
+        </StyledH1>
       );
     case "h2":
       return (
-        <h2 styleName={translatedSize}>
+        <StyledH2>
           <TypColor color={color}>{copy || children}</TypColor>
-        </h2>
+        </StyledH2>
       );
     case "h3":
       return (
-        <h3 styleName={translatedSize}>
+        <StyledH3>
           <TypColor color={color}>{copy || children}</TypColor>
-        </h3>
+        </StyledH3>
       );
     case "h4":
       return (
-        <h4 styleName={translatedSize}>
+        <StyledH4>
           <TypColor color={color}>{copy || children}</TypColor>
-        </h4>
+        </StyledH4>
       );
     case "h5":
       return (
-        <h4 styleName={translatedSize}>
+        <StyledH5>
           <TypColor color={color}>{copy || children}</TypColor>
-        </h4>
+        </StyledH5>
       );
     default:
       return (
-        <h1>
+        <StyledH1>
           <TypColor color={color}>{copy || children}</TypColor>
-        </h1>
+        </StyledH1>
       );
   }
 };

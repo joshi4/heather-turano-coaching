@@ -1,4 +1,4 @@
-import { Space } from "primitives";
+import { Space } from "../types/primitive";
 type SpaceTypes = "dynamic" | "custom";
 
 type MakeSpace = (types: SpaceTypes, space: Space | undefined) => string;
