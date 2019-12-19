@@ -4,27 +4,6 @@ import { makeFont, makeReset } from "@heather-turano-coaching/design-system";
 const BaseHeading = css`
   ${makeReset("heading")};
   box-sizing: border-box;
-  /* position: relative;
-
-  &:after {
-    content: "";
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 0.5px;
-    background: #7ec3f1;
-    position: absolute;
-  }
-
-  &:before {
-    content: "";
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 0.5px;
-    background: #7ec3f1;
-    position: absolute;
-  } */
 `;
 
 console.log(makeReset("heading"));
