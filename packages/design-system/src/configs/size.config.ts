@@ -7,7 +7,7 @@ export type SizeUnits = "em" | "rem" | "px";
 type ModularScaleRatio = keyof typeof ratioNames | number;
 type SizeScales = { [key in Primitive.Size]: number };
 
-interface SizeConfig {
+export interface SizeConfig {
   documentFontSize: string;
   modularScaleRatio: ModularScaleRatio;
   baseFontSize: string;

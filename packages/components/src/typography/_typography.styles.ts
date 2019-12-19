@@ -10,7 +10,6 @@ console.log(makeReset("heading"));
 
 export const StyledH1 = styled.h1`
   ${BaseHeading};
-  ${makeReset("heading")};
   ${makeFont({ fontSize: "h1" })}
 `;
 
