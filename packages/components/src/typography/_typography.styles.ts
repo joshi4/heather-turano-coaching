@@ -3,7 +3,6 @@ import { makeFont, makeReset } from "@heather-turano-coaching/design-system";
 
 const BaseHeading = css`
   ${makeReset("heading")};
-  box-sizing: border-box;
 `;
 
 console.log(makeReset("heading"));

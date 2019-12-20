@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Heading } from "./Heading";
-import { Baseline } from "../development";
+import { Baseline, FontFamily } from "../development";
 
 export default {
   component: Heading,
@@ -10,6 +10,7 @@ export default {
 
 export const heading = () => (
   <>
+    <FontFamily />
     <Heading>Heading default - H1</Heading>
     <Heading size="h1">Heading H1 (xxl)</Heading>
     <Heading size="h2">Heading H2 (xl)</Heading>

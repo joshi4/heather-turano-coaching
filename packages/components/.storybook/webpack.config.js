@@ -5,7 +5,6 @@ const storybookTsConfigPath = path.resolve(__dirname, "../tsconfig.json");
 module.exports = async ({ config }) => {
   // sass
   config.module.rules.push({
-    enforce: "pre",
     test: /\.scss$/,
     exclude: /node_modules/,
     use: [

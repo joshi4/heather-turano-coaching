@@ -1,9 +1,11 @@
-import * as Primitive from "../types/primitive";
+import { Primitive, Composite } from "../types";
 import { sizeConfig } from "../configs/size.config";
 import { createCustomSize, sizeMap } from "./makeSize.util";
-import { headingSizeMap, HeadingSizes } from "../configs/font.config";
-
-export { HeadingSizes };
+import {
+  headingSizeMap,
+  fontConfig,
+  fontWeightMap
+} from "../configs/font.config";
 
 /**
  * Creates
@@ -20,28 +22,55 @@ export { HeadingSizes };
 export const makeFont = ({
   fontSize,
   lineHeight,
+  fontFamily = fontConfig.fontFamily,
+  fontWeight = fontConfig.fontWeight,
+  fontStyle = fontConfig.fontStyle,
   custom = undefined
 }: {
-  fontSize: Primitive.Size | HeadingSizes;
+  fontSize: Primitive.Size | Composite.HeadingSizes;
   lineHeight?: Primitive.Size;
+  fontFamily?: Composite.FontFamily;
+  fontWeight?: Composite.FontWeightName;
+  fontStyle?: Composite.FontStyle;
   custom?: {
     fontSize: string;
     lineHeight?: string;
+    fontFamily?: Composite.FontFamily;
+    fontWeight?: Composite.FontWeightName;
+    fontStyle?: Composite.FontStyle;
   };
-}): { fontSize: string; lineHeight: string } => {
+}): {
+  fontSize: string;
+  lineHeight: string;
+  fontFamily: Composite.FontFamily;
+  fontWeight: number;
+  fontStyle: Composite.FontStyle;
+} => {
   const size =
-    headingSizeMap[fontSize as HeadingSizes] || (fontSize as Primitive.Size);
+    headingSizeMap[fontSize as Composite.HeadingSizes] ||
+    (fontSize as Primitive.Size);
+
+  const options = {
+    fontFamily,
+    fontWeight: Number(fontWeightMap[fontWeight]),
+    fontStyle
+  };
 
   if (!custom) {
     return {
       fontSize: sizeMap.fontSize[size][sizeConfig.sizeUnits],
       lineHeight: lineHeight
         ? sizeMap.lineHeight[lineHeight][sizeConfig.sizeUnits]
-        : sizeMap.lineHeight[size][sizeConfig.sizeUnits]
+        : sizeMap.lineHeight[size][sizeConfig.sizeUnits],
+      ...options
     };
   }
   return {
     fontSize: createCustomSize(custom.fontSize),
-    lineHeight: createCustomSize(custom.lineHeight || sizeConfig.lineHeight)
+    lineHeight: createCustomSize(custom.lineHeight || sizeConfig.lineHeight),
+    // fontFamily,
+    // fontWeight,
+    // fontStyle
+    ...options
   };
 };
