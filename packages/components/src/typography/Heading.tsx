@@ -18,7 +18,7 @@ import {
 } from "./_typography.styles";
 
 export type HeadingProps = DOM.Heading & {
-  size?: Composite.HeadingSizes;
+  size?: Composite.Size__Headings;
   color?: Primitive.Color;
   copy?: string | undefined;
 };

@@ -1,5 +1,2 @@
-import { SizeConfig } from "./size.config";
-
-export interface StyleConfig {
-  size?: Partial<SizeConfig>;
-}
+export { sizeConfig, SizeConfig } from "./size.config";
+export { fontConfig, FontConfig } from "./font.config";

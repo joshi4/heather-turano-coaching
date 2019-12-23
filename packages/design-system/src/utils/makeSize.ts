@@ -1,8 +1,7 @@
 import { em, rem, modularScale } from "polished";
 
-import * as Primitive from "../types/primitive";
-
-import { SizeUnits, sizeConfig } from "../configs/size.config";
+import { Primitive, Composite } from "../types";
+import { sizeConfig } from "../configs/size.config";
 
 if (__DEV__) console.log(sizeConfig);
 
@@ -10,7 +9,7 @@ type Sizes = { [key in Primitive.Size]: string };
 type SizeFn = (size: Primitive.Size) => string;
 
 type SizeMapValues = {
-  [key in Primitive.Size]: { [key in SizeUnits]: string };
+  [key in Primitive.Size]: { [key in Composite.Size__Units]: string };
 };
 
 interface SizeMap {
@@ -25,7 +24,7 @@ type SnapToGrid = (
   options?: { multiplier: number }
 ) => string;
 
-const sizeUnitArr: SizeUnits[] = ["em", "px", "rem"];
+const sizeUnitArr: Composite.Size__Units[] = ["em", "px", "rem"];
 const sizeArr = Object.keys(sizeConfig.fontSizeScaleMap);
 
 const snapToGrid: SnapToGrid = (fontSize, baselineGrid, options) => {
@@ -42,7 +41,7 @@ const snapToGrid: SnapToGrid = (fontSize, baselineGrid, options) => {
 
 const convertToUnits = (
   value: string,
-  unit: SizeUnits,
+  unit: Composite.Size__Units,
   baseFontSize = sizeConfig.documentFontSize
 ): string => {
   if (unit === "em") return em(value, baseFontSize);

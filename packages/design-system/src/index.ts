@@ -1,4 +1,6 @@
+import * as Config from "./configs";
+
 export * from "./types";
 export * from "./utils";
 
-export { StyleConfig } from "./configs";
+export { Config };

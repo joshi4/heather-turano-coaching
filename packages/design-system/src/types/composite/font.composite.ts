@@ -1,12 +1,11 @@
 import * as Primitive from "../primitive";
+import { Size__Headings } from "./size.composite";
 
-export type HeadingSizes = "h1" | "h2" | "h3" | "h4" | "h5";
-
-export type FontSize = Primitive.Size & HeadingSizes;
-export type FontFaceType = "system" | "custom";
-export type FontFamily = "system";
-export type FontStyle = "normal" | "bold" | "italic";
-export type FontWeightValue =
+export type Font__Size = Primitive.Size & Size__Headings;
+export type Font__FamilyType = "system" | "user-defined" | "google";
+export type Font__Family = "system" | "Montserrat" | "Raleway";
+export type Font__Style = "normal" | "bold" | "italic";
+export type Font__WeightValue =
   | "100"
   | "200"
   | "300"
@@ -16,7 +15,7 @@ export type FontWeightValue =
   | "700"
   | "800"
   | "900";
-export type FontWeightName =
+export type Font__WeightName =
   | "thin"
   | "extra-light"
   | "light"
@@ -26,4 +25,4 @@ export type FontWeightName =
   | "bold"
   | "extra-bold"
   | "black";
-export type FontOS = "OSX" | "windows" | "android" | "ubuntu";
+export type Font__OS = "OSX" | "windows" | "android" | "ubuntu";

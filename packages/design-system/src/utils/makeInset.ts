@@ -1,4 +1,4 @@
-import { CSSPositionOffsets, makeSpace } from "./makeSpace.util";
+import { CSSPositionOffsets, makeSpace } from "./makeSpace";
 
 type InsetCategories = "dynamic" | "custom";
 

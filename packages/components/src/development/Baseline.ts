@@ -1,11 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 
-import { config } from "../../tsdesign.config";
+import { Config } from "@heather-turano-coaching/design-system";
 
 export const Baseline = createGlobalStyle`
   :root{
     --color: #7ec3f140;
-    --baseline: ${config.size?.baselineGrid}px;
+    --baseline: ${Config.sizeConfig.baselineGrid}px;
     --background-baseline: repeating-linear-gradient(
       to bottom,
       var(--color),

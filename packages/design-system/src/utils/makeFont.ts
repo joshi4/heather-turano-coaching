@@ -1,11 +1,7 @@
 import { Primitive, Composite } from "../types";
-import { sizeConfig } from "../configs/size.config";
-import { createCustomSize, sizeMap } from "./makeSize.util";
-import {
-  headingSizeMap,
-  fontConfig,
-  fontWeightMap
-} from "../configs/font.config";
+import { fontConfig, sizeConfig } from "../configs";
+
+import { createCustomSize, sizeMap } from "./makeSize";
 
 /**
  * Creates
@@ -17,42 +13,41 @@ import {
  * the fontSize finds it's default lineHeight defined by the design
  * system
  *
- * @returns {fontSize: string; lineHeight: string}
  */
 export const makeFont = ({
   fontSize,
   lineHeight,
-  fontFamily = fontConfig.fontFamily,
-  fontWeight = fontConfig.fontWeight,
-  fontStyle = fontConfig.fontStyle,
+  fontFamily = fontConfig.defaults.fontFamily,
+  fontWeight = fontConfig.defaults.fontWeight,
+  fontStyle = fontConfig.defaults.fontStyle,
   custom = undefined
 }: {
-  fontSize: Primitive.Size | Composite.HeadingSizes;
+  fontSize: Primitive.Size | Composite.Size__Headings;
   lineHeight?: Primitive.Size;
-  fontFamily?: Composite.FontFamily;
-  fontWeight?: Composite.FontWeightName;
-  fontStyle?: Composite.FontStyle;
+  fontFamily?: Composite.Font__Family;
+  fontWeight?: Composite.Font__WeightName;
+  fontStyle?: Composite.Font__Style;
   custom?: {
     fontSize: string;
     lineHeight?: string;
-    fontFamily?: Composite.FontFamily;
-    fontWeight?: Composite.FontWeightName;
-    fontStyle?: Composite.FontStyle;
+    fontFamily?: Composite.Font__Family;
+    fontWeight?: Composite.Font__WeightName;
+    fontStyle?: Composite.Font__Style;
   };
 }): {
   fontSize: string;
   lineHeight: string;
-  fontFamily: Composite.FontFamily;
+  fontFamily: Composite.Font__Family;
   fontWeight: number;
-  fontStyle: Composite.FontStyle;
+  fontStyle: Composite.Font__Style;
 } => {
   const size =
-    headingSizeMap[fontSize as Composite.HeadingSizes] ||
+    fontConfig.headingSizeMap[fontSize as Composite.Size__Headings] ||
     (fontSize as Primitive.Size);
 
   const options = {
     fontFamily,
-    fontWeight: Number(fontWeightMap[fontWeight]),
+    fontWeight: Number(fontConfig.fontWeightMap[fontWeight]),
     fontStyle
   };
 
@@ -68,9 +63,6 @@ export const makeFont = ({
   return {
     fontSize: createCustomSize(custom.fontSize),
     lineHeight: createCustomSize(custom.lineHeight || sizeConfig.lineHeight),
-    // fontFamily,
-    // fontWeight,
-    // fontStyle
     ...options
   };
 };

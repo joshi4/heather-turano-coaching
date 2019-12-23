@@ -1,17 +1,14 @@
 import { ratioNames } from "polished/lib/helpers/modularScale";
 
-import * as Primitive from "../types/primitive";
-import { ResponsiveDeviceTypes } from "../utils/makeResponsive.util";
+import { Composite } from "../types";
 
-export type SizeUnits = "em" | "rem" | "px";
-type ModularScaleRatio = keyof typeof ratioNames | number;
-type SizeScales = { [key in Primitive.Size]: number };
+import { ResponsiveDeviceTypes } from "./responsive.config";
 
 export interface SizeConfig {
   documentFontSize: string;
-  modularScaleRatio: ModularScaleRatio;
+  modularScaleRatio: Composite.Size__ModularScaleRatio;
   baseFontSize: string;
-  sizeUnits: SizeUnits;
+  sizeUnits: Composite.Size__Units;
   lineHeight: number;
   baselineGrid: number;
   modularFontScale: number;
@@ -19,40 +16,30 @@ export interface SizeConfig {
   responsiveFontScaler?: number;
   responsiveFontSizes?: { [key in ResponsiveDeviceTypes]: string } | undefined;
   baselineGridSnapFactor: number;
-  fontSizeScaleMap: SizeScales;
+  fontSizeScaleMap: Composite.Size__Scales;
 }
 
-// Base Variables
-const defaultDocumentFontSize = "16px";
-
-// Default Configuration Variables
-const defaultFontSize = "14px";
-const defaultFontUnits: SizeUnits = "rem";
-const defaultModularScaleRatio: ModularScaleRatio = "perfectFourth";
-const defaultLineHeight = 1.4;
-
-const defaultModularFontScale = ratioNames[defaultModularScaleRatio];
-const defaultBaselineGrid = 4;
-const defaultBaselineGridSnapFactor = 4;
-const defaultFontSizeScaleMap: SizeScales = {
-  xxs: -2,
-  xs: -1,
-  sm: 0,
-  md: 1,
-  lg: 2,
-  xl: 3,
-  xxl: 4
-};
+// Modular Scale Initializers
+const modularScaleRatio: Composite.Size__ModularScaleRatio = "perfectFourth";
+const modularFontScale = ratioNames[modularScaleRatio];
 
 // Primitive.size Configuration (always use this when accessing variables)
 export const sizeConfig: SizeConfig = {
-  documentFontSize: defaultDocumentFontSize,
-  modularScaleRatio: defaultModularScaleRatio,
-  modularFontScale: defaultModularFontScale,
-  baseFontSize: defaultFontSize,
-  sizeUnits: defaultFontUnits,
-  lineHeight: defaultLineHeight,
-  baselineGrid: defaultBaselineGrid,
-  baselineGridSnapFactor: defaultBaselineGridSnapFactor,
-  fontSizeScaleMap: defaultFontSizeScaleMap
+  documentFontSize: "16px",
+  modularScaleRatio,
+  modularFontScale,
+  baseFontSize: "14px",
+  sizeUnits: "rem",
+  lineHeight: 1.4,
+  baselineGrid: 4,
+  baselineGridSnapFactor: 4,
+  fontSizeScaleMap: {
+    xxs: -2,
+    xs: -1,
+    sm: 0,
+    md: 1,
+    lg: 2,
+    xl: 3,
+    xxl: 4
+  }
 };
