@@ -1,15 +1,17 @@
 import { em, rem, modularScale } from "polished";
 
-import { Primitive, Composite } from "../types";
-import { sizeConfig } from "../configs/size.config";
+import { Size } from "../types/primitive";
+import { Size__Units } from "../types/composite";
 
-if (__DEV__) console.log(sizeConfig);
+import { sizeConfig } from "../configs";
 
-type Sizes = { [key in Primitive.Size]: string };
-type SizeFn = (size: Primitive.Size) => string;
+// if (__DEV__) console.log(sizeConfig);
+
+type Sizes = { [key in Size]: string };
+type SizeFn = (size: Size) => string;
 
 type SizeMapValues = {
-  [key in Primitive.Size]: { [key in Composite.Size__Units]: string };
+  [key in Size]: { [key in Size__Units]: string };
 };
 
 interface SizeMap {
@@ -24,7 +26,7 @@ type SnapToGrid = (
   options?: { multiplier: number }
 ) => string;
 
-const sizeUnitArr: Composite.Size__Units[] = ["em", "px", "rem"];
+const sizeUnitArr: Size__Units[] = ["em", "px", "rem"];
 const sizeArr = Object.keys(sizeConfig.fontSizeScaleMap);
 
 const snapToGrid: SnapToGrid = (fontSize, baselineGrid, options) => {
@@ -41,7 +43,7 @@ const snapToGrid: SnapToGrid = (fontSize, baselineGrid, options) => {
 
 const convertToUnits = (
   value: string,
-  unit: Composite.Size__Units,
+  unit: Size__Units,
   baseFontSize = sizeConfig.documentFontSize
 ): string => {
   if (unit === "em") return em(value, baseFontSize);
@@ -56,7 +58,7 @@ const createSizeUnitMap = (sizeFn: SizeFn) =>
       [size]: sizeUnitArr.reduce(
         (uAccum, unit) => ({
           ...uAccum,
-          [unit]: convertToUnits(sizeFn(size as Primitive.Size), unit)
+          [unit]: convertToUnits(sizeFn(size as Size), unit)
         }),
         {}
       )
@@ -75,7 +77,7 @@ const createSizes = () => {
     sizeConfig.baseFontSize,
     sizeConfig.baselineGrid
   );
-  if (__DEV__) console.log("adjustedBaseFontSize", adjustedBaseFontSize);
+  // if (__DEV__) console.log("adjustedBaseFontSize", adjustedBaseFontSize);
 
   // 2. create font size map based upon adjustedBaseFont
   const modularScaleFontSizeMap = Object.entries(
@@ -91,7 +93,7 @@ const createSizes = () => {
     }),
     {} as Sizes
   );
-  if (__DEV__) console.log("modularScaleFontSizeMap", modularScaleFontSizeMap);
+  // if (__DEV__) console.log("modularScaleFontSizeMap", modularScaleFontSizeMap);
 
   // 3. round font size map to factor
   const snappedFontSizeMap = Object.entries(modularScaleFontSizeMap).reduce(
@@ -101,7 +103,7 @@ const createSizes = () => {
     }),
     {} as Sizes
   );
-  if (__DEV__) console.log("snappedFontSizeMap", snappedFontSizeMap);
+  // if (__DEV__) console.log("snappedFontSizeMap", snappedFontSizeMap);
 
   // 4. create line height size map based upon adjustedFontBase
   const snappedLineHeightMap = Object.entries(modularScaleFontSizeMap).reduce(
@@ -113,7 +115,7 @@ const createSizes = () => {
     }),
     {} as Sizes
   );
-  if (__DEV__) console.log("snappedLineHeightMap", snappedLineHeightMap);
+  // if (__DEV__) console.log("snappedLineHeightMap", snappedLineHeightMap);
 
   return {
     size: createSizeUnitMap(
@@ -137,13 +139,13 @@ export const createCustomSize = (customSize: string | number) => {
 
 export const sizeMap: SizeMap = createSizes();
 
-if (__DEV__) console.log("sizeMap", sizeMap);
+// if (__DEV__) console.log("sizeMap", sizeMap);
 
 export const makeSize = ({
   size,
   custom = undefined
 }: {
-  size: Primitive.Size;
+  size: Size;
   custom?: string | undefined;
 }): string => {
   console.log(sizeMap);

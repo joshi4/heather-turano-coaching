@@ -1,12 +1,12 @@
 import React, { FC } from "react";
-import { DOM } from "@heather-turano-coaching/design-system";
+import { HTML__Input } from "@heather-turano-coaching/design-system/types/composite";
 
 import { Control, Label, Error, ErrorProps } from "./base";
 
 import "./Input.module.scss";
 import { InputStyleType } from "./_forms.types";
 
-export type InputProps = DOM.Input &
+export type InputProps = HTML__Input &
   ErrorProps & {
     name: string;
     label?: string;

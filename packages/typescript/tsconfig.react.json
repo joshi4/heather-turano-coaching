@@ -21,5 +21,6 @@
     "jsx": "react",
     "esModuleInterop": true,
     "allowJs": false
-  }
+  },
+  "compileOnSave": true
 }

@@ -1,7 +1,12 @@
 import { fontFace } from "polished";
 import { Styles } from "polished/lib/types/style";
 
-import { Composite } from "../types";
+import {
+  Font__OS,
+  Font__Style,
+  Font__WeightName,
+  Font__Family
+} from "../types/composite";
 import { fontConfig } from "../configs";
 
 import { FontFaceConfiguration } from "polished/lib/types/fontFaceConfiguration";
@@ -12,14 +17,13 @@ import {
 
 // Inspiration: https://jonneal.dev/system-font-css/
 type SystemFontOsMap = {
-  [key in Composite.Font__OS]: string[];
+  [key in Font__OS]: string[];
 };
-type SystemFontStyleKey = Exclude<Composite.Font__Style, "bold">;
 type SystemFontStyleMap = {
-  [key in SystemFontStyleKey]: SystemFontOsMap;
+  [key in Font__Style]: SystemFontOsMap;
 };
 type SystemFontWeightKey = Extract<
-  Composite.Font__WeightName,
+  Font__WeightName,
   "light" | "regular" | "medium" | "bold"
 >;
 type SystemFontMap = {
@@ -131,10 +135,10 @@ const createDefaultFontStyle = ({
   fontOsObj,
   fontFamily = "system"
 }: {
-  fontStyle: Composite.Font__Style;
-  fontWeight: Composite.Font__WeightName;
+  fontStyle: Font__Style;
+  fontWeight: Font__WeightName;
   fontOsObj: SystemFontOsMap;
-  fontFamily?: Composite.Font__Family;
+  fontFamily?: Font__Family;
 }): Styles =>
   fontFace({
     fontFamily,
@@ -155,7 +159,7 @@ const createSystemFontFace: CreateSystemFontFace = () =>
           ...accumStyle,
           createDefaultFontStyle({
             fontWeight: fontWeightKey as SystemFontWeightKey,
-            fontStyle: fontStyleKey as SystemFontStyleKey,
+            fontStyle: fontStyleKey as Font__Style,
             fontOsObj
           })
         ],
@@ -187,8 +191,9 @@ const createCustomFontFace: CreateCustomFontFace = fontFaceConfig =>
   fontFace(fontFaceConfig);
 
 // ALWAYS PROVIDE A SYSTEM FONT FACE DEFINITION
-export const makeFontFace = (
-  defs: FontFamilyDefinition[]
+type MakeFontFace = (defs?: FontFamilyDefinition[]) => (string | Styles)[];
+export const makeFontFace: MakeFontFace = (
+  defs = fontConfig.fontFamilyDefinitions
 ): (string | Styles)[] => [
   ...createSystemFontFace(),
   ...Object.values(defs).reduce<(Styles | string)[]>((accum, def) => {

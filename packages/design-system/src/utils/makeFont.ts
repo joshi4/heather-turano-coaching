@@ -1,4 +1,10 @@
-import { Primitive, Composite } from "../types";
+import { Size } from "../types/primitive";
+import {
+  Size__Headings,
+  Font__Family,
+  Font__WeightName,
+  Font__Style
+} from "../types/composite";
 import { fontConfig, sizeConfig } from "../configs";
 
 import { createCustomSize, sizeMap } from "./makeSize";
@@ -22,28 +28,27 @@ export const makeFont = ({
   fontStyle = fontConfig.defaults.fontStyle,
   custom = undefined
 }: {
-  fontSize: Primitive.Size | Composite.Size__Headings;
-  lineHeight?: Primitive.Size;
-  fontFamily?: Composite.Font__Family;
-  fontWeight?: Composite.Font__WeightName;
-  fontStyle?: Composite.Font__Style;
+  fontSize: Size | Size__Headings;
+  lineHeight?: Size;
+  fontFamily?: Font__Family;
+  fontWeight?: Font__WeightName;
+  fontStyle?: Font__Style;
   custom?: {
     fontSize: string;
     lineHeight?: string;
-    fontFamily?: Composite.Font__Family;
-    fontWeight?: Composite.Font__WeightName;
-    fontStyle?: Composite.Font__Style;
+    fontFamily?: Font__Family;
+    fontWeight?: Font__WeightName;
+    fontStyle?: Font__Style;
   };
 }): {
   fontSize: string;
   lineHeight: string;
-  fontFamily: Composite.Font__Family;
+  fontFamily: Font__Family;
   fontWeight: number;
-  fontStyle: Composite.Font__Style;
+  fontStyle: Font__Style;
 } => {
   const size =
-    fontConfig.headingSizeMap[fontSize as Composite.Size__Headings] ||
-    (fontSize as Primitive.Size);
+    fontConfig.headingSizeMap[fontSize as Size__Headings] || (fontSize as Size);
 
   const options = {
     fontFamily,

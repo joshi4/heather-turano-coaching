@@ -1,10 +1,10 @@
-import * as Primitive from "../primitive";
+import { Size } from "../primitive";
 import { Size__Headings } from "./size.composite";
 
-export type Font__Size = Primitive.Size & Size__Headings;
+export type Font__Size = Size & Size__Headings;
 export type Font__FamilyType = "system" | "user-defined" | "google";
 export type Font__Family = "system" | "Montserrat" | "Raleway";
-export type Font__Style = "normal" | "bold" | "italic";
+export type Font__Style = "normal" | "italic";
 export type Font__WeightValue =
   | "100"
   | "200"

@@ -1,33 +1,38 @@
 import { FontFaceConfiguration } from "polished/lib/types/fontFaceConfiguration";
 
-import { Primitive, Composite } from "../types";
+import { Size } from "../types/primitive";
+import {
+  Font__Family,
+  Font__Style,
+  Font__WeightValue,
+  Font__FamilyType,
+  Font__WeightName,
+  Size__Headings
+} from "../types/composite";
 
 export interface FontFamilyDefinitionOptions {
-  family: Composite.Font__Family;
+  family: Font__Family;
   variants: {
-    [type in Exclude<
-      Composite.Font__Style,
-      "bold"
-    >]: Composite.Font__WeightValue[];
+    [type in Exclude<Font__Style, "bold">]: Font__WeightValue[];
   };
 }
 
 export interface FontFamilyDefinition {
-  source: Composite.Font__FamilyType;
+  source: Font__FamilyType;
   options: FontFamilyDefinitionOptions | FontFaceConfiguration;
 }
 
 export interface FontConfig {
   defaults: {
-    fontFamily: Composite.Font__Family;
-    fontStyle: Composite.Font__Style;
-    fontWeight: Composite.Font__WeightName;
+    fontFamily: Font__Family;
+    fontStyle: Font__Style;
+    fontWeight: Font__WeightName;
   };
   headingSizeMap: {
-    [key in Composite.Size__Headings]: Primitive.Size;
+    [key in Size__Headings]: Size;
   };
   fontWeightMap: {
-    [key in Composite.Font__WeightName]: Composite.Font__WeightValue;
+    [key in Font__WeightName]: Font__WeightValue;
   };
   fontFamilyDefinitions: FontFamilyDefinition[];
 }

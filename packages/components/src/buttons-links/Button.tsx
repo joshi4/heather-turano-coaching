@@ -1,19 +1,19 @@
 import React, { FC } from "react";
 
+import { HTML__Button } from "@heather-turano-coaching/design-system/types/composite";
+import { Color } from "@heather-turano-coaching/design-system/types/primitive";
 import {
-  Primitive,
-  DOM,
   makeSize,
   makeColor
-} from "@heather-turano-coaching/design-system";
-
-import { Icon, Copy } from "../typography";
+} from "@heather-turano-coaching/design-system/utils";
 
 import "./Button.module.scss";
 
-export type ButtonProps = DOM.Button & {
+import { Icon, Copy } from "../typography";
+
+export type ButtonProps = HTML__Button & {
   label: string;
-  styleType?: Primitive.Color;
+  styleType?: Color;
   loading?: boolean;
 };
 

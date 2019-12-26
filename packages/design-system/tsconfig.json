@@ -1,8 +1,8 @@
 {
   "extends": "@heather-turano-coaching/typescript/tsconfig.react.json",
-  "include": ["src", "types"],
+  "include": ["src/configs", "src/types", "src/utils"],
   "compilerOptions": {
-    "rootDir": "./",
-    "baseUrl": "./"
-  }
+    "outDir": "./"
+  },
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

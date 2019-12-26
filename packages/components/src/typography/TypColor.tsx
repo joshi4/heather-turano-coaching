@@ -1,11 +1,10 @@
 import React, { FC } from "react";
-
-import { Primitive } from "@heather-turano-coaching/design-system";
+import { Color } from "@heather-turano-coaching/design-system/types/primitive";
 
 import "./TypColor.module.scss";
 
 export interface ColorProps {
-  color?: Primitive.Color | undefined;
+  color?: Color | undefined;
 }
 
 export const TypColor: FC<ColorProps> = ({ color = "grayscale", children }) => (

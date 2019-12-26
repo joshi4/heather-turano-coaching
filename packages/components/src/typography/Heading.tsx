@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 
+import { Color } from "@heather-turano-coaching/design-system/types/primitive";
 import {
-  Primitive,
-  Composite,
-  DOM
-} from "@heather-turano-coaching/design-system";
+  Size__Headings,
+  HTML__Heading
+} from "@heather-turano-coaching/design-system/types/composite";
 
 import { TypColor } from "./TypColor";
 
@@ -17,9 +17,9 @@ import {
   StyledH5
 } from "./_typography.styles";
 
-export type HeadingProps = DOM.Heading & {
-  size?: Composite.Size__Headings;
-  color?: Primitive.Color;
+export type HeadingProps = HTML__Heading & {
+  size?: Size__Headings;
+  color?: Color;
   copy?: string | undefined;
 };
 

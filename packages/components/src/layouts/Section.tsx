@@ -1,14 +1,17 @@
 import React, { FC } from "react";
 
-import { Primitive } from "@heather-turano-coaching/design-system";
-
 import { Title } from "../typography";
+
+import {
+  Color,
+  Position
+} from "@heather-turano-coaching/design-system/types/primitive";
 
 import "./Section.module.scss";
 
 export interface SectionProps {
-  styleType: Primitive.Color;
-  contentOrientation: Primitive.Position;
+  styleType: Color;
+  contentOrientation: Position;
   title: string;
 }
 

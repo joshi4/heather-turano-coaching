@@ -1,15 +1,15 @@
 import React, { FC } from "react";
 import { IconName } from "@fortawesome/pro-light-svg-icons";
-
-import { Primitive, DOM } from "@heather-turano-coaching/design-system";
+import { HTML__Button } from "@heather-turano-coaching/design-system/types/composite";
+import { Size } from "@heather-turano-coaching/design-system/types/primitive";
 
 import { Icon, Copy } from "../typography";
 
 import "./ButtonAction.module.scss";
 
-export type ButtonActionProps = DOM.Button & {
+export type ButtonActionProps = HTML__Button & {
   label: string;
-  size?: Primitive.Size;
+  size?: Size;
   icon?: IconName | undefined;
   iconWeight?: "fal" | "fab" | undefined;
 };

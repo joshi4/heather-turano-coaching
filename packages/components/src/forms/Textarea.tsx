@@ -1,13 +1,11 @@
 import React, { FC } from "react";
-
-import { DOM } from "@heather-turano-coaching/design-system";
+import { HTML__Textarea } from "@heather-turano-coaching/design-system/types/composite";
 
 import { Control, Label, Error, ErrorProps } from "./base";
-
 import { InputStyleType } from "./_forms.types";
 import "./Textarea.module.scss";
 
-export type TextareaProps = DOM.Textarea &
+export type TextareaProps = HTML__Textarea &
   ErrorProps & {
     name: string;
     label?: string;

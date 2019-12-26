@@ -1,11 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 
-import { Config } from "@heather-turano-coaching/design-system";
+import { sizeConfig } from "@heather-turano-coaching/design-system/configs";
 
 export const Baseline = createGlobalStyle`
   :root{
     --color: #7ec3f140;
-    --baseline: ${Config.sizeConfig.baselineGrid}px;
+    --baseline: ${sizeConfig.baselineGrid}px;
     --background-baseline: repeating-linear-gradient(
       to bottom,
       var(--color),

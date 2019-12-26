@@ -1,14 +1,18 @@
 import { ratioNames } from "polished/lib/helpers/modularScale";
 
-import { Composite } from "../types";
+import {
+  Size__ModularScaleRatio,
+  Size__Units,
+  Size__Scales
+} from "../types/composite";
 
 import { ResponsiveDeviceTypes } from "./responsive.config";
 
 export interface SizeConfig {
   documentFontSize: string;
-  modularScaleRatio: Composite.Size__ModularScaleRatio;
+  modularScaleRatio: Size__ModularScaleRatio;
   baseFontSize: string;
-  sizeUnits: Composite.Size__Units;
+  sizeUnits: Size__Units;
   lineHeight: number;
   baselineGrid: number;
   modularFontScale: number;
@@ -16,11 +20,11 @@ export interface SizeConfig {
   responsiveFontScaler?: number;
   responsiveFontSizes?: { [key in ResponsiveDeviceTypes]: string } | undefined;
   baselineGridSnapFactor: number;
-  fontSizeScaleMap: Composite.Size__Scales;
+  fontSizeScaleMap: Size__Scales;
 }
 
 // Modular Scale Initializers
-const modularScaleRatio: Composite.Size__ModularScaleRatio = "perfectFourth";
+const modularScaleRatio: Size__ModularScaleRatio = "perfectFourth";
 const modularFontScale = ratioNames[modularScaleRatio];
 
 // Primitive.size Configuration (always use this when accessing variables)
