@@ -9,25 +9,7 @@ import { fontConfig, sizeConfig } from "../configs";
 
 import { createCustomSize, sizeMap } from "./makeSize";
 
-/**
- * Creates
- * lineHeight and fontSize are include because
- * there might be a time where you'll need to make a font-size
- * that has a larger line height and we want to be able to
- * make sure that you can do that easily. The only required parameter
- * is fontSize. If you don't define a custom lineHeight then
- * the fontSize finds it's default lineHeight defined by the design
- * system
- *
- */
-export const makeFont = ({
-  fontSize,
-  lineHeight,
-  fontFamily = fontConfig.defaults.fontFamily,
-  fontWeight = fontConfig.defaults.fontWeight,
-  fontStyle = fontConfig.defaults.fontStyle,
-  custom = undefined
-}: {
+export interface MakeFontOptions {
   fontSize: Size | Size__Headings;
   lineHeight?: Size;
   fontFamily?: Font__Family;
@@ -40,7 +22,28 @@ export const makeFont = ({
     fontWeight?: Font__WeightName;
     fontStyle?: Font__Style;
   };
-}): {
+}
+
+/**
+ * Creates
+ * lineHeight and fontSize are include because
+ * there might be a time where you'll need to make a font-size
+ * that has a larger line height and we want to be able to
+ * make sure that you can do that easily. The only required parameter
+ * is fontSize. If you don't define a custom lineHeight then
+ * the fontSize finds it's default lineHeight defined by the design
+ * system
+ *
+ */
+
+export const makeFont = ({
+  fontSize,
+  lineHeight,
+  fontFamily = fontConfig.defaults.fontFamily,
+  fontWeight = fontConfig.defaults.fontWeight,
+  fontStyle = fontConfig.defaults.fontStyle,
+  custom = undefined
+}: MakeFontOptions): {
   fontSize: string;
   lineHeight: string;
   fontFamily: Font__Family;

@@ -9,6 +9,7 @@ import {
 import { TypColor } from "./TypColor";
 import { CopyTypes } from "./_typography.types";
 import "./Copy.module.scss";
+import { StyledCopy } from "./_typography.styles";
 
 export type CopyProps = HTML__Paragraph & {
   type: CopyTypes;
@@ -24,7 +25,7 @@ export const Copy: FC<CopyProps> = ({
   copy = undefined,
   children = undefined
 }) => (
-  <p styleName={`${type} ${size}`}>
+  <StyledCopy type={type} size={size}>
     <TypColor color={color}>{copy || children}</TypColor>
-  </p>
+  </StyledCopy>
 );

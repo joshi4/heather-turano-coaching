@@ -1,9 +1,12 @@
-type ResetElements = "heading" | "list" | "button" | "input";
+type ResetElements = "heading" | "paragraph" | "list" | "button" | "input";
 
 type Resets = { [key in ResetElements]: any };
 
 const resets: Resets = {
   heading: {
+    margin: 0
+  },
+  paragraph: {
     margin: 0
   },
   list: {
