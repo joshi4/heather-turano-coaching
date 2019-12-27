@@ -32,7 +32,8 @@ const copyFontMap: { [key in CopyProps["type"]]: Partial<FontProperties> } = {
     fontFamily: "Raleway"
   },
   label: {
-    fontFamily: "Raleway"
+    fontFamily: "Raleway",
+    fontWeight: "medium"
   }
 };
 

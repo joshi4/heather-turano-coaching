@@ -44,11 +44,11 @@ const createColor = (
 ): ColorHex => mix(scaler, staticColorValues.light, scalableColorValues[color]);
 
 const createColorScale = (hex: ColorScalable): ColorScales => [
-  createColor(0.2, hex),
-  createColor(0.4, hex),
-  createColor(0.6, hex),
   createColor(0.8, hex),
-  createColor(0, hex)
+  createColor(0.6, hex),
+  createColor(0.4, hex),
+  createColor(0.2, hex),
+  scalableColorValues[hex]
 ];
 
 const scalableColorMap: ColorMapScalable = {

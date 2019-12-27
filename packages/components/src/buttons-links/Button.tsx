@@ -1,24 +1,135 @@
 import React, { FC } from "react";
+import styled, { css } from "styled-components";
+import { darken } from "polished";
 
-import { HTML__Button } from "@heather-turano-coaching/design-system/types/composite";
+import {
+  HTML__Button,
+  ColorProperties
+} from "@heather-turano-coaching/design-system/types/composite";
 import { Color } from "@heather-turano-coaching/design-system/types/primitive";
 import {
-  makeSize,
-  makeColor
+  makeColor,
+  makeReset
 } from "@heather-turano-coaching/design-system/utils";
-
-import "./Button.module.scss";
 
 import { Icon, Copy } from "../typography";
 
-export type ButtonProps = HTML__Button & {
+import "./Button.module.scss";
+
+type ButtonStyleTypes = Extract<
+  Color,
+  "primary" | "secondary" | "warning" | "error"
+>;
+
+type ButtonProps = HTML__Button & {
   label: string;
-  styleType?: Color;
+  styleType?: ButtonStyleTypes;
   loading?: boolean;
 };
 
-console.log(makeSize({ size: "sm" }));
-console.log(makeColor({ type: "scalable", color: "primary" }));
+const buttonStyleMap: {
+  [key in ButtonStyleTypes]: {
+    bgColor: string;
+    bgColorHover: string;
+    bgColorActive: string;
+    borderColor: string;
+    borderColorHover: string;
+    borderColorActive: string;
+  };
+} = {
+  primary: {
+    bgColor: makeColor({ type: "static", color: "light" }),
+    bgColorHover: makeColor({ type: "scalable", color: "secondary", scale: 0 }),
+    bgColorActive: makeColor({
+      type: "scalable",
+      color: "secondary",
+      scale: 1
+    }),
+    borderColor: makeColor({ type: "scalable", color: "grayscale" }),
+    borderColorHover: makeColor({ type: "scalable", color: "grayscale" }),
+    borderColorActive: makeColor({ type: "scalable", color: "grayscale" })
+  },
+  secondary: {
+    bgColor: makeColor({ type: "scalable", color: "secondary", scale: 3 }),
+    bgColorHover: makeColor({ type: "scalable", color: "secondary", scale: 4 }),
+    bgColorActive: darken(
+      0.1,
+      makeColor({ type: "scalable", color: "secondary", scale: 4 })
+    ),
+    borderColor: makeColor({ type: "static", color: "light" }),
+    borderColorHover: makeColor({ type: "static", color: "light" }),
+    borderColorActive: makeColor({ type: "static", color: "light" })
+  },
+  warning: {
+    bgColor: makeColor({ type: "scalable", color: "warning", scale: 3 }),
+    bgColorHover: makeColor({ type: "scalable", color: "warning", scale: 4 }),
+    bgColorActive: darken(
+      0.1,
+      makeColor({ type: "scalable", color: "warning", scale: 4 })
+    ),
+    borderColor: makeColor({ type: "scalable", color: "grayscale" }),
+    borderColorHover: makeColor({ type: "scalable", color: "grayscale" }),
+    borderColorActive: makeColor({ type: "scalable", color: "grayscale" })
+  },
+  error: {
+    bgColor: makeColor({ type: "scalable", color: "error", scale: 3 }),
+    bgColorHover: makeColor({ type: "scalable", color: "error", scale: 4 }),
+    bgColorActive: darken(
+      0.1,
+      makeColor({ type: "scalable", color: "error", scale: 4 })
+    ),
+    borderColor: makeColor({ type: "scalable", color: "grayscale" }),
+    borderColorHover: makeColor({ type: "scalable", color: "grayscale" }),
+    borderColorActive: makeColor({ type: "scalable", color: "grayscale" })
+  }
+};
+
+const StyledButton = styled.button<
+  Required<Pick<ButtonProps, "styleType" | "disabled">>
+>`
+  ${makeReset("button")}
+  padding: 0.8rem 2rem;
+  border-radius: 0.2rem;
+  transition: all ease-in-out 0.15s;
+  border-width: 1px;
+  border-style: solid;
+
+  &:not(:disabled) {
+    ${({ styleType }) => css`
+      background-color: ${buttonStyleMap[styleType].bgColor};
+      border-color: ${buttonStyleMap[styleType].borderColor};
+    `}
+
+    &:hover {
+      ${({ styleType }) => css`
+        background-color: ${buttonStyleMap[styleType].bgColorHover};
+        border-color: ${buttonStyleMap[styleType].borderColorHover};
+      `}
+    }
+
+    &:active {
+      ${({ styleType }) => css`
+        background-color: ${buttonStyleMap[styleType].bgColorActive};
+        border-color: ${buttonStyleMap[styleType].borderColorActive};
+      `}
+    }
+  }
+
+  &:disabled {
+    cursor: initial;
+    pointer-events: none;
+    background: ${makeColor({
+      type: "scalable",
+      color: "grayscale",
+      scale: 0
+    })};
+    border-color: ${makeColor({
+      type: "scalable",
+      color: "grayscale",
+      scale: 2
+    })};
+  }
+`;
 
 export const Button: FC<ButtonProps> = ({
   label,
@@ -26,17 +137,40 @@ export const Button: FC<ButtonProps> = ({
   loading = false,
   ...restProps
 }) => (
-  <button
-    styleName={styleType}
+  <StyledButton
+    styleType={styleType}
     disabled={restProps.disabled || loading}
     {...restProps}
   >
     {loading ? (
-      <Icon iconSize={{ size: "md" }} icon="spinner" spin />
+      <Icon iconSize={{ size: "sm" }} icon="spinner" spin />
     ) : (
-      <Copy type="paragraph" fontSize={{ size: "md" }}>
+      <Copy
+        type="label"
+        fontSize={{ size: "sm" }}
+        fontColor={((): ColorProperties => {
+          if (styleType !== "primary" && styleType !== "warning") {
+            return {
+              type: "static",
+              color: "light"
+            };
+          }
+          if (restProps.disabled || loading) {
+            return {
+              type: "scalable",
+              color: "grayscale",
+              scale: 2
+            };
+          }
+          return {
+            type: "scalable",
+            color: "grayscale",
+            scale: 4
+          };
+        })()}
+      >
         {label}
       </Copy>
     )}
-  </button>
+  </StyledButton>
 );
