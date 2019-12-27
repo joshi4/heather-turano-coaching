@@ -25,7 +25,7 @@ const BlogCard: FC<BlogCard> = ({
   blogLinkRoute
 }) => (
   <li styleName="container">
-    <Title size="h4">{category}</Title>
+    <Title size="md">{category}</Title>
     <div styleName="post">
       <article styleName="img">
         <img src={thumbnail} alt={thumbnailAlt} />

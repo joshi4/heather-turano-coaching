@@ -23,7 +23,7 @@ export const Section: FC<SectionProps> = ({
 }) => (
   <section styleName={`section ${styleType}`}>
     <header>
-      <Title size="h3">{title}</Title>
+      <Title size="lg">{title}</Title>
     </header>
     <article>
       <div styleName={contentOrientation}>{children}</div>

@@ -34,7 +34,7 @@ export const sizeConfig: SizeConfig = {
   modularFontScale,
   baseFontSize: "14px",
   sizeUnits: "rem",
-  lineHeight: 1.4,
+  lineHeight: 1.5,
   baselineGrid: 4,
   baselineGridSnapFactor: 4,
   fontSizeScaleMap: {

@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, SimpleInterpolation } from "styled-components";
 import {
   makeFont,
   makeReset,
@@ -10,6 +10,7 @@ import { CopyProps } from "./Copy";
 import { IconProps } from "./Icon";
 import { HeadingProps } from "./Heading";
 import { FontProperties } from "@heather-turano-coaching/design-system/types/composite";
+import { TitleProps } from "./Title";
 
 /**
  * Headings
@@ -48,6 +49,72 @@ export const StyledH5 = styled.h5<HeadingProps>`
   ${BaseHeading};
   ${({ fontColor }) =>
     makeFont({ fontSize: "h5", fontFamily: "Raleway", fontColor })}
+`;
+
+/**
+ * Title
+ */
+
+const styledTitleStyleMap: {
+  [key in TitleProps["size"]]: SimpleInterpolation;
+} = {
+  lg: css`
+    margin: 2rem 0;
+  `,
+  md: css`
+    margin: 1.5rem 0;
+  `,
+  sm: css`
+    margin: 1rem 0;
+  `
+};
+
+const BaseTitle = css`
+  ${makeReset("heading")};
+  text-transform: uppercase;
+`;
+
+export const StyledTitleLg = styled.h3`
+  ${BaseTitle};
+  ${makeFont({
+    fontSize: "h3",
+    fontFamily: "Montserrat",
+    fontWeight: "medium",
+    fontColor: {
+      type: "scalable",
+      color: "primary",
+      scale: 0
+    }
+  })};
+  ${styledTitleStyleMap.lg}
+`;
+export const StyledTitleMd = styled.h4`
+  ${BaseTitle};
+  ${styledTitleStyleMap.md}
+  ${makeFont({
+    fontSize: "h4",
+    fontFamily: "Montserrat",
+    fontWeight: "medium",
+    fontColor: {
+      type: "scalable",
+      color: "primary",
+      scale: 0
+    }
+  })};
+`;
+export const StyledTitleSm = styled.h5`
+  ${BaseTitle};
+  ${styledTitleStyleMap.sm}
+  ${makeFont({
+    fontSize: "h5",
+    fontFamily: "Montserrat",
+    fontWeight: "medium",
+    fontColor: {
+      type: "scalable",
+      color: "secondary",
+      scale: 0
+    }
+  })};
 `;
 
 /**

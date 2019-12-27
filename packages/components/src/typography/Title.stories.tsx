@@ -9,8 +9,8 @@ export default {
 
 export const title = () => (
   <>
-    <Title size="h2">Lorem ipsum</Title>
-    <Title size="h3">lorem ipsum</Title>
-    <Title size="h4">lorem ipsum</Title>
+    <Title size="lg">Lorem ipsum</Title>
+    <Title size="md">lorem ipsum</Title>
+    <Title size="sm">lorem ipsum</Title>
   </>
 );
