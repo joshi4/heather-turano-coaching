@@ -1,23 +1,56 @@
 import React, { FC } from "react";
+import styled, { css } from "styled-components";
 import {
   Size__Headings,
   HTML__Heading,
   ColorProperties
 } from "@heather-turano-coaching/design-system/types/composite";
-
 import {
-  StyledH1,
-  StyledH2,
-  StyledH3,
-  StyledH4,
-  StyledH5
-} from "./_typography.styles";
+  makeReset,
+  makeFont
+} from "@heather-turano-coaching/design-system/utils";
 
 export type HeadingProps = HTML__Heading & {
   fontSize?: Size__Headings;
   fontColor?: ColorProperties;
   copy?: string | undefined;
 };
+
+const BaseHeading = css`
+  ${makeReset("heading")};
+`;
+
+type HeadingStyleProps = Required<Pick<HeadingProps, "fontColor">>;
+
+const StyledH1 = styled.h1<HeadingStyleProps>`
+  ${BaseHeading};
+  ${({ fontColor }) =>
+    makeFont({ fontSize: "h1", fontFamily: "Montserrat", fontColor })}
+`;
+
+const StyledH2 = styled.h2<HeadingProps>`
+  ${BaseHeading};
+  ${({ fontColor }) =>
+    makeFont({ fontSize: "h2", fontFamily: "Montserrat", fontColor })}
+`;
+
+const StyledH3 = styled.h3<HeadingProps>`
+  ${BaseHeading};
+  ${({ fontColor }) =>
+    makeFont({ fontSize: "h3", fontFamily: "Raleway", fontColor })}
+`;
+
+const StyledH4 = styled.h4<HeadingProps>`
+  ${BaseHeading};
+  ${({ fontColor }) =>
+    makeFont({ fontSize: "h4", fontFamily: "Raleway", fontColor })}
+`;
+
+const StyledH5 = styled.h5<HeadingProps>`
+  ${BaseHeading};
+  ${({ fontColor }) =>
+    makeFont({ fontSize: "h5", fontFamily: "Raleway", fontColor })}
+`;
 
 export const Heading: FC<HeadingProps> = ({
   fontSize = "h1",

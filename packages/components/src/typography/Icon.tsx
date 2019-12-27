@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import styled, { css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library, IconName } from "@fortawesome/fontawesome-svg-core";
 import { fal } from "@fortawesome/pro-light-svg-icons";
@@ -7,18 +8,44 @@ import {
   ColorProperties,
   SizeProperties
 } from "@heather-turano-coaching/design-system/types/composite";
-
-import { StyledIcon } from "./_typography.styles";
+import {
+  makeSize,
+  makeColor
+} from "@heather-turano-coaching/design-system/utils";
 
 library.add(fal, fab);
 
-export type IconProps = {
+type IconProps = {
   icon: IconName;
   iconWeight?: "fab" | "fal" | undefined;
   iconSize?: SizeProperties;
   iconColor?: ColorProperties;
   spin?: boolean;
 };
+
+export const StyledIcon = styled.div<
+  Required<Omit<IconProps, "icon" | "iconWeight" | "spin">>
+>`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  ${({ iconSize }) => css`
+    height: ${makeSize(iconSize)};
+    width: ${makeSize(iconSize)};
+    font-size: ${makeSize(iconSize)};
+  `}
+
+  & > svg {
+    width: 100%;
+    height: auto;
+
+    ${({ iconColor }) => css`
+      fill: ${makeColor(iconColor)};
+    `}
+  }
+`;
 
 export const Icon: FC<IconProps> = ({
   icon,
