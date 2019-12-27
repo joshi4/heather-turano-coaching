@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import { darken } from "polished";
 
 import {
-  HTML__Button,
+  HTMLButton,
   ColorProperties
 } from "@heather-turano-coaching/design-system/types/composite";
 import { Color } from "@heather-turano-coaching/design-system/types/primitive";
@@ -14,14 +14,12 @@ import {
 
 import { Icon, Copy } from "../typography";
 
-import "./Button.module.scss";
-
 type ButtonStyleTypes = Extract<
   Color,
   "primary" | "secondary" | "warning" | "error"
 >;
 
-type ButtonProps = HTML__Button & {
+type ButtonProps = HTMLButton & {
   label: string;
   styleType?: ButtonStyleTypes;
   loading?: boolean;
@@ -51,36 +49,33 @@ const buttonStyleMap: {
   },
   secondary: {
     bgColor: makeColor({ type: "scalable", color: "secondary", scale: 3 }),
-    bgColorHover: makeColor({ type: "scalable", color: "secondary", scale: 4 }),
+    bgColorHover: makeColor({ type: "scalable", color: "secondary" }),
     bgColorActive: darken(
       0.1,
-      makeColor({ type: "scalable", color: "secondary", scale: 4 })
+      makeColor({ type: "scalable", color: "secondary" })
     ),
-    borderColor: makeColor({ type: "static", color: "light" }),
-    borderColorHover: makeColor({ type: "static", color: "light" }),
-    borderColorActive: makeColor({ type: "static", color: "light" })
+    borderColor: makeColor({ type: "scalable", color: "secondary" }),
+    borderColorHover: makeColor({ type: "scalable", color: "secondary" }),
+    borderColorActive: makeColor({ type: "scalable", color: "secondary" })
   },
   warning: {
     bgColor: makeColor({ type: "scalable", color: "warning", scale: 3 }),
-    bgColorHover: makeColor({ type: "scalable", color: "warning", scale: 4 }),
+    bgColorHover: makeColor({ type: "scalable", color: "warning" }),
     bgColorActive: darken(
       0.1,
-      makeColor({ type: "scalable", color: "warning", scale: 4 })
+      makeColor({ type: "scalable", color: "warning" })
     ),
-    borderColor: makeColor({ type: "scalable", color: "grayscale" }),
-    borderColorHover: makeColor({ type: "scalable", color: "grayscale" }),
-    borderColorActive: makeColor({ type: "scalable", color: "grayscale" })
+    borderColor: makeColor({ type: "scalable", color: "warning" }),
+    borderColorHover: makeColor({ type: "scalable", color: "warning" }),
+    borderColorActive: makeColor({ type: "scalable", color: "warning" })
   },
   error: {
     bgColor: makeColor({ type: "scalable", color: "error", scale: 3 }),
-    bgColorHover: makeColor({ type: "scalable", color: "error", scale: 4 }),
-    bgColorActive: darken(
-      0.1,
-      makeColor({ type: "scalable", color: "error", scale: 4 })
-    ),
-    borderColor: makeColor({ type: "scalable", color: "grayscale" }),
-    borderColorHover: makeColor({ type: "scalable", color: "grayscale" }),
-    borderColorActive: makeColor({ type: "scalable", color: "grayscale" })
+    bgColorHover: makeColor({ type: "scalable", color: "error" }),
+    bgColorActive: darken(0.1, makeColor({ type: "scalable", color: "error" })),
+    borderColor: makeColor({ type: "scalable", color: "error" }),
+    borderColorHover: makeColor({ type: "scalable", color: "error" }),
+    borderColorActive: makeColor({ type: "scalable", color: "error" })
   }
 };
 

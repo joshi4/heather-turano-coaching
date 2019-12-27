@@ -1,6 +1,6 @@
 import {
-  Font__Family,
-  Font__Style,
+  FontFamily,
+  FontStyle,
   ColorProperties,
   FontProperties
 } from "../types/composite";
@@ -28,9 +28,9 @@ export const makeFont = ({
 }: FontProperties): {
   fontSize: string;
   lineHeight: string;
-  fontFamily: Font__Family;
+  fontFamily: FontFamily;
   fontWeight: number;
-  fontStyle: Font__Style;
+  fontStyle: FontStyle;
   color?: string;
 } => {
   const size = convertHeadingSizeToSize(fontSize);

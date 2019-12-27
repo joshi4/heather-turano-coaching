@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { IconName } from "@fortawesome/pro-light-svg-icons";
 import {
-  HTML__Button,
+  HTMLButton,
   SizeProperties
 } from "@heather-turano-coaching/design-system/types/composite";
 
@@ -9,7 +9,7 @@ import { Icon, Copy } from "../typography";
 
 import "./ButtonAction.module.scss";
 
-export type ButtonActionProps = HTML__Button & {
+export type ButtonActionProps = HTMLButton & {
   label: string;
   size?: SizeProperties;
   icon?: IconName | undefined;

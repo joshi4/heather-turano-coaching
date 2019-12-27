@@ -1,12 +1,12 @@
 import { Size } from "../primitive";
-import { Size__Headings } from "./size.composite";
+import { SizeHeadings } from "./size.composite";
 import { ColorProperties } from "./color.composite";
 
-export type Font__Size = Size & Size__Headings;
-export type Font__FamilyType = "system" | "user-defined" | "google";
-export type Font__Family = "system" | "Montserrat" | "Raleway";
-export type Font__Style = "normal" | "italic";
-export type Font__WeightValue =
+export type FontSize = Size & SizeHeadings;
+export type FontFamilyType = "system" | "user-defined" | "google";
+export type FontFamily = "system" | "Montserrat" | "Raleway";
+export type FontStyle = "normal" | "italic";
+export type FontWeightValue =
   | "100"
   | "200"
   | "300"
@@ -16,7 +16,7 @@ export type Font__WeightValue =
   | "700"
   | "800"
   | "900";
-export type Font__WeightName =
+export type FontWeightName =
   | "thin"
   | "extra-light"
   | "light"
@@ -26,21 +26,21 @@ export type Font__WeightName =
   | "bold"
   | "extra-bold"
   | "black";
-export type Font__OS = "OSX" | "windows" | "android" | "ubuntu";
+export type FontOS = "OSX" | "windows" | "android" | "ubuntu";
 
 export interface FontProperties {
-  fontSize: Size | Size__Headings;
+  fontSize: Size | SizeHeadings;
   lineHeight?: Size;
-  fontFamily?: Font__Family;
-  fontWeight?: Font__WeightName;
-  fontStyle?: Font__Style;
+  fontFamily?: FontFamily;
+  fontWeight?: FontWeightName;
+  fontStyle?: FontStyle;
   fontColor?: ColorProperties | undefined;
   custom?: {
     fontSize: string;
     lineHeight?: string;
-    fontFamily?: Font__Family;
-    fontWeight?: Font__WeightName;
-    fontStyle?: Font__Style;
+    fontFamily?: FontFamily;
+    fontWeight?: FontWeightName;
+    fontStyle?: FontStyle;
     fontColor: ColorProperties | undefined;
   };
 }

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
 import {
-  HTML__Paragraph,
+  HTMLParagraph,
   ColorProperties,
   SizeProperties,
   FontProperties
@@ -11,7 +11,7 @@ import {
   makeFont
 } from "@heather-turano-coaching/design-system/utils";
 
-export type CopyProps = HTML__Paragraph & {
+export type CopyProps = HTMLParagraph & {
   type: "caption" | "text" | "label" | "paragraph";
   fontSize?: SizeProperties;
   fontColor?: ColorProperties;

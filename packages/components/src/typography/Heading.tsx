@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
 import {
-  Size__Headings,
-  HTML__Heading,
+  SizeHeadings,
+  HTMLHeading,
   ColorProperties
 } from "@heather-turano-coaching/design-system/types/composite";
 import {
@@ -10,8 +10,8 @@ import {
   makeFont
 } from "@heather-turano-coaching/design-system/utils";
 
-export type HeadingProps = HTML__Heading & {
-  fontSize?: Size__Headings;
+export type HeadingProps = HTMLHeading & {
+  fontSize?: SizeHeadings;
   fontColor?: ColorProperties;
   copy?: string | undefined;
 };

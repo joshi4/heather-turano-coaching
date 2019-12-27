@@ -1,11 +1,7 @@
 import { em, rem, modularScale } from "polished";
 
 import { Size } from "../types/primitive";
-import {
-  Size__Units,
-  Size__Headings,
-  SizeProperties
-} from "../types/composite";
+import { SizeUnits, SizeHeadings, SizeProperties } from "../types/composite";
 
 import { sizeConfig, fontConfig } from "../configs";
 
@@ -15,7 +11,7 @@ type Sizes = { [key in Size]: string };
 type SizeFn = (size: Size) => string;
 
 type SizeMapValues = {
-  [key in Size]: { [key in Size__Units]: string };
+  [key in Size]: { [key in SizeUnits]: string };
 };
 
 interface SizeMap {
@@ -30,7 +26,7 @@ type SnapToGrid = (
   options?: { multiplier: number }
 ) => string;
 
-const sizeUnitArr: Size__Units[] = ["em", "px", "rem"];
+const sizeUnitArr: SizeUnits[] = ["em", "px", "rem"];
 const sizeArr = Object.keys(sizeConfig.fontSizeScaleMap);
 
 const snapToGrid: SnapToGrid = (fontSize, baselineGrid, options) => {
@@ -47,7 +43,7 @@ const snapToGrid: SnapToGrid = (fontSize, baselineGrid, options) => {
 
 const convertToUnits = (
   value: string,
-  unit: Size__Units,
+  unit: SizeUnits,
   baseFontSize = sizeConfig.documentFontSize
 ): string => {
   if (unit === "em") return em(value, baseFontSize);
@@ -143,10 +139,8 @@ export const createCustomSize = (customSize: string | number) => {
 
 export const sizeMap: SizeMap = createSizes();
 
-export const convertHeadingSizeToSize = (
-  fontSize: Size | Size__Headings
-): Size =>
-  fontConfig.headingSizeMap[fontSize as Size__Headings] || (fontSize as Size);
+export const convertHeadingSizeToSize = (fontSize: Size | SizeHeadings): Size =>
+  fontConfig.headingSizeMap[fontSize as SizeHeadings] || (fontSize as Size);
 
 export const makeSize = ({
   size,

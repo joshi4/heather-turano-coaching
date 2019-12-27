@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import { HTML__Label } from "@heather-turano-coaching/design-system/types/composite";
+import { HTMLLabel } from "@heather-turano-coaching/design-system/types/composite";
 
 import { Copy } from "../../typography";
 import "./Label.module.scss";
 
-export type LabelProps = HTML__Label & {
+export type LabelProps = HTMLLabel & {
   label?: string;
   isValid?: boolean;
 };

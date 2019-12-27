@@ -2,10 +2,10 @@ import { fontFace } from "polished";
 import { Styles } from "polished/lib/types/style";
 
 import {
-  Font__OS,
-  Font__Style,
-  Font__WeightName,
-  Font__Family
+  FontOS,
+  FontStyle,
+  FontWeightName,
+  FontFamily
 } from "../types/composite";
 import { fontConfig } from "../configs";
 
@@ -17,13 +17,13 @@ import {
 
 // Inspiration: https://jonneal.dev/system-font-css/
 type SystemFontOsMap = {
-  [key in Font__OS]: string[];
+  [key in FontOS]: string[];
 };
 type SystemFontStyleMap = {
-  [key in Font__Style]: SystemFontOsMap;
+  [key in FontStyle]: SystemFontOsMap;
 };
 type SystemFontWeightKey = Extract<
-  Font__WeightName,
+  FontWeightName,
   "light" | "regular" | "medium" | "bold"
 >;
 type SystemFontMap = {
@@ -135,10 +135,10 @@ const createDefaultFontStyle = ({
   fontOsObj,
   fontFamily = "system"
 }: {
-  fontStyle: Font__Style;
-  fontWeight: Font__WeightName;
+  fontStyle: FontStyle;
+  fontWeight: FontWeightName;
   fontOsObj: SystemFontOsMap;
-  fontFamily?: Font__Family;
+  fontFamily?: FontFamily;
 }): Styles =>
   fontFace({
     fontFamily,
@@ -159,7 +159,7 @@ const createSystemFontFace: CreateSystemFontFace = () =>
           ...accumStyle,
           createDefaultFontStyle({
             fontWeight: fontWeightKey as SystemFontWeightKey,
-            fontStyle: fontStyleKey as Font__Style,
+            fontStyle: fontStyleKey as FontStyle,
             fontOsObj
           })
         ],
