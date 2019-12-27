@@ -48,7 +48,7 @@ const buttonStyleMap: {
     borderColorActive: makeColor({ type: "scalable", color: "grayscale" })
   },
   secondary: {
-    bgColor: makeColor({ type: "scalable", color: "secondary", scale: 3 }),
+    bgColor: makeColor({ type: "scalable", color: "secondary" }),
     bgColorHover: makeColor({ type: "scalable", color: "secondary" }),
     bgColorActive: darken(
       0.1,
@@ -79,7 +79,7 @@ const buttonStyleMap: {
   }
 };
 
-const StyledButton = styled.button<
+export const StyledButton = styled.button<
   Required<Pick<ButtonProps, "styleType" | "disabled">>
 >`
   ${makeReset("button")}

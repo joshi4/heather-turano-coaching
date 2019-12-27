@@ -1,10 +1,40 @@
 import React, { FC } from "react";
-
+import styled, { SimpleInterpolation, css } from "styled-components";
 import { Layout } from "@heather-turano-coaching/design-system/types/primitive";
 
-import "./ButtonGroup.module.scss";
+import { StyledButton } from "./Button";
 
-export const ButtonGroup: FC<{ layout?: Layout }> = ({
+interface ButtonGroupProps {
+  layout?: Layout;
+}
+
+const buttonGroupStyleMap: { [key in Layout]: SimpleInterpolation } = {
+  inline: css`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    & > ${StyledButton} + ${StyledButton} {
+      margin-left: 1rem;
+    }
+  `,
+  stacked: css`
+    ${StyledButton} {
+      display: block;
+    }
+    & > ${StyledButton} + ${StyledButton} {
+      margin-top: 1rem;
+    }
+  `,
+  standalone: css``
+};
+
+const StyledButtonGroup = styled.div<Required<ButtonGroupProps>>`
+  ${({ layout }) => buttonGroupStyleMap[layout]}
+`;
+
+export const ButtonGroup: FC<ButtonGroupProps> = ({
   layout = "stacked",
   children
-}) => <div styleName={`grouping ${layout}`}>{children}</div>;
+}) => <StyledButtonGroup layout={layout}>{children}</StyledButtonGroup>;

@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library, IconName } from "@fortawesome/fontawesome-svg-core";
 import { fal } from "@fortawesome/pro-light-svg-icons";
+import { fas } from "@fortawesome/pro-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import {
   ColorProperties,
@@ -13,17 +14,17 @@ import {
   makeFont
 } from "@heather-turano-coaching/design-system/utils";
 
-library.add(fal, fab);
+library.add(fal, fas, fab);
 
-type IconProps = {
+export type IconProps = {
   icon: IconName;
-  iconWeight?: "fab" | "fal" | undefined;
+  iconWeight?: "fab" | "fal" | "fas" | undefined;
   iconSize?: SizeProperties;
   iconColor?: ColorProperties;
   spin?: boolean;
 };
 
-export const StyledIcon = styled.div<
+const StyledIcon = styled.div<
   Required<Omit<IconProps, "icon" | "iconWeight" | "spin">>
 >`
   display: flex;
@@ -41,9 +42,11 @@ export const StyledIcon = styled.div<
     width: 100%;
     height: auto;
 
-    ${({ iconColor }) => css`
-      fill: ${makeColor(iconColor)};
-    `}
+    path {
+      ${({ iconColor }) => css`
+        fill: ${makeColor(iconColor)};
+      `}
+    }
   }
 `;
 
