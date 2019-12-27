@@ -9,8 +9,8 @@ import {
   SizeProperties
 } from "@heather-turano-coaching/design-system/types/composite";
 import {
-  makeSize,
-  makeColor
+  makeColor,
+  makeFont
 } from "@heather-turano-coaching/design-system/utils";
 
 library.add(fal, fab);
@@ -32,9 +32,9 @@ export const StyledIcon = styled.div<
   align-items: center;
 
   ${({ iconSize }) => css`
-    height: ${makeSize(iconSize)};
-    width: ${makeSize(iconSize)};
-    font-size: ${makeSize(iconSize)};
+    height: ${makeFont({ fontSize: iconSize.size }).lineHeight};
+    width: ${makeFont({ fontSize: iconSize.size }).lineHeight};
+    font-size: ${makeFont({ fontSize: iconSize.size }).fontSize};
   `}
 
   & > svg {
