@@ -1,7 +1,7 @@
 import { mix } from "polished";
 
-import * as Primitive from "../types/primitive";
 import { ColorScalable, ColorStatic } from "../types/primitive/color.primitive";
+import { ColorProperties, ColorTypes } from "../types/composite";
 
 /**
  * @todo Convert ColorHex to actual type-checked regex value
@@ -10,12 +10,10 @@ import { ColorScalable, ColorStatic } from "../types/primitive/color.primitive";
  */
 type ColorHex = string;
 type ColorScales = [ColorHex, ColorHex, ColorHex, ColorHex, ColorHex];
-type ColorScalePosition = 0 | 1 | 2 | 3 | 4;
-type ColorBlendRatios = 0.2 | 0.4 | 0.6 | 0.8 | 0;
-type ColorTypes = "scalable" | "static" | "custom";
+export type ColorBlendRatios = 0.2 | 0.4 | 0.6 | 0.8 | 0;
 
-type ColorValueScalable = { [key in ColorScalable]: ColorHex };
-type ColorValueStatic = { [key in ColorStatic]: ColorHex };
+export type ColorValueScalable = { [key in ColorScalable]: ColorHex };
+export type ColorValueStatic = { [key in ColorStatic]: ColorHex };
 
 type ColorMapScalable = { [key in ColorScalable]: ColorScales };
 type ColorMapStatic = { [key in ColorStatic]: ColorHex };
@@ -81,13 +79,11 @@ const colors: Colors = {
   }
 };
 
-type MakeColor = (options: {
-  type: ColorTypes;
-  color: Primitive.Color;
-  scale?: ColorScalePosition;
-}) => ColorHex;
-
-export const makeColor: MakeColor = ({ type, color, scale = 4 }) => {
+export const makeColor = ({
+  type,
+  color,
+  scale = 4
+}: ColorProperties): ColorHex => {
   if (type === "scalable") {
     return colors[type][color][scale];
   }

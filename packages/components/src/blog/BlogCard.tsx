@@ -32,25 +32,37 @@ const BlogCard: FC<BlogCard> = ({
       </article>
       <article styleName="summary">
         <header>
-          <Copy type="label" size="xl">
+          <Copy type="label" fontSize={{ size: "xl" }}>
             {title}
           </Copy>
           <div styleName="date">
-            <Copy type="caption" size="sm" color="grayscale">
+            <Copy
+              type="caption"
+              fontSize={{ size: "sm" }}
+              fontColor={{ type: "scalable", color: "grayscale" }}
+            >
               {dateCreated}
             </Copy>
           </div>
         </header>
         <div>
-          <Copy type="paragraph" size="md">
+          <Copy type="paragraph" fontSize={{ size: "md" }}>
             {prompt}
           </Copy>
         </div>
         <Link to={blogLinkRoute}>
-          <Copy type="label" size="md" color="accent">
+          <Copy
+            type="label"
+            fontSize={{ size: "md" }}
+            fontColor={{ type: "scalable", color: "accent" }}
+          >
             Keep Reading
           </Copy>
-          <Icon icon="long-arrow-right" size="md" color="accent" />
+          <Icon
+            icon="long-arrow-right"
+            iconSize={{ size: "md" }}
+            iconColor={{ type: "scalable", color: "accent" }}
+          />
         </Link>
       </article>
       {/* <ul styleName="quick-links">

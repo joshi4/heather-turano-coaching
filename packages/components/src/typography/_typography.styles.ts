@@ -2,10 +2,14 @@ import styled, { css } from "styled-components";
 import {
   makeFont,
   makeReset,
-  MakeFontOptions
+  makeSize,
+  makeColor
 } from "@heather-turano-coaching/design-system/utils";
+
 import { CopyProps } from "./Copy";
-import { CopyTypes } from "./_typography.types";
+import { IconProps } from "./Icon";
+import { HeadingProps } from "./Heading";
+import { FontProperties } from "@heather-turano-coaching/design-system/types/composite";
 
 /**
  * Headings
@@ -14,29 +18,36 @@ const BaseHeading = css`
   ${makeReset("heading")};
 `;
 
-export const StyledH1 = styled.h1`
+type HeadingStyleProps = Required<Pick<HeadingProps, "fontColor">>;
+
+export const StyledH1 = styled.h1<HeadingStyleProps>`
   ${BaseHeading};
-  ${makeFont({ fontSize: "h1", fontFamily: "Montserrat" })}
+  ${({ fontColor }) =>
+    makeFont({ fontSize: "h1", fontFamily: "Montserrat", fontColor })}
 `;
 
-export const StyledH2 = styled.h2`
+export const StyledH2 = styled.h2<HeadingProps>`
   ${BaseHeading};
-  ${makeFont({ fontSize: "h2", fontFamily: "Montserrat" })}
+  ${({ fontColor }) =>
+    makeFont({ fontSize: "h2", fontFamily: "Montserrat", fontColor })}
 `;
 
-export const StyledH3 = styled.h3`
+export const StyledH3 = styled.h3<HeadingProps>`
   ${BaseHeading};
-  ${makeFont({ fontSize: "h3", fontFamily: "Raleway" })}
+  ${({ fontColor }) =>
+    makeFont({ fontSize: "h3", fontFamily: "Raleway", fontColor })}
 `;
 
-export const StyledH4 = styled.h4`
+export const StyledH4 = styled.h4<HeadingProps>`
   ${BaseHeading};
-  ${makeFont({ fontSize: "h4", fontFamily: "Raleway" })}
+  ${({ fontColor }) =>
+    makeFont({ fontSize: "h4", fontFamily: "Raleway", fontColor })}
 `;
 
-export const StyledH5 = styled.h5`
+export const StyledH5 = styled.h5<HeadingProps>`
   ${BaseHeading};
-  ${makeFont({ fontSize: "h5", fontFamily: "Raleway" })}
+  ${({ fontColor }) =>
+    makeFont({ fontSize: "h5", fontFamily: "Raleway", fontColor })}
 `;
 
 /**
@@ -45,7 +56,7 @@ export const StyledH5 = styled.h5`
 const BaseCopy = css`
   ${makeReset("paragraph")}
 `;
-const copyFontMap: { [key in CopyTypes]: Partial<MakeFontOptions> } = {
+const copyFontMap: { [key in CopyProps["type"]]: Partial<FontProperties> } = {
   paragraph: {
     fontFamily: "Raleway"
   },
@@ -60,11 +71,37 @@ const copyFontMap: { [key in CopyTypes]: Partial<MakeFontOptions> } = {
   }
 };
 
-export const StyledCopy = styled.p<Required<Pick<CopyProps, "size" | "type">>>`
+export const StyledCopy = styled.p<
+  Required<Pick<CopyProps, "fontColor" | "fontSize" | "type">>
+>`
   ${BaseCopy};
-  ${({ size: fontSize, type }) => makeFont({ ...copyFontMap[type], fontSize })}
+  ${({ fontSize, fontColor, type }) =>
+    makeFont({ ...copyFontMap[type], fontSize: fontSize.size, fontColor })}
 `;
 
 /**
  * Icons
  */
+export const StyledIcon = styled.div<
+  Required<Omit<IconProps, "icon" | "iconWeight" | "spin">>
+>`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  ${({ iconSize }) => css`
+    height: ${makeSize(iconSize)};
+    width: ${makeSize(iconSize)};
+    font-size: ${makeSize(iconSize)};
+  `}
+
+  & > svg {
+    width: 100%;
+    height: auto;
+
+    ${({ iconColor }) => css`
+      fill: ${makeColor(iconColor)};
+    `}
+  }
+`;

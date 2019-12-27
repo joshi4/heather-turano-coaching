@@ -1,31 +1,28 @@
 import React, { FC } from "react";
 
-import { HTML__Paragraph } from "@heather-turano-coaching/design-system/types/composite";
 import {
-  Size,
-  Color
-} from "@heather-turano-coaching/design-system/types/primitive";
+  HTML__Paragraph,
+  ColorProperties,
+  SizeProperties
+} from "@heather-turano-coaching/design-system/types/composite";
 
-import { TypColor } from "./TypColor";
-import { CopyTypes } from "./_typography.types";
-import "./Copy.module.scss";
 import { StyledCopy } from "./_typography.styles";
 
 export type CopyProps = HTML__Paragraph & {
-  type: CopyTypes;
-  size?: Size;
-  color?: Color;
+  type: "caption" | "text" | "label" | "paragraph";
+  fontSize?: SizeProperties;
+  fontColor?: ColorProperties;
   copy?: string | undefined;
 };
 
 export const Copy: FC<CopyProps> = ({
   type,
-  size = "sm",
-  color = "grayscale",
+  fontSize = { size: "sm" },
+  fontColor = { type: "scalable", color: "grayscale" },
   copy = undefined,
   children = undefined
 }) => (
-  <StyledCopy type={type} size={size}>
-    <TypColor color={color}>{copy || children}</TypColor>
+  <StyledCopy type={type} fontSize={fontSize} fontColor={fontColor}>
+    {copy || children}
   </StyledCopy>
 );

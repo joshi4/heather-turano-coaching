@@ -12,7 +12,11 @@ export const Error: FC<ErrorProps> = ({ errorMessage = undefined }) => (
   <>
     {errorMessage && (
       <div styleName="input-error">
-        <Copy type="caption" size="xs" color="error">
+        <Copy
+          type="caption"
+          fontSize={{ size: "xs" }}
+          fontColor={{ type: "scalable", color: "error" }}
+        >
           {errorMessage}
         </Copy>
       </div>

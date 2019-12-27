@@ -26,29 +26,45 @@ export const BlogHeader: FC<BlogHeaderProps> = ({
     <div styleName="page-header">
       <div styleName="link">
         <Link to={backLinkRoute}>
-          <Icon icon="long-arrow-left" size="md" color="accent" />
-          <Copy type="label" size="md" color="accent">
+          <Icon
+            icon="long-arrow-left"
+            iconSize={{ size: "md" }}
+            iconColor={{ type: "scalable", color: "accent" }}
+          />
+          <Copy
+            type="label"
+            fontSize={{ size: "md" }}
+            fontColor={{ type: "scalable", color: "accent" }}
+          >
             {backLinkText}
           </Copy>
         </Link>
       </div>
       <div styleName="date">
         <div>
-          <Copy type="paragraph" size="md" color="grayscale">
+          <Copy
+            type="paragraph"
+            fontSize={{ size: "md" }}
+            fontColor={{ type: "scalable", color: "grayscale" }}
+          >
             <span>{dateCreated}</span>
             <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
           </Copy>
         </div>
         <div>
-          <Copy type="paragraph" size="md" color="secondary">
+          <Copy
+            type="paragraph"
+            fontSize={{ size: "md" }}
+            fontColor={{ type: "scalable", color: "secondary" }}
+          >
             <span>Written by {author}</span>
           </Copy>
         </div>
       </div>
-      <Heading size="h2">{title}</Heading>
+      <Heading fontSize="h2">{title}</Heading>
       {description ? (
         <div styleName="description">
-          <Copy type="paragraph" size="xxl">
+          <Copy type="paragraph" fontSize={{ size: "xxl" }}>
             {description}
           </Copy>
         </div>

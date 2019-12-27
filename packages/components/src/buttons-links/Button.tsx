@@ -32,9 +32,9 @@ export const Button: FC<ButtonProps> = ({
     {...restProps}
   >
     {loading ? (
-      <Icon size="md" icon="spinner" spin />
+      <Icon iconSize={{ size: "md" }} icon="spinner" spin />
     ) : (
-      <Copy type="paragraph" size="md">
+      <Copy type="paragraph" fontSize={{ size: "md" }}>
         {label}
       </Copy>
     )}

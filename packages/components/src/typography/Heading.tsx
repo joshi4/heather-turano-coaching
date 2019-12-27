@@ -1,14 +1,10 @@
 import React, { FC } from "react";
-
-import { Color } from "@heather-turano-coaching/design-system/types/primitive";
 import {
   Size__Headings,
-  HTML__Heading
+  HTML__Heading,
+  ColorProperties
 } from "@heather-turano-coaching/design-system/types/composite";
 
-import { TypColor } from "./TypColor";
-
-import "./Heading.module.scss";
 import {
   StyledH1,
   StyledH2,
@@ -18,53 +14,29 @@ import {
 } from "./_typography.styles";
 
 export type HeadingProps = HTML__Heading & {
-  size?: Size__Headings;
-  color?: Color;
+  fontSize?: Size__Headings;
+  fontColor?: ColorProperties;
   copy?: string | undefined;
 };
 
 export const Heading: FC<HeadingProps> = ({
-  size = "h1",
-  color = "grayscale",
+  fontSize = "h1",
+  fontColor = { type: "scalable", color: "grayscale" },
   copy = undefined,
   children = undefined
 }) => {
-  switch (size) {
+  switch (fontSize) {
     case "h1":
-      return (
-        <StyledH1>
-          <TypColor color={color}>{copy || children}</TypColor>
-        </StyledH1>
-      );
+      return <StyledH1 fontColor={fontColor}>{copy || children}</StyledH1>;
     case "h2":
-      return (
-        <StyledH2>
-          <TypColor color={color}>{copy || children}</TypColor>
-        </StyledH2>
-      );
+      return <StyledH2 fontColor={fontColor}>{copy || children}</StyledH2>;
     case "h3":
-      return (
-        <StyledH3>
-          <TypColor color={color}>{copy || children}</TypColor>
-        </StyledH3>
-      );
+      return <StyledH3 fontColor={fontColor}>{copy || children}</StyledH3>;
     case "h4":
-      return (
-        <StyledH4>
-          <TypColor color={color}>{copy || children}</TypColor>
-        </StyledH4>
-      );
+      return <StyledH4 fontColor={fontColor}>{copy || children}</StyledH4>;
     case "h5":
-      return (
-        <StyledH5>
-          <TypColor color={color}>{copy || children}</TypColor>
-        </StyledH5>
-      );
+      return <StyledH5 fontColor={fontColor}>{copy || children}</StyledH5>;
     default:
-      return (
-        <StyledH1>
-          <TypColor color={color}>{copy || children}</TypColor>
-        </StyledH1>
-      );
+      return <StyledH1 fontColor={fontColor}>{copy || children}</StyledH1>;
   }
 };

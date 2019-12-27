@@ -7,7 +7,8 @@ import {
   Font__WeightValue,
   Font__FamilyType,
   Font__WeightName,
-  Size__Headings
+  Size__Headings,
+  ColorProperties
 } from "../types/composite";
 
 export interface FontFamilyDefinitionOptions {
@@ -27,6 +28,7 @@ export interface FontConfig {
     fontFamily: Font__Family;
     fontStyle: Font__Style;
     fontWeight: Font__WeightName;
+    fontColor: ColorProperties | undefined;
   };
   headingSizeMap: {
     [key in Size__Headings]: Size;
@@ -40,7 +42,8 @@ export const fontConfig: FontConfig = {
   defaults: {
     fontFamily: "system",
     fontStyle: "normal",
-    fontWeight: "regular"
+    fontWeight: "regular",
+    fontColor: undefined
   },
   headingSizeMap: {
     h1: "xxl",

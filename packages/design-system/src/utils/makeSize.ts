@@ -1,9 +1,13 @@
 import { em, rem, modularScale } from "polished";
 
 import { Size } from "../types/primitive";
-import { Size__Units } from "../types/composite";
+import {
+  Size__Units,
+  Size__Headings,
+  SizeProperties
+} from "../types/composite";
 
-import { sizeConfig } from "../configs";
+import { sizeConfig, fontConfig } from "../configs";
 
 // if (__DEV__) console.log(sizeConfig);
 
@@ -139,18 +143,20 @@ export const createCustomSize = (customSize: string | number) => {
 
 export const sizeMap: SizeMap = createSizes();
 
-// if (__DEV__) console.log("sizeMap", sizeMap);
+export const convertHeadingSizeToSize = (
+  fontSize: Size | Size__Headings
+): Size =>
+  fontConfig.headingSizeMap[fontSize as Size__Headings] || (fontSize as Size);
 
 export const makeSize = ({
   size,
   custom = undefined
-}: {
-  size: Size;
-  custom?: string | undefined;
-}): string => {
+}: SizeProperties): string => {
   console.log(sizeMap);
+  const sanitizedSize = convertHeadingSizeToSize(size);
+
   if (!custom) {
-    return sizeMap.size[size][sizeConfig.sizeUnits];
+    return sizeMap.size[sanitizedSize][sizeConfig.sizeUnits];
   }
   return createCustomSize(custom);
 };

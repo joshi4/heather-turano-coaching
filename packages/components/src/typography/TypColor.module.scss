@@ -1,7 +1,0 @@
-@import "./typography.styles";
-
-@each $color-key, $value in $colors {
-  :global(.#{$color-key}) {
-    color: $value;
-  }
-}

@@ -1,4 +1,5 @@
 import React, { FC, useState, ReactNode } from "react";
+import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
 
 import { Icon, Copy } from "../typography";
 
@@ -33,15 +34,15 @@ export const Stepper: FC<StepperProps> = ({ steps, children }) => {
               <div styleName="label">
                 <Copy
                   type="caption"
-                  size="lg"
-                  color={(() => {
+                  fontSize={{ size: "sm" }}
+                  fontColor={((): ColorProperties => {
                     if (isActive) {
-                      return "secondary";
+                      return { type: "scalable", color: "secondary" };
                     }
                     if (isPassed) {
-                      return "secondary";
+                      return { type: "scalable", color: "secondary" };
                     }
-                    return "grayscale";
+                    return { type: "scalable", color: "grayscale" };
                   })()}
                 >
                   {label}
@@ -55,15 +56,15 @@ export const Stepper: FC<StepperProps> = ({ steps, children }) => {
               >
                 <Icon
                   icon={icon}
-                  size="h4"
-                  color={(() => {
+                  iconSize={{ size: "h4" }}
+                  iconColor={((): ColorProperties => {
                     if (isActive) {
-                      return "secondary";
+                      return { type: "scalable", color: "secondary" };
                     }
                     if (isPassed) {
-                      return "secondary";
+                      return { type: "scalable", color: "secondary" };
                     }
-                    return "grayscale";
+                    return { type: "scalable", color: "grayscale" };
                   })()}
                 />
               </button>
