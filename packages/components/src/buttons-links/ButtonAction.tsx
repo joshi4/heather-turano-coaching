@@ -30,7 +30,7 @@ const StyledButtonAction = styled.button`
   align-items: center;
 
   & > div {
-    margin-right: ${makeSpace({ value: 2 })};
+    margin-right: ${makeSpace({ value: 4 })};
   }
 `;
 
