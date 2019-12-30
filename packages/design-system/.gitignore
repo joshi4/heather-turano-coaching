@@ -7,6 +7,6 @@ node_modules
 .rts2_cache_system
 dist
 
-configs/
-types/
-utils/
+/configs
+/types
+/utils
