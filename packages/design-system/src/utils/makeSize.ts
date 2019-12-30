@@ -5,8 +5,6 @@ import { SizeUnits, SizeHeadings, SizeProperties } from "../types/composite";
 
 import { sizeConfig, fontConfig } from "../configs";
 
-// if (__DEV__) console.log(sizeConfig);
-
 type Sizes = { [key in Size]: string };
 type SizeFn = (size: Size) => string;
 
@@ -41,14 +39,15 @@ const snapToGrid: SnapToGrid = (fontSize, baselineGrid, options) => {
   return `${snappedValue}${units}`;
 };
 
-const convertToUnits = (
-  value: string,
-  unit: SizeUnits,
-  baseFontSize = sizeConfig.documentFontSize
+type ConvertToUnits = (value: string | number, unit?: SizeUnits) => string;
+
+export const convertToUnits: ConvertToUnits = (
+  value,
+  unit = sizeConfig.sizeUnits
 ): string => {
-  if (unit === "em") return em(value, baseFontSize);
-  if (unit === "rem") return rem(value, baseFontSize);
-  return value;
+  if (unit === "em") return em(value, sizeConfig.documentFontSize);
+  if (unit === "rem") return rem(value, sizeConfig.documentFontSize);
+  return value as string;
 };
 
 const createSizeUnitMap = (sizeFn: SizeFn) =>
@@ -144,13 +143,13 @@ export const convertHeadingSizeToSize = (fontSize: Size | SizeHeadings): Size =>
 
 export const makeSize = ({
   size,
-  custom = undefined
+  override = undefined
 }: SizeProperties): string => {
   console.log(sizeMap);
   const sanitizedSize = convertHeadingSizeToSize(size);
 
-  if (!custom) {
+  if (!override) {
     return sizeMap.size[sanitizedSize][sizeConfig.sizeUnits];
   }
-  return createCustomSize(custom);
+  return createCustomSize(override);
 };

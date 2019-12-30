@@ -9,7 +9,10 @@ import {
 import { Icon, Copy, IconProps } from "../typography";
 
 import styled from "styled-components";
-import { makeReset } from "@heather-turano-coaching/design-system/utils";
+import {
+  makeReset,
+  makeSpace
+} from "@heather-turano-coaching/design-system/utils";
 
 type ButtonActionProps = HTMLButton & {
   label: string;
@@ -27,7 +30,7 @@ const StyledButtonAction = styled.button`
   align-items: center;
 
   & > div {
-    margin-right: 0.25rem;
+    margin-right: ${makeSpace({ value: 2 })};
   }
 `;
 
