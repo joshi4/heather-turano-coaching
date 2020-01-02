@@ -104,8 +104,8 @@ export const StyledButton = styled.button<
   &:disabled {
     cursor: initial;
     pointer-events: none;
-    background: ${makeColor({ scalable: { color: "gray" } })};
-    border-color: ${makeColor({ scalable: { color: "gray", scale: 2 } })};
+    background: ${makeColor({ scalable: { color: "gray", scale: 3 } })};
+    border-color: ${makeColor({ scalable: { color: "gray", scale: 4 } })};
   }
 `;
 
