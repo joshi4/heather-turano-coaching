@@ -4,7 +4,7 @@ import { HTMLInput } from "@heather-turano-coaching/design-system/types/composit
 import { Control, Label, Error, ErrorProps } from "./base";
 
 import { InputStyleType } from "./_forms.types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   makeReset,
   makeSpace,
@@ -23,7 +23,30 @@ export type InputProps = HTMLInput &
     type?: "text" | "email" | "password" | "search" | "number";
   };
 
+export const CSSPlaceholders = css`
+  ${makeReset("input")};
+  &::placeholder {
+    color: ${makeColor({ scalable: { color: "gray", scale: 3 } })};
+  }
+  &:placeholder-shown {
+    color: ${makeColor({ scalable: { color: "gray", scale: 3 } })};
+  }
+  &::-webkit-input-placeholder {
+    color: ${makeColor({ scalable: { color: "gray", scale: 3 } })};
+  }
+  &::-moz-placeholder {
+    color: ${makeColor({ scalable: { color: "gray", scale: 3 } })};
+  }
+  &:-ms-input-placeholder {
+    color: ${makeColor({ scalable: { color: "gray", scale: 3 } })};
+  }
+  &:-moz-placeholder {
+    color: ${makeColor({ scalable: { color: "gray", scale: 3 } })};
+  }
+`;
+
 const StyledInput = styled.input<InputProps>`
+  ${CSSPlaceholders}
   ${makeReset("input")};
   ${makeInset({ vertical: 8, horizontal: 12 })};
   ${makeFont({ fontSize: baseFontSize })};

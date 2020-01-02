@@ -38,31 +38,31 @@ const buttonStyleMap: {
 } = {
   primary: {
     bgColor: makeColor({ fixed: "light" }),
-    bgColorHover: makeColor({ scalable: { color: "secondary", scale: 0 } }),
-    bgColorActive: makeColor({ scalable: { color: "secondary", scale: 1 } }),
+    bgColorHover: makeColor({ scalable: { color: "secondary", scale: 4 } }),
+    bgColorActive: makeColor({ scalable: { color: "secondary", scale: 3 } }),
     borderColor: makeColor({ scalable: { color: "gray" } }),
     borderColorHover: makeColor({ scalable: { color: "gray" } }),
     borderColorActive: makeColor({ scalable: { color: "gray" } })
   },
   secondary: {
-    bgColor: makeColor({ scalable: { color: "secondary", scale: 3 } }),
-    bgColorHover: makeColor({ scalable: { color: "secondary" } }),
+    bgColor: makeColor({ scalable: { color: "secondary" } }),
+    bgColorHover: darken(0.05, makeColor({ scalable: { color: "secondary" } })),
     bgColorActive: darken(0.1, makeColor({ scalable: { color: "secondary" } })),
     borderColor: makeColor({ scalable: { color: "secondary" } }),
     borderColorHover: makeColor({ scalable: { color: "secondary" } }),
     borderColorActive: makeColor({ scalable: { color: "secondary" } })
   },
   warning: {
-    bgColor: makeColor({ scalable: { color: "warning", scale: 3 } }),
-    bgColorHover: makeColor({ scalable: { color: "warning" } }),
+    bgColor: makeColor({ scalable: { color: "warning" } }),
+    bgColorHover: darken(0.05, makeColor({ scalable: { color: "warning" } })),
     bgColorActive: darken(0.1, makeColor({ scalable: { color: "warning" } })),
     borderColor: makeColor({ scalable: { color: "warning" } }),
     borderColorHover: makeColor({ scalable: { color: "warning" } }),
     borderColorActive: makeColor({ scalable: { color: "warning" } })
   },
   error: {
-    bgColor: makeColor({ scalable: { color: "error", scale: 3 } }),
-    bgColorHover: makeColor({ scalable: { color: "error" } }),
+    bgColor: makeColor({ scalable: { color: "error" } }),
+    bgColorHover: darken(0.05, makeColor({ scalable: { color: "error" } })),
     bgColorActive: darken(0.1, makeColor({ scalable: { color: "error" } })),
     borderColor: makeColor({ scalable: { color: "error" } }),
     borderColorHover: makeColor({ scalable: { color: "error" } }),
@@ -133,7 +133,7 @@ export const Button: FC<ButtonProps> = ({
           if (restProps.disabled || loading) {
             return { scalable: { color: "gray", scale: 2 } };
           }
-          return { scalable: { color: "gray", scale: 4 } };
+          return { scalable: { color: "gray" } };
         })()}
       >
         {label}
