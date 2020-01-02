@@ -2,12 +2,18 @@ import React, { FC } from "react";
 import { HTMLLabel } from "@heather-turano-coaching/design-system/types/composite";
 
 import { Copy } from "../../typography";
-import "./Label.module.scss";
+import styled from "styled-components";
+import { makeOutset } from "@heather-turano-coaching/design-system/utils";
 
 export type LabelProps = HTMLLabel & {
   label?: string;
   isValid?: boolean;
 };
+
+const StyledLabel = styled.label`
+  display: block;
+  ${makeOutset({ bottom: 4 })}
+`;
 
 export const Label: FC<LabelProps> = ({
   label = undefined,
@@ -16,7 +22,7 @@ export const Label: FC<LabelProps> = ({
 }) => (
   <>
     {label && (
-      <label htmlFor={htmlFor} styleName="input-label">
+      <StyledLabel htmlFor={htmlFor} styleName="input-label">
         <Copy
           type="label"
           fontSize={{ size: "sm" }}
@@ -28,7 +34,7 @@ export const Label: FC<LabelProps> = ({
         >
           {label}
         </Copy>
-      </label>
+      </StyledLabel>
     )}
   </>
 );

@@ -14,39 +14,39 @@ const reconcileValues = (
   return "0";
 };
 
-type MakeInset = (
-  position: Partial<InsetOutsetProperties>
-) => { padding: string };
-
-export const makeInset: MakeInset = ({
+const createPositionString = ({
   top,
   bottom,
   left,
   right,
   vertical,
   horizontal
-}) => {
+}: Partial<InsetOutsetProperties>): string => {
   // PRESERVE THIS ORDER
-  const paddingObj = {
+  const positionObj = {
     top: reconcileValues(top, vertical),
     right: reconcileValues(right, horizontal),
     bottom: reconcileValues(bottom, vertical),
     left: reconcileValues(left, horizontal)
   };
 
-  //
   /**
    * Need to transform the properties into a string
    * to be sure that we get a proper style object
    * for any css-in-js solution
    */
-  return {
-    padding: Object.values(paddingObj).reduce<string>((accum, value) => {
-      const stringifiedAttribute = `${value}`;
-      if (accum === "") {
-        return stringifiedAttribute;
-      }
-      return `${accum} ${stringifiedAttribute}`;
-    }, "")
-  };
+  return Object.values(positionObj).reduce<string>((accum, value) => {
+    const stringifiedAttribute = `${value}`;
+    if (accum === "") {
+      return stringifiedAttribute;
+    }
+    return `${accum} ${stringifiedAttribute}`;
+  }, "");
 };
+
+export const makeInset = (
+  position: Partial<InsetOutsetProperties>
+): { padding: string } => ({ padding: createPositionString(position) });
+export const makeOutset = (
+  position: Partial<InsetOutsetProperties>
+): { margin: string } => ({ margin: createPositionString(position) });
