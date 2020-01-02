@@ -37,12 +37,12 @@ export const Stepper: FC<StepperProps> = ({ steps, children }) => {
                   fontSize={{ size: "sm" }}
                   fontColor={((): ColorProperties => {
                     if (isActive) {
-                      return { type: "scalable", color: "secondary" };
+                      return { scalable: { color: "secondary" } };
                     }
                     if (isPassed) {
-                      return { type: "scalable", color: "secondary" };
+                      return { scalable: { color: "secondary" } };
                     }
-                    return { type: "scalable", color: "grayscale" };
+                    return { scalable: { color: "gray" } };
                   })()}
                 >
                   {label}
@@ -59,12 +59,12 @@ export const Stepper: FC<StepperProps> = ({ steps, children }) => {
                   iconSize={{ size: "h4" }}
                   iconColor={((): ColorProperties => {
                     if (isActive) {
-                      return { type: "scalable", color: "secondary" };
+                      return { scalable: { color: "secondary" } };
                     }
                     if (isPassed) {
-                      return { type: "scalable", color: "secondary" };
+                      return { scalable: { color: "secondary" } };
                     }
-                    return { type: "scalable", color: "grayscale" };
+                    return { scalable: { color: "gray" } };
                   })()}
                 />
               </button>

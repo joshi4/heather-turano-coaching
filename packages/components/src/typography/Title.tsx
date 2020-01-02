@@ -19,9 +19,7 @@ const styledTitleStyleMap: {
     padding: 0 2rem 1.5rem 2rem;
     &::after {
       background-color: ${makeColor({
-        type: "scalable",
-        color: "primary",
-        scale: 4
+        scalable: { color: "primary" }
       })};
     }
   `,
@@ -32,9 +30,7 @@ const styledTitleStyleMap: {
       width: 14%;
       margin-left: -7%;
       background-color: ${makeColor({
-        type: "scalable",
-        color: "primary",
-        scale: 4
+        scalable: { color: "primary" }
       })};
     }
   `,
@@ -45,9 +41,7 @@ const styledTitleStyleMap: {
       width: 10%;
       margin-left: -5%;
       background-color: ${makeColor({
-        type: "scalable",
-        color: "secondary",
-        scale: 4
+        scalable: { color: "secondary" }
       })};
     }
   `
@@ -78,9 +72,9 @@ const StyledTitleLg = styled.h3`
     fontFamily: "Montserrat",
     fontWeight: "medium",
     fontColor: {
-      type: "scalable",
-      color: "primary",
-      scale: 4
+      scalable: {
+        color: "primary"
+      }
     }
   })};
   ${styledTitleStyleMap.lg}
@@ -93,9 +87,9 @@ const StyledTitleMd = styled.h4`
     fontFamily: "Montserrat",
     fontWeight: "medium",
     fontColor: {
-      type: "scalable",
-      color: "primary",
-      scale: 4
+      scalable: {
+        color: "primary"
+      }
     }
   })};
 `;
@@ -106,9 +100,9 @@ const StyledTitleSm = styled.h5`
     fontSize: "h5",
     fontFamily: "Montserrat",
     fontColor: {
-      type: "scalable",
-      color: "secondary",
-      scale: 4
+      scalable: {
+        color: "secondary"
+      }
     }
   })};
 `;

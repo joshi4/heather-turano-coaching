@@ -143,13 +143,13 @@ export const convertHeadingSizeToSize = (fontSize: Size | SizeHeadings): Size =>
 
 export const makeSize = ({
   size,
-  override = undefined
+  custom = undefined
 }: SizeProperties): string => {
   console.log(sizeMap);
   const sanitizedSize = convertHeadingSizeToSize(size);
 
-  if (!override) {
+  if (!custom) {
     return sizeMap.size[sanitizedSize][sizeConfig.sizeUnits];
   }
-  return createCustomSize(override);
+  return createCustomSize(custom);
 };

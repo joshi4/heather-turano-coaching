@@ -15,7 +15,7 @@ export const Tag: FC<TagProps> = ({ value }) => (
     <Copy
       type="caption"
       fontSize={{ size: "sm" }}
-      fontColor={{ type: "scalable", color: "lightscale" }}
+      fontColor={{ scalable: { color: "light" } }}
     >
       {value}
     </Copy>

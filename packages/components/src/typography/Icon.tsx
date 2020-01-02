@@ -54,7 +54,7 @@ export const Icon: FC<IconProps> = ({
   icon,
   iconWeight = "fal",
   iconSize = { size: "sm" },
-  iconColor = { type: "scalable", color: "grayscale", scale: 2 },
+  iconColor = { scalable: { color: "gray" } },
   spin = false
 }) => (
   <StyledIcon iconSize={iconSize} iconColor={iconColor}>

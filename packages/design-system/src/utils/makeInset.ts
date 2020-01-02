@@ -1,38 +1,52 @@
-// import { CSSPositionOffsets, makeSpace } from "./makeSpace";
+import { InsetOutsetProperties, SpaceProperties } from "../types/composite";
+import { makeSpace } from "./makeSpace";
 
-// type InsetCategories = "dynamic" | "custom";
+const reconcileValues = (
+  specificPosition?: SpaceProperties,
+  generalPosition?: SpaceProperties
+): string => {
+  if (specificPosition) {
+    return makeSpace(specificPosition);
+  }
+  if (!specificPosition && generalPosition) {
+    return makeSpace(generalPosition);
+  }
+  return "0";
+};
 
-// interface MakeInsetParams {
-//   type: InsetCategories;
-//   sizes?: CSSPositionOffsets;
-// }
+type MakeInset = (
+  position: Partial<InsetOutsetProperties>
+) => { padding: string };
 
-// type MakeInset = (params: MakeInsetParams) => string;
+export const makeInset: MakeInset = ({
+  top,
+  bottom,
+  left,
+  right,
+  vertical,
+  horizontal
+}) => {
+  // PRESERVE THIS ORDER
+  const paddingObj = {
+    top: reconcileValues(top, vertical),
+    right: reconcileValues(right, horizontal),
+    bottom: reconcileValues(bottom, vertical),
+    left: reconcileValues(left, horizontal)
+  };
 
-// export const makeInset: MakeInset = ({
-//   type = "dynamic",
-//   sizes: {
-//     top = undefined,
-//     right = undefined,
-//     bottom = undefined,
-//     left = undefined
-//   } = {
-//     top: undefined,
-//     right: undefined,
-//     bottom: undefined,
-//     left: undefined
-//   }
-// }) => {
-//   const insetString = `padding: ${makeSpace(type, top)} ${makeSpace(
-//     type,
-//     right
-//   )} ${makeSpace(type, bottom)} ${makeSpace(type, left)}`;
-//   if (type !== "custom") {
-//     return insetString;
-//   }
-
-//   console.warn(
-//     "You're using a size that is defined outside of the parameters of the design system. Boy I do hope you know what you're doing..."
-//   );
-//   return insetString;
-// };
+  //
+  /**
+   * Need to transform the properties into a string
+   * to be sure that we get a proper style object
+   * for any css-in-js solution
+   */
+  return {
+    padding: Object.values(paddingObj).reduce<string>((accum, value) => {
+      const stringifiedAttribute = `${value}`;
+      if (accum === "") {
+        return stringifiedAttribute;
+      }
+      return `${accum} ${stringifiedAttribute}`;
+    }, "")
+  };
+};

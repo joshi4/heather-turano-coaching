@@ -31,35 +31,35 @@ export const captionWithColor = () => (
     <Copy
       type="caption"
       fontSize={{ size: "xl" }}
-      fontColor={{ type: "scalable", color: "error" }}
+      fontColor={{ scalable: { color: "error" } }}
     >
       Caption xl
     </Copy>
     <Copy
       type="caption"
       fontSize={{ size: "lg" }}
-      fontColor={{ type: "scalable", color: "warning" }}
+      fontColor={{ scalable: { color: "warning" } }}
     >
       Caption lg
     </Copy>
     <Copy
       type="caption"
       fontSize={{ size: "md" }}
-      fontColor={{ type: "scalable", color: "warning" }}
+      fontColor={{ scalable: { color: "warning" } }}
     >
       Caption md
     </Copy>
     <Copy
       type="caption"
       fontSize={{ size: "sm" }}
-      fontColor={{ type: "scalable", color: "primary" }}
+      fontColor={{ scalable: { color: "primary" } }}
     >
       Caption sm
     </Copy>
     <Copy
       type="caption"
       fontSize={{ size: "xs" }}
-      fontColor={{ type: "scalable", color: "secondary" }}
+      fontColor={{ scalable: { color: "secondary" } }}
     >
       Caption xs
     </Copy>
@@ -89,35 +89,35 @@ export const paragraphWithColor = () => (
     <Copy
       type="paragraph"
       fontSize={{ size: "xl" }}
-      fontColor={{ type: "scalable", color: "error" }}
+      fontColor={{ scalable: { color: "error" } }}
     >
       Paragraph xl
     </Copy>
     <Copy
       type="paragraph"
       fontSize={{ size: "lg" }}
-      fontColor={{ type: "scalable", color: "warning" }}
+      fontColor={{ scalable: { color: "warning" } }}
     >
       Paragraph lg
     </Copy>
     <Copy
       type="paragraph"
       fontSize={{ size: "md" }}
-      fontColor={{ type: "scalable", color: "warning" }}
+      fontColor={{ scalable: { color: "warning" } }}
     >
       Paragraph md
     </Copy>
     <Copy
       type="paragraph"
       fontSize={{ size: "sm" }}
-      fontColor={{ type: "scalable", color: "primary" }}
+      fontColor={{ scalable: { color: "primary" } }}
     >
       Paragraph sm
     </Copy>
     <Copy
       type="paragraph"
       fontSize={{ size: "xs" }}
-      fontColor={{ type: "scalable", color: "secondary" }}
+      fontColor={{ scalable: { color: "secondary" } }}
     >
       Paragraph xs
     </Copy>
@@ -147,35 +147,35 @@ export const labelWithColor = () => (
     <Copy
       type="label"
       fontSize={{ size: "xl" }}
-      fontColor={{ type: "scalable", color: "error" }}
+      fontColor={{ scalable: { color: "error" } }}
     >
       Label xl
     </Copy>
     <Copy
       type="label"
       fontSize={{ size: "lg" }}
-      fontColor={{ type: "scalable", color: "warning" }}
+      fontColor={{ scalable: { color: "warning" } }}
     >
       Label lg
     </Copy>
     <Copy
       type="label"
       fontSize={{ size: "md" }}
-      fontColor={{ type: "scalable", color: "warning" }}
+      fontColor={{ scalable: { color: "warning" } }}
     >
       Label md
     </Copy>
     <Copy
       type="label"
       fontSize={{ size: "sm" }}
-      fontColor={{ type: "scalable", color: "primary" }}
+      fontColor={{ scalable: { color: "primary" } }}
     >
       Label sm
     </Copy>
     <Copy
       type="label"
       fontSize={{ size: "xs" }}
-      fontColor={{ type: "scalable", color: "secondary" }}
+      fontColor={{ scalable: { color: "secondary" } }}
     >
       Label xs
     </Copy>
@@ -205,35 +205,35 @@ export const textWithColor = () => (
     <Copy
       type="text"
       fontSize={{ size: "xl" }}
-      fontColor={{ type: "scalable", color: "error" }}
+      fontColor={{ scalable: { color: "error" } }}
     >
       Label xl
     </Copy>
     <Copy
       type="text"
       fontSize={{ size: "lg" }}
-      fontColor={{ type: "scalable", color: "warning" }}
+      fontColor={{ scalable: { color: "warning" } }}
     >
       Label lg
     </Copy>
     <Copy
       type="text"
       fontSize={{ size: "md" }}
-      fontColor={{ type: "scalable", color: "warning" }}
+      fontColor={{ scalable: { color: "warning" } }}
     >
       Label md
     </Copy>
     <Copy
       type="text"
       fontSize={{ size: "sm" }}
-      fontColor={{ type: "scalable", color: "primary" }}
+      fontColor={{ scalable: { color: "primary" } }}
     >
       Label sm
     </Copy>
     <Copy
       type="text"
       fontSize={{ size: "xs" }}
-      fontColor={{ type: "scalable", color: "secondary" }}
+      fontColor={{ scalable: { color: "secondary" } }}
     >
       Label xs
     </Copy>

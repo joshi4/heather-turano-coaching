@@ -62,7 +62,7 @@ const StyledMarkdown = styled.section`
       li {
         ${makeFont({
           fontSize: "lg",
-          fontColor: { type: "scalable", color: "secondary", scale: 0 }
+          fontColor: { scalable: { color: "secondary" } }
         })};
         margin-left: 40px;
         margin-bottom: 10px;
@@ -89,11 +89,7 @@ const StyledMarkdown = styled.section`
       position: relative;
       padding: 20px;
       margin: 40px;
-      background: ${makeColor({
-        type: "scalable",
-        color: "lightscale",
-        scale: 3
-      })};
+      background: ${makeColor({ scalable: { color: "light", scale: 3 } })};
 
       &::after {
         content: "";
@@ -103,17 +99,13 @@ const StyledMarkdown = styled.section`
         bottom: 0;
         left: 0;
         width: 5px;
-        background: ${makeColor({
-          type: "scalable",
-          color: "primary",
-          scale: 2
-        })};
+        background: ${makeColor({ scalable: { color: "primary", scale: 2 } })};
       }
 
       & > p {
         ${makeFont({
           fontSize: "xl",
-          fontColor: { type: "scalable", color: "grayscale", scale: 2 }
+          fontColor: { scalable: { color: "gray", scale: 2 } }
         })}
         font-style: italic;
 

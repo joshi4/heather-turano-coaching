@@ -21,8 +21,9 @@ export const Label: FC<LabelProps> = ({
           type="label"
           fontSize={{ size: "sm" }}
           fontColor={{
-            type: "scalable",
-            color: isValid ? "secondary" : "error"
+            scalable: {
+              color: isValid ? "secondary" : "error"
+            }
           }}
         >
           {label}

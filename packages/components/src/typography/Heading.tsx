@@ -54,7 +54,7 @@ const StyledH5 = styled.h5<HeadingProps>`
 
 export const Heading: FC<HeadingProps> = ({
   fontSize = "h1",
-  fontColor = { type: "scalable", color: "grayscale" },
+  fontColor = { scalable: { color: "gray" } },
   copy = undefined,
   children = undefined
 }) => {

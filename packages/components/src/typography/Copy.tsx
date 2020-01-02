@@ -48,7 +48,7 @@ export const StyledCopy = styled.p<
 export const Copy: FC<CopyProps> = ({
   type,
   fontSize = { size: "sm" },
-  fontColor = { type: "scalable", color: "grayscale" },
+  fontColor = { scalable: { color: "gray" } },
   copy = undefined,
   children = undefined
 }) => (

@@ -22,7 +22,7 @@ export const icon = () => (
     <Icon
       icon="rocket"
       iconSize={{ size: "xxs" }}
-      iconColor={{ type: "scalable", color: "primary" }}
+      iconColor={{ scalable: { color: "primary" } }}
     />
   </>
 );

@@ -30,7 +30,7 @@ const StyledButtonAction = styled.button`
   align-items: center;
 
   & > div {
-    margin-right: ${makeSpace({ value: 4 })};
+    margin-right: ${makeSpace(4)};
   }
 `;
 
@@ -39,7 +39,7 @@ export const ButtonAction: FC<ButtonActionProps> = ({
   size = { size: "sm" },
   icon = undefined,
   iconWeight = "fas",
-  color = { type: "scalable", color: "secondary" },
+  color = { scalable: { color: "secondary" } },
   ...restButtonProps
 }) => (
   <StyledButtonAction {...restButtonProps}>

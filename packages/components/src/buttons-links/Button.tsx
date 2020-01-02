@@ -13,6 +13,7 @@ import {
 } from "@heather-turano-coaching/design-system/utils";
 
 import { Icon, Copy } from "../typography";
+import { baseFontSize } from "../shared-styles";
 
 type ButtonStyleTypes = Extract<
   Color,
@@ -36,46 +37,36 @@ const buttonStyleMap: {
   };
 } = {
   primary: {
-    bgColor: makeColor({ type: "static", color: "light" }),
-    bgColorHover: makeColor({ type: "scalable", color: "secondary", scale: 0 }),
-    bgColorActive: makeColor({
-      type: "scalable",
-      color: "secondary",
-      scale: 1
-    }),
-    borderColor: makeColor({ type: "scalable", color: "grayscale" }),
-    borderColorHover: makeColor({ type: "scalable", color: "grayscale" }),
-    borderColorActive: makeColor({ type: "scalable", color: "grayscale" })
+    bgColor: makeColor({ fixed: "light" }),
+    bgColorHover: makeColor({ scalable: { color: "secondary", scale: 0 } }),
+    bgColorActive: makeColor({ scalable: { color: "secondary", scale: 1 } }),
+    borderColor: makeColor({ scalable: { color: "gray" } }),
+    borderColorHover: makeColor({ scalable: { color: "gray" } }),
+    borderColorActive: makeColor({ scalable: { color: "gray" } })
   },
   secondary: {
-    bgColor: makeColor({ type: "scalable", color: "secondary" }),
-    bgColorHover: makeColor({ type: "scalable", color: "secondary" }),
-    bgColorActive: darken(
-      0.1,
-      makeColor({ type: "scalable", color: "secondary" })
-    ),
-    borderColor: makeColor({ type: "scalable", color: "secondary" }),
-    borderColorHover: makeColor({ type: "scalable", color: "secondary" }),
-    borderColorActive: makeColor({ type: "scalable", color: "secondary" })
+    bgColor: makeColor({ scalable: { color: "secondary", scale: 3 } }),
+    bgColorHover: makeColor({ scalable: { color: "secondary" } }),
+    bgColorActive: darken(0.1, makeColor({ scalable: { color: "secondary" } })),
+    borderColor: makeColor({ scalable: { color: "secondary" } }),
+    borderColorHover: makeColor({ scalable: { color: "secondary" } }),
+    borderColorActive: makeColor({ scalable: { color: "secondary" } })
   },
   warning: {
-    bgColor: makeColor({ type: "scalable", color: "warning", scale: 3 }),
-    bgColorHover: makeColor({ type: "scalable", color: "warning" }),
-    bgColorActive: darken(
-      0.1,
-      makeColor({ type: "scalable", color: "warning" })
-    ),
-    borderColor: makeColor({ type: "scalable", color: "warning" }),
-    borderColorHover: makeColor({ type: "scalable", color: "warning" }),
-    borderColorActive: makeColor({ type: "scalable", color: "warning" })
+    bgColor: makeColor({ scalable: { color: "warning", scale: 3 } }),
+    bgColorHover: makeColor({ scalable: { color: "warning" } }),
+    bgColorActive: darken(0.1, makeColor({ scalable: { color: "warning" } })),
+    borderColor: makeColor({ scalable: { color: "warning" } }),
+    borderColorHover: makeColor({ scalable: { color: "warning" } }),
+    borderColorActive: makeColor({ scalable: { color: "warning" } })
   },
   error: {
-    bgColor: makeColor({ type: "scalable", color: "error", scale: 3 }),
-    bgColorHover: makeColor({ type: "scalable", color: "error" }),
-    bgColorActive: darken(0.1, makeColor({ type: "scalable", color: "error" })),
-    borderColor: makeColor({ type: "scalable", color: "error" }),
-    borderColorHover: makeColor({ type: "scalable", color: "error" }),
-    borderColorActive: makeColor({ type: "scalable", color: "error" })
+    bgColor: makeColor({ scalable: { color: "error", scale: 3 } }),
+    bgColorHover: makeColor({ scalable: { color: "error" } }),
+    bgColorActive: darken(0.1, makeColor({ scalable: { color: "error" } })),
+    borderColor: makeColor({ scalable: { color: "error" } }),
+    borderColorHover: makeColor({ scalable: { color: "error" } }),
+    borderColorActive: makeColor({ scalable: { color: "error" } })
   }
 };
 
@@ -113,16 +104,8 @@ export const StyledButton = styled.button<
   &:disabled {
     cursor: initial;
     pointer-events: none;
-    background: ${makeColor({
-      type: "scalable",
-      color: "grayscale",
-      scale: 0
-    })};
-    border-color: ${makeColor({
-      type: "scalable",
-      color: "grayscale",
-      scale: 2
-    })};
+    background: ${makeColor({ scalable: { color: "gray" } })};
+    border-color: ${makeColor({ scalable: { color: "gray", scale: 2 } })};
   }
 `;
 
@@ -142,26 +125,15 @@ export const Button: FC<ButtonProps> = ({
     ) : (
       <Copy
         type="label"
-        fontSize={{ size: "sm" }}
+        fontSize={{ size: baseFontSize }}
         fontColor={((): ColorProperties => {
           if (styleType !== "primary" && styleType !== "warning") {
-            return {
-              type: "static",
-              color: "light"
-            };
+            return { fixed: "light" };
           }
           if (restProps.disabled || loading) {
-            return {
-              type: "scalable",
-              color: "grayscale",
-              scale: 2
-            };
+            return { scalable: { color: "gray", scale: 2 } };
           }
-          return {
-            type: "scalable",
-            color: "grayscale",
-            scale: 4
-          };
+          return { scalable: { color: "gray", scale: 4 } };
         })()}
       >
         {label}

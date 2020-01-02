@@ -15,7 +15,7 @@ export const Error: FC<ErrorProps> = ({ errorMessage = undefined }) => (
         <Copy
           type="caption"
           fontSize={{ size: "xs" }}
-          fontColor={{ type: "scalable", color: "error" }}
+          fontColor={{ scalable: { color: "error" } }}
         >
           {errorMessage}
         </Copy>
