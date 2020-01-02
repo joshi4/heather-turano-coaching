@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { Markdown } from "../typography";
+import { Markdown } from "../../../components/src/typography";
 
 export const HTMLContent: FC<{ content: string }> = ({ content }) => (
   <Markdown>
