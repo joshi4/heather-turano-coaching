@@ -133,8 +133,8 @@ export const createCustomSize = (customSize: number) => {
   console.warn(
     "You're using a custom size that falls outside the boundaries of the design system. All future updates to the design system will not have an affect on this value and instead will have to be manually changed or adjusted. Use with caution."
   );
-  console.debug(customSize);
-  console.debug(convertToUnits(customSize));
+  // console.debug(customSize);
+  // console.debug(convertToUnits(customSize));
   return convertToUnits(customSize);
 };
 
@@ -149,7 +149,11 @@ export const makeSize = (size: SizeProperties): string => {
     return sizeMap.size[sanitizedSize][sizeConfig.sizeUnits];
   }
   if (typeof size === "object" && size.custom) {
-    return createCustomSize(size.custom);
+    console.log(size.custom);
+    const cus = size.custom;
+    const ncus = createCustomSize(size.custom);
+    console.log(cus, ncus);
+    return ncus;
   }
   return "NO DEFINITION PROVIDED";
 };

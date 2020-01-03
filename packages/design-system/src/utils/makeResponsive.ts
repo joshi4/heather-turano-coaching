@@ -45,21 +45,21 @@ export const makeResponsive = ({
       @media (min-width: ${
         responsiveBreakpoints[beginAt]
       }px) and (max-width: ${responsiveBreakpoints[endAt] - 1}px) {
-        ${style};
+        ${style}
       }
     `;
   }
   if (!beginAt && endAt) {
     return `
       @media (max-width: ${responsiveBreakpoints[endAt] - 1}px) {
-        ${style};
+        ${style}
       }
     `;
   }
   if (beginAt && !endAt) {
     return `
       @media (min-width: ${responsiveBreakpoints[beginAt]}px) {
-        ${style};
+        ${style}
       }
     `;
   }
@@ -68,7 +68,7 @@ export const makeResponsive = ({
    */
   return `
     @media (min-width: 0) {
-      ${style};
+      ${style}
     }
   `;
 };
