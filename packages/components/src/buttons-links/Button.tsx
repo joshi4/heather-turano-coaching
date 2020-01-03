@@ -38,8 +38,8 @@ const buttonStyleMap: {
 } = {
   primary: {
     bgColor: makeColor({ fixed: "light" }),
-    bgColorHover: makeColor({ scalable: { color: "secondary", scale: 4 } }),
-    bgColorActive: makeColor({ scalable: { color: "secondary", scale: 3 } }),
+    bgColorHover: makeColor({ scalable: { color: "secondary", scale: 3 } }),
+    bgColorActive: makeColor({ scalable: { color: "secondary", scale: 2 } }),
     borderColor: makeColor({ scalable: { color: "gray" } }),
     borderColorHover: makeColor({ scalable: { color: "gray" } }),
     borderColorActive: makeColor({ scalable: { color: "gray" } })
@@ -105,7 +105,7 @@ export const StyledButton = styled.button<
     cursor: initial;
     pointer-events: none;
     background: ${makeColor({ scalable: { color: "gray", scale: 3 } })};
-    border-color: ${makeColor({ scalable: { color: "gray", scale: 4 } })};
+    border-color: ${makeColor({ scalable: { color: "gray", scale: 2 } })};
   }
 `;
 

@@ -20,10 +20,9 @@ const createColor = (
 
 const createColorScale = (hex: ColorScalable): ColorScales => [
   colorConfig.scalable[hex],
-  createColor(0.2, hex),
-  createColor(0.4, hex),
-  createColor(0.6, hex),
-  createColor(0.8, hex)
+  createColor(0.25, hex),
+  createColor(0.5, hex),
+  createColor(0.75, hex)
 ];
 
 const scalableColorMap: ColorMapScalable = {

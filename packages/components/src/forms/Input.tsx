@@ -24,7 +24,6 @@ export type InputProps = HTMLInput &
   };
 
 export const CSSPlaceholders = css`
-  ${makeReset("input")};
   &::placeholder {
     color: ${makeColor({ scalable: { color: "gray", scale: 3 } })};
   }
@@ -50,7 +49,7 @@ const StyledInput = styled.input<InputProps>`
   ${makeReset("input")};
   ${makeInset({ vertical: 8, horizontal: 12 })};
   ${makeFont({ fontSize: baseFontSize })};
-  border: 1px solid ${makeColor({ scalable: { color: "light", scale: 2 } })};
+  border: 1px solid ${makeColor({ scalable: { color: "gray", scale: 3 } })};
   background: ${makeColor({ fixed: "light" })};
   color: ${makeColor({ fixed: "dark" })};
   border-radius: ${makeSpace({ custom: 2 })};
