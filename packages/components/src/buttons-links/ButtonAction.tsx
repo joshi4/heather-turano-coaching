@@ -2,8 +2,8 @@ import React, { FC } from "react";
 import { IconName } from "@fortawesome/pro-light-svg-icons";
 import {
   HTMLButton,
-  SizeProperties,
-  ColorProperties
+  ColorProperties,
+  FontProperties
 } from "@heather-turano-coaching/design-system/types/composite";
 
 import { Icon, Copy, IconProps } from "../typography";
@@ -16,7 +16,7 @@ import {
 
 type ButtonActionProps = HTMLButton & {
   label: string;
-  size?: SizeProperties;
+  size?: FontProperties["fontSize"];
   icon?: IconName | undefined;
   color?: ColorProperties;
   iconWeight?: IconProps["iconWeight"];
@@ -36,7 +36,7 @@ const StyledButtonAction = styled.button`
 
 export const ButtonAction: FC<ButtonActionProps> = ({
   label,
-  size = { size: "sm" },
+  size = "sm",
   icon = undefined,
   iconWeight = "fas",
   color = { scalable: { color: "accent" } },

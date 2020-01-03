@@ -129,11 +129,13 @@ const createSizes = () => {
   };
 };
 
-export const createCustomSize = (customSize: string | number) => {
+export const createCustomSize = (customSize: number) => {
   console.warn(
     "You're using a custom size that falls outside the boundaries of the design system. All future updates to the design system will not have an affect on this value and instead will have to be manually changed or adjusted. Use with caution."
   );
-  return customSize as string;
+  console.debug(customSize);
+  console.debug(convertToUnits(customSize));
+  return convertToUnits(customSize);
 };
 
 export const sizeMap: SizeMap = createSizes();
@@ -141,15 +143,13 @@ export const sizeMap: SizeMap = createSizes();
 export const convertHeadingSizeToSize = (fontSize: Size | SizeHeadings): Size =>
   fontConfig.headingSizeMap[fontSize as SizeHeadings] || (fontSize as Size);
 
-export const makeSize = ({
-  size,
-  custom = undefined
-}: SizeProperties): string => {
-  console.log(sizeMap);
-  const sanitizedSize = convertHeadingSizeToSize(size);
-
-  if (!custom) {
+export const makeSize = (size: SizeProperties): string => {
+  if (typeof size === "string") {
+    const sanitizedSize = convertHeadingSizeToSize(size);
     return sizeMap.size[sanitizedSize][sizeConfig.sizeUnits];
   }
-  return createCustomSize(custom);
+  if (typeof size === "object" && size.custom) {
+    return createCustomSize(size.custom);
+  }
+  return "NO DEFINITION PROVIDED";
 };

@@ -25,7 +25,7 @@ export const Label: FC<LabelProps> = ({
       <StyledLabel htmlFor={htmlFor} styleName="input-label">
         <Copy
           type="label"
-          fontSize={{ size: "sm" }}
+          fontSize="sm"
           fontColor={{
             scalable: {
               color: isValid ? "secondary" : "error"

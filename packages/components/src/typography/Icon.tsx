@@ -7,7 +7,7 @@ import { fas } from "@fortawesome/pro-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import {
   ColorProperties,
-  SizeProperties
+  FontProperties
 } from "@heather-turano-coaching/design-system/types/composite";
 import {
   makeColor,
@@ -19,7 +19,7 @@ library.add(fal, fas, fab);
 export type IconProps = {
   icon: IconName;
   iconWeight?: "fab" | "fal" | "fas" | undefined;
-  iconSize?: SizeProperties;
+  iconSize?: FontProperties["fontSize"];
   iconColor?: ColorProperties;
   spin?: boolean;
 };
@@ -33,9 +33,9 @@ const StyledIcon = styled.div<
   align-items: center;
 
   ${({ iconSize }) => css`
-    height: ${makeFont({ fontSize: iconSize.size }).lineHeight};
-    width: ${makeFont({ fontSize: iconSize.size }).lineHeight};
-    font-size: ${makeFont({ fontSize: iconSize.size }).fontSize};
+    height: ${makeFont({ fontSize: iconSize }).lineHeight};
+    width: ${makeFont({ fontSize: iconSize }).lineHeight};
+    font-size: ${makeFont({ fontSize: iconSize }).fontSize};
   `}
 
   & > svg {
@@ -53,7 +53,7 @@ const StyledIcon = styled.div<
 export const Icon: FC<IconProps> = ({
   icon,
   iconWeight = "fal",
-  iconSize = { size: "sm" },
+  iconSize = "sm",
   iconColor = { scalable: { color: "gray" } },
   spin = false
 }) => (

@@ -14,7 +14,7 @@ export const Tag: FC<TagProps> = ({ value }) => (
   <GatsbyLink styleName="blog-tag" to={`/tags/${kebabCase(value)}/`}>
     <Copy
       type="caption"
-      fontSize={{ size: "sm" }}
+      fontSize="sm"
       fontColor={{ scalable: { color: "light" } }}
     >
       {value}

@@ -34,7 +34,7 @@ export const Stepper: FC<StepperProps> = ({ steps, children }) => {
               <div styleName="label">
                 <Copy
                   type="caption"
-                  fontSize={{ size: "sm" }}
+                  fontSize="sm"
                   fontColor={((): ColorProperties => {
                     if (isActive) {
                       return { scalable: { color: "secondary" } };
@@ -56,7 +56,7 @@ export const Stepper: FC<StepperProps> = ({ steps, children }) => {
               >
                 <Icon
                   icon={icon}
-                  iconSize={{ size: "h4" }}
+                  iconSize="h4"
                   iconColor={((): ColorProperties => {
                     if (isActive) {
                       return { scalable: { color: "secondary" } };

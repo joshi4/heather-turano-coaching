@@ -121,11 +121,11 @@ export const Button: FC<ButtonProps> = ({
     {...restProps}
   >
     {loading ? (
-      <Icon iconSize={{ size: "sm" }} icon="spinner" spin />
+      <Icon iconSize="sm" icon="spinner" spin />
     ) : (
       <Copy
         type="label"
-        fontSize={{ size: sharedFontSize }}
+        fontSize={sharedFontSize}
         fontColor={((): ColorProperties => {
           if (styleType !== "primary" && styleType !== "warning") {
             return { fixed: "light" };

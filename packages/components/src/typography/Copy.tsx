@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 import {
   HTMLParagraph,
   ColorProperties,
-  SizeProperties,
   FontProperties
 } from "@heather-turano-coaching/design-system/types/composite";
 import {
@@ -13,7 +12,7 @@ import {
 
 export type CopyProps = HTMLParagraph & {
   type: "caption" | "text" | "label" | "paragraph";
-  fontSize?: SizeProperties;
+  fontSize?: FontProperties["fontSize"];
   fontColor?: ColorProperties;
   copy?: string | undefined;
 };
@@ -42,12 +41,12 @@ export const StyledCopy = styled.p<
 >`
   ${BaseCopy};
   ${({ fontSize, fontColor, type }) =>
-    makeFont({ ...copyFontMap[type], fontSize: fontSize.size, fontColor })}
+    makeFont({ ...copyFontMap[type], fontSize: fontSize, fontColor })}
 `;
 
 export const Copy: FC<CopyProps> = ({
   type,
-  fontSize = { size: "sm" },
+  fontSize = "sm",
   fontColor = { scalable: { color: "gray" } },
   copy = undefined,
   children = undefined
