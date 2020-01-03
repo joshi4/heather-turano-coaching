@@ -2,11 +2,13 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import { Link as GatsbyLink, GatsbyLinkProps } from "gatsby";
 
+import { makeOutset } from "@heather-turano-coaching/design-system/utils";
+
 const StyledLink = styled.div`
   a {
     & > * {
       &:not(:first-child) {
-        margin-left: 10px;
+        ${makeOutset({ left: 12 })};
       }
     }
   }

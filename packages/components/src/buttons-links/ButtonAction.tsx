@@ -11,7 +11,7 @@ import { Icon, Copy, IconProps } from "../typography";
 import styled from "styled-components";
 import {
   makeReset,
-  makeSpace
+  makeOutset
 } from "@heather-turano-coaching/design-system/utils";
 
 type ButtonActionProps = HTMLButton & {
@@ -30,7 +30,7 @@ const StyledButtonAction = styled.button`
   align-items: center;
 
   & > div {
-    margin-right: ${makeSpace(4)};
+    ${makeOutset({ right: 4 })}
   }
 `;
 
@@ -39,7 +39,7 @@ export const ButtonAction: FC<ButtonActionProps> = ({
   size = { size: "sm" },
   icon = undefined,
   iconWeight = "fas",
-  color = { scalable: { color: "secondary" } },
+  color = { scalable: { color: "accent" } },
   ...restButtonProps
 }) => (
   <StyledButtonAction {...restButtonProps}>
