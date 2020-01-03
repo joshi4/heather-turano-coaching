@@ -1,25 +1,29 @@
 import React, { FC } from "react";
+import styled from "styled-components";
+import { makeOutset } from "@heather-turano-coaching/design-system/utils";
 
 import { Copy } from "../../typography";
-
-import "./Error.module.scss";
 
 export interface ErrorProps {
   errorMessage?: string;
 }
 
+const StyledError = styled.div`
+  ${makeOutset({ top: 4 })}
+`;
+
 export const Error: FC<ErrorProps> = ({ errorMessage = undefined }) => (
   <>
     {errorMessage && (
-      <div styleName="input-error">
+      <StyledError>
         <Copy
-          type="caption"
+          type="label"
           fontSize={{ size: "xs" }}
           fontColor={{ scalable: { color: "error" } }}
         >
           {errorMessage}
         </Copy>
-      </div>
+      </StyledError>
     )}
   </>
 );

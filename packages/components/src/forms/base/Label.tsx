@@ -11,7 +11,7 @@ export type LabelProps = HTMLLabel & {
 };
 
 const StyledLabel = styled.label`
-  display: block;
+  display: inline-block;
   ${makeOutset({ bottom: 4 })}
 `;
 

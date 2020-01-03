@@ -1,3 +1,7 @@
-import { FontProperties } from "@heather-turano-coaching/design-system/types/composite";
+import {
+  FontProperties,
+  SpaceProperties
+} from "@heather-turano-coaching/design-system/types/composite";
 
-export const baseFontSize: FontProperties["fontSize"] = "sm";
+export const sharedFontSize: FontProperties["fontSize"] = "sm";
+export const sharedElementSpacing: SpaceProperties = 16;

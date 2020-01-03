@@ -13,7 +13,7 @@ import {
 } from "@heather-turano-coaching/design-system/utils";
 
 import { Icon, Copy } from "../typography";
-import { baseFontSize } from "../shared-styles";
+import { sharedFontSize } from "../shared-styles";
 
 type ButtonStyleTypes = Extract<
   Color,
@@ -125,7 +125,7 @@ export const Button: FC<ButtonProps> = ({
     ) : (
       <Copy
         type="label"
-        fontSize={{ size: baseFontSize }}
+        fontSize={{ size: sharedFontSize }}
         fontColor={((): ColorProperties => {
           if (styleType !== "primary" && styleType !== "warning") {
             return { fixed: "light" };

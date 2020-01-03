@@ -1,7 +1,10 @@
 import React, { FC } from "react";
+import styled from "styled-components";
 
-import "./Control.module.scss";
+const StyledControl = styled.div`
+  display: block;
+`;
 
 export const Control: FC = ({ children }) => (
-  <div styleName="input-control">{children}</div>
+  <StyledControl>{children}</StyledControl>
 );

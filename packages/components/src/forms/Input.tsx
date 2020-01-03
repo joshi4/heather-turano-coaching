@@ -3,7 +3,6 @@ import { HTMLInput } from "@heather-turano-coaching/design-system/types/composit
 
 import { Control, Label, Error, ErrorProps } from "./base";
 
-import { InputStyleType } from "./_forms.types";
 import styled, { css } from "styled-components";
 import {
   makeReset,
@@ -12,13 +11,12 @@ import {
   makeFont,
   makeInset
 } from "@heather-turano-coaching/design-system/utils";
-import { baseFontSize } from "../shared-styles";
+import { sharedFontSize } from "../shared-styles";
 
 export type InputProps = HTMLInput &
   ErrorProps & {
     name: string;
     label?: string;
-    styleType?: InputStyleType;
     isValid?: boolean;
     type?: "text" | "email" | "password" | "search" | "number";
   };
@@ -44,16 +42,34 @@ export const CSSPlaceholders = css`
   }
 `;
 
-const StyledInput = styled.input<InputProps>`
+export const CSSInputValidity = css<InputProps>`
+  ${({ isValid }) =>
+    !isValid &&
+    css`
+      border-color: ${makeColor({ scalable: { color: "error" } })};
+      color: ${makeColor({ scalable: { color: "error" } })};
+    `}
+`;
+
+/**
+ * This is done like this so we can share this base style with
+ * the Textarea component
+ */
+export const CSSInputStyle = css<InputProps>`
   ${CSSPlaceholders}
   ${makeReset("input")};
   ${makeInset({ vertical: 8, horizontal: 12 })};
-  ${makeFont({ fontSize: baseFontSize })};
+  ${makeFont({ fontSize: sharedFontSize })};
   border: 1px solid ${makeColor({ scalable: { color: "gray", scale: 3 } })};
   background: ${makeColor({ fixed: "light" })};
   color: ${makeColor({ fixed: "dark" })};
   border-radius: ${makeSpace({ custom: 2 })};
   width: 100%;
+  ${CSSInputValidity};
+`;
+
+const StyledInput = styled.input<InputProps>`
+  ${CSSInputStyle}
 `;
 
 export const Input: FC<InputProps> = ({
@@ -62,7 +78,6 @@ export const Input: FC<InputProps> = ({
   type = "text",
   isValid = true,
   errorMessage = undefined,
-  styleType = "primary",
   ...restProps
 }) => (
   <Control>

@@ -20,7 +20,8 @@ export type SpaceProperties =
   | (Size | number)
   | {
       custom?: number;
-    };
+    }
+  | "auto";
 
 type CSSBoxLong = "top" | "right" | "bottom" | "left";
 type CSSBoxShort = "vertical" | "horizontal";

@@ -6,7 +6,7 @@ import {
 interface ResponsiveInterface {
   beginAt?: ResponsiveDeviceTypes | undefined;
   endAt?: ResponsiveDeviceTypes | undefined;
-  style: string;
+  style: any;
 }
 
 /**
