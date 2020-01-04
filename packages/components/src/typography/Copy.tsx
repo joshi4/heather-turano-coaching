@@ -14,6 +14,7 @@ export type CopyProps = HTMLParagraph & {
   type: "caption" | "text" | "label" | "paragraph";
   fontSize?: FontProperties["fontSize"];
   fontColor?: ColorProperties;
+  lineHeight?: FontProperties["lineHeight"];
   copy?: string | undefined;
 };
 
@@ -37,21 +38,32 @@ const copyFontMap: { [key in CopyProps["type"]]: Partial<FontProperties> } = {
 };
 
 export const StyledCopy = styled.p<
-  Required<Pick<CopyProps, "fontColor" | "fontSize" | "type">>
+  Required<Pick<CopyProps, "fontColor" | "fontSize" | "lineHeight" | "type">>
 >`
   ${BaseCopy};
-  ${({ fontSize, fontColor, type }) =>
-    makeFont({ ...copyFontMap[type], fontSize: fontSize, fontColor })}
+  ${({ fontSize, fontColor, lineHeight, type }) =>
+    makeFont({
+      ...copyFontMap[type],
+      fontSize: fontSize,
+      fontColor,
+      lineHeight
+    })}
 `;
 
 export const Copy: FC<CopyProps> = ({
   type,
   fontSize = "sm",
   fontColor = { scalable: { color: "gray" } },
+  lineHeight = "sm",
   copy = undefined,
   children = undefined
 }) => (
-  <StyledCopy type={type} fontSize={fontSize} fontColor={fontColor}>
+  <StyledCopy
+    type={type}
+    fontSize={fontSize}
+    fontColor={fontColor}
+    lineHeight={lineHeight}
+  >
     {copy || children}
   </StyledCopy>
 );
