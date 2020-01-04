@@ -44,9 +44,7 @@ const createPositionString = ({
   }, "");
 };
 
-export const makeInset = (
-  position: Partial<InsetOutsetProperties>
-): { padding: string } => ({ padding: createPositionString(position) });
-export const makeOutset = (
-  position: Partial<InsetOutsetProperties>
-): { margin: string } => ({ margin: createPositionString(position) });
+export const makeInset = (position: Partial<InsetOutsetProperties>): string =>
+  `padding: ${createPositionString(position)}`;
+export const makeOutset = (position: Partial<InsetOutsetProperties>): string =>
+  `margin: ${createPositionString(position)}`;

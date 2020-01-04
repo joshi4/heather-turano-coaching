@@ -3,10 +3,10 @@ import {
   responsiveBreakpoints
 } from "../configs/responsive.config";
 
-interface ResponsiveInterface {
+interface ResponsiveInterface<T> {
   beginAt?: ResponsiveDeviceTypes | undefined;
   endAt?: ResponsiveDeviceTypes | undefined;
-  style: any;
+  style: T;
 }
 
 /**
@@ -35,11 +35,12 @@ interface ResponsiveInterface {
  * @param beginAt this viewport size, apply the style (defaults to 0)
  * @param endAt this viewport size, stop applying the style (optional)
  */
-export const makeResponsive = ({
+
+export function makeResponsive<StyleType = string>({
   beginAt = undefined,
   endAt = undefined,
   style
-}: ResponsiveInterface): string => {
+}: ResponsiveInterface<StyleType>): string {
   if (beginAt && endAt) {
     return `
       @media (min-width: ${
@@ -71,4 +72,41 @@ export const makeResponsive = ({
       ${style}
     }
   `;
-};
+}
+// export const makeResponsive: MakeResponsive = ({
+//   beginAt = undefined,
+//   endAt = undefined,
+//   style
+// }) => {
+//   if (beginAt && endAt) {
+//     return `
+//       @media (min-width: ${
+//         responsiveBreakpoints[beginAt]
+//       }px) and (max-width: ${responsiveBreakpoints[endAt] - 1}px) {
+//         ${style}
+//       }
+//     `;
+//   }
+//   if (!beginAt && endAt) {
+//     return `
+//       @media (max-width: ${responsiveBreakpoints[endAt] - 1}px) {
+//         ${style}
+//       }
+//     `;
+//   }
+//   if (beginAt && !endAt) {
+//     return `
+//       @media (min-width: ${responsiveBreakpoints[beginAt]}px) {
+//         ${style}
+//       }
+//     `;
+//   }
+//   /**
+//    * If nothing is provided, then return a beginAt width of 0
+//    */
+//   return `
+//     @media (min-width: 0) {
+//       ${style}
+//     }
+//   `;
+// };

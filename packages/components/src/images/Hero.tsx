@@ -16,6 +16,8 @@ export interface HeroProps {
   gradient?: ColorProperties | undefined;
 }
 
+const defaultBorderColor: ColorProperties = { scalable: { color: "primary" } };
+
 const StyledHero = styled.section`
   box-sizing: border-box;
   position: relative;
@@ -47,8 +49,7 @@ const StyledHeroGradient = styled.div<
   top: 0;
   bottom: 0;
   z-index: 5;
-  ${({ borderColor = { scalable: { color: "primary" } } }) =>
-    createImageBorder(borderColor)}
+  ${({ borderColor = defaultBorderColor }) => createImageBorder(borderColor)}
   background-image: ${({ gradient }) =>
     gradient
       ? `linear-gradient(270deg, transparent 42%, ${makeColor(gradient)} 80%)`
@@ -73,7 +74,7 @@ export const Hero: FC<HeroProps> = ({
   image,
   alt,
   children,
-  borderColor = { scalable: { color: "primary" } },
+  borderColor = defaultBorderColor,
   gradient = undefined
 }) => (
   <StyledHero>
