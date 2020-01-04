@@ -4,6 +4,7 @@ import { Hero } from "./Hero";
 
 import dandilion from "../development/images/dandilion.jpg";
 import { Heading } from "../typography";
+import { Section } from "../layouts";
 
 export default {
   component: Hero,
@@ -35,5 +36,19 @@ export const withGradient = () => (
     gradient={{ scalable: { color: "secondary" } }}
   >
     <Heading fontSize="h1">Title here</Heading>
+  </Hero>
+);
+export const withSection = () => (
+  <Hero
+    image={dandilion}
+    alt="versailles-dandilion"
+    borderColor={{ fixed: "light" }}
+    gradient={{ scalable: { color: "secondary" } }}
+  >
+    <Section styleType="hero">
+      <Heading fontSize="h1" fontColor={{ fixed: "light" }}>
+        <div>Title Here</div>
+      </Heading>
+    </Section>
   </Hero>
 );

@@ -11,9 +11,9 @@ export interface TagGroup {
 export const TagGroup: FC<TagGroup> = ({ tags = [] }) =>
   tags && tags.length ? (
     <ul styleName="tag-group">
-      {tags.map(({ value }) => (
-        <li key={value}>
-          <Tag value={value} />
+      {tags.map(({ to }) => (
+        <li key={to}>
+          <Tag to={to} />
         </li>
       ))}
     </ul>

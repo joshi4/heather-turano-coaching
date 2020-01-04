@@ -50,3 +50,23 @@ export const layered = () => (
     </Container>
   </>
 );
+
+export const hero = () => (
+  <>
+    <Container>
+      <Section styleType="hero">
+        <Content />
+      </Section>
+    </Container>
+    <Container>
+      <Section styleType="layered">
+        <Content />
+      </Section>
+    </Container>
+    <Container>
+      <Section styleType="blank">
+        <Content />
+      </Section>
+    </Container>
+  </>
+);

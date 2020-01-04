@@ -28,7 +28,9 @@ const CSSSectionMap: {
       `
     })}
   `,
-  hero: css``
+  hero: css`
+    ${makeInset({ vertical: 88, horizontal: 64 })};
+  `
 };
 
 const CSSSectionContentMap: {
