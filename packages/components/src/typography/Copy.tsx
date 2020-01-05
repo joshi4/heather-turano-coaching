@@ -38,7 +38,8 @@ const copyFontMap: { [key in CopyProps["type"]]: Partial<FontProperties> } = {
 };
 
 export const StyledCopy = styled.p<
-  Required<Pick<CopyProps, "fontColor" | "fontSize" | "lineHeight" | "type">>
+  Required<Pick<CopyProps, "fontColor" | "fontSize" | "type">> &
+    Pick<CopyProps, "lineHeight">
 >`
   ${BaseCopy};
   ${({ fontSize, fontColor, lineHeight, type }) =>
@@ -54,7 +55,7 @@ export const Copy: FC<CopyProps> = ({
   type,
   fontSize = "sm",
   fontColor = { scalable: { color: "gray" } },
-  lineHeight = "sm",
+  lineHeight,
   copy = undefined,
   children = undefined
 }) => (

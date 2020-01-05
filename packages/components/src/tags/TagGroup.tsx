@@ -1,20 +1,43 @@
 import React, { FC } from "react";
+import styled from "styled-components";
+import {
+  makeOutset,
+  makeReset,
+  makeSpace
+} from "@heather-turano-coaching/design-system/utils";
 
-import { Tag, TagProps } from "./Tag";
-
-import "./TagGroup.module.scss";
+import { Tag, TagProps, StyledTag } from "./Tag";
 
 export interface TagGroup {
   tags?: TagProps[];
 }
 
-export const TagGroup: FC<TagGroup> = ({ tags = [] }) =>
-  tags && tags.length ? (
-    <ul styleName="tag-group">
-      {tags.map(({ to }) => (
-        <li key={to}>
-          <Tag to={to} />
-        </li>
-      ))}
-    </ul>
-  ) : null;
+const StyledTagGroup = styled.ul`
+  ${makeReset("list")}
+  ${makeOutset({ top: -16 })};
+
+  & > li,
+  & > ${StyledTag} {
+    display: inline-block;
+    ${makeOutset({ top: 16 })};
+
+    &:not(:last-child) {
+      margin-right: ${makeSpace(16)};
+    }
+  }
+`;
+
+export const TagGroup: FC<TagGroup> = ({ tags = [], children }) => (
+  <>
+    {tags && tags.length !== 0 && (
+      <StyledTagGroup>
+        {tags.map((props, index) => (
+          <li key={index.toString()}>
+            <Tag {...props} />
+          </li>
+        ))}
+      </StyledTagGroup>
+    )}
+    {children && <StyledTagGroup as="div">{children}</StyledTagGroup>}
+  </>
+);

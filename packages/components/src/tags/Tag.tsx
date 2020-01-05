@@ -11,11 +11,11 @@ import {
 import { Copy } from "../typography";
 
 export interface TagProps {
-  to: string;
+  text: string;
   route?: string;
 }
 
-const StyledTag = styled.div`
+export const StyledTag = styled.div`
   display: inline-block;
   ${makeInset({ horizontal: 12 })}
   background: ${makeColor({ scalable: { color: "secondary", scale: 3 } })};
@@ -24,7 +24,7 @@ const StyledTag = styled.div`
   text-transform: uppercase;
 `;
 
-export const Tag: FC<TagProps> = ({ to, route }) => {
+export const Tag: FC<TagProps> = ({ text, route }) => {
   const Tag = (
     <StyledTag>
       <Copy
@@ -33,7 +33,7 @@ export const Tag: FC<TagProps> = ({ to, route }) => {
         fontColor={{ scalable: { color: "gray" } }}
         lineHeight="md"
       >
-        {to}
+        {text}
       </Copy>
     </StyledTag>
   );
