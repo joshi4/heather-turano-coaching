@@ -8,7 +8,7 @@ import { Section } from "../layouts";
 
 export default {
   component: Hero,
-  title: "Basic|Images/Hero"
+  title: "Basic|Hero"
 };
 
 export const base = () => (

@@ -6,7 +6,7 @@ import Moana from "../development/images/moana.jpg";
 
 export default {
   component: Avatar,
-  title: "Basic|Images/Avatar"
+  title: "Basic|Avatar"
 };
 
 export const base = () => <Avatar image={Moana} alt="testing" />;
