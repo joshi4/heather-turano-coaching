@@ -51,6 +51,7 @@
     "@fortawesome/pro-light-svg-icons": "^5.12.0",
     "@fortawesome/pro-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
+    "formik": "^2.1.1",
     "polished": "^3.4.2",
     "react-markdown": "^4.3.1"
   },

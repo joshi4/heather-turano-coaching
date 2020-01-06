@@ -26,7 +26,6 @@
     "jsx": "react",
     "esModuleInterop": true,
     "allowJs": false,
-    "isolatedModules": true,
     "resolveJsonModule": true
   },
   "compileOnSave": true
