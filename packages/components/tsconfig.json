@@ -4,5 +4,6 @@
   "compilerOptions": {
     "rootDir": "./",
     "baseUrl": "./"
-  }
+  },
+  "exclude": ["**/*.spec.ts", "**/*.stories.tsx"]
 }
