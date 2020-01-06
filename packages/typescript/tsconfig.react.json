@@ -13,6 +13,11 @@
     "strictPropertyInitialization": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
@@ -20,7 +25,9 @@
     "moduleResolution": "node",
     "jsx": "react",
     "esModuleInterop": true,
-    "allowJs": false
+    "allowJs": false,
+    "isolatedModules": true,
+    "resolveJsonModule": true
   },
   "compileOnSave": true
 }
