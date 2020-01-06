@@ -3,12 +3,18 @@ import { ColorProperties } from "@heather-turano-coaching/design-system/types/co
 
 import { Icon, Copy } from "../typography";
 
-import "./Stepper.module.scss";
 import { IconName } from "@fortawesome/pro-light-svg-icons";
+import styled from "styled-components";
+import {
+  makeOutset,
+  makeColor,
+  makeSize
+} from "@heather-turano-coaching/design-system/utils";
 
 export interface Step {
   icon: IconName;
   label: string;
+  description: string;
 }
 
 export interface StepperProps {
@@ -16,67 +22,128 @@ export interface StepperProps {
   children: (step: Step) => ReactNode;
 }
 
+interface DerrivedValue {
+  isActive: boolean;
+  isPassed: boolean;
+}
+
+const StyledStepperContainer = styled.div`
+  ${makeOutset({ vertical: 32 })};
+`;
+
+const StyledSteps = styled.div`
+  ${makeOutset({ bottom: 24 })};
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const StyledStepLabel = styled.div`
+  text-transform: lowercase;
+  margin-bottom: 20px;
+  transition: color 0.5s ease-in-out;
+  text-align: center;
+`;
+
+const StyledStepBubble = styled.button.attrs({ type: "button" })<DerrivedValue>`
+  height: ${makeSize("xxl")};
+  width: ${makeSize("xxl")};
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background: #fff;
+  border-radius: 50%;
+  border-width: 6px;
+  border-style: solid;
+  cursor: pointer;
+  z-index: 10;
+  transition: border-color 0.5s ease-in-out;
+
+  border-color: ${({ isActive, isPassed }) => {
+    if (isActive) {
+      return makeColor({ scalable: { color: "secondary" } });
+    }
+    if (isPassed) {
+      return makeColor({ scalable: { color: "secondary", scale: 2 } });
+    }
+    return makeColor({ scalable: { color: "gray", scale: 3 } });
+  }};
+`;
+
+const StyledProgressLine = styled.div<{
+  currentStep: number;
+  numberOfSteps: number;
+}>`
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: ${makeColor({ scalable: { color: "secondary", scale: 2 } })};
+  bottom: calc(72px / 2);
+  transition: width 0.5s ease-in-out;
+  width: ${({ currentStep, numberOfSteps }) =>
+    `${(currentStep / (numberOfSteps - 1)) * 100}%`};
+  z-index: -1;
+`;
+
+const createFontColor = ({
+  isActive,
+  isPassed
+}: DerrivedValue): ColorProperties => {
+  if (isActive) {
+    return { scalable: { color: "secondary" } };
+  }
+  if (isPassed) {
+    return { scalable: { color: "secondary" } };
+  }
+  return { scalable: { color: "gray" } };
+};
+
 export const Stepper: FC<StepperProps> = ({ steps, children }) => {
   const [currentStep, setCurrentStep] = useState<number>(0);
 
   const goToEntry = (index: number) => setCurrentStep(index);
 
   return (
-    <div styleName="stepper">
-      <div styleName="steps">
+    <StyledStepperContainer>
+      <StyledSteps>
         {steps.map(({ icon, label }, index) => {
           const isActive = index === currentStep;
           const isPassed = index < currentStep;
-          const activeClass = isActive ? "active" : "";
-          const passedClass = isPassed ? "passed" : "";
+
           return (
-            <div styleName="step" key={label}>
-              <div styleName="label">
+            <div key={label}>
+              <StyledStepLabel>
                 <Copy
                   type="caption"
                   fontSize="sm"
-                  fontColor={((): ColorProperties => {
-                    if (isActive) {
-                      return { scalable: { color: "secondary" } };
-                    }
-                    if (isPassed) {
-                      return { scalable: { color: "secondary" } };
-                    }
-                    return { scalable: { color: "gray" } };
-                  })()}
+                  fontColor={createFontColor({ isActive, isPassed })}
                 >
                   {label}
                 </Copy>
-              </div>
-              <button
-                type="button"
+              </StyledStepLabel>
+              <StyledStepBubble
+                isActive={isActive}
+                isPassed={isPassed}
                 key={index.toString()}
-                styleName={`bubble ${activeClass} ${passedClass}`}
                 onClick={() => goToEntry(index)}
               >
                 <Icon
                   icon={icon}
                   iconSize="h4"
-                  iconColor={((): ColorProperties => {
-                    if (isActive) {
-                      return { scalable: { color: "secondary" } };
-                    }
-                    if (isPassed) {
-                      return { scalable: { color: "secondary" } };
-                    }
-                    return { scalable: { color: "gray" } };
-                  })()}
+                  iconColor={createFontColor({ isActive, isPassed })}
                 />
-              </button>
+              </StyledStepBubble>
             </div>
           );
         })}
-        <div
-          styleName="line"
-          style={{ width: `${(currentStep / 2) * 100}%` }}
+        <StyledProgressLine
+          currentStep={currentStep}
+          numberOfSteps={steps.length}
         />
-      </div>
+      </StyledSteps>
       <div>{children({ ...steps[currentStep] })}</div>
-    </div>
+    </StyledStepperContainer>
   );
 };
