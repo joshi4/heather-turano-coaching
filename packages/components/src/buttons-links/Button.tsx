@@ -13,7 +13,7 @@ import {
 } from "@heather-turano-coaching/design-system/utils";
 
 import { Icon, Copy } from "../typography";
-import { sharedFontSize } from "../shared-styles";
+import { sharedFontSize } from "../shared";
 
 type ButtonStyleTypes = Extract<
   Color,

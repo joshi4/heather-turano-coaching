@@ -1,8 +1,0 @@
-{
-  "extends": "@heather-turano-coaching/typescript/tsconfig.react.json",
-  "include": ["src", "types", "utils"],
-  "compilerOptions": {
-    "rootDir": "./",
-    "baseUrl": "./"
-  }
-}

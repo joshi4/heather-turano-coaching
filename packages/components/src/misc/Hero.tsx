@@ -6,8 +6,9 @@ import {
   makeSize,
   makeColor
 } from "@heather-turano-coaching/design-system/utils";
-import { createImageBorder } from "../shared-styles";
 import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
+
+import { createImageBorder } from "../shared";
 
 export interface HeroProps {
   image: string;

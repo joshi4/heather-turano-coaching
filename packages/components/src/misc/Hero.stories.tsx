@@ -2,9 +2,10 @@ import React from "react";
 
 import { Hero } from "./Hero";
 
-import dandilion from "../development/images/dandilion.jpg";
 import { Heading } from "../typography";
 import { Section } from "../layouts";
+
+import dandilion from "../../.storybook/assets/dandilion.jpg";
 
 export default {
   component: Hero,

@@ -11,7 +11,7 @@ import {
   makeFont,
   makeInset
 } from "@heather-turano-coaching/design-system/utils";
-import { sharedFontSize } from "../shared-styles";
+import { sharedFontSize } from "../shared";
 
 export type InputProps = HTMLInput &
   ErrorProps & {

@@ -2,7 +2,7 @@ import React from "react";
 
 import { Avatar } from "./Avatar";
 
-import Moana from "../development/images/moana.jpg";
+import Moana from "../../.storybook/assets/moana.jpg";
 
 export default {
   component: Avatar,

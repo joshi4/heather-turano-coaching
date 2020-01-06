@@ -8,7 +8,7 @@ import {
   makeSpace
 } from "@heather-turano-coaching/design-system/utils";
 
-import { sharedElementSpacing } from "../../shared-styles";
+import { sharedElementSpacing } from "../../shared";
 
 export interface InputGroupProps {
   layout?: Layout;

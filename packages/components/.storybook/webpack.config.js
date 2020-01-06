@@ -3,26 +3,9 @@ const path = require("path");
 const storybookTsConfigPath = path.resolve(__dirname, "../tsconfig.json");
 
 module.exports = async ({ config }) => {
-  // sass
-  config.module.rules.push({
-    test: /\.scss$/,
-    exclude: /node_modules/,
-    use: [
-      "style-loader",
-      {
-        loader: "css-loader",
-        options: {
-          modules: {
-            mode: "local",
-            localIdentName: "[local]--[hash:base64:5]"
-          }
-        }
-      },
-      "sass-loader"
-    ]
-  });
-
-  // typescript
+  /**
+   * Adds the awesome-typescript-loader to load .ts files
+   */
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     use: [
@@ -36,20 +19,11 @@ module.exports = async ({ config }) => {
   });
 
   /**
-   * Ignores the file-system module from Winston. Without this,
-   * webpack will try to package up the file-system module which
-   * won't work since the target of the storybook webpack output
-   * is the browser
-   */
-  config.node = {};
-  config.node["fs"] = "empty";
-
-  /**
    * Tells webpack to look for ts and tsx file extensions so
    * we don't have to define file extensions when we import
    * typescript modules
    */
-  config.resolve.extensions.push(".ts", ".tsx", ".scss");
+  config.resolve.extensions.push(".ts", ".tsx");
 
   /**
    * Enables SVGR for storybook which is included by default

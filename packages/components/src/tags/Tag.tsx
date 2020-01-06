@@ -18,8 +18,8 @@ export interface TagProps {
 export const StyledTag = styled.div`
   display: inline-block;
   ${makeInset({ horizontal: 12 })}
-  background: ${makeColor({ scalable: { color: "secondary", scale: 3 } })};
-  border: 1px solid ${makeColor({ scalable: { color: "secondary" } })};
+  background: ${makeColor({ scalable: { color: "accent", scale: 3 } })};
+  border: 1px solid ${makeColor({ scalable: { color: "accent" } })};
   border-radius: ${makeSpace({ custom: 2 })};
   text-transform: uppercase;
 `;
