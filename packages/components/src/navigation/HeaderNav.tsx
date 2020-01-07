@@ -22,14 +22,14 @@ const logo = {
   inline: require("../../.storybook/assets/htc-logo-inline.svg").default
 };
 
-export interface HeaderNavItem {
+export interface MainNavItem {
   label: string;
   route: string;
 }
 
 interface HeaderNavProps {
   homeRoute?: string;
-  navItems: HeaderNavItem[];
+  navItems: MainNavItem[];
 }
 
 const StyledHeaderNav = styled.header`
@@ -154,7 +154,7 @@ export const HeaderNav: FC<HeaderNavProps> = ({
               <Link to={`${route}`} activeClassName="active">
                 <Copy
                   type="label"
-                  fontSize="xs"
+                  fontSize={windowWidth < tabletPortrait ? "xs" : "sm"}
                   lineHeight="lg"
                   fontColor={{ scalable: { color: "gray", scale: 0 } }}
                 >

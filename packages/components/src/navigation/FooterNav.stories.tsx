@@ -1,10 +1,11 @@
 import React from "react";
 
-import { HeaderNav, MainNavItem } from "./HeaderNav";
+import { FooterNav } from "./FooterNav";
+import { MainNavItem } from "./HeaderNav";
 
 export default {
-  component: HeaderNav,
-  title: "Basic|HeaderNav"
+  component: FooterNav,
+  title: "Basic|FooterNav"
 };
 
 const navItems: MainNavItem[] = [
@@ -26,7 +27,4 @@ const navItems: MainNavItem[] = [
   }
 ];
 
-export const base = () => <HeaderNav navItems={navItems} />;
-export const withCustomHomeRoute = () => (
-  <HeaderNav homeRoute="/home" navItems={navItems} />
-);
+export const base = () => <FooterNav navItems={navItems} />;

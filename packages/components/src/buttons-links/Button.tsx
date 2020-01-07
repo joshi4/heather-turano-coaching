@@ -9,7 +9,9 @@ import {
 import { Color } from "@heather-turano-coaching/design-system/types/primitive";
 import {
   makeColor,
-  makeReset
+  makeReset,
+  makeInset,
+  makeSpace
 } from "@heather-turano-coaching/design-system/utils";
 
 import { Icon, Copy } from "../typography";
@@ -74,8 +76,8 @@ export const StyledButton = styled.button<
   Required<Pick<ButtonProps, "styleType" | "disabled">>
 >`
   ${makeReset("button")}
-  padding: 0.8rem 2rem;
-  border-radius: 0.2rem;
+  ${makeInset({ vertical: 8, horizontal: 12 })};
+  border-radius: ${makeSpace({ custom: 2 })};
   transition: all ease-in-out 0.15s;
   border-width: 1px;
   border-style: solid;

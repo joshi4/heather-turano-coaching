@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { Link as GatsbyLink, GatsbyLinkProps } from "gatsby";
+import { GatsbyLinkProps } from "gatsby";
 
 import { makeOutset } from "@heather-turano-coaching/design-system/utils";
 
-const StyledLink = styled.div`
+const StyledLinkContainer = styled.div`
   a {
     & > * {
       &:not(:first-child) {
@@ -14,11 +14,21 @@ const StyledLink = styled.div`
   }
 `;
 
-export const Link: FC<Omit<GatsbyLinkProps<{}>, "ref">> = ({
+const StyledLink = styled.a``;
+
+type LinkProps = Omit<GatsbyLinkProps<{}>, "ref"> & {
+  LinkComponent?: FC;
+};
+
+export const Link: FC<LinkProps> = ({
+  LinkComponent = undefined,
   children,
   ...restProps
-}) => (
-  <StyledLink>
-    <GatsbyLink {...restProps}>{children}</GatsbyLink>
-  </StyledLink>
-);
+}) =>
+  LinkComponent ? (
+    <StyledLinkContainer>
+      <LinkComponent {...restProps}>{children}</LinkComponent>
+    </StyledLinkContainer>
+  ) : (
+    <StyledLink>{children}</StyledLink>
+  );

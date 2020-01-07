@@ -18,8 +18,7 @@ export interface TagProps {
 export const StyledTag = styled.div`
   display: inline-block;
   ${makeInset({ horizontal: 12 })}
-  background: ${makeColor({ scalable: { color: "accent", scale: 3 } })};
-  border: 1px solid ${makeColor({ scalable: { color: "accent" } })};
+  background: ${makeColor({ scalable: { color: "light", scale: 2 } })};
   border-radius: ${makeSpace({ custom: 2 })};
   text-transform: uppercase;
 `;
@@ -28,7 +27,7 @@ export const Tag: FC<TagProps> = ({ text, route }) => {
   const Tag = (
     <StyledTag>
       <Copy
-        type="label"
+        type="text"
         fontSize="xs"
         fontColor={{ scalable: { color: "gray" } }}
         lineHeight="md"

@@ -56,7 +56,8 @@ export const CSSInputValidity = css<InputProps>`
  * the Textarea component
  */
 export const CSSInputStyle = css<InputProps>`
-  ${CSSPlaceholders}
+  box-sizing: border-box;
+  ${CSSPlaceholders};
   ${makeReset("input")};
   ${makeInset({ vertical: 8, horizontal: 12 })};
   ${makeFont({ fontSize: sharedFontSize })};

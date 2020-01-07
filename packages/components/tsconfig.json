@@ -1,8 +1,5 @@
 {
   "extends": "@heather-turano-coaching/typescript/tsconfig.react.json",
   "include": ["src", "types"],
-  "compilerOptions": {
-    "baseUrl": "./"
-  },
   "exclude": ["**/*.spec.ts", "**/*.stories.tsx"]
 }

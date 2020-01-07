@@ -14,10 +14,12 @@ export const sharedFontSize: FontProperties["fontSize"] = "sm";
 export const sharedElementSpacing: SpaceProperties = 16;
 
 export const sharedHorizontalPadding: Partial<ResponsiveBreakpoints> = {
+  phone: 24,
   tabletPortrait: 24
 };
 
 export const sharedVerticalPadding: Partial<ResponsiveBreakpoints> = {
+  phone: 24,
   tabletPortrait: 12
 };
 
