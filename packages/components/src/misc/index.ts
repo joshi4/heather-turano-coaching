@@ -1,2 +1,2 @@
-export * from "./Avatar";
+export * from "../assets/Avatar";
 export * from "./Hero";

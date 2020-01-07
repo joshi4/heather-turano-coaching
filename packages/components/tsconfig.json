@@ -2,7 +2,6 @@
   "extends": "@heather-turano-coaching/typescript/tsconfig.react.json",
   "include": ["src", "types"],
   "compilerOptions": {
-    "rootDir": "./",
     "baseUrl": "./"
   },
   "exclude": ["**/*.spec.ts", "**/*.stories.tsx"]

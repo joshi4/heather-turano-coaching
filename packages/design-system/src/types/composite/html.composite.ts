@@ -4,3 +4,4 @@ export type HTMLTextarea = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 export type HTMLLabel = React.LabelHTMLAttributes<HTMLLabelElement>;
 export type HTMLParagraph = React.HTMLAttributes<HTMLParagraphElement>;
 export type HTMLHeading = React.HTMLAttributes<HTMLHeadingElement>;
+export type HTMLImage = React.HTMLAttributes<HTMLImageElement>;

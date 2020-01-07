@@ -11,8 +11,7 @@
     "dist"
   ],
   "scripts": {
-    "start": "tsdx watch",
-    "start:storybook": "start-storybook -p 6006",
+    "start": "start-storybook -p 6006",
     "build": "tsdx build",
     "build:storybook": "build-storybook",
     "test": "tsdx test --env=jsdom",

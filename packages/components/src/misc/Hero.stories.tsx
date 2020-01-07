@@ -5,7 +5,7 @@ import { Hero } from "./Hero";
 import { Heading } from "../typography";
 import { Section } from "../layouts";
 
-import dandilion from "../../.storybook/assets/dandilion.jpg";
+const dandilion = require("../../.storybook/assets/dandilion.jpg");
 
 export default {
   component: Hero,
