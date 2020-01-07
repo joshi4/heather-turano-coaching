@@ -20,21 +20,21 @@ services:
       - dev.livelifemindful.com
 
   - type: web
-    name: HTC | Live Life Mindful | Ghost Blog
+    name: HTC | Live Life Mindful | Blog
     env: docker
     dockerfilePath: ./ghost/Dockerfile
     dockerContext: ./ghost
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
     domains:
-      - ghost.livelifemindful.com
+      - blog.livelifemindful.com
     disk:
       name: ghost
       mountPath: /var/lib/ghost/content
       sizeGB: 10
     envVars:
       - key: url
-        value: https://ghost.livelifemindful.com
+        value: https://blog.livelifemindful.com
       - key: mail__transport
         value: SMTP
       - key: mail__from
