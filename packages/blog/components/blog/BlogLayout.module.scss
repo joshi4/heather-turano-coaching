@@ -1,7 +1,0 @@
-@import "./blog.styles";
-
-.blog-layout {
-  @include respond_tablet_landscape {
-    @include make_flex(row, flex-start, stretch);
-  }
-}
