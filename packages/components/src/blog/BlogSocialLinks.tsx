@@ -18,7 +18,7 @@ import { BlogSocialOptions } from "./blog.types";
 type BlogSocialLinksProps = {
   orientation?: "vertical" | "horizontal";
   linkStyle?: "color" | "grayscale";
-} & BlogSocialOptions;
+} & Partial<BlogSocialOptions>;
 
 const StyledBlogSocial = styled.ul<
   Required<Pick<BlogSocialLinksProps, "orientation" | "linkStyle">>
@@ -71,10 +71,7 @@ const StyledBlogSocialLink = styled.li<
 export const BlogSocialLinks: FC<BlogSocialLinksProps> = ({
   linkStyle = "color",
   orientation = "vertical",
-  facebook,
-  pinterest,
-  instagram,
-  twitter
+  social
 }) => {
   const iconColor: ColorProperties =
     linkStyle !== "grayscale"
@@ -83,9 +80,9 @@ export const BlogSocialLinks: FC<BlogSocialLinksProps> = ({
 
   const iconSize: SizeProperties = linkStyle !== "grayscale" ? "sm" : "md";
 
-  return facebook || pinterest || instagram || twitter ? (
+  return social ? (
     <StyledBlogSocial orientation={orientation} linkStyle={linkStyle}>
-      {facebook && (
+      {social.facebook && (
         <StyledBlogSocialLink
           linkStyle={linkStyle}
           linkColor={{ color: "secondary" }}
@@ -98,7 +95,7 @@ export const BlogSocialLinks: FC<BlogSocialLinksProps> = ({
           />
         </StyledBlogSocialLink>
       )}
-      {pinterest && (
+      {social.pinterest && (
         <StyledBlogSocialLink
           linkStyle={linkStyle}
           linkColor={{ color: "primary" }}
@@ -111,7 +108,7 @@ export const BlogSocialLinks: FC<BlogSocialLinksProps> = ({
           />
         </StyledBlogSocialLink>
       )}
-      {instagram && (
+      {social.instagram && (
         <StyledBlogSocialLink
           linkStyle={linkStyle}
           linkColor={{ color: "accent" }}
@@ -124,7 +121,7 @@ export const BlogSocialLinks: FC<BlogSocialLinksProps> = ({
           />
         </StyledBlogSocialLink>
       )}
-      {twitter && (
+      {social.twitter && (
         <StyledBlogSocialLink
           linkStyle={linkStyle}
           linkColor={{ color: "gray" }}

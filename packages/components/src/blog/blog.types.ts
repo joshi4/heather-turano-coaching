@@ -5,18 +5,24 @@ export interface BaseBlog {
 }
 
 export interface BlogSocialOptions {
-  facebook?: string;
-  pinterest?: string;
-  instagram?: string;
-  twitter?: string;
+  social: {
+    facebook?: string;
+    pinterest?: string;
+    instagram?: string;
+    twitter?: string;
+  };
 }
 
 export interface BlogAuthor {
-  firstName: string;
-  lastName: string;
-  avatarImg: string;
+  author: {
+    firstName: string;
+    lastName: string;
+    avatarImg: string;
+  };
 }
 
 export interface BlogMetaInformation {
-  datePublished: string;
+  meta: {
+    datePublished: string;
+  };
 }

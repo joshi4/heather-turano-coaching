@@ -14,10 +14,7 @@ import { makeFlex } from "../utils";
 import { Copy } from "../typography";
 import { Avatar } from "../assets";
 
-type BlogAvatarProps = BaseBlog & {
-  author: BlogAuthor;
-  meta: BlogMetaInformation;
-};
+type BlogAvatarProps = BaseBlog & BlogAuthor & BlogMetaInformation;
 
 const avatarSize: { [key in BlogType]: number } = {
   featured: 120,

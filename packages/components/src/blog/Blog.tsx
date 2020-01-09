@@ -10,7 +10,7 @@ import {
 } from "./blog.types";
 
 type BlogProps = BaseBlog & {
-  user: BlogAuthor;
+  author: BlogAuthor;
   meta: BlogMetaInformation;
   social: BlogSocialOptions;
   title: string;

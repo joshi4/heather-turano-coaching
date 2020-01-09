@@ -16,13 +16,13 @@ import {
 import { BlogSocialLinks } from "./BlogSocialLinks";
 import { BlogAvatar } from "./BlogAvatar";
 
-type BlogCardProps = BaseBlog & {
-  author: BlogAuthor;
-  meta: BlogMetaInformation;
-  social?: BlogSocialOptions;
-  title: string;
-  excerpt: string;
-};
+type BlogCardProps = BaseBlog &
+  BlogAuthor &
+  BlogMetaInformation &
+  Partial<BlogSocialOptions> & {
+    title: string;
+    excerpt: string;
+  };
 
 const StyledBlogCard = styled.div<
   Required<Pick<BlogCardProps, "type">> & Pick<BlogCardProps, "social">
