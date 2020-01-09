@@ -13,18 +13,12 @@ import {
   makeOutset
 } from "@heather-turano-coaching/design-system/utils";
 import { makeFlex } from "../utils";
-
-export interface SocialLinks {
-  facebook?: string;
-  pinterest?: string;
-  instagram?: string;
-  twitter?: string;
-}
+import { BlogSocialOptions } from "./blog.types";
 
 type BlogSocialLinksProps = {
   orientation?: "vertical" | "horizontal";
   linkStyle?: "color" | "grayscale";
-} & SocialLinks;
+} & BlogSocialOptions;
 
 const StyledBlogSocial = styled.ul<
   Required<Pick<BlogSocialLinksProps, "orientation" | "linkStyle">>

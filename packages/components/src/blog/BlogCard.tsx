@@ -1,36 +1,27 @@
 import React, { FC } from "react";
 import { Heading, Copy, VertialRhythm } from "../typography";
-import { Avatar } from "../misc";
 import styled, { css } from "styled-components";
 import {
   makeInset,
   makeResponsive,
-  makeColor,
-  makeSize,
-  makeOutset
+  makeColor
 } from "@heather-turano-coaching/design-system/utils";
-import { makeFlex } from "../utils";
-import { SocialLinks, BlogSocialLinks } from "./BlogSocialLinks";
 import { useBreakpoints } from "../hooks";
+import {
+  BaseBlog,
+  BlogAuthor,
+  BlogSocialOptions,
+  BlogMetaInformation
+} from "./blog.types";
+import { BlogSocialLinks } from "./BlogSocialLinks";
+import { BlogAvatar } from "./BlogAvatar";
 
-export interface BlogUser {
-  firstName: string;
-  lastName: string;
-  avatarImg: string;
-}
-
-interface BlogCardProps {
-  type: "featured" | "regular";
-  user: BlogUser;
-  datePublished: string;
+type BlogCardProps = BaseBlog & {
+  author: BlogAuthor;
+  meta: BlogMetaInformation;
+  social?: BlogSocialOptions;
   title: string;
   excerpt: string;
-  social?: SocialLinks;
-}
-
-const avatarSize: { [key in BlogCardProps["type"]]: number } = {
-  featured: 120,
-  regular: 60
 };
 
 const StyledBlogCard = styled.div<
@@ -51,39 +42,6 @@ const StyledBlogCard = styled.div<
     }
     return css`
       ${makeInset({ top: 28, bottom: social ? 60 : 28, horizontal: 28 })};
-    `;
-  }}
-`;
-const StyledBlogProfile = styled.div<Required<Pick<BlogCardProps, "type">>>`
-  text-transform: uppercase;
-
-  ${({ type }) => {
-    if (type === "featured") {
-      return css`
-        & > .avatar {
-          position: absolute;
-          top: -${makeSize({ custom: avatarSize[type] / 2 + 20 })};
-          margin-left: -${makeSize({ custom: avatarSize[type] / 2 })};
-          left: 50%;
-        }
-
-        & > .alt {
-          ${makeFlex("row", "center", "center")};
-        }
-      `;
-    }
-    return css`
-      ${makeFlex("row", "flex-start", "center")};
-
-      & > .avatar {
-        ${makeOutset({ right: 12 })}
-      }
-
-      & > .alt {
-        p {
-          margin: 0;
-        }
-      }
     `;
   }}
 `;
@@ -115,49 +73,19 @@ const StyledCopySection = styled.div<Required<Pick<BlogCardProps, "type">>>`
 
 export const BlogCard: FC<BlogCardProps> = ({
   type,
-  user: { firstName, lastName, avatarImg },
-  datePublished,
+  author,
+  meta,
   title,
   social,
   excerpt
 }) => {
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
-  const BlogProfile = (
-    <StyledBlogProfile type={type}>
-      <Avatar
-        image={avatarImg}
-        alt={`${firstName}-${lastName}`}
-        size={{ custom: avatarSize[type] }}
-      />
-      <div className="alt">
-        <Copy
-          type="caption"
-          fontSize="xs"
-          fontColor={{ scalable: { color: "secondary" } }}
-        >{`${firstName} ${lastName}`}</Copy>
-        {type === "featured" && (
-          <Copy
-            type="caption"
-            fontSize="xs"
-            fontColor={{ scalable: { color: "gray", scale: 1 } }}
-          >
-            &nbsp;|&nbsp;
-          </Copy>
-        )}
-        <Copy
-          type="label"
-          fontSize="xs"
-          fontColor={{ scalable: { color: "gray", scale: 1 } }}
-        >
-          {datePublished}
-        </Copy>
-      </div>
-    </StyledBlogProfile>
-  );
 
   return (
     <StyledBlogCard type={type} social={social}>
-      {type === "featured" && BlogProfile}
+      {type === "featured" && (
+        <BlogAvatar type={type} meta={meta} author={author} />
+      )}
       <VertialRhythm>
         <Heading
           fontSize={type === "featured" ? "h2" : "h3"}
@@ -165,7 +93,9 @@ export const BlogCard: FC<BlogCardProps> = ({
         >
           {title}
         </Heading>
-        {type === "regular" && BlogProfile}
+        {type === "regular" && (
+          <BlogAvatar type={type} meta={meta} author={author} />
+        )}
         <StyledCopySection type={type}>
           <Copy type="paragraph">{excerpt}</Copy>
           <BlogSocialLinks
