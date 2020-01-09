@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Heading, Copy } from "../typography";
+import { Heading, Copy, VertialRhythm } from "../typography";
 import { Avatar } from "../misc";
 import styled from "styled-components";
 import {
@@ -55,8 +55,8 @@ export const BlogCard: FC<BlogCardProps> = ({
   datePublished,
   title,
   excerpt
-}) => (
-  <StyledBlogCard type={type}>
+}) => {
+  const BlogProfile = (
     <StyledBlogProfile>
       <Avatar
         image={avatarImg}
@@ -85,9 +85,17 @@ export const BlogCard: FC<BlogCardProps> = ({
         </Copy>
       </div>
     </StyledBlogProfile>
-    <Heading fontSize="h2" fontColor={{ scalable: { color: "gray" } }}>
-      {title}
-    </Heading>
-    <Copy type="paragraph">{excerpt}</Copy>
-  </StyledBlogCard>
-);
+  );
+
+  return (
+    <StyledBlogCard type={type}>
+      {BlogProfile}
+      <VertialRhythm>
+        <Heading fontSize="h2" fontColor={{ scalable: { color: "gray" } }}>
+          {title}
+        </Heading>
+        <Copy type="paragraph">{excerpt}</Copy>
+      </VertialRhythm>
+    </StyledBlogCard>
+  );
+};

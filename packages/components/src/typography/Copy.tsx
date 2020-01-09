@@ -48,7 +48,7 @@ export const StyledCopy = styled.p<
       fontSize: fontSize,
       fontColor,
       lineHeight
-    })}
+    })};
 `;
 
 export const Copy: FC<CopyProps> = ({
