@@ -86,7 +86,6 @@ export const BlogCard: FC<BlogCardProps> = ({
 
   return (
     <StyledBlogCard type={type} social={social}>
-      {/* {tags && type === "regular" && <TagGroup tags={tags} />} */}
       {type === "featured" && (
         <BlogAvatar type="stacked" meta={meta} author={author} />
       )}
