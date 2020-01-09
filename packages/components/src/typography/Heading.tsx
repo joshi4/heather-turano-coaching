@@ -37,7 +37,7 @@ const StyledH2 = styled.h2<HeadingProps>`
 const StyledH3 = styled.h3<HeadingProps>`
   ${BaseHeading};
   ${({ fontColor }) =>
-    makeFont({ fontSize: "h3", fontFamily: "Raleway", fontColor })};
+    makeFont({ fontSize: "h3", fontFamily: "Montserrat", fontColor })};
 `;
 
 const StyledH4 = styled.h4<HeadingProps>`

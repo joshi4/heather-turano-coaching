@@ -1,16 +1,17 @@
 import React, { FC } from "react";
 import { Heading, Copy, VertialRhythm } from "../typography";
 import { Avatar } from "../misc";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   makeInset,
   makeResponsive,
   makeColor,
-  makeSize
+  makeSize,
+  makeOutset
 } from "@heather-turano-coaching/design-system/utils";
 import { makeFlex } from "../utils";
-
-const avatarSize = 120;
+import { SocialLinks, BlogSocialLinks } from "./BlogSocialLinks";
+import { useBreakpoints } from "../hooks";
 
 export interface BlogUser {
   firstName: string;
@@ -24,28 +25,91 @@ interface BlogCardProps {
   datePublished: string;
   title: string;
   excerpt: string;
+  social?: SocialLinks;
 }
 
-const StyledBlogCard = styled.div<Required<Pick<BlogCardProps, "type">>>`
+const avatarSize: { [key in BlogCardProps["type"]]: number } = {
+  featured: 120,
+  regular: 60
+};
+
+const StyledBlogCard = styled.div<
+  Required<Pick<BlogCardProps, "type">> & Pick<BlogCardProps, "social">
+>`
+  position: relative;
   background: ${makeColor({ fixed: "light" })};
-  ${makeInset({ vertical: 60, horizontal: 24 })};
+  ${({ type, social }) => {
+    if (type === "featured") {
+      return css`
+        ${makeInset({ vertical: 60, horizontal: 24 })};
 
-  ${makeResponsive({
-    beginAt: "tabletPortrait",
-    style: makeInset({ vertical: 60, horizontal: 60 })
-  })}
+        ${makeResponsive({
+          beginAt: "tabletPortrait",
+          style: makeInset({ vertical: 60, horizontal: social ? 80 : 60 })
+        })}
+      `;
+    }
+    return css`
+      ${makeInset({ top: 28, bottom: social ? 60 : 28, horizontal: 28 })};
+    `;
+  }}
 `;
-const StyledBlogProfile = styled.div`
-  & > .avatar {
-    position: absolute;
-    top: -${makeSize({ custom: avatarSize / 2 + 20 })};
-    margin-left: -${makeSize({ custom: avatarSize / 2 })};
-    left: 50%;
-  }
+const StyledBlogProfile = styled.div<Required<Pick<BlogCardProps, "type">>>`
+  text-transform: uppercase;
 
-  & > .alt {
-    ${makeFlex("row", "center", "center")};
-    text-transform: uppercase;
+  ${({ type }) => {
+    if (type === "featured") {
+      return css`
+        & > .avatar {
+          position: absolute;
+          top: -${makeSize({ custom: avatarSize[type] / 2 + 20 })};
+          margin-left: -${makeSize({ custom: avatarSize[type] / 2 })};
+          left: 50%;
+        }
+
+        & > .alt {
+          ${makeFlex("row", "center", "center")};
+        }
+      `;
+    }
+    return css`
+      ${makeFlex("row", "flex-start", "center")};
+
+      & > .avatar {
+        ${makeOutset({ right: 12 })}
+      }
+
+      & > .alt {
+        p {
+          margin: 0;
+        }
+      }
+    `;
+  }}
+`;
+
+const StyledCopySection = styled.div<Required<Pick<BlogCardProps, "type">>>`
+  & > ul {
+    position: absolute;
+
+    ${({ type }) => {
+      if (type === "featured") {
+        return css`
+          bottom: 0;
+
+          ${makeResponsive({
+            beginAt: "tabletPortrait",
+            style: `
+              right: 0;
+              bottom: 30%;
+            `
+          })}
+        `;
+      }
+      return css`
+        bottom: 0;
+      `;
+    }}
   }
 `;
 
@@ -54,32 +118,36 @@ export const BlogCard: FC<BlogCardProps> = ({
   user: { firstName, lastName, avatarImg },
   datePublished,
   title,
+  social,
   excerpt
 }) => {
+  const [windowWidth, { tabletPortrait }] = useBreakpoints();
   const BlogProfile = (
-    <StyledBlogProfile>
+    <StyledBlogProfile type={type}>
       <Avatar
         image={avatarImg}
         alt={`${firstName}-${lastName}`}
-        size={{ custom: avatarSize }}
+        size={{ custom: avatarSize[type] }}
       />
       <div className="alt">
         <Copy
-          type="label"
+          type="caption"
           fontSize="xs"
           fontColor={{ scalable: { color: "secondary" } }}
         >{`${firstName} ${lastName}`}</Copy>
+        {type === "featured" && (
+          <Copy
+            type="caption"
+            fontSize="xs"
+            fontColor={{ scalable: { color: "gray", scale: 1 } }}
+          >
+            &nbsp;|&nbsp;
+          </Copy>
+        )}
         <Copy
           type="label"
           fontSize="xs"
-          fontColor={{ scalable: { color: "gray", scale: 2 } }}
-        >
-          &nbsp;|&nbsp;
-        </Copy>
-        <Copy
-          type="label"
-          fontSize="xs"
-          fontColor={{ scalable: { color: "gray", scale: 2 } }}
+          fontColor={{ scalable: { color: "gray", scale: 1 } }}
         >
           {datePublished}
         </Copy>
@@ -88,13 +156,27 @@ export const BlogCard: FC<BlogCardProps> = ({
   );
 
   return (
-    <StyledBlogCard type={type}>
-      {BlogProfile}
+    <StyledBlogCard type={type} social={social}>
+      {type === "featured" && BlogProfile}
       <VertialRhythm>
-        <Heading fontSize="h2" fontColor={{ scalable: { color: "gray" } }}>
+        <Heading
+          fontSize={type === "featured" ? "h2" : "h3"}
+          fontColor={{ scalable: { color: "gray" } }}
+        >
           {title}
         </Heading>
-        <Copy type="paragraph">{excerpt}</Copy>
+        {type === "regular" && BlogProfile}
+        <StyledCopySection type={type}>
+          <Copy type="paragraph">{excerpt}</Copy>
+          <BlogSocialLinks
+            {...social}
+            orientation={
+              type === "regular" || windowWidth < tabletPortrait
+                ? "horizontal"
+                : "vertical"
+            }
+          />
+        </StyledCopySection>
       </VertialRhythm>
     </StyledBlogCard>
   );

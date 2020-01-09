@@ -3,6 +3,13 @@ import styled from "styled-components";
 import { makeOutset } from "@heather-turano-coaching/design-system/utils";
 
 const StyledVerticalRythem = styled.div`
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    line-height: 1.3;
+  }
   h1 {
     ${makeOutset({ vertical: 32 })};
   }
