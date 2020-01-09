@@ -1,32 +1,34 @@
 import React, { FC } from "react";
-import {
-  BaseBlog,
-  BlogType,
-  BlogMetaInformation,
-  BlogAuthor
-} from "./blog.types";
+import { BlogMetaInformation, BlogAuthor } from "./blog.types";
 import styled, { css } from "styled-components";
 import {
   makeSize,
-  makeOutset
+  makeOutset,
+  makeInset
 } from "@heather-turano-coaching/design-system/utils";
 import { makeFlex } from "../utils";
 import { Copy } from "../typography";
 import { Avatar } from "../assets";
 
-type BlogAvatarProps = BaseBlog & BlogAuthor & BlogMetaInformation;
+type BlogAvatarProps = BlogAuthor &
+  BlogMetaInformation & {
+    type: "inline" | "stacked";
+  };
 
-const avatarSize: { [key in BlogType]: number } = {
-  featured: 120,
-  regular: 60
+const avatarSize: { [key in BlogAvatarProps["type"]]: number } = {
+  stacked: 144,
+  inline: 60
 };
 
 const StyledBlogAvatar = styled.div<Required<Pick<BlogAvatarProps, "type">>>`
   text-transform: uppercase;
+  position: relative;
 
   ${({ type }) => {
-    if (type === "featured") {
+    if (type === "stacked") {
       return css`
+        ${makeInset({ top: avatarSize.stacked / 2 })};
+
         & > .avatar {
           position: absolute;
           top: -${makeSize({ custom: avatarSize[type] / 2 + 20 })};
@@ -72,7 +74,7 @@ export const BlogAvatar: FC<BlogAvatarProps> = ({
         fontSize="xs"
         fontColor={{ scalable: { color: "secondary" } }}
       >{`${firstName} ${lastName}`}</Copy>
-      {type === "featured" && (
+      {type === "stacked" && (
         <Copy
           type="caption"
           fontSize="xs"

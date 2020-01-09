@@ -1,6 +1,10 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { makeOutset } from "@heather-turano-coaching/design-system/utils";
+import {
+  makeOutset,
+  makeColor,
+  makeInset
+} from "@heather-turano-coaching/design-system/utils";
 
 const StyledVerticalRythem = styled.div`
   h1,
@@ -11,11 +15,13 @@ const StyledVerticalRythem = styled.div`
     line-height: 1.3;
   }
   h1 {
-    ${makeOutset({ vertical: 32 })};
+    ${makeOutset({ vertical: 36 })};
   }
 
   h2 {
-    ${makeOutset({ vertical: 28 })};
+    ${makeOutset({ vertical: 32 })};
+    /* ${makeInset({ bottom: 16 })};
+    border-bottom: 1px solid ${makeColor({ fixed: "dark" })}; */
   }
 
   h3 {
@@ -32,6 +38,10 @@ const StyledVerticalRythem = styled.div`
 
   p {
     ${makeOutset({ vertical: 16 })};
+  }
+
+  div.image {
+    ${makeOutset({ vertical: 32 })};
   }
 `;
 

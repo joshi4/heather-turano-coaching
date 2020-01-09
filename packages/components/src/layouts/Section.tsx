@@ -13,7 +13,13 @@ import {
 } from "@heather-turano-coaching/design-system/utils";
 
 export interface SectionProps {
-  styleType: "blank" | "layered" | "hero" | "blog" | "featured-blog";
+  styleType:
+    | "blank"
+    | "layered"
+    | "hero"
+    | "blog"
+    | "featured-blog"
+    | "blog-page";
 }
 
 const CSSSectionMap: {
@@ -55,6 +61,9 @@ const CSSSectionMap: {
       endAt: "desktop",
       style: makeInset({ vertical: 160, horizontal: 32 })
     })}
+  `,
+  "blog-page": css`
+    ${makeInset({ bottom: 56, horizontal: 32 })};
   `
 };
 
@@ -89,7 +98,10 @@ const CSSSectionContentMap: {
   `,
   hero: css``,
   blog: css``,
-  "featured-blog": css``
+  "featured-blog": css``,
+  "blog-page": css`
+    max-width: ${makeSize({ custom: 680 })};
+  `
 };
 
 const StyledSection = styled.article<SectionProps>`

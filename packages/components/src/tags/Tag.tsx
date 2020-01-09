@@ -28,9 +28,9 @@ export const Tag: FC<TagProps> = ({ text, route }) => {
     <StyledTag>
       <Copy
         type="text"
-        fontSize="xs"
+        fontSize="xxs"
         fontColor={{ scalable: { color: "gray" } }}
-        lineHeight="md"
+        lineHeight="sm"
       >
         {text}
       </Copy>

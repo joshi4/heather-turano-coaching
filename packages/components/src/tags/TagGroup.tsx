@@ -3,7 +3,8 @@ import styled from "styled-components";
 import {
   makeOutset,
   makeReset,
-  makeSpace
+  makeSpace,
+  makeInset
 } from "@heather-turano-coaching/design-system/utils";
 
 import { Tag, TagProps, StyledTag } from "./Tag";
@@ -15,6 +16,7 @@ export interface TagGroup {
 const StyledTagGroup = styled.ul`
   ${makeReset("list")}
   ${makeOutset({ top: -16 })};
+  ${makeInset({ vertical: 16 })};
 
   & > li,
   & > ${StyledTag} {

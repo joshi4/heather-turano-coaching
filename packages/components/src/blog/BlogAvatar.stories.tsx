@@ -9,10 +9,10 @@ export default {
   title: "Blog|Avatar"
 };
 
-export const featured = () => (
-  <BlogAvatar type="featured" meta={blogMeta} author={blogAuthor} />
+export const stacked = () => (
+  <BlogAvatar type="stacked" meta={blogMeta} author={blogAuthor} />
 );
 
-export const regular = () => (
-  <BlogAvatar type="regular" meta={blogMeta} author={blogAuthor} />
+export const inline = () => (
+  <BlogAvatar type="inline" meta={blogMeta} author={blogAuthor} />
 );

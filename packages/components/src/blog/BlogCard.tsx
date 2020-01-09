@@ -15,11 +15,13 @@ import {
 } from "./blog.types";
 import { BlogSocialLinks } from "./BlogSocialLinks";
 import { BlogAvatar } from "./BlogAvatar";
+import { TagGroup } from "../tags";
 
 type BlogCardProps = BaseBlog &
   BlogAuthor &
   BlogMetaInformation &
-  Partial<BlogSocialOptions> & {
+  Partial<BlogSocialOptions> &
+  Partial<TagGroup> & {
     title: string;
     excerpt: string;
   };
@@ -32,11 +34,11 @@ const StyledBlogCard = styled.div<
   ${({ type, social }) => {
     if (type === "featured") {
       return css`
-        ${makeInset({ vertical: 60, horizontal: 24 })};
+        ${makeInset({ bottom: 60, horizontal: 24 })};
 
         ${makeResponsive({
           beginAt: "tabletPortrait",
-          style: makeInset({ vertical: 60, horizontal: social ? 80 : 60 })
+          style: makeInset({ bottom: 60, horizontal: social ? 80 : 60 })
         })}
       `;
     }
@@ -77,14 +79,16 @@ export const BlogCard: FC<BlogCardProps> = ({
   meta,
   title,
   social,
-  excerpt
+  excerpt,
+  tags
 }) => {
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
 
   return (
     <StyledBlogCard type={type} social={social}>
+      {/* {tags && type === "regular" && <TagGroup tags={tags} />} */}
       {type === "featured" && (
-        <BlogAvatar type={type} meta={meta} author={author} />
+        <BlogAvatar type="stacked" meta={meta} author={author} />
       )}
       <VertialRhythm>
         <Heading
@@ -94,12 +98,12 @@ export const BlogCard: FC<BlogCardProps> = ({
           {title}
         </Heading>
         {type === "regular" && (
-          <BlogAvatar type={type} meta={meta} author={author} />
+          <BlogAvatar type="inline" meta={meta} author={author} />
         )}
         <StyledCopySection type={type}>
           <Copy type="paragraph">{excerpt}</Copy>
           <BlogSocialLinks
-            {...social}
+            social={social}
             orientation={
               type === "regular" || windowWidth < tabletPortrait
                 ? "horizontal"
@@ -108,6 +112,7 @@ export const BlogCard: FC<BlogCardProps> = ({
           />
         </StyledCopySection>
       </VertialRhythm>
+      {tags && <TagGroup tags={tags} />}
     </StyledBlogCard>
   );
 };

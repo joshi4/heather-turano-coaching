@@ -15,10 +15,10 @@ import {
 import { makeFlex } from "../utils";
 import { BlogSocialOptions } from "./blog.types";
 
-type BlogSocialLinksProps = {
+type BlogSocialLinksProps = Partial<BlogSocialOptions> & {
   orientation?: "vertical" | "horizontal";
   linkStyle?: "color" | "grayscale";
-} & Partial<BlogSocialOptions>;
+};
 
 const StyledBlogSocial = styled.ul<
   Required<Pick<BlogSocialLinksProps, "orientation" | "linkStyle">>
@@ -51,7 +51,6 @@ const StyledBlogSocialLink = styled.li<
         height: ${makeSize({ custom: 40 })};
         width: ${makeSize({ custom: 40 })};
         background: ${makeColor({ scalable: linkColor })}};
-        border: 0.5px solid ${makeColor({ fixed: "light" })};
       `;
     }
     return css`
@@ -79,6 +78,8 @@ export const BlogSocialLinks: FC<BlogSocialLinksProps> = ({
       : { scalable: { color: "gray", scale: 2 } };
 
   const iconSize: SizeProperties = linkStyle !== "grayscale" ? "sm" : "md";
+
+  console.log(social);
 
   return social ? (
     <StyledBlogSocial orientation={orientation} linkStyle={linkStyle}>

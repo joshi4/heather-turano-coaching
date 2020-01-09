@@ -28,14 +28,14 @@ const StyledHero = styled.section`
   ${makeResponsive({
     beginAt: "tabletPortrait",
     style: `
-      min-height: ${makeSize({ custom: 500 })};
+      min-height: ${makeSize({ custom: 450 })};
     `
   })}
 
   ${makeResponsive({
     beginAt: "desktop",
     style: `
-      min-height: ${makeSize({ custom: 640 })};
+      min-height: ${makeSize({ custom: 450 })};
     `
   })}
 `;
