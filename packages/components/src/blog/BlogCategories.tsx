@@ -27,6 +27,7 @@ const StyledBlogContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
   position: relative;
+  text-align: center;
 
   & * {
     box-sizing: border-box;

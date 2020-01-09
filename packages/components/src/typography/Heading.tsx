@@ -7,7 +7,8 @@ import {
 } from "@heather-turano-coaching/design-system/types/composite";
 import {
   makeReset,
-  makeFont
+  makeFont,
+  makeOutset
 } from "@heather-turano-coaching/design-system/utils";
 
 export type HeadingProps = HTMLHeading & {
@@ -24,32 +25,37 @@ type HeadingStyleProps = Required<Pick<HeadingProps, "fontColor">>;
 
 const StyledH1 = styled.h1<HeadingStyleProps>`
   ${BaseHeading};
+  ${makeOutset({ vertical: 32 })};
   ${({ fontColor }) =>
     makeFont({ fontSize: "h1", fontFamily: "Montserrat", fontColor })}
 `;
 
 const StyledH2 = styled.h2<HeadingProps>`
   ${BaseHeading};
+  ${makeOutset({ vertical: 28 })};
   ${({ fontColor }) =>
-    makeFont({ fontSize: "h2", fontFamily: "Montserrat", fontColor })}
+    makeFont({ fontSize: "h2", fontFamily: "Montserrat", fontColor })};
 `;
 
 const StyledH3 = styled.h3<HeadingProps>`
   ${BaseHeading};
+  ${makeOutset({ vertical: 24 })};
   ${({ fontColor }) =>
-    makeFont({ fontSize: "h3", fontFamily: "Raleway", fontColor })}
+    makeFont({ fontSize: "h3", fontFamily: "Raleway", fontColor })};
 `;
 
 const StyledH4 = styled.h4<HeadingProps>`
   ${BaseHeading};
+  ${makeOutset({ vertical: 20 })};
   ${({ fontColor }) =>
-    makeFont({ fontSize: "h4", fontFamily: "Raleway", fontColor })}
+    makeFont({ fontSize: "h4", fontFamily: "Raleway", fontColor })};
 `;
 
 const StyledH5 = styled.h5<HeadingProps>`
   ${BaseHeading};
+  ${makeOutset({ vertical: 16 })};
   ${({ fontColor }) =>
-    makeFont({ fontSize: "h5", fontFamily: "Raleway", fontColor })}
+    makeFont({ fontSize: "h5", fontFamily: "Raleway", fontColor })};
 `;
 
 export const Heading: FC<HeadingProps> = ({

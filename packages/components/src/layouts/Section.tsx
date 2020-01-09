@@ -13,14 +13,28 @@ import {
 } from "@heather-turano-coaching/design-system/utils";
 
 export interface SectionProps {
-  styleType: "blank" | "layered" | "hero";
+  styleType: "blank" | "layered" | "hero" | "blog" | "featured-blog";
 }
 
 const CSSSectionMap: {
   [key in SectionProps["styleType"]]: SimpleInterpolation;
 } = {
-  blank: css``,
+  blank: css`
+    ${makeInset({ vertical: 56, horizontal: 32 })};
+
+    ${makeResponsive<string>({
+      beginAt: "tabletPortrait",
+      style: makeInset({ vertical: 56 })
+    })}
+  `,
   layered: css`
+    ${makeInset({ vertical: 56, horizontal: 32 })};
+
+    ${makeResponsive<string>({
+      beginAt: "tabletPortrait",
+      style: makeInset({ vertical: 56 })
+    })}
+
     ${makeResponsive({
       endAt: "desktop",
       style: `
@@ -30,6 +44,17 @@ const CSSSectionMap: {
   `,
   hero: css`
     ${makeInset({ vertical: 88, horizontal: 64 })};
+  `,
+  blog: css`
+    ${makeInset({ vertical: 88, horizontal: 32 })};
+  `,
+  "featured-blog": css`
+    ${makeInset({ vertical: 180, horizontal: 32 })};
+
+    ${makeResponsive({
+      endAt: "desktop",
+      style: makeInset({ vertical: 160, horizontal: 32 })
+    })}
   `
 };
 
@@ -62,16 +87,18 @@ const CSSSectionContentMap: {
       `
     })}
   `,
-  hero: css``
+  hero: css``,
+  blog: css``,
+  "featured-blog": css``
 };
 
 const StyledSection = styled.article<SectionProps>`
-  ${makeInset({ vertical: 56, horizontal: 32 })};
-
   ${({ styleType }) => CSSSectionMap[styleType]};
 `;
 
 const StyledSectionContent = styled.div<SectionProps>`
+  position: relative;
+
   ${makeResponsive<string>({
     beginAt: "tabletPortrait",
     style: `

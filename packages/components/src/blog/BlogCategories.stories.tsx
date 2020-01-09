@@ -4,7 +4,7 @@ import { BlogCategories, BlogCategory } from "./BlogCategories";
 
 export default {
   component: BlogCategories,
-  title: "Blog|Blog Categories"
+  title: "Blog|Categories"
 };
 
 const categories: BlogCategory[] = [

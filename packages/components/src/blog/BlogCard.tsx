@@ -1,67 +1,93 @@
 import React, { FC } from "react";
+import { Heading, Copy } from "../typography";
+import { Avatar } from "../misc";
+import styled from "styled-components";
+import {
+  makeInset,
+  makeResponsive,
+  makeColor,
+  makeSize
+} from "@heather-turano-coaching/design-system/utils";
+import { makeFlex } from "../utils";
 
-import { Title, Copy } from "../typography";
+const avatarSize = 120;
 
-import "./BlogCard.module.scss";
-
-export interface BlogCard {
-  title: string;
-  dateCreated: string;
-  prompt: string;
-  thumbnail: string;
-  thumbnailAlt: string;
-  category: string;
+export interface BlogUser {
+  firstName: string;
+  lastName: string;
+  avatarImg: string;
 }
 
-const BlogCard: FC<BlogCard> = ({
-  category,
+interface BlogCardProps {
+  type: "featured" | "regular";
+  user: BlogUser;
+  datePublished: string;
+  title: string;
+  excerpt: string;
+}
+
+const StyledBlogCard = styled.div<Required<Pick<BlogCardProps, "type">>>`
+  background: ${makeColor({ fixed: "light" })};
+  ${makeInset({ vertical: 60, horizontal: 24 })};
+
+  ${makeResponsive({
+    beginAt: "tabletPortrait",
+    style: makeInset({ vertical: 60, horizontal: 60 })
+  })}
+`;
+const StyledBlogProfile = styled.div`
+  & > .avatar {
+    position: absolute;
+    top: -${makeSize({ custom: avatarSize / 2 + 20 })};
+    margin-left: -${makeSize({ custom: avatarSize / 2 })};
+    left: 50%;
+  }
+
+  & > .alt {
+    ${makeFlex("row", "center", "center")};
+    text-transform: uppercase;
+  }
+`;
+
+export const BlogCard: FC<BlogCardProps> = ({
+  type,
+  user: { firstName, lastName, avatarImg },
+  datePublished,
   title,
-  prompt,
-  dateCreated,
-  thumbnail,
-  thumbnailAlt
+  excerpt
 }) => (
-  <li styleName="container">
-    <Title size="md">{category}</Title>
-    <div styleName="post">
-      <article styleName="img">
-        <img src={thumbnail} alt={thumbnailAlt} />
-      </article>
-      <article styleName="summary">
-        <header>
-          <Copy type="label" fontSize="xl">
-            {title}
-          </Copy>
-          <div styleName="date">
-            <Copy
-              type="caption"
-              fontSize="sm"
-              fontColor={{ scalable: { color: "gray" } }}
-            >
-              {dateCreated}
-            </Copy>
-          </div>
-        </header>
-        <div>
-          <Copy type="paragraph" fontSize="md">
-            {prompt}
-          </Copy>
-        </div>
-      </article>
-      {/* <ul styleName="quick-links">
-        <li styleName="link secondary">
-          <Icon icon="facebook" size="xs" color="lightscale-3" />
-        </li>
-        <li styleName="link primary">
-          <Icon icon="pinterest" size="xs" color="lightscale-3" />
-        </li>
-        <li styleName="link accent">
-          <Icon icon="instagram" size="xs" color="lightscale-3" />
-        </li>
-        <li styleName="link grayscale">
-          <Icon icon="twitter" size="xs" color="lightscale-3" />
-        </li>
-      </ul> */}
-    </div>
-  </li>
+  <StyledBlogCard type={type}>
+    <StyledBlogProfile>
+      <Avatar
+        image={avatarImg}
+        alt={`${firstName}-${lastName}`}
+        size={{ custom: avatarSize }}
+      />
+      <div className="alt">
+        <Copy
+          type="label"
+          fontSize="xs"
+          fontColor={{ scalable: { color: "secondary" } }}
+        >{`${firstName} ${lastName}`}</Copy>
+        <Copy
+          type="label"
+          fontSize="xs"
+          fontColor={{ scalable: { color: "gray", scale: 2 } }}
+        >
+          &nbsp;|&nbsp;
+        </Copy>
+        <Copy
+          type="label"
+          fontSize="xs"
+          fontColor={{ scalable: { color: "gray", scale: 2 } }}
+        >
+          {datePublished}
+        </Copy>
+      </div>
+    </StyledBlogProfile>
+    <Heading fontSize="h2" fontColor={{ scalable: { color: "gray" } }}>
+      {title}
+    </Heading>
+    <Copy type="paragraph">{excerpt}</Copy>
+  </StyledBlogCard>
 );

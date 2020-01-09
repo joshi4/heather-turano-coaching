@@ -10,16 +10,15 @@ type CustomImageSizeValues = number | null;
 interface ImageProps {
   src: string;
   alt: string;
-  size?: SizeProperties;
-  manualHeight?: CustomImageSizeValues;
-  manualWidth?: CustomImageSizeValues;
+  size?: SizeProperties | string;
+  manualHeight?: CustomImageSizeValues | string;
+  manualWidth?: CustomImageSizeValues | string;
 }
 
-const StyledImageContainer = styled.div<{
-  size: SizeProperties;
-  manualHeight: CustomImageSizeValues;
-  manualWidth: CustomImageSizeValues;
-}>`
+const StyledImageContainer = styled.div<
+  Pick<ImageProps, "manualHeight" | "manualWidth"> &
+    Required<Pick<ImageProps, "size">>
+>`
   ${makeFlex("row", "center", "center")};
 
   & > img {
@@ -27,17 +26,21 @@ const StyledImageContainer = styled.div<{
       if (manualWidth) {
         return css`
           height: auto;
-          width: ${makeSize({ custom: manualWidth })};
+          width: ${typeof manualWidth === "string"
+            ? manualWidth
+            : makeSize({ custom: manualWidth })};
         `;
       }
       if (manualHeight) {
         return css`
-          height: ${makeSize({ custom: manualHeight })};
+          height: ${typeof manualHeight === "string"
+            ? manualHeight
+            : makeSize({ custom: manualHeight })};
           width: auto;
         `;
       }
       return css`
-        height: ${makeSize(size)};
+        height: ${typeof size === "string" ? size : makeSize(size)};
         width: auto;
       `;
     }}
@@ -53,6 +56,7 @@ export const Image: FC<ImageProps> = ({
   ...restProps
 }) => (
   <StyledImageContainer
+    className="image"
     size={size}
     manualHeight={manualHeight}
     manualWidth={manualWidth}

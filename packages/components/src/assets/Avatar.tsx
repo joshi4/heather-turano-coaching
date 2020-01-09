@@ -1,7 +1,10 @@
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
 
-import { makeSize } from "@heather-turano-coaching/design-system/utils";
+import {
+  makeSize,
+  makeColor
+} from "@heather-turano-coaching/design-system/utils";
 import {
   SizeProperties,
   FontProperties
@@ -30,7 +33,9 @@ const avatarSizeMap: {
   xxs: "xxs"
 };
 
-const StyledAvatar = styled.div<Required<Pick<AvatarProps, "size">>>`
+const StyledAvatar = styled.div.attrs({ className: "avatar" })<
+  Required<Pick<AvatarProps, "size">>
+>`
   ${({ size }) => css`
     height: ${makeSize(size)};
     width: ${makeSize(size)};
@@ -39,10 +44,15 @@ const StyledAvatar = styled.div<Required<Pick<AvatarProps, "size">>>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background: #fff;
   border-radius: 50%;
 
   img {
+    border-radius: 50%;
+    border: ${makeSize({ custom: 2 })} solid ${makeColor({ fixed: "light" })};
+    z-index: 10;
+    animation: fadein 0.25s;
+    border-radius: 50%;
+    object-fit: cover;
     ${({ size }) => {
       if (typeof size === "string" && avatarSizeMap[size]) {
         return css`
@@ -56,10 +66,6 @@ const StyledAvatar = styled.div<Required<Pick<AvatarProps, "size">>>`
         transform: scale(0.88);
       `;
     }}
-    z-index: 10;
-    animation: fadein 0.25s;
-    border-radius: 50%;
-    object-fit: cover;
   }
 `;
 
