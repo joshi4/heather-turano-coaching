@@ -1,11 +1,16 @@
 import React, { FC } from "react";
-import styled from "styled-components";
-import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
+import styled, { css } from "styled-components";
+import {
+  ColorProperties,
+  SizeProperties
+} from "@heather-turano-coaching/design-system/types/composite";
 
 import { Icon } from "../typography";
 import {
   makeColor,
-  makeSize
+  makeSize,
+  makeResponsive,
+  makeOutset
 } from "@heather-turano-coaching/design-system/utils";
 import { makeFlex } from "../utils";
 
@@ -18,73 +23,126 @@ export interface SocialLinks {
 
 type BlogSocialLinksProps = {
   orientation?: "vertical" | "horizontal";
+  linkStyle?: "color" | "grayscale";
 } & SocialLinks;
 
 const StyledBlogSocial = styled.ul<
-  Required<Pick<BlogSocialLinksProps, "orientation">>
+  Required<Pick<BlogSocialLinksProps, "orientation" | "linkStyle">>
 >`
-  ${({ orientation }) =>
-    orientation === "horizontal" && makeFlex("row", "center", "center")}
+  ${({ orientation, linkStyle }) =>
+    (orientation === "horizontal" || linkStyle === "grayscale") &&
+    makeFlex("row", "center", "center")}
+
+  ${({ linkStyle }) =>
+    linkStyle === "grayscale" &&
+    css`
+      width: 100%;
+      background: ${makeColor({ scalable: { color: "light", scale: 3 } })};
+      ${makeOutset({ vertical: 24 })};
+    `}
 `;
 
-const StyledBlogSocialLink = styled.li<{
-  linkColor: ColorProperties["scalable"];
-}>`
+const StyledBlogSocialLink = styled.li<
+  {
+    linkColor: ColorProperties["scalable"];
+  } & Required<Pick<BlogSocialLinksProps, "linkStyle">>
+>`
   ${makeFlex("row", "center", "center")};
   height: ${makeSize({ custom: 40 })};
   width: ${makeSize({ custom: 40 })};
-  background: ${({ linkColor }) => makeColor({ scalable: linkColor })};
-  border: 0.5px solid ${makeColor({ fixed: "light" })};
+
+  ${({ linkStyle, linkColor }) => {
+    if (linkStyle === "color") {
+      return css`
+        height: ${makeSize({ custom: 40 })};
+        width: ${makeSize({ custom: 40 })};
+        background: ${makeColor({ scalable: linkColor })}};
+        border: 0.5px solid ${makeColor({ fixed: "light" })};
+      `;
+    }
+    return css`
+      height: ${makeSize({ custom: 52 })};
+      width: ${makeSize({ custom: 52 })};
+
+      ${makeResponsive({
+        beginAt: "tabletPortrait",
+        style: `
+          width: ${makeSize({ custom: 80 })};
+        `
+      })}
+    `;
+  }}
 `;
 
 export const BlogSocialLinks: FC<BlogSocialLinksProps> = ({
+  linkStyle = "color",
   orientation = "vertical",
   facebook,
   pinterest,
   instagram,
   twitter
-}) =>
-  facebook || pinterest || instagram || twitter ? (
-    <StyledBlogSocial orientation={orientation}>
+}) => {
+  const iconColor: ColorProperties =
+    linkStyle !== "grayscale"
+      ? { fixed: "light" }
+      : { scalable: { color: "gray", scale: 2 } };
+
+  const iconSize: SizeProperties = linkStyle !== "grayscale" ? "sm" : "md";
+
+  return facebook || pinterest || instagram || twitter ? (
+    <StyledBlogSocial orientation={orientation} linkStyle={linkStyle}>
       {facebook && (
-        <StyledBlogSocialLink linkColor={{ color: "secondary" }}>
+        <StyledBlogSocialLink
+          linkStyle={linkStyle}
+          linkColor={{ color: "secondary" }}
+        >
           <Icon
             icon="facebook"
             iconWeight="fab"
-            iconSize="sm"
-            iconColor={{ fixed: "light" }}
+            iconSize={iconSize}
+            iconColor={iconColor}
           />
         </StyledBlogSocialLink>
       )}
       {pinterest && (
-        <StyledBlogSocialLink linkColor={{ color: "primary" }}>
+        <StyledBlogSocialLink
+          linkStyle={linkStyle}
+          linkColor={{ color: "primary" }}
+        >
           <Icon
             icon="pinterest"
             iconWeight="fab"
-            iconSize="sm"
-            iconColor={{ fixed: "light" }}
+            iconSize={iconSize}
+            iconColor={iconColor}
           />
         </StyledBlogSocialLink>
       )}
       {instagram && (
-        <StyledBlogSocialLink linkColor={{ color: "accent" }}>
+        <StyledBlogSocialLink
+          linkStyle={linkStyle}
+          linkColor={{ color: "accent" }}
+        >
           <Icon
             icon="instagram"
             iconWeight="fab"
-            iconSize="sm"
-            iconColor={{ fixed: "light" }}
+            iconSize={iconSize}
+            iconColor={iconColor}
           />
         </StyledBlogSocialLink>
       )}
       {twitter && (
-        <StyledBlogSocialLink linkColor={{ color: "gray" }}>
+        <StyledBlogSocialLink
+          linkStyle={linkStyle}
+          linkColor={{ color: "gray" }}
+        >
           <Icon
             icon="twitter"
             iconWeight="fab"
-            iconSize="sm"
-            iconColor={{ fixed: "light" }}
+            iconSize={iconSize}
+            iconColor={iconColor}
           />
         </StyledBlogSocialLink>
       )}
     </StyledBlogSocial>
   ) : null;
+};

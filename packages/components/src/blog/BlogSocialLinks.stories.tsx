@@ -43,3 +43,30 @@ export const justFacebookAndTwitter = () => (
   <BlogSocialLinks facebook={testLink} twitter={testLink} />
 );
 export const noLinks = () => <BlogSocialLinks />;
+
+export const allLinksWithGrayscaleStyle = () => (
+  <BlogSocialLinks
+    linkStyle="grayscale"
+    facebook={testLink}
+    pinterest={testLink}
+    twitter={testLink}
+    instagram={testLink}
+  />
+);
+export const justFacebookWithGrayscale = () => (
+  <BlogSocialLinks linkStyle="grayscale" facebook={testLink} />
+);
+export const justFacebookAndInstagramWithGrayscale = () => (
+  <BlogSocialLinks
+    linkStyle="grayscale"
+    facebook={testLink}
+    instagram={testLink}
+  />
+);
+export const justFacebookAndTwitterWithGrayscale = () => (
+  <BlogSocialLinks
+    linkStyle="grayscale"
+    facebook={testLink}
+    twitter={testLink}
+  />
+);
