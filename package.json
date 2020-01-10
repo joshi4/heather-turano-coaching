@@ -25,7 +25,8 @@
     "start:components": "npm run build:ds && lerna run start --scope=@heather-turano-coaching/components --stream",
     "start:legacy": "lerna run dev --scope=@heather-turano-coaching/legacy",
     "start:website": "cd /Users/drewdecarme/git-imagined/heather-turano-coaching/live-life-mindful/packages/website && npm run dev --scope=@heather-turano-coaching/website",
-    "start:blog": "npm run build:ds && npm run build:components && lerna run start --scope=@live-life-mindful/blog"
+    "start:blog": "cd packages/blog && npm run dev",
+    "generate": "gql-gen --config codegen.yml"
   },
   "repository": {
     "type": "git",

@@ -2,9 +2,13 @@
   "version": "independent",
   "packages": ["packages/**"],
   "npmClient": "npm",
+  "npmClientArgs": ["--no-package-lock"],
   "command": {
     "bootstrap": {
-      "ignore": "@heather-turano-coaching/legacy"
+      "ignore": [
+        "@heather-turano-coaching/legacy",
+        "@live-life-mindful/blog-gatsby"
+      ]
     },
     "publish": {
       "ignoreChanges": ["*.md", "*.spec.ts", "*.spec.tsx"],

@@ -2,40 +2,26 @@
   "name": "@live-life-mindful/blog",
   "version": "0.1.0",
   "scripts": {
-    "test": "jest",
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "type-check": "tsc"
   },
   "dependencies": {
     "@heather-turano-coaching/components": "^0.1.0",
     "@heather-turano-coaching/design-system": "^0.1.0",
+    "isomorphic-unfetch": "3.0.0",
     "next": "latest",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "@heather-turano-coaching/typescript": "^0.1.0",
-    "@types/enzyme": "^3.10.4",
-    "@types/jest": "^24.0.25",
-    "@types/react": "^16.9.17",
+    "@types/node": "^12.12.21",
+    "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
-    "babel-core": "^6.26.3",
-    "babel-jest": "^24.9.0",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
-    "jest": "^24.9.0",
-    "npm-check-updates": "^4.0.1",
-    "react-addons-test-utils": "^15.6.2",
-    "react-test-renderer": "^16.12.0",
-    "typescript": "^3.7.4"
+    "typescript": "3.7.3"
   },
-  "description": "PWA community blog for Live Life Mindful (a Heather Turano Coaching entity) using Next.js",
-  "main": "jest.config.js",
-  "repository": {
-    "type": "git",
-    "url": "git@gitlab.com:imaginedelements/heather-turano-coaching/live-life-mindful.git"
-  },
-  "author": "Drew DeCarme",
   "license": "MIT"
 }

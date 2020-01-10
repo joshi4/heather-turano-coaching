@@ -1,0 +1,10 @@
+{
+  "development": {
+    "apiUrl": "https://blog.livelifemindful.com",
+    "contentApiKey": "1b7838b4eb07ad1b60d7282a00"
+  },
+  "production": {
+    "apiUrl": "https://blog.livelifemindful.com",
+    "contentApiKey": "1b7838b4eb07ad1b60d7282a00"
+  }
+}
