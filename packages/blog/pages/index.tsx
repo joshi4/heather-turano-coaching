@@ -1,17 +1,19 @@
 import React from "react";
-import Link from "next/link";
-import Layout from "../components/Layout";
 import { NextPage } from "next";
+import { getPosts } from "../api";
+import { PostObject } from "@tryghost/content-api";
 
-const IndexPage: NextPage = () => {
-  return (
-    <Layout title="Home | Next.js + TypeScript Example">
-      <h1>Hello Next.js </h1>
-      <p>
-        <Link href="/about">About</Link>
-      </p>
-    </Layout>
-  );
+const Home: NextPage<PostObject> = ({ posts, meta }) => (
+  <ul>
+    {posts.map(post => (
+      <li key={post.id}>{post.title}</li>
+    ))}
+  </ul>
+);
+
+Home.getInitialProps = async (): Promise<PostObject> => {
+  const { posts, meta } = await getPosts();
+  return { posts, meta };
 };
 
-export default IndexPage;
+export default Home;
