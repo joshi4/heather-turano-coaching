@@ -1,6 +1,5 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import styled from "styled-components";
-// import { Field } from "formik";
 
 import {
   makeColor,
@@ -11,9 +10,8 @@ import {
 } from "@heather-turano-coaching/design-system/utils";
 
 import { InputGroup, Input } from "../forms";
-import { Button, Link } from "../buttons-links";
-import { Copy } from "../typography";
-import { MainNavItem } from "./HeaderNav";
+import { Button } from "../buttons-links";
+import { Copy, CopyProps } from "../typography";
 import {
   ColorProperties,
   FontProperties
@@ -22,9 +20,15 @@ import { useBreakpoints } from "../hooks";
 import { darken } from "polished";
 import { makeFlex } from "../utils";
 
+interface NavBlock {
+  title: string;
+  items: ReactNode;
+}
+
 interface FooterProps {
-  navItems: MainNavItem[];
-  LinkComponent?: FC;
+  leftNav: NavBlock;
+  rightNav: NavBlock;
+  terms: ReactNode;
 }
 
 const fontColor: ColorProperties = {
@@ -146,17 +150,22 @@ const StyledFooterTopBlock = styled.div`
     font-weight: 700;
     text-transform: uppercase;
   }
-  ul {
-    ${makeReset("list")};
+`;
 
-    & > li {
-      ${makeOutset({ bottom: 12 })}
-    }
+const StyledTopBlogContent = styled.ul`
+  ${makeReset("list")};
+
+  & > li {
+    ${makeOutset({ bottom: 12 })}
   }
 `;
 
-const StyleFooterMainNavLinks = styled.ul`
-  ${makeReset("list")};
+const StyledFooterLinks = styled.li`
+  ${makeReset("list")}
+
+  a {
+    ${makeReset("anchor")}
+  }
 `;
 
 // const StyledFooterMail = styled.div`
@@ -164,40 +173,45 @@ const StyleFooterMainNavLinks = styled.ul`
 //   width: ${makeSize({ custom: 480 })};
 // `;
 
-export const FooterNav: FC<FooterProps> = ({
-  navItems,
-  LinkComponent = undefined
-}) => {
+const useFooterNavFontSize = (): FontProperties["fontSize"] => {
   const [window, { tabletPortrait }] = useBreakpoints();
 
   const fontSize: FontProperties["fontSize"] =
     window < tabletPortrait ? "xs" : "sm";
+
+  return fontSize;
+};
+
+export const FooterNavLink = StyledFooterLinks;
+
+export const FooterNavLinkContent: FC<{ type?: CopyProps["type"] }> = ({
+  type = "paragraph",
+  children
+}) => {
+  const fontSize = useFooterNavFontSize();
+
+  return (
+    <Copy type={type} fontSize={fontSize} fontColor={fontColor}>
+      {children}
+    </Copy>
+  );
+};
+
+export const FooterNav: FC<FooterProps> = ({
+  leftNav: { title: leftNavTitle = "Browse", items: leftNavItems },
+  rightNav: { title: rightNavTitle = "Explore", items: rightNavItems },
+  terms
+}) => {
+  const fontSize = useFooterNavFontSize();
 
   return (
     <StyledFooter>
       <StyledFooterTop>
         <StyledFooterTopBlock>
           <Copy type="label" fontSize={fontSize} fontColor={fontColor}>
-            Explore
+            {leftNavTitle}
           </Copy>
-          <StyleFooterMainNavLinks>
-            {navItems.map(({ label, route }) => (
-              <li key={label}>
-                <Link
-                  LinkComponent={LinkComponent}
-                  to={route || label.split(" ").join("-")}
-                >
-                  <Copy
-                    type="paragraph"
-                    fontSize={fontSize}
-                    fontColor={fontColor}
-                  >
-                    {label}
-                  </Copy>
-                </Link>
-              </li>
-            ))}
-          </StyleFooterMainNavLinks>
+          <StyledTopBlogContent>{leftNavItems}</StyledTopBlogContent>
         </StyledFooterTopBlock>
         <StyledFooterTopBlock>
           <Copy type="label" fontSize={fontSize} fontColor={fontColor}>
@@ -214,26 +228,9 @@ export const FooterNav: FC<FooterProps> = ({
         </StyledFooterTopBlock>
         <StyledFooterTopBlock>
           <Copy type="label" fontSize={fontSize} fontColor={fontColor}>
-            Social
+            {rightNavTitle}
           </Copy>
-          <StyleFooterMainNavLinks>
-            {navItems.map(({ label, route }) => (
-              <li key={label}>
-                <Link
-                  LinkComponent={LinkComponent}
-                  to={route || label.split(" ").join("-")}
-                >
-                  <Copy
-                    type="paragraph"
-                    fontSize={fontSize}
-                    fontColor={fontColor}
-                  >
-                    {label}
-                  </Copy>
-                </Link>
-              </li>
-            ))}
-          </StyleFooterMainNavLinks>
+          <StyledTopBlogContent>{rightNavItems}</StyledTopBlogContent>
         </StyledFooterTopBlock>
       </StyledFooterTop>
       <StyledFooterBottom>
@@ -259,29 +256,7 @@ export const FooterNav: FC<FooterProps> = ({
               </a>
             </Copy>
           </StyledFooterCreatedBy>
-          <StyledFooterPrivacy>
-            <Link LinkComponent={LinkComponent} to="/privacy-policy">
-              <Copy type="text" fontSize={fontSize} fontColor={fontColor}>
-                Privary Policy
-              </Copy>
-            </Link>
-            <Copy type="text" fontSize={fontSize} fontColor={fontColor}>
-              &nbsp;|&nbsp;
-            </Copy>
-            <Link LinkComponent={LinkComponent} to="/terms-of-service">
-              <Copy type="text" fontSize={fontSize} fontColor={fontColor}>
-                Terms of Service
-              </Copy>
-            </Link>
-            <Copy type="text" fontSize={fontSize} fontColor={fontColor}>
-              &nbsp;|&nbsp;
-            </Copy>
-            <Link LinkComponent={LinkComponent} to="/cookie-policy">
-              <Copy type="text" fontSize={fontSize} fontColor={fontColor}>
-                Cookie Policy
-              </Copy>
-            </Link>
-          </StyledFooterPrivacy>
+          <StyledFooterPrivacy>{terms}</StyledFooterPrivacy>
         </div>
       </StyledFooterBottom>
     </StyledFooter>

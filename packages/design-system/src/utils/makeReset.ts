@@ -1,4 +1,10 @@
-type ResetElements = "heading" | "paragraph" | "list" | "button" | "input";
+type ResetElements =
+  | "heading"
+  | "paragraph"
+  | "list"
+  | "button"
+  | "input"
+  | "anchor";
 
 type Resets = { [key in ResetElements]: any };
 
@@ -35,6 +41,10 @@ const resets: Resets = {
     margin: 0,
     padding: 0,
     border: 0
+  },
+  anchor: {
+    textDecoration: "none",
+    display: "inline-block"
   }
 };
 

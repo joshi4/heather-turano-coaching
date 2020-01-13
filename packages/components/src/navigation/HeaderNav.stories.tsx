@@ -1,7 +1,6 @@
-import React, { FC } from "react";
-import Link from "gatsby-link";
+import React from "react";
 
-import { HeaderNav, MainNavItem, MainNavLinkProps } from "./HeaderNav";
+import { HeaderNav, HeaderNavLinkContent, HeaderNavLink } from "./HeaderNav";
 
 const logos = {
   stacked: require("./assets/htc-logo-stacked.svg").default,
@@ -13,59 +12,48 @@ export default {
   title: "Basic|HeaderNav"
 };
 
-const navItems: MainNavItem[] = [
+const headerNavLinks = [
   {
-    label: "Home",
-    route: "/home"
+    label: "home",
+    route: "https://heatherturanocoaching.com"
   },
   {
-    label: "About",
-    route: "/about"
+    label: "about",
+    route: "https://heatherturanocoaching.com/about"
   },
   {
-    label: "Services",
-    route: "/services"
+    label: "services",
+    route: "https://heatherturanocoaching.com/services"
   },
   {
-    label: "Blog",
-    route: "blog.livelifemindful.com"
+    label: "blog",
+    route: "/",
+    forceActiveState: true
   }
 ];
 
-const GatsbyLink: FC<MainNavLinkProps> = ({
-  route,
-  activeClassName,
-  linkContent
-}) => (
-  <Link to={route} activeClassName={activeClassName}>
-    {linkContent}
-  </Link>
+export const base = () => (
+  <HeaderNav
+    navItems={headerNavLinks.map(({ label, route }) => (
+      <HeaderNavLink key={label} forceActiveState={label === "blog"}>
+        <a href={route}>
+          <HeaderNavLinkContent>{label}</HeaderNavLinkContent>
+        </a>
+      </HeaderNavLink>
+    ))}
+    logos={logos}
+  />
 );
-
-export const base = () => <HeaderNav navItems={navItems} logos={logos} />;
 export const withCustomHomeRouteAndGatsbyLink = () => (
   <HeaderNav
     homeRoute="/home"
-    LinkComponent={GatsbyLink}
     logos={logos}
-    navItems={[
-      {
-        label: "Home",
-        route: "/home"
-      },
-      {
-        label: "About",
-        route: "/about"
-      },
-      {
-        label: "Services",
-        route: "/services"
-      },
-      {
-        label: "Blog",
-        route: "blog.livelifemindful.com",
-        anchorLink: true
-      }
-    ]}
+    navItems={headerNavLinks.map(({ label, route }) => (
+      <HeaderNavLink key={label} forceActiveState={label === "blog"}>
+        <a href={route}>
+          <HeaderNavLinkContent>{label}</HeaderNavLinkContent>
+        </a>
+      </HeaderNavLink>
+    ))}
   />
 );

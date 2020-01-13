@@ -15,28 +15,14 @@ import {
 import { useBreakpoints } from "../hooks";
 import { sharedHorizontalPadding, sharedVerticalPadding } from "../shared";
 import { rgba } from "polished";
-import { HTMLLink } from "@heather-turano-coaching/design-system/types/composite";
-
-export interface MainNavItem {
-  label: string;
-  route: string;
-  anchorLink?: boolean;
-  forceActiveState?: boolean;
-}
-
-export type MainNavLinkProps = Pick<MainNavItem, "route"> & {
-  activeClassName?: string;
-  linkContent: ReactNode;
-};
 
 interface HeaderNavProps {
   homeRoute?: string;
-  navItems: MainNavItem[];
+  navItems: ReactNode;
   logos: {
     stacked: string;
     inline: string;
   };
-  LinkComponent?: FC<MainNavLinkProps>;
 }
 
 const StyledHeaderNav = styled.header`
@@ -118,9 +104,7 @@ const CSSNavItemActive = css`
   }
 `;
 
-const StyledNavListItem = styled.li<
-  Required<Pick<MainNavItem, "forceActiveState">>
->`
+const StyledNavListItem = styled.li<{ forceActiveState: boolean }>`
   align-self: stretch;
 
   ${makeResponsive({
@@ -163,64 +147,42 @@ const StyledNavListItem = styled.li<
   }
 `;
 
-const DefaultLinkComponent: FC<MainNavLinkProps & HTMLLink> = ({
-  route,
-  linkContent
-}) => <a href={route}>{linkContent}</a>;
+export const HeaderNavLink = StyledNavListItem;
+
+export const HeaderNavLinkContent: FC = ({ children }) => {
+  const [windowWidth, { tabletPortrait }] = useBreakpoints();
+  return (
+    <Copy
+      type="label"
+      fontSize={windowWidth < tabletPortrait ? "xs" : "sm"}
+      lineHeight="lg"
+      fontColor={{ scalable: { color: "gray", scale: 0 } }}
+    >
+      {children}
+    </Copy>
+  );
+};
 
 export const HeaderNav: FC<HeaderNavProps> = ({
   homeRoute = "/",
   navItems,
-  LinkComponent,
   logos: { stacked, inline }
 }) => {
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
 
-  const LC = LinkComponent || DefaultLinkComponent;
-
   return (
     <StyledHeaderNav>
       <StyledLogo>
-        <LC
-          route={homeRoute}
-          linkContent={
-            <Image
-              src={windowWidth < tabletPortrait ? stacked : inline}
-              alt="htcLogo"
-              manualWidth={windowWidth < tabletPortrait ? 136 : 200}
-            />
-          }
-        />
+        <a href={homeRoute}>
+          <Image
+            src={windowWidth < tabletPortrait ? stacked : inline}
+            alt="htcLogo"
+            manualWidth={windowWidth < tabletPortrait ? 136 : 200}
+          />
+        </a>
       </StyledLogo>
       <nav>
-        <StyledNavList styleName="nav">
-          {navItems.map(
-            ({ label, route, anchorLink, forceActiveState = false }) => {
-              const ILC = anchorLink ? DefaultLinkComponent : LC;
-              return (
-                <StyledNavListItem
-                  key={label}
-                  forceActiveState={forceActiveState}
-                >
-                  <ILC
-                    route={`${route}`}
-                    activeClassName="active"
-                    linkContent={
-                      <Copy
-                        type="label"
-                        fontSize={windowWidth < tabletPortrait ? "xs" : "sm"}
-                        lineHeight="lg"
-                        fontColor={{ scalable: { color: "gray", scale: 0 } }}
-                      >
-                        {label}
-                      </Copy>
-                    }
-                  />
-                </StyledNavListItem>
-              );
-            }
-          )}
-        </StyledNavList>
+        <StyledNavList styleName="nav">{navItems}</StyledNavList>
       </nav>
     </StyledHeaderNav>
   );

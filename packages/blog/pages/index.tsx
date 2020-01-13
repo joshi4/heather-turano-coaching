@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { NextPage } from "next";
 import { PostObject, PostOrPage } from "@tryghost/content-api";
 import styled from "styled-components";
@@ -9,14 +9,27 @@ import {
   Section,
   Title,
   Copy,
-  HeaderNav
+  HeaderNav,
+  HeaderNavLink,
+  HeaderNavLinkContent,
+  FooterNav,
+  FooterNavLink,
+  FooterNavLinkContent
 } from "@heather-turano-coaching/components";
 
 import { formatLongDate } from "../utils";
 import { getAllPosts } from "../api";
 
+type BaseNavItem = { label: string; route: string };
+
 type IndexPageProps = PostObject & {
   featuredPost: PostOrPage[];
+  headerNavLinks: (BaseNavItem & { forceActiveState?: boolean })[];
+  footerNavLinks: {
+    leftNavItems?: BaseNavItem[];
+    rightNavItems: BaseNavItem[];
+    terms: BaseNavItem[];
+  };
 };
 
 const StyledIndexPage = styled.div`
@@ -35,7 +48,13 @@ export const logos = {
   inline: require("../public/assets/htc-logo-inline.svg").default
 };
 
-const IndexPage: NextPage<IndexPageProps> = ({ featuredPost, posts, meta }) => {
+const IndexPage: NextPage<IndexPageProps> = ({
+  featuredPost,
+  posts,
+  meta,
+  headerNavLinks,
+  footerNavLinks: { rightNavItems, terms }
+}) => {
   console.log(featuredPost, posts, meta);
   const fp = featuredPost[0];
 
@@ -44,25 +63,13 @@ const IndexPage: NextPage<IndexPageProps> = ({ featuredPost, posts, meta }) => {
       <HeaderNav
         homeRoute="https://heatherturanocoaching.com"
         logos={logos}
-        navItems={[
-          {
-            label: "Home",
-            route: "https://heatherturanocoaching.com"
-          },
-          {
-            label: "About",
-            route: "https://heatherturanocoaching.com/about"
-          },
-          {
-            label: "Services",
-            route: "https://heatherturanocoaching.com/services"
-          },
-          {
-            label: "Blog",
-            route: "/",
-            forceActiveState: true
-          }
-        ]}
+        navItems={headerNavLinks.map(({ label, route }) => (
+          <HeaderNavLink key={label} forceActiveState={label === "blog"}>
+            <a href={route}>
+              <HeaderNavLinkContent>{label}</HeaderNavLinkContent>
+            </a>
+          </HeaderNavLink>
+        ))}
       />
       <StyledIndexPage>
         <Section styleType="blank">
@@ -122,6 +129,43 @@ const IndexPage: NextPage<IndexPageProps> = ({ featuredPost, posts, meta }) => {
           ))}
         </StyledBlogContainer>
       </StyledIndexPage>
+      <FooterNav
+        leftNav={{
+          title: "Browse",
+          items: headerNavLinks.map(({ label, route }) => (
+            <FooterNavLink key={label}>
+              <a href={route}>
+                <FooterNavLinkContent>{label}</FooterNavLinkContent>
+              </a>
+            </FooterNavLink>
+          ))
+        }}
+        rightNav={{
+          title: "Explore",
+          items:
+            rightNavItems.length > 0
+              ? rightNavItems.map(({ label, route }) => (
+                  <FooterNavLink key={label}>
+                    <a href={route}>
+                      <FooterNavLinkContent>{label}</FooterNavLinkContent>
+                    </a>
+                  </FooterNavLink>
+                ))
+              : null
+        }}
+        terms={terms.map(({ label, route }, index) => (
+          <Fragment key={label}>
+            <FooterNavLink>
+              <a href={route}>
+                <FooterNavLinkContent>{label}</FooterNavLinkContent>
+              </a>
+            </FooterNavLink>
+            {index !== terms.length - 1 && (
+              <FooterNavLinkContent>&nbsp;|&nbsp;</FooterNavLinkContent>
+            )}
+          </Fragment>
+        ))}
+      />
     </>
   );
 };
@@ -131,7 +175,43 @@ IndexPage.getInitialProps = async (): Promise<IndexPageProps> => {
   return {
     featuredPost: posts.filter(post => post.featured),
     posts: posts.filter(post => !post.featured),
-    meta: meta
+    meta: meta,
+    headerNavLinks: [
+      {
+        label: "home",
+        route: "https://heatherturanocoaching.com"
+      },
+      {
+        label: "about",
+        route: "https://heatherturanocoaching.com/about"
+      },
+      {
+        label: "services",
+        route: "https://heatherturanocoaching.com/services"
+      },
+      {
+        label: "blog",
+        route: "/",
+        forceActiveState: true
+      }
+    ],
+    footerNavLinks: {
+      rightNavItems: [],
+      terms: [
+        {
+          label: "Privacy Policy",
+          route: "/privacy-policy"
+        },
+        {
+          label: "Terms of Service",
+          route: "/terms-of-service"
+        },
+        {
+          label: "Cookie Policy",
+          route: "/cookie-policy"
+        }
+      ]
+    }
   };
 };
 

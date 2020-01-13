@@ -1,30 +1,86 @@
-import React from "react";
+import React, { Fragment } from "react";
 
-import { FooterNav } from "./FooterNav";
-import { MainNavItem } from "./HeaderNav";
+import { FooterNav, FooterNavLink, FooterNavLinkContent } from "./FooterNav";
 
 export default {
   component: FooterNav,
   title: "Basic|FooterNav"
 };
 
-const navItems: MainNavItem[] = [
+const headerNavLinks = [
   {
-    label: "Home",
-    route: "/home"
+    label: "home",
+    route: "https://heatherturanocoaching.com"
   },
   {
-    label: "About",
-    route: "/about"
+    label: "about",
+    route: "https://heatherturanocoaching.com/about"
   },
   {
-    label: "Services",
-    route: "/services"
+    label: "services",
+    route: "https://heatherturanocoaching.com/services"
   },
   {
-    label: "Blog",
-    route: "blog.livelifemindful.com"
+    label: "blog",
+    route: "/",
+    forceActiveState: true
   }
 ];
 
-export const base = () => <FooterNav navItems={navItems} />;
+const footerNavLinks = {
+  rightNavItems: [],
+  terms: [
+    {
+      label: "Privacy Policy",
+      route: "/privacy-policy"
+    },
+    {
+      label: "Terms of Service",
+      route: "/terms-of-service"
+    },
+    {
+      label: "Cookie Policy",
+      route: "/cookie-policy"
+    }
+  ]
+};
+
+export const base = () => (
+  <FooterNav
+    leftNav={{
+      title: "Browse",
+      items: headerNavLinks.map(({ label, route }) => (
+        <FooterNavLink key={label}>
+          <a href={route}>
+            <FooterNavLinkContent>{label}</FooterNavLinkContent>
+          </a>
+        </FooterNavLink>
+      ))
+    }}
+    rightNav={{
+      title: "Explore",
+      items:
+        footerNavLinks.rightNavItems.length > 0
+          ? footerNavLinks.rightNavItems.map(({ label, route }) => (
+              <FooterNavLink key={label}>
+                <a href={route}>
+                  <FooterNavLinkContent>{label}</FooterNavLinkContent>
+                </a>
+              </FooterNavLink>
+            ))
+          : null
+    }}
+    terms={footerNavLinks.terms.map(({ label, route }, index) => (
+      <Fragment key={label}>
+        <FooterNavLink>
+          <a href={route}>
+            <FooterNavLinkContent>{label}</FooterNavLinkContent>
+          </a>
+        </FooterNavLink>
+        {index !== footerNavLinks.terms.length - 1 && (
+          <FooterNavLinkContent>&nbsp;|&nbsp;</FooterNavLinkContent>
+        )}
+      </Fragment>
+    ))}
+  />
+);
