@@ -15,9 +15,8 @@ export interface BlogSocialOptions {
 
 export interface BlogAuthor {
   author: {
-    firstName: string;
-    lastName: string;
     avatarImg: string;
+    name: string;
   };
 }
 

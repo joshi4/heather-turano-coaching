@@ -9,3 +9,8 @@ declare module "*.png" {
   const fileName: string;
   export = fileName;
 }
+
+declare module "*.svg" {
+  const content: string;
+  export default content;
+}

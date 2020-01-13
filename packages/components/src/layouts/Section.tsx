@@ -52,14 +52,14 @@ const CSSSectionMap: {
     ${makeInset({ vertical: 88, horizontal: 64 })};
   `,
   blog: css`
-    ${makeInset({ vertical: 88, horizontal: 32 })};
+    ${makeInset({ vertical: 48, horizontal: 32 })};
   `,
   "featured-blog": css`
-    ${makeInset({ vertical: 180, horizontal: 32 })};
+    ${makeInset({ vertical: 180, bottom: 48, horizontal: 32 })};
 
     ${makeResponsive({
       endAt: "desktop",
-      style: makeInset({ vertical: 160, horizontal: 32 })
+      style: makeInset({ top: 160, bottom: 48, horizontal: 32 })
     })}
   `,
   "blog-page": css`
@@ -110,6 +110,7 @@ const StyledSection = styled.article<SectionProps>`
 
 const StyledSectionContent = styled.div<SectionProps>`
   position: relative;
+  z-index: 10;
 
   ${makeResponsive<string>({
     beginAt: "tabletPortrait",

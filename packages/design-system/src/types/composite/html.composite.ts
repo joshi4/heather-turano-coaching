@@ -5,3 +5,4 @@ export type HTMLLabel = React.LabelHTMLAttributes<HTMLLabelElement>;
 export type HTMLParagraph = React.HTMLAttributes<HTMLParagraphElement>;
 export type HTMLHeading = React.HTMLAttributes<HTMLHeadingElement>;
 export type HTMLImage = React.HTMLAttributes<HTMLImageElement>;
+export type HTMLLink = React.HTMLAttributes<HTMLAnchorElement>;

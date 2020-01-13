@@ -1,6 +1,5 @@
-import React, { FC } from "react";
-import styled from "styled-components";
-import Link from "gatsby-link";
+import React, { FC, ReactNode } from "react";
+import styled, { css } from "styled-components";
 
 import { Copy } from "../typography";
 import { Image } from "../assets";
@@ -16,20 +15,28 @@ import {
 import { useBreakpoints } from "../hooks";
 import { sharedHorizontalPadding, sharedVerticalPadding } from "../shared";
 import { rgba } from "polished";
-
-const logo = {
-  stacked: require("../../.storybook/assets/htc-logo-stacked.svg").default,
-  inline: require("../../.storybook/assets/htc-logo-inline.svg").default
-};
+import { HTMLLink } from "@heather-turano-coaching/design-system/types/composite";
 
 export interface MainNavItem {
   label: string;
   route: string;
+  anchorLink?: boolean;
+  forceActiveState?: boolean;
 }
+
+export type MainNavLinkProps = Pick<MainNavItem, "route"> & {
+  activeClassName?: string;
+  linkContent: ReactNode;
+};
 
 interface HeaderNavProps {
   homeRoute?: string;
   navItems: MainNavItem[];
+  logos: {
+    stacked: string;
+    inline: string;
+  };
+  LinkComponent?: FC<MainNavLinkProps>;
 }
 
 const StyledHeaderNav = styled.header`
@@ -101,7 +108,19 @@ const StyledNavList = styled.ul`
   })};
 `;
 
-const StyledNavListItem = styled.li`
+const CSSNavItemActive = css`
+  p {
+    color: ${makeColor({ scalable: { color: "primary" } })};
+  }
+
+  &::after {
+    background: ${makeColor({ scalable: { color: "primary" } })};
+  }
+`;
+
+const StyledNavListItem = styled.li<
+  Required<Pick<MainNavItem, "forceActiveState">>
+>`
   align-self: stretch;
 
   ${makeResponsive({
@@ -117,52 +136,90 @@ const StyledNavListItem = styled.li`
     display: block;
     text-transform: uppercase;
     text-decoration: none;
+    position: relative;
 
-    & > p {
-      transition: color 0.15s ease-in-out;
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: ${makeSize({ custom: 1 })};
+      background: transparent;
     }
 
+    & > p,
+    &::after {
+      transition: all 0.15s ease-in-out;
+    }
+
+    &:hover,
     &.active {
-      p {
-        color: ${makeColor({ scalable: { color: "primary" } })};
-      }
+      ${CSSNavItemActive};
     }
+
+    ${({ forceActiveState }) => forceActiveState && CSSNavItemActive};
   }
 `;
 
+const DefaultLinkComponent: FC<MainNavLinkProps & HTMLLink> = ({
+  route,
+  linkContent
+}) => <a href={route}>{linkContent}</a>;
+
 export const HeaderNav: FC<HeaderNavProps> = ({
   homeRoute = "/",
-  navItems
+  navItems,
+  LinkComponent,
+  logos: { stacked, inline }
 }) => {
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
+
+  const LC = LinkComponent || DefaultLinkComponent;
 
   return (
     <StyledHeaderNav>
       <StyledLogo>
-        <Link to={homeRoute}>
-          <Image
-            src={windowWidth < tabletPortrait ? logo.stacked : logo.inline}
-            alt="htcLogo"
-            manualWidth={windowWidth < tabletPortrait ? 136 : 200}
-          />
-        </Link>
+        <LC
+          route={homeRoute}
+          linkContent={
+            <Image
+              src={windowWidth < tabletPortrait ? stacked : inline}
+              alt="htcLogo"
+              manualWidth={windowWidth < tabletPortrait ? 136 : 200}
+            />
+          }
+        />
       </StyledLogo>
       <nav>
         <StyledNavList styleName="nav">
-          {navItems.map(({ label, route }) => (
-            <StyledNavListItem key={label}>
-              <Link to={`${route}`} activeClassName="active">
-                <Copy
-                  type="label"
-                  fontSize={windowWidth < tabletPortrait ? "xs" : "sm"}
-                  lineHeight="lg"
-                  fontColor={{ scalable: { color: "gray", scale: 0 } }}
+          {navItems.map(
+            ({ label, route, anchorLink, forceActiveState = false }) => {
+              const ILC = anchorLink ? DefaultLinkComponent : LC;
+              return (
+                <StyledNavListItem
+                  key={label}
+                  forceActiveState={forceActiveState}
                 >
-                  {label}
-                </Copy>
-              </Link>
-            </StyledNavListItem>
-          ))}
+                  <ILC
+                    route={`${route}`}
+                    activeClassName="active"
+                    linkContent={
+                      <Copy
+                        type="label"
+                        fontSize={windowWidth < tabletPortrait ? "xs" : "sm"}
+                        lineHeight="lg"
+                        fontColor={{ scalable: { color: "gray", scale: 0 } }}
+                      >
+                        {label}
+                      </Copy>
+                    }
+                  />
+                </StyledNavListItem>
+              );
+            }
+          )}
         </StyledNavList>
       </nav>
     </StyledHeaderNav>

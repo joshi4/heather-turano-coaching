@@ -22,11 +22,11 @@
     "build:ds": "lerna run build --scope=@heather-turano-coaching/design-system --stream",
     "build:blog": "npm run build:ds && npm run build:components && lerna run build --scope=@live-life-mindful/blog",
     "start:ds": "lerna run start --scope=@heather-turano-coaching/design-system --stream",
-    "start:components": "npm run build:ds && lerna run start --scope=@heather-turano-coaching/components --stream",
+    "start:components": "npm run build:ds && cd ./packages/components && npm run start",
+    "start:components:storybook": "npm run build:ds && cd ./packages/components && npm run start:storybook",
     "start:legacy": "lerna run dev --scope=@heather-turano-coaching/legacy",
     "start:website": "cd /Users/drewdecarme/git-imagined/heather-turano-coaching/live-life-mindful/packages/website && npm run dev --scope=@heather-turano-coaching/website",
-    "start:blog": "cd packages/blog && npm run dev",
-    "generate": "gql-gen --config codegen.yml"
+    "start:blog": "cd packages/blog && npm run dev"
   },
   "repository": {
     "type": "git",

@@ -34,7 +34,7 @@ const StyledBlogCard = styled.div<
   ${({ type, social }) => {
     if (type === "featured") {
       return css`
-        ${makeInset({ bottom: 60, horizontal: 24 })};
+        ${makeInset({ bottom: 60, horizontal: 32 })};
 
         ${makeResponsive({
           beginAt: "tabletPortrait",

@@ -1,5 +1,8 @@
 {
   "extends": "@heather-turano-coaching/typescript/tsconfig.react.json",
   "include": ["src", "types"],
+  "compilerOptions": {
+    "module": "ES2015"
+  },
   "exclude": ["**/*.spec.ts", "**/*.stories.tsx"]
 }

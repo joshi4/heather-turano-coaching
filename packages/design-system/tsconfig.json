@@ -2,6 +2,7 @@
   "extends": "@heather-turano-coaching/typescript/tsconfig.react.json",
   "include": ["src/configs", "src/types", "src/utils"],
   "compilerOptions": {
+    "module": "CommonJS",
     "outDir": "./"
   },
   "exclude": ["node_modules", "**/*.spec.ts"]

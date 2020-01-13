@@ -11,8 +11,7 @@ import { Image } from "../src/assets";
 const img = require("./assets/stock/aquatic-plant-beautiful-bloom.jpg");
 
 export const blogAuthor: BlogAuthor["author"] = {
-  firstName: "heather",
-  lastName: "turano",
+  name: "heather turano",
   avatarImg: require("./assets/htc-avatar.jpg")
 };
 
