@@ -1,28 +1,30 @@
 import React, { FC } from "react";
 import { Tag as GhostTag } from "@tryghost/content-api";
-import { BlogCategories } from "@heather-turano-coaching/components";
+import {
+  BlogCategories,
+  BlogCategory
+} from "@heather-turano-coaching/components";
 
 interface CategorySectionProps {
-  categories?: GhostTag[];
+  categories: GhostTag[];
 }
 
-const testImage = require("../public/assets/backlit-beach-color.jpg");
+type GetCategories = (categories?: GhostTag[]) => BlogCategory[];
+
+const getCategories: GetCategories = (categories = []) =>
+  categories
+    .filter(tag => tag.name?.includes("category-"))
+    .map(category => ({
+      rawLabel: category.name as string,
+      label: (category.name as string).split("-")[1],
+      route: `category/${category.slug}`,
+      img: category.feature_image as string
+    }));
 
 export const CategorySection: FC<CategorySectionProps> = ({
   categories = []
 }) => {
-  const derrivedCats =
-    categories.length > 0
-      ? categories
-          .filter(tag => tag.name?.includes("category-"))
-          .map(category => ({
-            label: (category.name as string).split("-")[1],
-            route: `category/${category.slug}`,
-            img: testImage
-          }))
-      : [];
+  const cats = getCategories(categories);
 
-  return derrivedCats.length > 0 ? (
-    <BlogCategories categories={derrivedCats} />
-  ) : null;
+  return <BlogCategories categories={cats} />;
 };

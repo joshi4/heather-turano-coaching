@@ -1,6 +1,8 @@
 module.exports = {
   env: {
-    GHOST_API_KEY: "fb325f3182dc0b7734cd7dd3dc"
+    GHOST_API_KEY: "fb325f3182dc0b7734cd7dd3dc",
+    CONTENTFUL_SPACE_ID: "acdm2953uods",
+    CONTENTFUL_ACCESS_TOKEN: "PbE69xLIh6rZmX_YwlQLxhnnIGWcbfuM5xvtgSJzpDY"
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     /**

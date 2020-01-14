@@ -13,7 +13,7 @@ export const TagsSection: FC<TagSectionProps> = ({ tags = [] }) => (
         {tags
           .filter(tag => !tag.name?.includes("category-"))
           .map(tag => (
-            <Link href={`tags/${tag.slug}`}>
+            <Link key={tag.id} href={`tags/${tag.slug}`}>
               <a>
                 <Tag key={tag.id} text={tag.name as string} />
               </a>

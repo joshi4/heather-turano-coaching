@@ -14,6 +14,7 @@ import { Copy } from "../typography";
 import { Link } from "../buttons-links";
 
 export interface BlogCategory {
+  rawLabel: string;
   label: string;
   route: string;
   img: string;

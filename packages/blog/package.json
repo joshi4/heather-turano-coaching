@@ -10,6 +10,7 @@
   "dependencies": {
     "@heather-turano-coaching/components": "^0.1.0",
     "@heather-turano-coaching/design-system": "^0.1.0",
+    "contentful": "^7.13.1",
     "date-fns": "^2.9.0",
     "next": "9.1.7",
     "react": "16.12.0",
