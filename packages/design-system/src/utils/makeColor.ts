@@ -53,10 +53,10 @@ export const makeColor = ({
     return fixedColorMap[fixed];
   }
   if (custom) {
-    console.warn(
-      "You're attempting to use a custom color that falls outside of the design system. This color will not be regulated by the design system any longer and thusly isn't type-safe. You'll be required to update this value manually for any subsequent changes. Use with cation."
-    );
-    console.log(custom);
+    // console.warn(
+    //   "You're attempting to use a custom color that falls outside of the design system. This color will not be regulated by the design system any longer and thusly isn't type-safe. You'll be required to update this value manually for any subsequent changes. Use with cation."
+    // );
+    // console.log(custom);
     return custom;
   }
   return "";

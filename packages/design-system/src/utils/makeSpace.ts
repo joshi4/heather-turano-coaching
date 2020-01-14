@@ -38,7 +38,7 @@ const createExponentialSpaceSize = (sizeValue: Size): string => {
 };
 
 export const makeSpace = (value: SpaceProperties): string => {
-  console.log(value);
+  // console.log(value);
   if (typeof value === "number" && sizeConfig.spaceScale === "linear") {
     return createLinearSpaceSize(value);
   }
