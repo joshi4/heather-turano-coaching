@@ -19,6 +19,10 @@ module.exports = {
         "url-loader"
       ]
     });
+    config.module.rules.push({
+      test: /\.(png|jpg|jpeg)$/,
+      use: ["url-loader"]
+    });
     return config;
   }
 };

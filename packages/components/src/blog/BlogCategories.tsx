@@ -28,6 +28,7 @@ const StyledBlogContainer = styled.div`
   width: 100%;
   position: relative;
   text-align: center;
+  ${makeOutset({ bottom: 48 })};
 
   & * {
     box-sizing: border-box;

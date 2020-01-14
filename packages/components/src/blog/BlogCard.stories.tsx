@@ -1,12 +1,7 @@
 import React, { FC } from "react";
 
 import { BlogCard } from "./BlogCard";
-import {
-  blogAuthor,
-  blogMeta,
-  blogSocial,
-  blogTags
-} from "../../.storybook/contants";
+import { blogAuthor, blogMeta, blogSocial } from "../../.storybook/contants";
 
 export default {
   component: BlogCard,
@@ -55,7 +50,6 @@ export const featuredWithSocialLinksAndTags = () => (
       social={blogSocial}
       title="Pumping guide for flying &amp; traveling WITHOUT your baby"
       excerpt="Are you a breastfeeding mom who has anxiety about leaving your little one to travel? Well, at 6 months, I did it. A whole week in Palm Springs, CA without my baby girl. In this post, you will find my full experience with Pumping, Freezing, Packing, and Flying with Breast Milk. I will explain my pumping set up and schedule along with tips on packing and flying with over 100 oz of breast milk. Along with my encounter with TSA and airport experience."
-      tags={blogTags}
     />
   </Container>
 );
@@ -94,7 +88,6 @@ export const regularWithSocialLinksAndTags = () => (
       meta={blogMeta}
       title="Pumping guide for flying &amp; traveling WITHOUT your baby"
       excerpt="Are you a breastfeeding mom who has anxiety about leaving your little one to travel? Well, at 6 months, I did it. A whole week in Palm Springs, CA without my baby girl. In this post, you will find my full experience with Pumping, Freezing, Packing, and Flying with Breast Milk. I will explain my pumping set up and schedule along with tips on packing and flying with over 100 oz of breast milk. Along with my encounter with TSA and airport experience."
-      tags={blogTags}
     />
   </Container>
 );

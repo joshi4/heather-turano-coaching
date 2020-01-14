@@ -1,1 +1,1 @@
-export * from "./ghost";
+export * from "./ghost.api";

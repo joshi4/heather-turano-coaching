@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { NextPage } from "next";
-import { PostObject, PostOrPage } from "@tryghost/content-api";
+import { PostObject, PostOrPage, TagsObject } from "@tryghost/content-api";
 import styled from "styled-components";
 
 import {
@@ -18,12 +18,15 @@ import {
 } from "@heather-turano-coaching/components";
 
 import { formatLongDate } from "../utils";
-import { getAllPosts } from "../api";
+import { getAllPosts, getAllTags } from "../api";
+import { TagsSection } from "../components/TagsSection";
+import { CategorySection } from "../components/CategorySection";
 
 type BaseNavItem = { label: string; route: string };
 
 type IndexPageProps = PostObject & {
   featuredPost: PostOrPage[];
+  tags: TagsObject;
   headerNavLinks: (BaseNavItem & { forceActiveState?: boolean })[];
   footerNavLinks: {
     leftNavItems?: BaseNavItem[];
@@ -51,11 +54,10 @@ export const logos = {
 const IndexPage: NextPage<IndexPageProps> = ({
   featuredPost,
   posts,
-  meta,
+  tags: { tags: allTags },
   headerNavLinks,
   footerNavLinks: { rightNavItems, terms }
 }) => {
-  console.log(featuredPost, posts, meta);
   const fp = featuredPost[0];
 
   return (
@@ -79,7 +81,7 @@ const IndexPage: NextPage<IndexPageProps> = ({
             eget risus varius blandit sit amet non magna.
           </Copy>
         </Section>
-
+        <CategorySection categories={allTags} />
         <StyledBlogContainer>
           <BlogContainer
             type="featured"
@@ -99,6 +101,7 @@ const IndexPage: NextPage<IndexPageProps> = ({
               }}
               title={fp.title as string}
               excerpt={fp.excerpt as string}
+              tags={<TagsSection tags={fp.tags} />}
             />
           </BlogContainer>
           {posts.map((post, index) => (
@@ -124,6 +127,7 @@ const IndexPage: NextPage<IndexPageProps> = ({
                 }}
                 title={post.title as string}
                 excerpt={post.excerpt as string}
+                tags={<TagsSection tags={post.tags} />}
               />
             </BlogContainer>
           ))}
@@ -171,10 +175,14 @@ const IndexPage: NextPage<IndexPageProps> = ({
 };
 
 IndexPage.getInitialProps = async (): Promise<IndexPageProps> => {
-  const { posts, meta } = await getAllPosts();
+  const [{ posts, meta }, tags] = await Promise.all([
+    getAllPosts(),
+    getAllTags()
+  ]);
   return {
     featuredPost: posts.filter(post => post.featured),
     posts: posts.filter(post => !post.featured),
+    tags: tags,
     meta: meta,
     headerNavLinks: [
       {

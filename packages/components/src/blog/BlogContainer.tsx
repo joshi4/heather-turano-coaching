@@ -28,7 +28,7 @@ const CSSBlogContainerTypeMap: {
     & > div {
       position: absolute;
       top: 0;
-      height: ${makeSize({ custom: 300 })};
+      height: ${makeSize({ custom: 400 })};
       overflow-y: hidden;
 
       img {
@@ -40,7 +40,6 @@ const CSSBlogContainerTypeMap: {
         style: `
           left: ${makeSize({ custom: 48 })};
           right: ${makeSize({ custom: 48 })};
-
       `
       })}
       ${makeResponsive({
@@ -48,6 +47,7 @@ const CSSBlogContainerTypeMap: {
         style: `
           left: ${makeSize({ custom: 80 })};
           right: ${makeSize({ custom: 80 })};
+          height: ${makeSize({ custom: 500 })};
       `
       })};
 

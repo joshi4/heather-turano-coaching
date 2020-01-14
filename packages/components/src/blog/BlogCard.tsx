@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import { Heading, Copy, VertialRhythm } from "../typography";
 import styled, { css } from "styled-components";
 import {
@@ -15,13 +15,12 @@ import {
 } from "./blog.types";
 import { BlogSocialLinks } from "./BlogSocialLinks";
 import { BlogAvatar } from "./BlogAvatar";
-import { TagGroup } from "../tags";
 
 type BlogCardProps = BaseBlog &
   BlogAuthor &
   BlogMetaInformation &
-  Partial<BlogSocialOptions> &
-  Partial<TagGroup> & {
+  Partial<BlogSocialOptions> & {
+    tags?: ReactNode;
     title: string;
     excerpt: string;
   };
@@ -89,6 +88,7 @@ export const BlogCard: FC<BlogCardProps> = ({
       {type === "featured" && (
         <BlogAvatar type="stacked" meta={meta} author={author} />
       )}
+      {type === "regular" && tags}
       <VertialRhythm>
         <Heading
           fontSize={type === "featured" ? "h2" : "h3"}
@@ -111,7 +111,7 @@ export const BlogCard: FC<BlogCardProps> = ({
           />
         </StyledCopySection>
       </VertialRhythm>
-      {tags && <TagGroup tags={tags} />}
+      {type === "featured" && tags}
     </StyledBlogCard>
   );
 };

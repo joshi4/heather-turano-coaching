@@ -97,8 +97,12 @@ const CSSSectionContentMap: {
     })}
   `,
   hero: css``,
-  blog: css``,
-  "featured-blog": css``,
+  blog: css`
+    max-width: ${makeSize({ custom: 800 })} !important;
+  `,
+  "featured-blog": css`
+    max-width: ${makeSize({ custom: 800 })} !important;
+  `,
   "blog-page": css`
     max-width: ${makeSize({ custom: 680 })};
   `

@@ -19,7 +19,7 @@ const StyledTagGroup = styled.ul`
   ${makeInset({ vertical: 16 })};
 
   & > li,
-  & > ${StyledTag} {
+  & > ${StyledTag}, & > a {
     display: inline-block;
     ${makeOutset({ top: 16 })};
 

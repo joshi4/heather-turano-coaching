@@ -21,40 +21,31 @@ export const blogMeta: BlogMetaInformation["meta"] = {
 
 export const blogTags: TagGroup["tags"] = [
   {
-    text: "properly",
-    route: "/surprise"
+    text: "properly"
   },
   {
-    text: "donkey",
-    route: "/long"
+    text: "donkey"
   },
   {
-    text: "atom",
-    route: "/four"
+    text: "atom"
   },
   {
-    text: "take",
-    route: "/no"
+    text: "take"
   },
   {
-    text: "talk",
-    route: "/myself"
+    text: "talk"
   },
   {
-    text: "enough",
-    route: "/article"
+    text: "enough"
   },
   {
-    text: "feathers",
-    route: "/official"
+    text: "feathers"
   },
   {
-    text: "root",
-    route: "/board"
+    text: "root"
   },
   {
-    text: "riding",
-    route: "/vegetable"
+    text: "riding"
   }
 ];
 
