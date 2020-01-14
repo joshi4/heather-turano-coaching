@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   makeOutset,
   makeReset,
@@ -8,31 +8,59 @@ import {
 } from "@heather-turano-coaching/design-system/utils";
 
 import { Tag, TagProps, StyledTag } from "./Tag";
+import { Position } from "@heather-turano-coaching/design-system/types/primitive";
 
-export interface TagGroup {
+export interface TagGroupProps {
   tags?: TagProps[];
+  alignment?: Omit<Position, "center">;
 }
 
-const StyledTagGroup = styled.ul`
+const StyledTagGroup = styled.ul<Required<Pick<TagGroupProps, "alignment">>>`
   ${makeReset("list")}
   ${makeOutset({ top: -16 })};
   ${makeInset({ vertical: 16 })};
+
+  ${({ alignment }) => {
+    if (alignment === "left") {
+      return css`
+        text-align: left;
+      `;
+    }
+    return css`
+      text-align: right;
+    `;
+  }}
 
   & > li,
   & > ${StyledTag}, & > a {
     display: inline-block;
     ${makeOutset({ top: 16 })};
 
-    &:not(:last-child) {
-      margin-right: ${makeSpace(16)};
-    }
+    ${({ alignment }) => {
+      if (alignment === "left") {
+        return css`
+          &:not(:last-child) {
+            margin-right: ${makeSpace(16)};
+          }
+        `;
+      }
+      return css`
+        &:not(:first-child) {
+          margin-left: ${makeSpace(16)};
+        }
+      `;
+    }}
   }
 `;
 
-export const TagGroup: FC<TagGroup> = ({ tags = [], children }) => (
+export const TagGroup: FC<TagGroupProps> = ({
+  tags = [],
+  alignment = "left",
+  children
+}) => (
   <>
     {tags && tags.length !== 0 && (
-      <StyledTagGroup>
+      <StyledTagGroup alignment={alignment}>
         {tags.map((props, index) => (
           <li key={index.toString()}>
             <Tag {...props} />
@@ -40,6 +68,10 @@ export const TagGroup: FC<TagGroup> = ({ tags = [], children }) => (
         ))}
       </StyledTagGroup>
     )}
-    {children && <StyledTagGroup as="div">{children}</StyledTagGroup>}
+    {children && (
+      <StyledTagGroup as="div" alignment={alignment}>
+        {children}
+      </StyledTagGroup>
+    )}
   </>
 );

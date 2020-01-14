@@ -79,7 +79,8 @@ export const BlogCard: FC<BlogCardProps> = ({
   title,
   social,
   excerpt,
-  tags
+  tags,
+  children
 }) => {
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
 
@@ -112,6 +113,7 @@ export const BlogCard: FC<BlogCardProps> = ({
         </StyledCopySection>
       </VertialRhythm>
       {type === "featured" && tags}
+      {children}
     </StyledBlogCard>
   );
 };

@@ -21,6 +21,7 @@ import { formatLongDate } from "../utils";
 import { getAllPosts, getAllTags } from "../api";
 import { TagsSection } from "../components/TagsSection";
 import { CategorySection } from "../components/CategorySection";
+import { ContinueReadingLink } from "../components";
 
 type BaseNavItem = { label: string; route: string };
 
@@ -102,7 +103,9 @@ const IndexPage: NextPage<IndexPageProps> = ({
               title={fp.title as string}
               excerpt={fp.excerpt as string}
               tags={<TagsSection tags={fp.tags} />}
-            />
+            >
+              <ContinueReadingLink href={fp.slug} />
+            </BlogCard>
           </BlogContainer>
           {posts.map((post, index) => (
             <BlogContainer
@@ -127,8 +130,10 @@ const IndexPage: NextPage<IndexPageProps> = ({
                 }}
                 title={post.title as string}
                 excerpt={post.excerpt as string}
-                tags={<TagsSection tags={post.tags} />}
-              />
+                tags={<TagsSection tags={post.tags} alignment="right" />}
+              >
+                <ContinueReadingLink href={post.slug} />
+              </BlogCard>
             </BlogContainer>
           ))}
         </StyledBlogContainer>

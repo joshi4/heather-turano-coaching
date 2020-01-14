@@ -3,7 +3,7 @@ import {
   BlogMetaInformation,
   BlogSocialOptions
 } from "../src/blog/blog.types";
-import { TagGroup } from "../src/tags";
+import { TagGroupProps } from "../src/tags";
 import React, { FC } from "react";
 import { Copy, Heading } from "../src/typography";
 import { Image } from "../src/assets";
@@ -19,7 +19,7 @@ export const blogMeta: BlogMetaInformation["meta"] = {
   datePublished: "June 25th, 2019"
 };
 
-export const blogTags: TagGroup["tags"] = [
+export const blogTags: TagGroupProps["tags"] = [
   {
     text: "properly"
   },

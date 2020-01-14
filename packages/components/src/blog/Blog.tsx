@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { TagGroup } from "../tags";
+import { TagGroup, TagGroupProps } from "../tags";
 
 import {
   BlogAuthor,
@@ -16,7 +16,7 @@ import { Section } from "../layouts";
 type BlogProps = BlogAuthor &
   BlogMetaInformation &
   BlogSocialOptions &
-  TagGroup & {
+  TagGroupProps & {
     heroImg?: string;
     heroAlt?: string;
     title: string;
