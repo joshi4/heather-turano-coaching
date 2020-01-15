@@ -6,9 +6,6 @@ import styled from "styled-components";
 import {
   BlogContainer,
   BlogCard,
-  Section,
-  Title,
-  Copy,
   HeaderNav,
   HeaderNavLink,
   HeaderNavLinkContent,
@@ -20,8 +17,20 @@ import {
 import { formatLongDate } from "../utils";
 import { getAllPosts, getAllTags } from "../api";
 import { TagsSection } from "../components/TagsSection";
-import { CategorySection } from "../components/CategorySection";
+// import { CategorySection } from "../components/CategorySection";
 import { ContinueReadingLink } from "../components";
+import {
+  LayoutContainer,
+  LayoutColumn,
+  LayoutBlock,
+  LayoutBlockTitle
+} from "../components/layout";
+import {
+  makeSize,
+  makeSpace
+} from "@heather-turano-coaching/design-system/utils";
+
+const mandala = require("../public/assets/mandala.png").default;
 
 type BaseNavItem = { label: string; route: string };
 
@@ -39,8 +48,22 @@ type IndexPageProps = PostObject & {
 const StyledIndexPage = styled.div`
   height: 100%;
   width: 100%;
-  z-index: -1;
+  z-index: -2;
   background-image: linear-gradient(180deg, transparent 0%, #f4f5f5 20%);
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    background-image: url(${mandala});
+    height: ${makeSize({ custom: 1700 })};
+    min-width: ${makeSize({ custom: 1700 })};
+    left: ${makeSpace({ custom: 408 })};
+    top: ${makeSpace({ custom: 112 })};
+    opacity: 0.5;
+    z-index: -1;
+  }
 `;
 
 const StyledBlogContainer = styled.div`
@@ -53,13 +76,13 @@ export const logos = {
 };
 
 const IndexPage: NextPage<IndexPageProps> = ({
-  featuredPost,
+  // featuredPost,
   posts,
-  tags: { tags: allTags },
+  // tags: { tags: allTags },
   headerNavLinks,
   footerNavLinks: { rightNavItems, terms }
 }) => {
-  const fp = featuredPost[0];
+  // const fp = featuredPost[0];
 
   return (
     <>
@@ -75,74 +98,94 @@ const IndexPage: NextPage<IndexPageProps> = ({
         ))}
       />
       <StyledIndexPage>
-        <Section styleType="blank">
-          <Title size="lg">Welcome to the community</Title>
-          <Copy type="paragraph" fontSize="sm">
-            Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam
-            eget risus varius blandit sit amet non magna.
-          </Copy>
-        </Section>
-        <CategorySection categories={allTags} />
-        <StyledBlogContainer>
-          <BlogContainer
+        {/* <CategorySection categories={allTags} /> */}
+        {/* <BlogContainer
+          type="featured"
+          imgSrc={fp.feature_image as string}
+          imgAlt={fp.slug}
+        >
+          <BlogCard
             type="featured"
-            imgSrc={fp.feature_image as string}
-            imgAlt={fp.slug}
+            author={{
+              avatarImg: fp.authors
+                ? (fp.authors[0].profile_image as string)
+                : "avatar",
+              name: fp.authors ? (fp.authors[0].name as string) : "avatar"
+            }}
+            meta={{
+              datePublished: formatLongDate(fp.published_at as string)
+            }}
+            title={fp.title as string}
+            excerpt={fp.excerpt as string}
+            tags={<TagsSection tags={fp.tags} />}
           >
-            <BlogCard
-              type="featured"
-              author={{
-                avatarImg: fp.authors
-                  ? (fp.authors[0].profile_image as string)
-                  : "avatar",
-                name: fp.authors ? (fp.authors[0].name as string) : "avatar"
-              }}
-              meta={{
-                datePublished: formatLongDate(fp.published_at as string)
-              }}
-              title={fp.title as string}
-              excerpt={fp.excerpt as string}
-              tags={<TagsSection tags={fp.tags} />}
-            >
-              <ContinueReadingLink
-                href={`/post/[slug]`}
-                as={`/post/${fp.slug}`}
-              />
-            </BlogCard>
-          </BlogContainer>
-          {posts.map((post, index) => (
-            <BlogContainer
-              key={post.id}
-              type="regular"
-              imgSrc={post.feature_image as string}
-              imgAlt={post.slug}
-              contentSide={index % 2 ? "left" : "right"}
-            >
-              <BlogCard
-                type="regular"
-                author={{
-                  avatarImg: post.authors
-                    ? (post.authors[0].profile_image as string)
-                    : "avatar",
-                  name: post.authors
-                    ? (post.authors[0].name as string)
-                    : "avatar"
-                }}
-                meta={{
-                  datePublished: formatLongDate(post.published_at as string)
-                }}
-                title={post.title as string}
-                excerpt={post.excerpt as string}
-                tags={<TagsSection tags={post.tags} alignment="right" />}
-              >
-                <ContinueReadingLink
-                  href="post/[slug]"
-                  as={`/post/${post.slug}`}
-                />
-              </BlogCard>
-            </BlogContainer>
-          ))}
-        </StyledBlogContainer>
+            <ContinueReadingLink
+              href={`/post/[slug]`}
+              as={`/post/${fp.slug}`}
+            />
+          </BlogCard>
+        </BlogContainer> */}
+        <LayoutContainer>
+          <LayoutColumn colWidth={628}>
+            <LayoutBlock>
+              <LayoutBlockTitle title="Featured Category" />
+              <div>testing</div>
+            </LayoutBlock>
+            <LayoutBlock>
+              <LayoutBlockTitle title="Recent Posts" />
+              <StyledBlogContainer>
+                {posts.map((post, index) => (
+                  <BlogContainer
+                    key={post.id}
+                    type="regular"
+                    imgSrc={post.feature_image as string}
+                    imgAlt={post.slug}
+                    contentSide={index % 2 ? "left" : "right"}
+                  >
+                    <BlogCard
+                      type="regular"
+                      author={{
+                        avatarImg: post.authors
+                          ? (post.authors[0].profile_image as string)
+                          : "avatar",
+                        name: post.authors
+                          ? (post.authors[0].name as string)
+                          : "avatar"
+                      }}
+                      meta={{
+                        datePublished: formatLongDate(
+                          post.published_at as string
+                        )
+                      }}
+                      title={post.title as string}
+                      excerpt={post.excerpt as string}
+                      tags={<TagsSection tags={post.tags} alignment="right" />}
+                    >
+                      <ContinueReadingLink
+                        href="post/[slug]"
+                        as={`/post/${post.slug}`}
+                      />
+                    </BlogCard>
+                  </BlogContainer>
+                ))}
+              </StyledBlogContainer>
+            </LayoutBlock>
+          </LayoutColumn>
+          <LayoutColumn>
+            <LayoutBlock>
+              <LayoutBlockTitle title="Subscribe" />
+              <div>testing</div>
+            </LayoutBlock>
+            <LayoutBlock>
+              <LayoutBlockTitle title="Daily Inspiration" />
+              <div>testing</div>
+            </LayoutBlock>
+            <LayoutBlock>
+              <LayoutBlockTitle title="Recent Contributors" />
+              <div>testing</div>
+            </LayoutBlock>
+          </LayoutColumn>
+        </LayoutContainer>
       </StyledIndexPage>
       <FooterNav
         leftNav={{
