@@ -33,7 +33,12 @@ class MyDocument extends Document {
   render() {
     return (
       <Html style={{ margin: 0, padding: 0 }}>
-        <Head />
+        <Head>
+          <script
+            src="https://kit.fontawesome.com/3807d27162.js"
+            crossOrigin="anonymous"
+          ></script>
+        </Head>
         <body style={{ margin: 0, padding: 0 }}>
           <Main />
           <NextScript />

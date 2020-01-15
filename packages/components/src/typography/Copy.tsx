@@ -21,7 +21,9 @@ export type CopyProps = HTMLParagraph & {
 const BaseCopy = css`
   ${makeReset("paragraph")}
 `;
-const copyFontMap: { [key in CopyProps["type"]]: Partial<FontProperties> } = {
+export const copyFontMap: {
+  [key in CopyProps["type"]]: Partial<FontProperties>;
+} = {
   paragraph: {
     fontFamily: "Raleway"
   },

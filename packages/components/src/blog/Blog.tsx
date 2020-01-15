@@ -1,6 +1,5 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import styled from "styled-components";
-import { TagGroup, TagGroupProps } from "../tags";
 
 import {
   BlogAuthor,
@@ -9,19 +8,20 @@ import {
 } from "./blog.types";
 import { Hero } from "../misc";
 import { BlogAvatar } from "./BlogAvatar";
-import { Heading, VertialRhythm } from "../typography";
+import { Heading, Content } from "../typography";
 import { BlogSocialLinks } from "./BlogSocialLinks";
 import { Section } from "../layouts";
 
 type BlogProps = BlogAuthor &
   BlogMetaInformation &
-  BlogSocialOptions &
-  TagGroupProps & {
+  BlogSocialOptions & {
     heroImg?: string;
     heroAlt?: string;
     title: string;
     prevBlogRoute?: string;
     nextBlogRoute?: string;
+    tags?: ReactNode;
+    html: string;
   };
 
 const StyledBlogHero = styled.header``;
@@ -33,8 +33,8 @@ export const Blog: FC<BlogProps> = ({
   heroImg,
   heroAlt = "hero",
   title,
-  children,
-  tags
+  tags,
+  html
 }) => (
   <>
     <StyledBlogHero>
@@ -46,13 +46,10 @@ export const Blog: FC<BlogProps> = ({
         author={author}
         meta={meta}
       />
-      <VertialRhythm>
-        <Heading fontSize="h1">{title}</Heading>
-        {children}
-      </VertialRhythm>
-      {tags && <TagGroup tags={tags} />}
+      <Heading fontSize="h1">{title}</Heading>
+      <Content htmlContent={html} />
+      {tags}
       <BlogSocialLinks linkStyle="grayscale" social={social} />
     </Section>
-    {/* <Section styleType="blog-page"></Section> */}
   </>
 );

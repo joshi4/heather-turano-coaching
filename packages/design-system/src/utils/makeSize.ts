@@ -24,18 +24,43 @@ type SnapToGrid = (
   options?: { multiplier: number }
 ) => string;
 
-const sizeUnitArr: SizeUnits[] = ["em", "px", "rem"];
+const sizeUnitArr: SizeUnits[] = ["raw", "em", "px", "rem"];
 const sizeArr = Object.keys(sizeConfig.fontSizeScaleMap);
 
-const snapToGrid: SnapToGrid = (fontSize, baselineGrid, options) => {
-  const sep = fontSize.split(/(em|rem|px)/g);
-  const value = Number(sep[0]);
-  const transformedValue = options?.multiplier
-    ? value * options.multiplier
-    : value;
+const separateSizeValueFromUnits = (
+  size: string
+): { value: number; units: string } => {
+  const sep = size.split(/(em|rem|px)/g);
+  return {
+    value: Number(sep[0]),
+    units: sep[1]
+  };
+};
+
+const snapValueToBaselineGrid = ({
+  value,
+  baselineGrid,
+  multiplier = 1
+}: {
+  value: number;
+  baselineGrid: number;
+  multiplier?: number;
+}) => {
+  const transformedValue = value * multiplier;
+
   const snappedValue =
     Math.round(transformedValue / baselineGrid) * baselineGrid;
-  const units = sep[1];
+  return snappedValue;
+};
+
+const snapToGrid: SnapToGrid = (fontSize, baselineGrid, options) => {
+  const { value, units } = separateSizeValueFromUnits(fontSize);
+  const snappedValue = snapValueToBaselineGrid({
+    value,
+    baselineGrid,
+    multiplier: options?.multiplier
+  });
+
   return `${snappedValue}${units}`;
 };
 
@@ -44,20 +69,21 @@ type ConvertToUnits = (value: string | number, unit?: SizeUnits) => string;
 export const convertToUnits: ConvertToUnits = (
   value,
   unit = sizeConfig.sizeUnits
-): string => {
+) => {
   if (unit === "em") return em(value, sizeConfig.documentFontSize);
   if (unit === "rem") return rem(value, sizeConfig.documentFontSize);
   return value as string;
 };
 
-const createSizeUnitMap = (sizeFn: SizeFn) =>
+const createSizeUnitMap = (getSizeValueFn: SizeFn) =>
   sizeArr.reduce(
     (sAccum, size) => ({
       ...sAccum,
       [size]: sizeUnitArr.reduce(
         (uAccum, unit) => ({
           ...uAccum,
-          [unit]: convertToUnits(sizeFn(size as Size), unit)
+          [unit]: convertToUnits(getSizeValueFn(size as Size), unit),
+          raw: separateSizeValueFromUnits(getSizeValueFn(size as Size)).value
         }),
         {}
       )

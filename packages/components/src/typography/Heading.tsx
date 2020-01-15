@@ -20,36 +20,58 @@ const BaseHeading = css`
   ${makeReset("heading")};
 `;
 
-type HeadingStyleProps = Required<Pick<HeadingProps, "fontColor">>;
+const defaultFontColor: ColorProperties = {
+  scalable: {
+    color: "gray",
+    scale: 0
+  }
+};
 
-const StyledH1 = styled.h1<HeadingStyleProps>`
-  ${BaseHeading};
-  ${({ fontColor }) =>
+export const CSSH1 = css<HeadingProps>`
+  ${({ fontColor = defaultFontColor }) =>
     makeFont({ fontSize: "h1", fontFamily: "Montserrat", fontColor })}
 `;
 
-const StyledH2 = styled.h2<HeadingProps>`
-  ${BaseHeading};
-  ${({ fontColor }) =>
+export const CSSH2 = css<HeadingProps>`
+  ${({ fontColor = defaultFontColor }) =>
     makeFont({ fontSize: "h2", fontFamily: "Montserrat", fontColor })};
 `;
-
-const StyledH3 = styled.h3<HeadingProps>`
-  ${BaseHeading};
-  ${({ fontColor }) =>
+export const CSSH3 = css<HeadingProps>`
+  ${({ fontColor = defaultFontColor }) =>
     makeFont({ fontSize: "h3", fontFamily: "Montserrat", fontColor })};
 `;
-
-const StyledH4 = styled.h4<HeadingProps>`
-  ${BaseHeading};
-  ${({ fontColor }) =>
+export const CSSH4 = css<HeadingProps>`
+  ${({ fontColor = defaultFontColor }) =>
     makeFont({ fontSize: "h4", fontFamily: "Raleway", fontColor })};
 `;
-
-const StyledH5 = styled.h5<HeadingProps>`
-  ${BaseHeading};
-  ${({ fontColor }) =>
+export const CSSH5 = css<HeadingProps>`
+  ${({ fontColor = defaultFontColor }) =>
     makeFont({ fontSize: "h5", fontFamily: "Raleway", fontColor })};
+`;
+
+export const StyledH1 = styled.h1<HeadingProps>`
+  ${BaseHeading};
+  ${CSSH1}
+`;
+
+export const StyledH2 = styled.h2<HeadingProps>`
+  ${BaseHeading};
+  ${CSSH2}
+`;
+
+export const StyledH3 = styled.h3<HeadingProps>`
+  ${BaseHeading};
+  ${CSSH3}
+`;
+
+export const StyledH4 = styled.h4<HeadingProps>`
+  ${BaseHeading};
+  ${CSSH4}
+`;
+
+export const StyledH5 = styled.h5<HeadingProps>`
+  ${BaseHeading};
+  ${CSSH5}
 `;
 
 export const Heading: FC<HeadingProps> = ({

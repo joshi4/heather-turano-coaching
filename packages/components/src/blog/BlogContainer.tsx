@@ -130,25 +130,25 @@ export const BlogContainer: FC<BlogContainerProps> = ({
   children
 }) => {
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
+  const isSmallerThanTablet = windowWidth < tabletPortrait;
 
-  const blogContentImageSize = {
-    manualHeight: "100%",
-    manualWidth: "100%"
-  };
+  const featImageDim = isSmallerThanTablet
+    ? { manualHeight: "100%" }
+    : { manualWidth: "100%" };
 
-  windowWidth < tabletPortrait
-    ? delete blogContentImageSize.manualHeight
-    : delete blogContentImageSize.manualWidth;
+  const regImageDim = isSmallerThanTablet
+    ? { manualWidth: "100%" }
+    : { manualHeight: "100%" };
 
   return (
     <StyledBlogContainer type={type}>
       {type === "featured" && (
-        <Image src={imgSrc} alt={imgAlt} manualWidth="100%" />
+        <Image src={imgSrc} alt={imgAlt} {...featImageDim} />
       )}
       <Section styleType={type === "featured" ? "featured-blog" : "blog"}>
         {type === "regular" && (
           <StyledBlogContent contentSide={contentSide}>
-            <Image src={imgSrc} alt={imgAlt} {...blogContentImageSize} />
+            <Image src={imgSrc} alt={imgAlt} {...regImageDim} />
             {windowWidth < tabletPortrait ? (
               children
             ) : (

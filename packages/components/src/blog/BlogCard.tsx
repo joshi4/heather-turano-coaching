@@ -1,10 +1,13 @@
 import React, { FC, ReactNode } from "react";
-import { Heading, Copy, VertialRhythm } from "../typography";
 import styled, { css } from "styled-components";
+
+import { Heading, Copy } from "../typography";
 import {
   makeInset,
   makeResponsive,
-  makeColor
+  makeColor,
+  // makeOutset,
+  makeRhythm
 } from "@heather-turano-coaching/design-system/utils";
 import { useBreakpoints } from "../hooks";
 import {
@@ -45,6 +48,11 @@ const StyledBlogCard = styled.div<
       ${makeInset({ top: 28, bottom: social ? 60 : 28, horizontal: 28 })};
     `;
   }}
+
+  h2, h3, h4 {
+    line-height: 1.2;
+    ${makeRhythm({ top: 1, bottom: 1 })};
+  }
 `;
 
 const StyledCopySection = styled.div<Required<Pick<BlogCardProps, "type">>>`
@@ -70,6 +78,10 @@ const StyledCopySection = styled.div<Required<Pick<BlogCardProps, "type">>>`
       `;
     }}
   }
+
+  & > p {
+    ${makeRhythm({ top: 1, bottom: 1 })};
+  }
 `;
 
 export const BlogCard: FC<BlogCardProps> = ({
@@ -90,30 +102,25 @@ export const BlogCard: FC<BlogCardProps> = ({
         <BlogAvatar type="stacked" meta={meta} author={author} />
       )}
       {type === "regular" && tags}
-      <VertialRhythm>
-        <Heading
-          fontSize={type === "featured" ? "h2" : "h3"}
-          fontColor={{ scalable: { color: "gray" } }}
-        >
-          {title}
-        </Heading>
-        {type === "regular" && (
-          <BlogAvatar type="inline" meta={meta} author={author} />
-        )}
-        <StyledCopySection type={type}>
-          <Copy type="paragraph">{excerpt}</Copy>
-          <BlogSocialLinks
-            social={social}
-            orientation={
-              type === "regular" || windowWidth < tabletPortrait
-                ? "horizontal"
-                : "vertical"
-            }
-          />
-        </StyledCopySection>
-      </VertialRhythm>
-      {type === "featured" && tags}
+      <Heading fontSize="h3" fontColor={{ scalable: { color: "gray" } }}>
+        {title}
+      </Heading>
+      {type === "regular" && (
+        <BlogAvatar type="inline" meta={meta} author={author} />
+      )}
+      <StyledCopySection type={type}>
+        <Copy type="paragraph">{excerpt}</Copy>
+        <BlogSocialLinks
+          social={social}
+          orientation={
+            type === "regular" || windowWidth < tabletPortrait
+              ? "horizontal"
+              : "vertical"
+          }
+        />
+      </StyledCopySection>
       {children}
+      {type === "featured" && tags}
     </StyledBlogCard>
   );
 };

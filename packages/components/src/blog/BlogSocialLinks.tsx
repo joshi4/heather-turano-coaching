@@ -79,8 +79,6 @@ export const BlogSocialLinks: FC<BlogSocialLinksProps> = ({
 
   const iconSize: SizeProperties = linkStyle !== "grayscale" ? "sm" : "md";
 
-  console.log(social);
-
   return social ? (
     <StyledBlogSocial orientation={orientation} linkStyle={linkStyle}>
       {social.facebook && (

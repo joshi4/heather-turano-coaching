@@ -104,7 +104,10 @@ const IndexPage: NextPage<IndexPageProps> = ({
               excerpt={fp.excerpt as string}
               tags={<TagsSection tags={fp.tags} />}
             >
-              <ContinueReadingLink href={fp.slug} />
+              <ContinueReadingLink
+                href={`/post/[slug]`}
+                as={`/post/${fp.slug}`}
+              />
             </BlogCard>
           </BlogContainer>
           {posts.map((post, index) => (
@@ -132,7 +135,10 @@ const IndexPage: NextPage<IndexPageProps> = ({
                 excerpt={post.excerpt as string}
                 tags={<TagsSection tags={post.tags} alignment="right" />}
               >
-                <ContinueReadingLink href={post.slug} />
+                <ContinueReadingLink
+                  href="post/[slug]"
+                  as={`/post/${post.slug}`}
+                />
               </BlogCard>
             </BlogContainer>
           ))}

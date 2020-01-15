@@ -4,6 +4,8 @@ type ResetElements =
   | "list"
   | "button"
   | "input"
+  | "figure"
+  | "blockquote"
   | "anchor";
 
 type Resets = { [key in ResetElements]: any };
@@ -45,6 +47,14 @@ const resets: Resets = {
   anchor: {
     textDecoration: "none",
     display: "inline-block"
+  },
+  figure: {
+    margin: 0,
+    padding: 0
+  },
+  blockquote: {
+    margin: 0,
+    padding: 0
   }
 };
 

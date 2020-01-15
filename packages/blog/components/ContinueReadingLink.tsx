@@ -1,6 +1,7 @@
 import React, { FC } from "react";
-import Link from "next/link";
-import { Copy } from "@heather-turano-coaching/components";
+import Link, { LinkProps } from "next/link";
+import { Button } from "@heather-turano-coaching/components";
+// import { Copy, Icon, Button } from "@heather-turano-coaching/components";
 import {
   makeOutset,
   makeColor
@@ -15,17 +16,24 @@ const StyledContinueReadingLink = styled.div`
   }
 `;
 
-export const ContinueReadingLink: FC<{ href: string }> = ({ href }) => (
+export const ContinueReadingLink: FC<LinkProps> = props => (
   <StyledContinueReadingLink>
-    <Link href={`post/${href}`}>
+    <Link {...props}>
       <a>
-        <Copy
+        <Button styleType="primary" label="Keep reading" />
+        {/* <Copy
           type="label"
-          fontSize="md"
+          fontSize="sm"
           fontColor={{ scalable: { color: "accent" } }}
         >
-          Continue reading
+          Keep reading
         </Copy>
+        <Icon
+          iconSize="sm"
+          iconColor={{ scalable: { color: "accent" } }}
+          iconWeight="fas"
+          icon="long-arrow-alt-right"
+        /> */}
       </a>
     </Link>
   </StyledContinueReadingLink>
