@@ -59,6 +59,29 @@ const StyledContent = styled.section`
       ${makeInset({ horizontal: 60 })};
     }
 
+    a {
+      ${makeReset("anchor")};
+      display: inline;
+      background: ${makeColor({
+        scalable: { color: "accent", scale: 3 }
+      })};
+      text-decoration: underline;
+      text-decoration-color: ${makeColor({
+        scalable: { color: "gray", scale: 0 }
+      })};
+      transition: background .15s ease-in-out;
+
+      &:hover {
+        background: ${makeColor({
+          scalable: { color: "accent", scale: 2 }
+        })};
+      }
+
+      &:visited{
+        color: ${makeColor({ scalable: { color: "gray" } })};
+      }
+    }
+
     li {
       ${copyFontStyle}
     }
