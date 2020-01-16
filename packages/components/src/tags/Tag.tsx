@@ -14,7 +14,7 @@ export interface TagProps {
 
 export const StyledTag = styled.div`
   display: inline-block;
-  ${makeInset({ horizontal: 12 })}
+  ${makeInset({ horizontal: 12 })};
   background: ${makeColor({ scalable: { color: "secondary", scale: 3 } })};
   border-radius: ${makeSpace({ custom: 2 })};
   text-transform: uppercase;

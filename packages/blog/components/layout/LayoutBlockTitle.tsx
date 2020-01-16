@@ -23,9 +23,9 @@ const StyledLayoutBlockTitle = styled.header`
   h5 {
     text-transform: uppercase;
     ${makeFont({
-      fontSize: "xs",
+      fontSize: "sm",
       fontWeight: "bold",
-      lineHeight: "md",
+      lineHeight: "lg",
       fontColor: { fixed: "dark" }
     })}
   }

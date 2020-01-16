@@ -18,7 +18,7 @@ export interface TagGroupProps {
 const StyledTagGroup = styled.ul<Required<Pick<TagGroupProps, "alignment">>>`
   ${makeReset("list")}
   ${makeOutset({ top: -16 })};
-  ${makeInset({ vertical: 16 })};
+  /* ${makeInset({ vertical: 16 })}; */
 
   ${({ alignment }) => {
     if (alignment === "left") {
@@ -34,7 +34,6 @@ const StyledTagGroup = styled.ul<Required<Pick<TagGroupProps, "alignment">>>`
   & > li,
   & > ${StyledTag}, & > a {
     display: inline-block;
-    ${makeOutset({ top: 16 })};
 
     ${({ alignment }) => {
       if (alignment === "left") {
@@ -50,6 +49,10 @@ const StyledTagGroup = styled.ul<Required<Pick<TagGroupProps, "alignment">>>`
         }
       `;
     }}
+
+    & > * {
+      ${makeOutset({ top: 16 })};
+    }
   }
 `;
 

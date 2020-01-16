@@ -1,3 +1,3 @@
-export * from "./CategorySection";
-export * from "./TagsSection";
-export * from "./ContinueReadingLink";
+export * from "./sections";
+export * from "./blog";
+export * from "./layout";

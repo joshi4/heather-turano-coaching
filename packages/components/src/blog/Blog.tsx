@@ -27,8 +27,9 @@ type BlogProps = BlogAuthor &
 const StyledBlogHero = styled.header``;
 
 export const Blog: FC<BlogProps> = ({
-  author,
-  meta,
+  authorName,
+  avatarImg,
+  datePublished,
   social,
   heroImg,
   heroAlt = "hero",
@@ -43,8 +44,9 @@ export const Blog: FC<BlogProps> = ({
     <Section styleType="blog-page">
       <BlogAvatar
         type={heroImg ? "stacked" : "inline"}
-        author={author}
-        meta={meta}
+        authorName={authorName}
+        avatarImg={avatarImg}
+        datePublished={datePublished}
       />
       <Heading fontSize="h1">{title}</Heading>
       <Content htmlContent={html} />

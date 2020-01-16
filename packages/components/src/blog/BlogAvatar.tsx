@@ -59,18 +59,23 @@ const StyledBlogAvatar = styled.div<Required<Pick<BlogAvatarProps, "type">>>`
 
 export const BlogAvatar: FC<BlogAvatarProps> = ({
   type,
-  author: { avatarImg, name },
-  meta: { datePublished }
+  avatarImg,
+  authorName,
+  datePublished
 }) => (
   <StyledBlogAvatar type={type}>
-    <Avatar image={avatarImg} alt={name} size={{ custom: avatarSize[type] }} />
+    <Avatar
+      image={avatarImg}
+      alt={authorName}
+      size={{ custom: avatarSize[type] }}
+    />
     <div className="alt">
       <Copy
         type="caption"
         fontSize="xs"
         fontColor={{ scalable: { color: "secondary" } }}
       >
-        {name}
+        {authorName}
       </Copy>
       {type === "stacked" && (
         <Copy

@@ -1,16 +1,31 @@
 import React, { FC } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { makeSize } from "@heather-turano-coaching/design-system/utils";
 import { makeFlex } from "@heather-turano-coaching/components";
 
 export const gutter = 40;
 
-const StyledLayoutContainer = styled.section`
+interface LayoutContainerProps {
+  layoutType?: "stacked" | "inline";
+}
+
+const StyledLayoutContainer = styled.section<Required<LayoutContainerProps>>`
   max-width: ${makeSize({ custom: 1024 })};
-  ${makeFlex("row", "flex-start", "flex-start")};
   margin: 0 auto;
+
+  ${({ layoutType }) =>
+    layoutType === "inline"
+      ? makeFlex("row", "flex-start", "flex-start")
+      : css`
+          display: block;
+        `};
 `;
 
-export const LayoutContainer: FC = ({ children }) => (
-  <StyledLayoutContainer>{children}</StyledLayoutContainer>
+export const LayoutContainer: FC<LayoutContainerProps> = ({
+  layoutType = "inline",
+  children
+}) => (
+  <StyledLayoutContainer layoutType={layoutType}>
+    {children}
+  </StyledLayoutContainer>
 );

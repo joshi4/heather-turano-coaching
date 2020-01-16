@@ -1,7 +1,16 @@
-import React from "react";
+import React, { Fragment } from "react";
 // import App from 'next/app'
 import { createGlobalStyle } from "styled-components";
 import { makeResponsive } from "@heather-turano-coaching/design-system/utils";
+import {
+  HeaderNav,
+  HeaderNavLink,
+  HeaderNavLinkContent,
+  FooterNav,
+  FooterNavLink,
+  FooterNavLinkContent
+} from "@heather-turano-coaching/components";
+import { logos } from ".";
 
 const GlobalStyle = createGlobalStyle`
   html{
@@ -12,7 +21,51 @@ const GlobalStyle = createGlobalStyle`
       `
     })}
   }
+
+  body {
+    overflow-x: hidden;
+  }
 `;
+
+/**
+ * @todo Get this data from Contentful API
+ */
+const headerNavLinks = [
+  {
+    label: "home",
+    route: "https://heatherturanocoaching.com"
+  },
+  {
+    label: "about",
+    route: "https://heatherturanocoaching.com/about"
+  },
+  {
+    label: "services",
+    route: "https://heatherturanocoaching.com/services"
+  },
+  {
+    label: "blog",
+    route: "/",
+    forceActiveState: true
+  }
+];
+const footerNavLinks = {
+  rightNavItems: [],
+  terms: [
+    {
+      label: "Privacy Policy",
+      route: "/privacy-policy"
+    },
+    {
+      label: "Terms of Service",
+      route: "/terms-of-service"
+    },
+    {
+      label: "Cookie Policy",
+      route: "/cookie-policy"
+    }
+  ]
+};
 
 // @ts-ignore
 const MyApp = ({ Component, pageProps }) => {
@@ -20,7 +73,55 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <>
       <GlobalStyle />
+      <HeaderNav
+        homeRoute="https://heatherturanocoaching.com"
+        logos={logos}
+        navItems={headerNavLinks.map(({ label, route }) => (
+          <HeaderNavLink key={label} forceActiveState={label === "blog"}>
+            <a href={route}>
+              <HeaderNavLinkContent>{label}</HeaderNavLinkContent>
+            </a>
+          </HeaderNavLink>
+        ))}
+      />
       <Component {...pageProps} />
+      <FooterNav
+        leftNav={{
+          title: "Browse",
+          items: headerNavLinks.map(({ label, route }) => (
+            <FooterNavLink key={label}>
+              <a href={route}>
+                <FooterNavLinkContent>{label}</FooterNavLinkContent>
+              </a>
+            </FooterNavLink>
+          ))
+        }}
+        rightNav={{
+          title: "Explore",
+          items:
+            footerNavLinks.rightNavItems.length > 0
+              ? footerNavLinks.rightNavItems.map(({ label, route }) => (
+                  <FooterNavLink key={label}>
+                    <a href={route}>
+                      <FooterNavLinkContent>{label}</FooterNavLinkContent>
+                    </a>
+                  </FooterNavLink>
+                ))
+              : null
+        }}
+        terms={footerNavLinks.terms.map(({ label, route }, index) => (
+          <Fragment key={label}>
+            <FooterNavLink>
+              <a href={route}>
+                <FooterNavLinkContent>{label}</FooterNavLinkContent>
+              </a>
+            </FooterNavLink>
+            {index !== footerNavLinks.terms.length - 1 && (
+              <FooterNavLinkContent>&nbsp;|&nbsp;</FooterNavLinkContent>
+            )}
+          </Fragment>
+        ))}
+      />
     </>
   );
 };

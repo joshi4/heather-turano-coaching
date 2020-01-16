@@ -42,7 +42,7 @@ export const CSSH3 = css<HeadingProps>`
 `;
 export const CSSH4 = css<HeadingProps>`
   ${({ fontColor = defaultFontColor }) =>
-    makeFont({ fontSize: "h4", fontFamily: "Raleway", fontColor })};
+    makeFont({ fontSize: "h4", fontFamily: "Montserrat", fontColor })};
 `;
 export const CSSH5 = css<HeadingProps>`
   ${({ fontColor = defaultFontColor }) =>

@@ -14,7 +14,6 @@ import {
 
 import { useBreakpoints } from "../hooks";
 import { sharedHorizontalPadding, sharedVerticalPadding } from "../shared";
-import { rgba } from "polished";
 
 interface HeaderNavProps {
   homeRoute?: string;
@@ -27,29 +26,23 @@ interface HeaderNavProps {
 
 const StyledHeaderNav = styled.header`
   box-sizing: border-box;
-  /* box-shadow: ${`0 1px 15px 0 ${rgba(
-    makeColor({
-      scalable: { color: "gray", scale: 3 }
-    }),
-    0.3
-  )}`}; */
+  ${makeResponsive({
+    beginAt: "tabletPortrait",
+    style: `
+        ${makeFlex("row", "space-between", "center")};
+        ${makeInset({
+          horizontal: sharedHorizontalPadding.tabletPortrait,
+          vertical: sharedVerticalPadding.tabletPortrait
+        })}
+      `
+  })};
+
   box-shadow: ${`0 1px 15px 0 ${makeColor({
     scalable: { color: "gray", scale: 3 }
   })}`};
   width: 100%;
   ${makeInset({
     bottom: sharedVerticalPadding.tabletPortrait
-  })}
-
-  ${makeResponsive({
-    beginAt: "tabletPortrait",
-    style: `
-      ${makeFlex("row", "space-between", "center")};
-      ${makeInset({
-        horizontal: sharedHorizontalPadding.tabletPortrait,
-        vertical: sharedVerticalPadding.tabletPortrait
-      })}
-    `
   })};
 
   & > nav {

@@ -37,13 +37,9 @@ const BlogPost: NextPage<BlogPostProps> = ({
     <Section styleType="blog-page">
       <BlogAvatar
         type={feature_image ? "stacked" : "inline"}
-        author={{
-          name: primary_author?.name as string,
-          avatarImg: primary_author?.profile_image as string
-        }}
-        meta={{
-          datePublished: formatLongDate(published_at as string)
-        }}
+        authorName={primary_author?.name as string}
+        avatarImg={primary_author?.profile_image as string}
+        datePublished={formatLongDate(published_at as string)}
       />
       <StyledBlogHeading>
         <Heading fontSize="h1">{title}</Heading>

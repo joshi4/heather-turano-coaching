@@ -10,12 +10,12 @@ import { Image } from "../src/assets";
 
 const img = require("./assets/stock/aquatic-plant-beautiful-bloom.jpg");
 
-export const blogAuthor: BlogAuthor["author"] = {
-  name: "heather turano",
+export const blogAuthor: BlogAuthor = {
+  authorName: "heather turano",
   avatarImg: require("./assets/htc-avatar.jpg")
 };
 
-export const blogMeta: BlogMetaInformation["meta"] = {
+export const blogMeta: BlogMetaInformation = {
   datePublished: "June 25th, 2019"
 };
 

@@ -14,14 +14,10 @@ export interface BlogSocialOptions {
 }
 
 export interface BlogAuthor {
-  author: {
-    avatarImg: string;
-    name: string;
-  };
+  avatarImg: string;
+  authorName: string;
 }
 
 export interface BlogMetaInformation {
-  meta: {
-    datePublished: string;
-  };
+  datePublished: string;
 }
