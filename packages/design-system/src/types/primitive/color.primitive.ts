@@ -5,7 +5,7 @@ export type ColorApplication =
   | "accent"
   | "gray"
   | "light";
-export type ColorFixed = "dark" | "light";
+export type ColorFixed = "dark" | "light" | "bright-green";
 export type ColorScalable = ColorApplication | ColorStateful;
 type Color = ColorScalable | ColorFixed;
 

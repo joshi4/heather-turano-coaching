@@ -8,7 +8,8 @@ export interface ColorConfig {
 export const colorConfig: ColorConfig = {
   fixed: {
     light: "#fff",
-    dark: "#000"
+    dark: "#000",
+    "bright-green": "#F9FFFF"
   },
   scalable: {
     primary: "#bf9f5a",

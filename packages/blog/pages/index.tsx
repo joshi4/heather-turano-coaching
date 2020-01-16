@@ -1,6 +1,6 @@
 import React from "react";
 import { NextPage } from "next";
-import { PostObject, PostOrPage } from "@tryghost/content-api";
+import { PostObject, PostOrPage, TagsObject } from "@tryghost/content-api";
 import styled from "styled-components";
 import Link from "next/link";
 
@@ -23,12 +23,14 @@ import {
   TagsSection
 } from "../components";
 import { formatLongDate } from "../utils";
-import { getAllPosts } from "../api";
+import { getAllPosts, getAllTags } from "../api";
+import { FeaturedCategory } from "../components/blocks/FeaturedCategory";
 
 const mandala = require("../public/assets/mandala.png").default;
 
 type IndexPageProps = PostObject & {
   featuredPosts: PostOrPage[];
+  tags: TagsObject["tags"];
 };
 
 const StyledIndexPage = styled.div`
@@ -79,7 +81,11 @@ export const logos = {
   inline: require("../public/assets/htc-logo-inline.svg").default
 };
 
-const IndexPage: NextPage<IndexPageProps> = ({ featuredPosts, posts }) => {
+const IndexPage: NextPage<IndexPageProps> = ({
+  featuredPosts,
+  posts,
+  tags
+}) => {
   return (
     <StyledIndexPage>
       <LayoutContainer layoutType="stacked">
@@ -89,7 +95,7 @@ const IndexPage: NextPage<IndexPageProps> = ({ featuredPosts, posts }) => {
         <LayoutColumn colWidth={628}>
           <LayoutBlock>
             <LayoutBlockTitle title="Featured Category" />
-            <div>testing</div>
+            <FeaturedCategory tags={tags} />
           </LayoutBlock>
           <LayoutBlock>
             <LayoutBlockTitle title="Recent Posts" />
@@ -141,13 +147,17 @@ const IndexPage: NextPage<IndexPageProps> = ({ featuredPosts, posts }) => {
 };
 
 IndexPage.getInitialProps = async (): Promise<IndexPageProps> => {
-  const [{ posts, meta }] = await Promise.all([getAllPosts()]);
+  const [{ posts, meta }, { tags }] = await Promise.all([
+    getAllPosts(),
+    getAllTags()
+  ]);
   return {
     featuredPosts: posts
       .filter(post => post.featured)
       .filter((_post, index) => index < 3),
     posts: posts.filter(post => !post.featured),
-    meta: meta
+    meta: meta,
+    tags
   };
 };
 

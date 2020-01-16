@@ -38,7 +38,8 @@ const scalableColorMap: ColorMapScalable = {
 
 const fixedColorMap: ColorMapFixed = {
   light: colorConfig.fixed.light,
-  dark: colorConfig.fixed.dark
+  dark: colorConfig.fixed.dark,
+  "bright-green": colorConfig.fixed["bright-green"]
 };
 
 export const makeColor = ({
