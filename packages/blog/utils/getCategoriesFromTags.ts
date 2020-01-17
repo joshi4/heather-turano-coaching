@@ -1,6 +1,6 @@
 import { Tag } from "@tryghost/content-api";
 
-const categoryDelimiter = "category-";
+export const categoryDelimiter = "category-";
 
 export const getCategoriesFromTags = (tags: Tag[]): Tag[] =>
   tags.reduce<Tag[]>((accum, tag) => {

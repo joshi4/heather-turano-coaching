@@ -9,3 +9,8 @@ export const getAllAssets = async (): Promise<AssetCollection> => {
   const assets = contentApi.getAssets();
   return assets;
 };
+
+export const getDailyInspiration = async (): Promise<any> => {
+  const inspirationBlock = await contentApi.getEntry("1QkIxHcttwLvQsXkfrPf7Q");
+  return inspirationBlock;
+};

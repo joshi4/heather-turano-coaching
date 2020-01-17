@@ -15,12 +15,13 @@ import { copyFontMap } from "./Copy";
 import { FontProperties } from "@heather-turano-coaching/design-system/types/composite";
 import { createImageBorder } from "../shared";
 
-const contentFontSize: FontProperties["fontSize"] = "sm";
+const contentLineHeight: FontProperties["fontSize"] = "md";
 
 const copyFontStyle = makeFont({
   ...copyFontMap["text"],
   fontWeight: "regular",
-  fontSize: contentFontSize
+  fontSize: "sm",
+  lineHeight: contentLineHeight
 });
 
 const StyledContent = styled.section`
@@ -34,28 +35,28 @@ const StyledContent = styled.section`
 
     h1 {
       ${CSSH2};
-      ${makeRhythm({ fontSize: contentFontSize, top: 3, bottom: 1 })};
+      ${makeRhythm({ fontSize: contentLineHeight, top: 3, bottom: 1 })};
     }
 
     h2 {
       ${CSSH3};
-      ${makeRhythm({ fontSize: contentFontSize, top: 3, bottom: 1 })};
+      ${makeRhythm({ fontSize: contentLineHeight, top: 3, bottom: 1 })};
       line-height: 1.2;
     }
 
     h3 {
       ${CSSH4};
-      ${makeRhythm({ fontSize: contentFontSize, top: 2, bottom: 1 })};
+      ${makeRhythm({ fontSize: contentLineHeight, top: 2, bottom: 1 })};
     }
 
     p {
       ${copyFontStyle}
-      ${makeRhythm({ fontSize: contentFontSize, top: 1, bottom: 0 })};
+      ${makeRhythm({ fontSize: contentLineHeight, top: 1, bottom: 0 })};
     }
 
     ol,
     ul {
-      ${makeRhythm({ fontSize: contentFontSize, top: 1, bottom: 1 })};
+      ${makeRhythm({ fontSize: contentLineHeight, top: 1, bottom: 1 })};
       ${makeInset({ horizontal: 60 })};
     }
 
@@ -93,7 +94,7 @@ const StyledContent = styled.section`
 
     figure {
       ${makeReset("figure")};
-      ${makeRhythm({ fontSize: contentFontSize, top: 2, bottom: 2 })};
+      ${makeRhythm({ fontSize: contentLineHeight, top: 2, bottom: 2 })};
       background: ${makeColor({ scalable: { color: "light", scale: 2 } })};
 
       figcaption {
@@ -101,7 +102,7 @@ const StyledContent = styled.section`
         text-align: center;
         ${makeFont({
           ...copyFontMap["paragraph"],
-          fontSize: contentFontSize,
+          fontSize: contentLineHeight,
           fontColor: { scalable: { color: "primary" } },
           fontStyle: "italic"
         })}
@@ -111,14 +112,14 @@ const StyledContent = styled.section`
     blockquote {
       ${makeReset("blockquote")};
       position: relative;
-      ${makeRhythm({ fontSize: contentFontSize, top: 2, bottom: 2 })};
+      ${makeRhythm({ fontSize: contentLineHeight, top: 2, bottom: 2 })};
       background: ${makeColor({ scalable: { color: "primary", scale: 3 } })};
       ${makeInset({ horizontal: 32, vertical: 32 })};
       margin-left: ${makeSpace("md")};
       margin-right: ${makeSpace("md")};
       ${makeFont({
         ...copyFontMap["paragraph"],
-        fontSize: contentFontSize,
+        fontSize: contentLineHeight,
         fontColor: { scalable: { color: "gray" } },
         fontStyle: "italic"
       })};

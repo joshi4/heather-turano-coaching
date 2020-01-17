@@ -7,7 +7,7 @@ interface LayoutBlockProps {}
 
 const StyledLayoutBlock = styled.div<LayoutBlockProps>`
   width: 100%;
-  ${makeOutset({ vertical: gutter })}
+  ${makeOutset({ bottom: gutter })}
 `;
 
 export const LayoutBlock: FC<LayoutBlockProps> = ({ children }) => (

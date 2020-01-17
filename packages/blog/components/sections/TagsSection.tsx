@@ -9,7 +9,7 @@ import Link from "next/link";
 
 interface TagSectionProps {
   tags?: GhostTag[];
-  filter?: "all" | "categories";
+  filter?: "tags" | "categories";
   alignment?: TagGroupProps["alignment"];
 }
 
@@ -25,7 +25,7 @@ const normalizeTagName = (
 
 export const TagsSection: FC<TagSectionProps> = ({
   tags = [],
-  filter = "all",
+  filter = "tags",
   ...restProps
 }) => (
   <>
@@ -39,7 +39,7 @@ export const TagsSection: FC<TagSectionProps> = ({
             return !tag.name?.includes("category-");
           })
           .map(tag => (
-            <Link key={tag.id} href={`tags/${tag.slug}`}>
+            <Link key={tag.id} href={`/${filter}/${tag.slug}`}>
               <a>
                 <Tag
                   key={tag.id}
