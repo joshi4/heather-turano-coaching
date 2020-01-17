@@ -99,7 +99,9 @@ export const BlogFeature: FC<{ featuredPosts: PostOrPage[] }> = ({
           }
         >
           <Link href={`/post/[slug]`} as={`/post/${fp.slug}`}>
-            <Button styleType="primary" label="Read more" />
+            <a>
+              <Button styleType="primary" label="Read more" />
+            </a>
           </Link>
         </BlogCard>
       </StyledFeaturedBlogContainer>

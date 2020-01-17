@@ -1,4 +1,3 @@
-export * from "./Blog";
 export * from "./BlogAvatar";
 export * from "./BlogCard";
 export * from "./BlogCategories";

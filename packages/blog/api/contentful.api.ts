@@ -14,3 +14,8 @@ export const getDailyInspiration = async (): Promise<any> => {
   const inspirationBlock = await contentApi.getEntry("1QkIxHcttwLvQsXkfrPf7Q");
   return inspirationBlock;
 };
+
+export const getBlockSubscribe = async (): Promise<any> => {
+  const blockSubscribe = await contentApi.getEntry("1kOLlbSRP798cVlw9sywNq");
+  return blockSubscribe;
+};

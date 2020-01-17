@@ -24,7 +24,7 @@ const CSSInputGroupMap: {
       margin-right: auto;
       width: 100%;
 
-      & + * {
+      &:not(:first-child) {
         ${makeOutset({ top: sharedElementSpacing })}
       }
     }

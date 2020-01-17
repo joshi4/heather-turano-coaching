@@ -10,9 +10,9 @@ export default {
 };
 
 export const stacked = () => (
-  <BlogAvatar type="stacked" meta={blogMeta} author={blogAuthor} />
+  <BlogAvatar type="stacked" {...blogMeta} {...blogAuthor} />
 );
 
 export const inline = () => (
-  <BlogAvatar type="inline" meta={blogMeta} author={blogAuthor} />
+  <BlogAvatar type="inline" {...blogMeta} {...blogAuthor} />
 );

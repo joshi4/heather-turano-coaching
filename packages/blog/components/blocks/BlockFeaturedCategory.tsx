@@ -54,7 +54,9 @@ export const BlockFeaturedCategory: FC<{ tags: Tag[] }> = ({ tags }) => {
           </Copy>
           <ButtonGroup>
             <Link href={`/categories/${cat.slug}`}>
-              <Button styleType="secondary" label="Explore this category" />
+              <a>
+                <Button styleType="secondary" label="Explore this category" />
+              </a>
             </Link>
           </ButtonGroup>
         </StyledBlockFeaturedCategory>

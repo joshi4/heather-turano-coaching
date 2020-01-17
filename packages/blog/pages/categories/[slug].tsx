@@ -4,8 +4,9 @@ import { PostObject } from "@tryghost/content-api";
 import {
   getPostByTagSlug,
   getAllCategories,
-  GetPostByTagApiResponse,
-  GetAllCategoriesApiResponse
+  GetAllCategoriesApiResponse,
+  getBlockSubscribe,
+  GetPostByTagApiResponse
 } from "../../api";
 import {
   PageContainer,
@@ -23,12 +24,16 @@ interface CategoryPageProps {
   category: string;
   categories: GetAllCategoriesApiResponse;
   posts: PostObject["posts"];
+  blocks: {
+    subscribe: any;
+  };
 }
 
 const CategoryPage: NextPage<CategoryPageProps> = ({
   categories,
   category,
-  posts
+  posts,
+  blocks: { subscribe }
 }) => {
   console.log(categories);
   return (
@@ -43,7 +48,7 @@ const CategoryPage: NextPage<CategoryPageProps> = ({
           <BlogPostList posts={posts} />
         </LayoutColumn>
         <LayoutColumn>
-          <BlockSubscribe />
+          <BlockSubscribe subscribe={subscribe} />
           <BlockContributors />
           <BlockCategoriesList categories={categories} />
         </LayoutColumn>
@@ -54,15 +59,23 @@ const CategoryPage: NextPage<CategoryPageProps> = ({
 
 CategoryPage.getInitialProps = async ({ query }) => {
   console.log(query);
-  const [{ posts }, categories] = await Promise.all<
+  const [{ posts }, categories, blockSubscribe] = await Promise.all<
     GetPostByTagApiResponse,
-    GetAllCategoriesApiResponse
-  >([getPostByTagSlug(query.slug as string), getAllCategories()]);
+    GetAllCategoriesApiResponse,
+    any
+  >([
+    getPostByTagSlug(query.slug as string),
+    getAllCategories(),
+    getBlockSubscribe()
+  ]);
 
   return {
     category: (query.slug as string).split(categoryDelimiter)[1],
     categories: categories,
-    posts: posts
+    posts: posts,
+    blocks: {
+      subscribe: blockSubscribe
+    }
   };
 };
 

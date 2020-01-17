@@ -13,13 +13,19 @@ import {
   BlockRecentPosts,
   BlockFeaturedCategory
 } from "../components";
-import { getAllPosts, getAllTags, getDailyInspiration } from "../api";
+import {
+  getAllPosts,
+  getAllTags,
+  getDailyInspiration,
+  getBlockSubscribe
+} from "../api";
 
 type IndexPageProps = PostObject & {
   featuredPosts: PostOrPage[];
   tags: TagsObject["tags"];
   blocks: {
     dailyInspiration: any;
+    subscribe: any;
   };
 };
 
@@ -32,7 +38,7 @@ const IndexPage: NextPage<IndexPageProps> = ({
   featuredPosts,
   posts,
   tags,
-  blocks: { dailyInspiration }
+  blocks: { dailyInspiration, subscribe }
 }) => {
   return (
     <PageContainer>
@@ -45,7 +51,7 @@ const IndexPage: NextPage<IndexPageProps> = ({
           <BlockRecentPosts posts={posts} />
         </LayoutColumn>
         <LayoutColumn>
-          <BlockSubscribe />
+          <BlockSubscribe subscribe={subscribe} />
           <BockDailyInspiration dailyInspiration={dailyInspiration} />
           <BlockContributors />
         </LayoutColumn>
@@ -55,11 +61,17 @@ const IndexPage: NextPage<IndexPageProps> = ({
 };
 
 IndexPage.getInitialProps = async (): Promise<IndexPageProps> => {
-  const [{ posts, meta }, { tags }, dailyInspiration] = await Promise.all<
-    PostObject,
-    TagsObject,
-    any
-  >([getAllPosts(), getAllTags(), getDailyInspiration()]);
+  const [
+    { posts, meta },
+    { tags },
+    dailyInspiration,
+    subscribe
+  ] = await Promise.all<PostObject, TagsObject, any, any>([
+    getAllPosts(),
+    getAllTags(),
+    getDailyInspiration(),
+    getBlockSubscribe()
+  ]);
   return {
     featuredPosts: posts
       .filter(post => post.featured)
@@ -68,7 +80,8 @@ IndexPage.getInitialProps = async (): Promise<IndexPageProps> => {
     meta: meta,
     tags,
     blocks: {
-      dailyInspiration
+      dailyInspiration,
+      subscribe
     }
   };
 };
