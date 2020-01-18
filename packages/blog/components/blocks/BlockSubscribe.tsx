@@ -18,11 +18,17 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({ subscribe }) => (
       <InputGroup layout="stacked">
         <Copy type="paragraph">{subscribe.fields.content.fields.context}</Copy>
         <Input
+          id="subscribe-name"
+          name="name"
+          placeholder={subscribe.fields.content.fields.namePlaceholder}
+        />
+        <Input
           id="subscribe-email"
           name="email"
           placeholder={subscribe.fields.content.fields.emailPlaceholder}
         />
         <Button
+          id="submit-subscription"
           styleType="secondary"
           type="submit"
           label={subscribe.fields.content.fields.submitText}

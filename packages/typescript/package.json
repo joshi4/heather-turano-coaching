@@ -25,7 +25,7 @@
   "author": "Drew DeCarme (drew@imaginedelements.com)",
   "license": "MIT",
   "peerDependencies": {
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.5"
   },
   "devDependencies": {
     "npm-check-updates": "^4.0.1"
