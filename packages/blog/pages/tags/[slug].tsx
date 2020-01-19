@@ -5,7 +5,8 @@ import {
   getPostByTagSlug,
   GetPostByTagApiResponse,
   GetAllTagsApiResponse,
-  getAllTags
+  getAllTags,
+  getBlockSubscribe
 } from "../../api";
 import {
   PageContainer,
@@ -22,9 +23,17 @@ interface TagsPageProps {
   tag: string;
   tags: GetAllTagsApiResponse;
   posts: PostObject["posts"];
+  blocks: {
+    subscribe: any;
+  };
 }
 
-const TagsPage: NextPage<TagsPageProps> = ({ tag, tags, posts }) => (
+const TagsPage: NextPage<TagsPageProps> = ({
+  tag,
+  tags,
+  posts,
+  blocks: { subscribe }
+}) => (
   <PageContainer>
     <LayoutContainer layoutType="stacked">
       <LayoutColumn>
@@ -40,8 +49,8 @@ const TagsPage: NextPage<TagsPageProps> = ({ tag, tags, posts }) => (
         <BlogPostList posts={posts} />
       </LayoutColumn>
       <LayoutColumn>
-        <BlockSubscribe />
-        <BlockContributors />
+        <BlockSubscribe subscribe={subscribe} />
+        <BlockContributors posts={posts} />
         <BlockTagsList tags={tags.tags} />
       </LayoutColumn>
     </LayoutContainer>
@@ -49,16 +58,23 @@ const TagsPage: NextPage<TagsPageProps> = ({ tag, tags, posts }) => (
 );
 
 TagsPage.getInitialProps = async ({ query }) => {
-  console.log(query);
-  const [{ posts }, tags] = await Promise.all<
+  const [{ posts }, tags, subscribeBlock] = await Promise.all<
     GetPostByTagApiResponse,
-    GetAllTagsApiResponse
-  >([getPostByTagSlug(query.slug as string), getAllTags()]);
+    GetAllTagsApiResponse,
+    any
+  >([
+    getPostByTagSlug(query.slug as string),
+    getAllTags(),
+    getBlockSubscribe()
+  ]);
 
   return {
     tag: query.slug as string,
     tags: tags,
-    posts: posts
+    posts: posts,
+    blocks: {
+      subscribe: subscribeBlock
+    }
   };
 };
 

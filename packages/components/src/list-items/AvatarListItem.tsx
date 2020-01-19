@@ -11,10 +11,15 @@ import {
 import { makeFlex } from "../utils";
 import { Copy } from "../typography";
 
+export type AvatarListItemColors = Extract<
+  ColorScalable,
+  "primary" | "secondary" | "accent"
+>;
+
 type AvatarListItemProps = Omit<AvatarProps, "size"> & {
-  accentColor?: Extract<ColorScalable, "primary" | "secondary" | "accent">;
+  accentColor?: AvatarListItemColors;
   name: string;
-  bio?: string;
+  bio?: string | null;
 };
 
 const StyledAvatarListItem = styled.div<
@@ -22,11 +27,10 @@ const StyledAvatarListItem = styled.div<
 >`
   position: relative;
   box-sizing: border-box;
-  ${makeInset({ horizontal: 16, vertical: 16 })};
+  ${makeInset({ horizontal: 16, vertical: 8 })};
   ${makeFlex("row", "center", "center")};
-  display: inline-flex;
   background: ${makeColor({ fixed: "light" })};
-  ${makeOutset({ bottom: 8 })};
+  width: 100%;
 
   & * {
     box-sizing: border-box;
@@ -47,6 +51,9 @@ const StyledAvatarListItem = styled.div<
     &:first-child {
       ${makeOutset({ right: 16 })};
     }
+    &:last-child {
+      flex: 1;
+    }
   }
 `;
 
@@ -62,7 +69,7 @@ export const AvatarListItem: FC<AvatarListItemProps> = ({
       <Avatar alt={alt} image={image} size={{ custom: 60 }} />
     </div>
     <div>
-      <Copy type="label" fontSize="md">
+      <Copy type="label" fontSize="sm">
         {name}
       </Copy>
       {bio && (

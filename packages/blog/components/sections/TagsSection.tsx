@@ -42,6 +42,7 @@ export const TagsSection: FC<TagSectionProps> = ({
             <Link key={tag.id} href={`/${filter}/${tag.slug}`}>
               <a>
                 <Tag
+                  tagType={filter === "categories" ? "category" : "tag"}
                   key={tag.id}
                   text={normalizeTagName(filter, tag.name as string)}
                 />

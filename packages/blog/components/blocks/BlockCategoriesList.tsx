@@ -1,9 +1,11 @@
 import React, { FC } from "react";
-import { Tag } from "@tryghost/content-api";
+import { Tag as TagType } from "@tryghost/content-api";
 import { LayoutBlockTitle, LayoutBlock, LayoutBlockContent } from "../layout";
+import Link from "next/link";
+import { TagGroup, Tag } from "@heather-turano-coaching/components";
 
 interface BlockCategoriesListProps {
-  categories: Tag[];
+  categories: TagType[];
 }
 
 export const BlockCategoriesList: FC<BlockCategoriesListProps> = ({
@@ -12,9 +14,15 @@ export const BlockCategoriesList: FC<BlockCategoriesListProps> = ({
   <LayoutBlock>
     <LayoutBlockTitle title="All categories" />
     <LayoutBlockContent>
-      {categories.map(category => (
-        <div>{category.name}</div>
-      ))}
+      <TagGroup>
+        {categories.map(category => (
+          <Link key={category.id} href={`/categories/${category.slug}`}>
+            <a>
+              <Tag tagType="category" text={category.name as string} />
+            </a>
+          </Link>
+        ))}
+      </TagGroup>
     </LayoutBlockContent>
   </LayoutBlock>
 );

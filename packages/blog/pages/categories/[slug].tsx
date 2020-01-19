@@ -34,31 +34,27 @@ const CategoryPage: NextPage<CategoryPageProps> = ({
   category,
   posts,
   blocks: { subscribe }
-}) => {
-  console.log(categories);
-  return (
-    <PageContainer>
-      <LayoutContainer layoutType="stacked">
-        <LayoutColumn>
-          <PageHeader pageTopic="categories" pageTitle={category} />
-        </LayoutColumn>
-      </LayoutContainer>
-      <LayoutContainer>
-        <LayoutColumn colWidth={700}>
-          <BlogPostList posts={posts} />
-        </LayoutColumn>
-        <LayoutColumn>
-          <BlockSubscribe subscribe={subscribe} />
-          <BlockContributors />
-          <BlockCategoriesList categories={categories} />
-        </LayoutColumn>
-      </LayoutContainer>
-    </PageContainer>
-  );
-};
+}) => (
+  <PageContainer>
+    <LayoutContainer layoutType="stacked">
+      <LayoutColumn>
+        <PageHeader pageTopic="categories" pageTitle={category} />
+      </LayoutColumn>
+    </LayoutContainer>
+    <LayoutContainer>
+      <LayoutColumn colWidth={700}>
+        <BlogPostList posts={posts} />
+      </LayoutColumn>
+      <LayoutColumn>
+        <BlockSubscribe subscribe={subscribe} />
+        <BlockContributors posts={posts} />
+        <BlockCategoriesList categories={categories} />
+      </LayoutColumn>
+    </LayoutContainer>
+  </PageContainer>
+);
 
 CategoryPage.getInitialProps = async ({ query }) => {
-  console.log(query);
   const [{ posts }, categories, blockSubscribe] = await Promise.all<
     GetPostByTagApiResponse,
     GetAllCategoriesApiResponse,

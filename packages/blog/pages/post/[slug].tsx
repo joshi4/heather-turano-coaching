@@ -60,7 +60,6 @@ const BlogPost: NextPage<BlogPostProps> = ({
 );
 
 BlogPost.getInitialProps = async ({ query }) => {
-  console.log(query);
   const { posts } = await getPostBySlug(query.slug as string);
 
   return { blogPost: posts[0] };

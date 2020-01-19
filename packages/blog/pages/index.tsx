@@ -53,7 +53,7 @@ const IndexPage: NextPage<IndexPageProps> = ({
         <LayoutColumn>
           <BlockSubscribe subscribe={subscribe} />
           <BockDailyInspiration dailyInspiration={dailyInspiration} />
-          <BlockContributors />
+          <BlockContributors posts={posts} />
         </LayoutColumn>
       </LayoutContainer>
     </PageContainer>

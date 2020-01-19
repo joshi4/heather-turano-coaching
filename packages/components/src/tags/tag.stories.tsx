@@ -8,7 +8,10 @@ export default {
   title: "Basic|Tags"
 };
 
-export const base = () => <Tag text="mindfulness" />;
+export const baseDefault = () => <Tag text="mindfulness" />;
+export const tag = () => <Tag tagType="tag" text="mindfulness" />;
+export const category = () => <Tag tagType="category" text="mindfulness" />;
+export const list = () => <Tag tagType="list" text="mindfulness" />;
 export const groupedWithTagArray = () => (
   <TagGroup
     tags={[
@@ -26,14 +29,78 @@ export const groupedWithTagArray = () => (
 );
 export const groupedWithComposite = () => (
   <TagGroup>
-    <Tag text="mindfulness" />
-    <Tag text="grow" />
-    <Tag text="except" />
-    <Tag text="church" />
-    <Tag text="separate" />
-    <Tag text="mission" />
-    <Tag text="day" />
-    <Tag text="walk" />
-    <Tag text="stems" />
+    <a>
+      <Tag text="mindfulness" />
+    </a>
+    <a>
+      <Tag text="grow" />
+    </a>
+    <a>
+      <Tag text="except" />
+    </a>
+    <a>
+      <Tag text="church" />
+    </a>
+    <a>
+      <Tag text="separate" />
+    </a>
+    <a>
+      <Tag text="mission" />
+    </a>
+    <a>
+      <Tag text="day" />
+    </a>
+    <a>
+      <Tag text="walk" />
+    </a>
+    <a>
+      <Tag text="stems" />
+    </a>
+  </TagGroup>
+);
+export const listGroupedWithTagArray = () => (
+  <TagGroup
+    tags={[
+      { tagType: "list", text: "mindfulness" },
+      { tagType: "list", text: "grow" },
+      { tagType: "list", text: "except" },
+      { tagType: "list", text: "church" },
+      { tagType: "list", text: "separate" },
+      { tagType: "list", text: "mission" },
+      { tagType: "list", text: "day" },
+      { tagType: "list", text: "walk" },
+      { tagType: "list", text: "stems" }
+    ]}
+  />
+);
+export const listGroupedWithComposite = () => (
+  <TagGroup>
+    <a>
+      <Tag tagType="list" text="mindfulness" />
+    </a>
+    <a>
+      <Tag tagType="list" text="grow" />
+    </a>
+    <a>
+      <Tag tagType="list" text="except" />
+    </a>
+    <a>
+      <Tag tagType="list" text="church" />
+    </a>
+    <a>
+      <Tag tagType="list" text="separate" />
+    </a>
+    <a>
+      <Tag tagType="list" text="mission" />
+    </a>
+    <a>
+      <Tag tagType="list" text="day" />
+    </a>
+    <a>
+      <Tag tagType="list" text="walk" />
+    </a>
+    <a>
+      <Tag tagType="list" text="stems" />
+    </a>
   </TagGroup>
 );
