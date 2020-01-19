@@ -13,7 +13,8 @@ import {
   makeReset,
   makeInset,
   makeSpace,
-  makeFont
+  makeFont,
+  makeOutset
 } from "@heather-turano-coaching/design-system/utils";
 import { formatLongDate } from "../../utils";
 import { TagsSection } from "../sections";
@@ -30,6 +31,7 @@ const StyledFeaturedBlogContainer = styled.div`
 const StyledFeatureBlogSelector = styled.div`
   ${makeFlex("row", "distribute-evently", "center")};
   background: ${makeColor({ fixed: "light" })};
+  ${makeOutset({ bottom: 32 })};
 `;
 
 const StyledFeaturePostButton = styled.button.attrs({ type: "button" })<{

@@ -1,8 +1,10 @@
+require("dotenv").config();
+
 module.exports = {
   env: {
-    GHOST_API_KEY: "fb325f3182dc0b7734cd7dd3dc",
-    CONTENTFUL_SPACE_ID: "acdm2953uods",
-    CONTENTFUL_ACCESS_TOKEN: "PbE69xLIh6rZmX_YwlQLxhnnIGWcbfuM5xvtgSJzpDY"
+    GHOST_API_KEY: process.env.NEXT_GHOST_API_KEY,
+    CONTENTFUL_SPACE_ID: process.env.NEXT_CONTENTFUL_SPACE_ID,
+    CONTENTFUL_ACCESS_TOKEN: process.env.NEXT_CONTENTFUL_ACCESS_TOKEN
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     /**
@@ -25,6 +27,7 @@ module.exports = {
       test: /\.(png|jpg|jpeg)$/,
       use: ["url-loader"]
     });
+
     return config;
   }
 };

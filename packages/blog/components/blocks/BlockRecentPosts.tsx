@@ -5,11 +5,15 @@ import { BlogPostList } from "../blog";
 
 interface BlockRecentPostsProps {
   posts: PostOrPage[];
+  title?: string;
 }
 
-export const BlockRecentPosts: FC<BlockRecentPostsProps> = ({ posts }) => (
+export const BlockRecentPosts: FC<BlockRecentPostsProps> = ({
+  title = "recent posts",
+  posts
+}) => (
   <LayoutBlock>
-    <LayoutBlockTitle title="Recent Posts" />
+    <LayoutBlockTitle title={title} />
     <LayoutBlockContent>
       <BlogPostList posts={posts} />
     </LayoutBlockContent>

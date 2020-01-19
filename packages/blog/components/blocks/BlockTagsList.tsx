@@ -7,11 +7,15 @@ import Link from "next/link";
 
 interface BlockTagsListProps {
   tags: TagType[];
+  title?: string;
 }
 
-export const BlockTagsList: FC<BlockTagsListProps> = ({ tags }) => (
+export const BlockTagsList: FC<BlockTagsListProps> = ({
+  tags,
+  title = "all tags"
+}) => (
   <LayoutBlock>
-    <LayoutBlockTitle title="All Tags" />
+    <LayoutBlockTitle title={title} />
     <LayoutBlockContent>
       <TagGroup>
         {filterOutCategoriesFromTags(tags).map(tag => (

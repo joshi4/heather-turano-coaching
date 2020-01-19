@@ -46,6 +46,4 @@ const categories: BlogCategory[] = [
   }
 ];
 
-console.log(categories);
-
 export const base = () => <BlogCategories categories={categories} />;

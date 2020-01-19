@@ -4,7 +4,8 @@ import { LayoutBlockTitle, LayoutBlock, LayoutBlockContent } from "../layout";
 import { PostOrPage, Author } from "@tryghost/content-api";
 import {
   AvatarListItem,
-  AvatarListItemColors
+  RandomColor,
+  generateRandomColor
 } from "@heather-turano-coaching/components";
 import Link from "next/link";
 import styled from "styled-components";
@@ -21,19 +22,11 @@ interface BlockContributorsProps {
   filter?: "all" | "unique";
 }
 
-const accentColor: [
-  AvatarListItemColors,
-  AvatarListItemColors,
-  AvatarListItemColors
-] = ["primary", "secondary", "accent"];
-
-const randomColor = () => ((Math.random() * 3) | 0) + 1;
-
 const StyledBlockContributors = styled.ul`
   ${makeReset("list")};
 `;
 
-const StyledLinks = styled.li<{ hoverColor: AvatarListItemColors }>`
+const StyledLinks = styled.li<{ hoverColor: RandomColor }>`
   display: block;
   transition: border-color 0.15s ease-in-out;
   border: ${makeSize({ custom: 1 })} solid transparent;
@@ -73,8 +66,7 @@ export const BlockContributors: FC<BlockContributorsProps> = ({
       <LayoutBlockContent>
         <StyledBlockContributors>
           {postAuthors.map(author => {
-            const color = accentColor[randomColor()];
-
+            const color = generateRandomColor();
             return (
               <StyledLinks hoverColor={color} key={author.id}>
                 <Link href={`/authors/${author.slug}`}>

@@ -50,7 +50,7 @@ const TagsPage: NextPage<TagsPageProps> = ({
       </LayoutColumn>
       <LayoutColumn>
         <BlockSubscribe subscribe={subscribe} />
-        <BlockContributors posts={posts} />
+        <BlockContributors title="Authors who've used this tag" posts={posts} />
         <BlockTagsList tags={tags.tags} />
       </LayoutColumn>
     </LayoutContainer>

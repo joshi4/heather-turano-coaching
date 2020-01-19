@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { ColorScalable } from "@heather-turano-coaching/design-system/types/primitive/color.primitive";
 import { AvatarProps, Avatar } from "../assets";
 import styled from "styled-components";
 import {
@@ -8,16 +7,11 @@ import {
   makeColor,
   makeOutset
 } from "@heather-turano-coaching/design-system/utils";
-import { makeFlex } from "../utils";
+import { makeFlex, RandomColor } from "../utils";
 import { Copy } from "../typography";
 
-export type AvatarListItemColors = Extract<
-  ColorScalable,
-  "primary" | "secondary" | "accent"
->;
-
 type AvatarListItemProps = Omit<AvatarProps, "size"> & {
-  accentColor?: AvatarListItemColors;
+  accentColor?: RandomColor;
   name: string;
   bio?: string | null;
 };
@@ -61,8 +55,8 @@ export const AvatarListItem: FC<AvatarListItemProps> = ({
   accentColor = "primary",
   image,
   alt,
-  name,
-  bio
+  name
+  // bio
 }) => (
   <StyledAvatarListItem accentColor={accentColor}>
     <div>
@@ -72,11 +66,11 @@ export const AvatarListItem: FC<AvatarListItemProps> = ({
       <Copy type="label" fontSize="sm">
         {name}
       </Copy>
-      {bio && (
+      {/* {bio && (
         <Copy type="paragraph" fontSize="xs">
           {bio.length > 196 ? `${bio.substring(0, 196)} ...` : bio}
         </Copy>
-      )}
+      )} */}
     </div>
   </StyledAvatarListItem>
 );

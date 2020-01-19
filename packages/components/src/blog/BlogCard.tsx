@@ -50,6 +50,7 @@ const CSSBlogCardMap: {
   regular: social => css`
     background: ${makeColor({ fixed: "light" })};
     ${makeInset({ top: 28, bottom: social ? 60 : 28, horizontal: 28 })};
+    flex: 1;
   `
 };
 
@@ -120,7 +121,7 @@ export const BlogCard: FC<BlogCardProps> = ({
       >
         {title}
       </Heading>
-      {type === "regular" && (
+      {type === "regular" && authorName && (
         <BlogAvatar
           type="inline"
           avatarImg={avatarImg}

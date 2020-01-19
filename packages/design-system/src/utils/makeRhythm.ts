@@ -15,17 +15,8 @@ export const makeRhythm = ({
   top,
   bottom
 }: RhythmProperties): string => {
-  console.log(fontSize, top, bottom);
-  console.log(sizeMap);
-
   const lineHeight = sizeMap.lineHeight[fontSize].raw;
   const intLineHeight = Number(lineHeight);
-  console.log(
-    makeOutset({
-      top: top * intLineHeight,
-      bottom: bottom * intLineHeight
-    })
-  );
   return makeOutset({
     top: top * intLineHeight,
     bottom: bottom * intLineHeight

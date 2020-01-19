@@ -102,7 +102,6 @@ const createSizes = () => {
     sizeConfig.baseFontSize,
     sizeConfig.baselineGrid
   );
-  // if (__DEV__) console.log("adjustedBaseFontSize", adjustedBaseFontSize);
 
   // 2. create font size map based upon adjustedBaseFont
   const modularScaleFontSizeMap = Object.entries(
@@ -118,7 +117,6 @@ const createSizes = () => {
     }),
     {} as Sizes
   );
-  // if (__DEV__) console.log("modularScaleFontSizeMap", modularScaleFontSizeMap);
 
   // 3. round font size map to factor
   const snappedFontSizeMap = Object.entries(modularScaleFontSizeMap).reduce(
@@ -128,7 +126,6 @@ const createSizes = () => {
     }),
     {} as Sizes
   );
-  // if (__DEV__) console.log("snappedFontSizeMap", snappedFontSizeMap);
 
   // 4. create line height size map based upon adjustedFontBase
   const snappedLineHeightMap = Object.entries(modularScaleFontSizeMap).reduce(
@@ -140,7 +137,6 @@ const createSizes = () => {
     }),
     {} as Sizes
   );
-  // if (__DEV__) console.log("snappedLineHeightMap", snappedLineHeightMap);
 
   return {
     size: createSizeUnitMap(
@@ -175,10 +171,7 @@ export const makeSize = (size: SizeProperties): string => {
     return sizeMap.size[sanitizedSize][sizeConfig.sizeUnits];
   }
   if (typeof size === "object" && size.custom) {
-    // console.log(size.custom);
-    // const cus = size.custom;
     const ncus = createCustomSize(size.custom);
-    // console.log(cus, ncus);
     return ncus;
   }
   return "NO DEFINITION PROVIDED";

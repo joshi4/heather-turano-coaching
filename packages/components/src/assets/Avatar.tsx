@@ -10,8 +10,11 @@ import {
   FontProperties
 } from "@heather-turano-coaching/design-system/types/composite";
 
+import { default as UserImage } from "./images/user-circle-duotone.svg";
+import { generateRandomColor, RandomColor } from "../utils";
+
 export interface AvatarProps {
-  image: string;
+  image?: string;
   alt: string;
   size?: SizeProperties;
 }
@@ -34,7 +37,7 @@ const avatarSizeMap: {
 };
 
 const StyledAvatar = styled.div.attrs({ className: "avatar" })<
-  Required<Pick<AvatarProps, "size">>
+  Required<Pick<AvatarProps, "size"> & { avatarColor: RandomColor }>
 >`
   ${({ size }) => css`
     height: ${makeSize(size)};
@@ -46,9 +49,37 @@ const StyledAvatar = styled.div.attrs({ className: "avatar" })<
   align-items: center;
   border-radius: 50%;
 
+  div.img {
+    background: ${makeColor({
+      scalable: { color: "gray", scale: 3 }
+    })};
+    svg {
+      display: block;
+      height: 100%;
+      width: 100%;
+
+      path {
+        &:first-child {
+          fill: ${makeColor({
+            scalable: { color: "gray", scale: 3 }
+          })};
+        }
+        &:last-child {
+          fill: ${makeColor({
+            scalable: { color: "light", scale: 0 }
+          })};
+        }
+      }
+    }
+  }
+
   img {
-    border-radius: 50%;
     border: ${makeSize({ custom: 2 })} solid ${makeColor({ fixed: "light" })};
+  }
+
+  img,
+  div.img {
+    border-radius: 50%;
     z-index: 10;
     animation: fadein 0.25s;
     border-radius: 50%;
@@ -65,12 +96,22 @@ const StyledAvatar = styled.div.attrs({ className: "avatar" })<
         width: ${makeSize(size)};
         transform: scale(0.88);
       `;
-    }}
+    }};
   }
 `;
 
-export const Avatar: FC<AvatarProps> = ({ image, alt, size = "h1" }) => (
-  <StyledAvatar size={size}>
-    <img src={image} alt={alt} />
-  </StyledAvatar>
-);
+export const Avatar: FC<AvatarProps> = ({ image, alt, size = "h1" }) => {
+  const color = generateRandomColor();
+
+  return (
+    <StyledAvatar size={size} avatarColor={color}>
+      {image ? (
+        <img src={image} alt={alt} />
+      ) : (
+        <div className="img">
+          <UserImage />
+        </div>
+      )}
+    </StyledAvatar>
+  );
+};

@@ -6,13 +6,15 @@ import { TagGroup, Tag } from "@heather-turano-coaching/components";
 
 interface BlockCategoriesListProps {
   categories: TagType[];
+  title?: string;
 }
 
 export const BlockCategoriesList: FC<BlockCategoriesListProps> = ({
-  categories
+  categories,
+  title = "Cateogories"
 }) => (
   <LayoutBlock>
-    <LayoutBlockTitle title="All categories" />
+    <LayoutBlockTitle title={title} />
     <LayoutBlockContent>
       <TagGroup>
         {categories.map(category => (
