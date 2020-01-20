@@ -7,7 +7,7 @@ import {
   AuthorsObject
 } from "@tryghost/content-api";
 import fetch from "isomorphic-unfetch";
-import { getCategoriesFromTags } from "../utils";
+import { getCategoriesFromTags, filterOutCategoriesFromTags } from "../utils";
 
 const contentApi = "https://blog.livelifemindful.com/ghost/api/v3/content/";
 const ghostContentApiKey = process.env.GHOST_API_KEY;
@@ -103,6 +103,15 @@ export const getAllTags = async (): Promise<GetAllTagsApiResponse> => {
   return json;
 };
 
+export type GetAllTagsSansCategoriesApiResponse = TagsObject;
+export const getAllTagsSansCategories = async (): Promise<GetAllTagsSansCategoriesApiResponse> => {
+  const res = await getAllTags();
+  return {
+    tags: filterOutCategoriesFromTags(res.tags),
+    meta: res.meta
+  };
+};
+
 export type GetAllCategoriesApiResponse = TagsObject["tags"];
 
 export const getAllCategories = async (): Promise<GetAllCategoriesApiResponse> => {
@@ -124,5 +133,18 @@ export const getAuthorBySlug = async (
   console.log(json);
   return {
     author: json.authors[0]
+  };
+};
+
+export type GetAllAuthorsApiResponse = { authors: Author[] };
+
+export const getAllAuthors = async (): Promise<GetAllAuthorsApiResponse> => {
+  const res = await fetch(
+    `${contentApi}authors/?key=${ghostContentApiKey}&include=count.posts`
+  );
+  const json = (await res.json()) as AuthorsObject;
+  console.log(json);
+  return {
+    authors: json.authors
   };
 };
