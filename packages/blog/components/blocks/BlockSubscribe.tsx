@@ -10,7 +10,8 @@ import {
 import styled from "styled-components";
 import {
   makeInset,
-  makeColor
+  makeColor,
+  makeRhythm
 } from "@heather-turano-coaching/design-system/utils";
 
 interface BlockSubscribeProps {
@@ -20,7 +21,9 @@ interface BlockSubscribeProps {
 const StyledSubscribeContnet = styled.div`
   ${makeInset({ horizontal: 32, vertical: 32 })};
   background: ${makeColor({ fixed: "dark" })};
+`;
 
+const StyledContentCopy = styled.div`
   h1,
   h2,
   h3,
@@ -28,7 +31,10 @@ const StyledSubscribeContnet = styled.div`
   h5 {
     text-align: center;
   }
-}
+
+  p {
+    ${makeRhythm({ fontSize: "sm", bottom: 2, top: 1 })};
+  }
 `;
 
 export const BlockSubscribe: FC<BlockSubscribeProps> = ({ subscribe }) => (
@@ -36,7 +42,7 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({ subscribe }) => (
     <LayoutBlockTitle title={subscribe.fields.title} />
     <LayoutBlockContent>
       <StyledSubscribeContnet>
-        <InputGroup layout="stacked">
+        <StyledContentCopy>
           <Heading
             fontSize="h1"
             fontColor={{ fixed: "light" }}
@@ -47,6 +53,8 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({ subscribe }) => (
           <Copy type="text" fontColor={{ fixed: "light" }}>
             {subscribe.fields.content.fields.description}
           </Copy>
+        </StyledContentCopy>
+        <InputGroup layout="stacked">
           <Input
             id="subscribe-name"
             name="name"

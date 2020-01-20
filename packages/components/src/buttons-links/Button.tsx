@@ -10,12 +10,15 @@ import { Color } from "@heather-turano-coaching/design-system/types/primitive";
 import {
   makeColor,
   makeReset,
-  makeInset,
-  makeSpace
+  makeSpace,
+  makeInset
 } from "@heather-turano-coaching/design-system/utils";
 
 import { Icon, Copy } from "../typography";
-import { sharedFontSize } from "../shared";
+import {
+  shareButtonAndInputFontSize,
+  sharedButtonAndInputVerticalPadding
+} from "../shared";
 
 type ButtonStyleTypes = Extract<
   Color,
@@ -84,7 +87,10 @@ export const StyledButton = styled.button<
   Required<Pick<ButtonProps, "styleType" | "disabled">>
 >`
   ${makeReset("button")}
-  ${makeInset({ vertical: 12, horizontal: 28 })};
+  ${makeInset({
+    vertical: sharedButtonAndInputVerticalPadding,
+    horizontal: 28
+  })};
   border-radius: ${makeSpace({ custom: 2 })};
   transition: all ease-in-out 0.15s;
   border-width: 1px;
@@ -135,9 +141,13 @@ export const Button: FC<ButtonProps> = ({
     ) : (
       <Copy
         type="label"
-        fontSize={sharedFontSize}
+        fontSize={shareButtonAndInputFontSize}
         fontColor={((): ColorProperties => {
-          if (styleType !== "primary" && styleType !== "warning" && styleType !== "accent") {
+          if (
+            styleType !== "primary" &&
+            styleType !== "warning" &&
+            styleType !== "accent"
+          ) {
             return { fixed: "light" };
           }
           if (restProps.disabled || loading) {

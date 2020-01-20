@@ -11,7 +11,10 @@ import {
   makeFont,
   makeInset
 } from "@heather-turano-coaching/design-system/utils";
-import { sharedFontSize } from "../shared";
+import {
+  shareButtonAndInputFontSize,
+  sharedButtonAndInputVerticalPadding
+} from "../shared";
 
 export type InputProps = HTMLInput &
   ErrorProps & {
@@ -59,8 +62,11 @@ export const CSSInputStyle = css<InputProps>`
   box-sizing: border-box;
   ${CSSPlaceholders};
   ${makeReset("input")};
-  ${makeInset({ vertical: 8, horizontal: 12 })};
-  ${makeFont({ fontSize: sharedFontSize })};
+  ${makeInset({
+    vertical: sharedButtonAndInputVerticalPadding,
+    horizontal: 12
+  })};
+  ${makeFont({ fontSize: shareButtonAndInputFontSize })};
   border: 1px solid ${makeColor({ scalable: { color: "gray", scale: 3 } })};
   background: ${makeColor({ fixed: "light" })};
   color: ${makeColor({ fixed: "dark" })};

@@ -47,7 +47,7 @@ const StyledBioBlock = styled.div`
 
 const StyledBioArea = styled.div`
   ${makeOutset({ left: 16 })};
-  ${makeInset({ horizontal: 12, vertical: 8 })};
+  ${makeInset({ horizontal: 24, vertical: 16 })};
   background: ${makeColor({ scalable: { color: "light", scale: 3 } })};
   width: 100%;
   align-self: stretch;
