@@ -27,7 +27,7 @@ export const TagsPage: NextPage<TagsPageProps> = ({ tags }) => (
     <LayoutContainer layoutType="stacked">
       <LayoutColumn>
         <PageHeader
-          pageTopic="tags"
+          pageName="tags"
           pageTitle="All tags"
           titleColor={{ scalable: { color: "primary" } }}
         />

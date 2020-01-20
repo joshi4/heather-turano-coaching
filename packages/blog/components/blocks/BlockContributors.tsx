@@ -5,7 +5,8 @@ import { PostOrPage, Author } from "@tryghost/content-api";
 import {
   AvatarListItem,
   RandomColor,
-  generateRandomColor
+  generateRandomColor,
+  ButtonAction
 } from "@heather-turano-coaching/components";
 import Link from "next/link";
 import styled from "styled-components";
@@ -15,6 +16,7 @@ import {
   makeColor,
   makeOutset
 } from "@heather-turano-coaching/design-system/utils";
+import { NextLink } from "../general";
 
 interface BlockContributorsProps {
   title?: string;
@@ -51,7 +53,7 @@ const StyledLinks = styled.li<{ hoverColor: RandomColor }>`
 `;
 
 export const BlockContributors: FC<BlockContributorsProps> = ({
-  title = "contributors",
+  title = "Authors",
   filter = "unique",
   posts
 }) => {
@@ -62,7 +64,17 @@ export const BlockContributors: FC<BlockContributorsProps> = ({
   const postAuthors = filter === "unique" ? uniqBy(authors, "id") : authors;
   return (
     <LayoutBlock>
-      <LayoutBlockTitle title={title} />
+      <LayoutBlockTitle title={title}>
+        <NextLink href="/authors">
+          <ButtonAction
+            buttonSize="md"
+            buttonColor={{ scalable: { color: "gray", scale: 1 } }}
+            icon="users"
+            iconWeight="fad"
+            title="View all contributors"
+          />
+        </NextLink>
+      </LayoutBlockTitle>
       <LayoutBlockContent>
         <StyledBlockContributors>
           {postAuthors.map(author => {

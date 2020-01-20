@@ -6,7 +6,7 @@ import {
   makeFont,
   makeSize
 } from "@heather-turano-coaching/design-system/utils";
-import { Heading } from "@heather-turano-coaching/components";
+import { Heading, makeFlex } from "@heather-turano-coaching/components";
 
 interface LayoutBlockTitleProps {
   title: string;
@@ -14,6 +14,7 @@ interface LayoutBlockTitleProps {
 
 const StyledLayoutBlockTitle = styled.header`
   width: 100%;
+  ${makeFlex("row", "space-between", "center")};
   ${makeOutset({ bottom: 16 })};
   border-bottom: ${makeSize({ custom: 1 })} solid
     ${makeColor({
@@ -31,10 +32,14 @@ const StyledLayoutBlockTitle = styled.header`
   }
 `;
 
-export const LayoutBlockTitle: FC<LayoutBlockTitleProps> = ({ title }) => (
+export const LayoutBlockTitle: FC<LayoutBlockTitleProps> = ({
+  title,
+  children
+}) => (
   <StyledLayoutBlockTitle>
     <Heading fontSize="h5" fontColor={{ fixed: "dark" }}>
       {title}
     </Heading>
+    {children}
   </StyledLayoutBlockTitle>
 );

@@ -67,7 +67,7 @@ const AuthorPage: NextPage<AuthorPageProps> = ({
     <LayoutContainer layoutType="stacked">
       <LayoutColumn>
         <PageHeader
-          pageTopic="authors"
+          pageName="author"
           pageTitle={author.name as string}
           titleColor={{ scalable: { color: "accent" } }}
         />

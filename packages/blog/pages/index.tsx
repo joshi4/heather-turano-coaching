@@ -11,7 +11,8 @@ import {
   BockDailyInspiration,
   BlockContributors,
   BlockRecentPosts,
-  BlockFeaturedCategory
+  BlockFeaturedCategory,
+  BlockTagsList
 } from "../components";
 import {
   getAllPosts,
@@ -54,6 +55,7 @@ const IndexPage: NextPage<IndexPageProps> = ({
           <BlockSubscribe subscribe={subscribe} />
           <BockDailyInspiration dailyInspiration={dailyInspiration} />
           <BlockContributors posts={posts} />
+          <BlockTagsList tags={tags} title="Recent tags" limit={10} />
         </LayoutColumn>
       </LayoutContainer>
     </PageContainer>

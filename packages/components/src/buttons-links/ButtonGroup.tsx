@@ -15,7 +15,7 @@ const buttonGroupStyleMap: { [key in Layout]: SimpleInterpolation } = {
     justify-content: flex-start;
     align-items: center;
 
-    & > ${StyledButton} + ${StyledButton} {
+    & > ${StyledButton} + ${StyledButton}, & > a + a {
       margin-left: 1rem;
     }
   `,
@@ -23,7 +23,8 @@ const buttonGroupStyleMap: { [key in Layout]: SimpleInterpolation } = {
     ${StyledButton} {
       display: block;
     }
-    & > ${StyledButton} + ${StyledButton} {
+
+    & > ${StyledButton} + ${StyledButton}, & > a + a {
       margin-top: 1rem;
     }
   `,

@@ -12,11 +12,12 @@ import {
   Heading,
   Copy,
   Button,
-  ButtonGroup
+  ButtonGroup,
+  ButtonAction
 } from "@heather-turano-coaching/components";
 import { FontProperties } from "@heather-turano-coaching/design-system/types/composite";
 import { LayoutBlockContent, LayoutBlockTitle, LayoutBlock } from "../layout";
-import Link from "next/link";
+import { NextLink } from "../general";
 
 const componentFontSize: FontProperties["fontSize"] = "sm";
 
@@ -43,7 +44,17 @@ export const BlockFeaturedCategory: FC<{ tags: Tag[] }> = ({ tags }) => {
 
   return (
     <LayoutBlock>
-      <LayoutBlockTitle title="Featured Category" />
+      <LayoutBlockTitle title="Featured Category">
+        <NextLink href="/categories">
+          <ButtonAction
+            buttonSize="md"
+            buttonColor={{ scalable: { color: "secondary", scale: 1 } }}
+            icon="th"
+            iconWeight="fad"
+            title="View all categories"
+          />
+        </NextLink>
+      </LayoutBlockTitle>
       <LayoutBlockContent>
         <StyledBlockFeaturedCategory>
           <Heading fontSize="h3" fontColor={{ scalable: { color: "gray" } }}>
@@ -52,12 +63,13 @@ export const BlockFeaturedCategory: FC<{ tags: Tag[] }> = ({ tags }) => {
           <Copy type="paragraph" fontSize={componentFontSize}>
             {cat.description}
           </Copy>
-          <ButtonGroup>
-            <Link href={`/categories/${cat.slug}`}>
-              <a>
-                <Button styleType="secondary" label="Explore this category" />
-              </a>
-            </Link>
+          <ButtonGroup layout="inline">
+            <NextLink href={`/categories/${cat.slug}`}>
+              <Button styleType="secondary" label="Explore this category" />
+            </NextLink>
+            <NextLink href="/categories">
+              <Button styleType="primary" label="View all categories" />
+            </NextLink>
           </ButtonGroup>
         </StyledBlockFeaturedCategory>
       </LayoutBlockContent>

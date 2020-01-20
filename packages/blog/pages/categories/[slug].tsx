@@ -38,7 +38,7 @@ const CategoryPage: NextPage<CategoryPageProps> = ({
   <PageContainer>
     <LayoutContainer layoutType="stacked">
       <LayoutColumn>
-        <PageHeader pageTopic="categories" pageTitle={category} />
+        <PageHeader pageName="category" pageTitle={category} />
       </LayoutColumn>
     </LayoutContainer>
     <LayoutContainer>

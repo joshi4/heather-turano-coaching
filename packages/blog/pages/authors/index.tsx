@@ -58,7 +58,7 @@ export const AuthorsPage: NextPage<AuthorsPageProps> = ({ authors }) => (
     <LayoutContainer layoutType="stacked">
       <LayoutColumn colWidth="100%">
         <PageHeader
-          pageTopic="authors"
+          pageName="authors"
           pageTitle="All authors"
           titleColor={{ scalable: { color: "accent" } }}
         />

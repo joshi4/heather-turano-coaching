@@ -26,7 +26,7 @@ export const CategoriesPage: NextPage<CategoriesPageProps> = ({
     <LayoutContainer layoutType="stacked">
       <LayoutColumn>
         <PageHeader
-          pageTopic="categories"
+          pageName="categories"
           pageTitle="All categories"
           titleColor={{ scalable: { color: "secondary" } }}
         />

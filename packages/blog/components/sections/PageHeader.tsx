@@ -1,29 +1,59 @@
 import React, { FC } from "react";
-import { Copy, Heading } from "@heather-turano-coaching/components";
+import { useRouter } from "next/router";
+import { Copy, Heading, makeFlex } from "@heather-turano-coaching/components";
 import styled from "styled-components";
 import {
   makeRhythm,
   makeFont,
   makeInset,
   makeSize,
-  makeColor
+  makeColor,
+  makeOutset
 } from "@heather-turano-coaching/design-system/utils";
-import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
+import {
+  ColorProperties,
+  ColorScalePosition
+} from "@heather-turano-coaching/design-system/types/composite";
+import { NextLink } from "../general";
 
 interface PageHeaderProps {
   pageTitle: string;
-  pageTopic: string;
+  pageName?: string;
   titleColor?: ColorProperties;
 }
 
 const StyledLayoutPageHeader = styled.header`
-  & > div > p {
+  & > div {
     ${makeRhythm({ fontSize: "sm", top: 3, bottom: 0 })};
-    text-transform: uppercase;
-    ${makeFont({
-      fontSize: "h4",
-      fontWeight: "bold"
-    })}
+    ${makeFlex("row", "flex-start", "center")};
+
+    & > * {
+      &:not(:last-child) {
+        ${makeOutset({ right: 8 })};
+        ${makeInset({ right: 8 })};
+      }
+    }
+
+    a {
+      text-decoration-color: ${makeColor({
+        scalable: { color: "gray", scale: 2 }
+      })};
+      cursor: pointer;
+      transition: all 0.15s ease-in-out;
+
+      &:hover {
+        text-decoration: underline;
+        color: ${makeColor({ scalable: { color: "gray", scale: 2 } })};
+      }
+    }
+
+    & p {
+      text-transform: uppercase;
+      ${makeFont({
+        fontSize: "h4",
+        fontWeight: "bold"
+      })}
+    }
   }
 
   h1,
@@ -41,26 +71,66 @@ const StyledLayoutPageHeader = styled.header`
   }
 `;
 
+const basePathName = "blog";
+
+const copy = ({
+  label,
+  scale
+}: {
+  label: string;
+  scale: ColorScalePosition;
+}) => (
+  <Copy
+    type="label"
+    fontSize="xl"
+    fontColor={{
+      scalable: {
+        color: "gray",
+        scale: scale
+      }
+    }}
+  >
+    {label}
+  </Copy>
+);
+
 export const PageHeader: FC<PageHeaderProps> = ({
-  pageTopic,
+  pageName,
   pageTitle,
   titleColor = { scalable: { color: "secondary" } }
-}) => (
-  <StyledLayoutPageHeader>
-    <div>
-      <Copy
-        type="label"
-        fontSize="xl"
-        fontColor={{ scalable: { color: "gray" } }}
-      >
-        {pageTopic}
-      </Copy>
-    </div>
-    <Heading fontSize="h1" fontColor={titleColor}>
-      {pageTitle}
-    </Heading>
-    {/* <Heading fontSize="h4" fontColor={{ scalable: { color: "gray" } }}>
-      {category}
-    </Heading> */}
-  </StyledLayoutPageHeader>
-);
+}) => {
+  const router = useRouter();
+  const routes = router.asPath.split("/");
+  routes[routes.length - 1] = pageName ? pageName : routes[routes.length - 1];
+
+  return (
+    <StyledLayoutPageHeader>
+      <div>
+        {routes.map((route, index) =>
+          index !== routes.length - 1 ? (
+            <>
+              <NextLink href={`/${route}`}>
+                {copy({
+                  label: index === 0 ? basePathName : route,
+                  scale: index !== routes.length - 1 ? 2 : 0
+                })}
+              </NextLink>
+              {copy({
+                label: "|",
+                scale: 2
+              })}
+            </>
+          ) : (
+            copy({
+              label: index === 0 ? basePathName : route,
+              scale: index !== routes.length - 1 ? 2 : 0
+            })
+          )
+        )}
+      </div>
+      <Heading fontSize="h1" fontColor={titleColor}>
+        {pageTitle}
+      </Heading>
+    </StyledLayoutPageHeader>
+  );
+};

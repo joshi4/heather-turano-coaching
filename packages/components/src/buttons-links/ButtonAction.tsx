@@ -15,10 +15,11 @@ import {
 } from "@heather-turano-coaching/design-system/utils";
 
 type ButtonActionProps = HTMLButton & {
-  label: string;
-  size?: FontProperties["fontSize"];
+  label?: string;
+  buttonSize?: FontProperties["fontSize"];
   icon?: IconName | undefined;
-  color?: ColorProperties;
+  buttonColor?: ColorProperties;
+  hoverColor?: ColorProperties;
   iconWeight?: IconProps["iconWeight"];
 };
 
@@ -29,17 +30,21 @@ const StyledButtonAction = styled.button`
   justify-content: flex-start;
   align-items: center;
 
-  & > div {
+  /* & > p {
+    ${makeOutset({ right: 4 })}
+  } */
+
+  div + p {
     ${makeOutset({ right: 4 })}
   }
 `;
 
 export const ButtonAction: FC<ButtonActionProps> = ({
   label,
-  size = "sm",
+  buttonSize = "sm",
   icon = undefined,
   iconWeight = "fas",
-  color = { scalable: { color: "accent" } },
+  buttonColor = { scalable: { color: "accent" } },
   ...restButtonProps
 }) => (
   <StyledButtonAction {...restButtonProps}>
@@ -47,12 +52,14 @@ export const ButtonAction: FC<ButtonActionProps> = ({
       <Icon
         icon={icon}
         iconWeight={iconWeight}
-        iconSize={size}
-        iconColor={color}
+        iconSize={buttonSize}
+        iconColor={buttonColor}
       />
     )}
-    <Copy type="label" fontSize={size} fontColor={color}>
-      {label}
-    </Copy>
+    {label && (
+      <Copy type="label" fontSize={buttonSize} fontColor={buttonColor}>
+        {label}
+      </Copy>
+    )}
   </StyledButtonAction>
 );
