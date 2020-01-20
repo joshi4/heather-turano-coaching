@@ -3,7 +3,8 @@ import styled, { css } from "styled-components";
 import {
   SizeHeadings,
   HTMLHeading,
-  ColorProperties
+  ColorProperties,
+  FontProperties
 } from "@heather-turano-coaching/design-system/types/composite";
 import {
   makeReset,
@@ -13,6 +14,7 @@ import {
 export type HeadingProps = HTMLHeading & {
   fontSize?: SizeHeadings;
   fontColor?: ColorProperties;
+  fontFamily?: FontProperties["fontFamily"];
   copy?: string | undefined;
 };
 
@@ -27,49 +29,51 @@ const defaultFontColor: ColorProperties = {
   }
 };
 
-export const CSSH1 = css<HeadingProps>`
-  ${({ fontColor = defaultFontColor }) =>
-    makeFont({ fontSize: "h1", fontFamily: "Montserrat", fontColor })}
+type HeadingStyleProps = Pick<HeadingProps, "fontColor" | "fontFamily">;
+
+export const CSSH1 = css<HeadingStyleProps>`
+  ${({ fontColor = defaultFontColor, fontFamily = "Montserrat" }) =>
+    makeFont({ fontSize: "h1", fontFamily, fontColor })}
 `;
 
-export const CSSH2 = css<HeadingProps>`
-  ${({ fontColor = defaultFontColor }) =>
-    makeFont({ fontSize: "h2", fontFamily: "Montserrat", fontColor })};
+export const CSSH2 = css<HeadingStyleProps>`
+  ${({ fontColor = defaultFontColor, fontFamily = "Montserrat" }) =>
+    makeFont({ fontSize: "h2", fontFamily, fontColor })};
 `;
-export const CSSH3 = css<HeadingProps>`
-  ${({ fontColor = defaultFontColor }) =>
-    makeFont({ fontSize: "h3", fontFamily: "Montserrat", fontColor })};
+export const CSSH3 = css<HeadingStyleProps>`
+  ${({ fontColor = defaultFontColor, fontFamily = "Montserrat" }) =>
+    makeFont({ fontSize: "h3", fontFamily, fontColor })};
 `;
-export const CSSH4 = css<HeadingProps>`
-  ${({ fontColor = defaultFontColor }) =>
-    makeFont({ fontSize: "h4", fontFamily: "Montserrat", fontColor })};
+export const CSSH4 = css<HeadingStyleProps>`
+  ${({ fontColor = defaultFontColor, fontFamily = "Montserrat" }) =>
+    makeFont({ fontSize: "h4", fontFamily, fontColor })};
 `;
-export const CSSH5 = css<HeadingProps>`
-  ${({ fontColor = defaultFontColor }) =>
-    makeFont({ fontSize: "h5", fontFamily: "Raleway", fontColor })};
+export const CSSH5 = css<HeadingStyleProps>`
+  ${({ fontColor = defaultFontColor, fontFamily = "Raleway" }) =>
+    makeFont({ fontSize: "h5", fontFamily, fontColor })};
 `;
 
-export const StyledH1 = styled.h1<HeadingProps>`
+export const StyledH1 = styled.h1<HeadingStyleProps>`
   ${BaseHeading};
   ${CSSH1}
 `;
 
-export const StyledH2 = styled.h2<HeadingProps>`
+export const StyledH2 = styled.h2<HeadingStyleProps>`
   ${BaseHeading};
   ${CSSH2}
 `;
 
-export const StyledH3 = styled.h3<HeadingProps>`
+export const StyledH3 = styled.h3<HeadingStyleProps>`
   ${BaseHeading};
   ${CSSH3}
 `;
 
-export const StyledH4 = styled.h4<HeadingProps>`
+export const StyledH4 = styled.h4<HeadingStyleProps>`
   ${BaseHeading};
   ${CSSH4}
 `;
 
-export const StyledH5 = styled.h5<HeadingProps>`
+export const StyledH5 = styled.h5<HeadingStyleProps>`
   ${BaseHeading};
   ${CSSH5}
 `;
@@ -77,21 +81,46 @@ export const StyledH5 = styled.h5<HeadingProps>`
 export const Heading: FC<HeadingProps> = ({
   fontSize = "h1",
   fontColor = { scalable: { color: "gray" } },
+  fontFamily,
   copy = undefined,
   children = undefined
 }) => {
   switch (fontSize) {
     case "h1":
-      return <StyledH1 fontColor={fontColor}>{copy || children}</StyledH1>;
+      return (
+        <StyledH1 fontColor={fontColor} fontFamily={fontFamily}>
+          {copy || children}
+        </StyledH1>
+      );
     case "h2":
-      return <StyledH2 fontColor={fontColor}>{copy || children}</StyledH2>;
+      return (
+        <StyledH2 fontColor={fontColor} fontFamily={fontFamily}>
+          {copy || children}
+        </StyledH2>
+      );
     case "h3":
-      return <StyledH3 fontColor={fontColor}>{copy || children}</StyledH3>;
+      return (
+        <StyledH3 fontColor={fontColor} fontFamily={fontFamily}>
+          {copy || children}
+        </StyledH3>
+      );
     case "h4":
-      return <StyledH4 fontColor={fontColor}>{copy || children}</StyledH4>;
+      return (
+        <StyledH4 fontColor={fontColor} fontFamily={fontFamily}>
+          {copy || children}
+        </StyledH4>
+      );
     case "h5":
-      return <StyledH5 fontColor={fontColor}>{copy || children}</StyledH5>;
+      return (
+        <StyledH5 fontColor={fontColor} fontFamily={fontFamily}>
+          {copy || children}
+        </StyledH5>
+      );
     default:
-      return <StyledH1 fontColor={fontColor}>{copy || children}</StyledH1>;
+      return (
+        <StyledH1 fontColor={fontColor} fontFamily={fontFamily}>
+          {copy || children}
+        </StyledH1>
+      );
   }
 };

@@ -19,7 +19,7 @@ import { sharedFontSize } from "../shared";
 
 type ButtonStyleTypes = Extract<
   Color,
-  "primary" | "secondary" | "warning" | "error"
+  "primary" | "secondary" | "accent" | "warning" | "error"
 >;
 
 type ButtonProps = HTMLButton & {
@@ -54,6 +54,14 @@ const buttonStyleMap: {
     borderColorHover: makeColor({ scalable: { color: "secondary" } }),
     borderColorActive: makeColor({ scalable: { color: "secondary" } })
   },
+  accent: {
+    bgColor: makeColor({ scalable: { color: "accent" } }),
+    bgColorHover: makeColor({ scalable: { color: "accent", scale: 3 } }),
+    bgColorActive: makeColor({ scalable: { color: "accent", scale: 2 } }),
+    borderColor: makeColor({ scalable: { color: "accent" } }),
+    borderColorHover: makeColor({ scalable: { color: "accent" } }),
+    borderColorActive: makeColor({ scalable: { color: "accent" } })
+  },
   warning: {
     bgColor: makeColor({ scalable: { color: "warning" } }),
     bgColorHover: darken(0.05, makeColor({ scalable: { color: "warning" } })),
@@ -76,7 +84,7 @@ export const StyledButton = styled.button<
   Required<Pick<ButtonProps, "styleType" | "disabled">>
 >`
   ${makeReset("button")}
-  ${makeInset({ vertical: 8, horizontal: 12 })};
+  ${makeInset({ vertical: 12, horizontal: 28 })};
   border-radius: ${makeSpace({ custom: 2 })};
   transition: all ease-in-out 0.15s;
   border-width: 1px;
@@ -129,7 +137,7 @@ export const Button: FC<ButtonProps> = ({
         type="label"
         fontSize={sharedFontSize}
         fontColor={((): ColorProperties => {
-          if (styleType !== "primary" && styleType !== "warning") {
+          if (styleType !== "primary" && styleType !== "warning" && styleType !== "accent") {
             return { fixed: "light" };
           }
           if (restProps.disabled || loading) {

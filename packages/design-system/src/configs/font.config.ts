@@ -13,9 +13,11 @@ import {
 
 export interface FontFamilyDefinitionOptions {
   family: FontFamily;
-  variants: {
-    [type in Exclude<FontStyle, "bold">]: FontWeightValue[];
-  };
+  variants: Partial<
+    {
+      [type in Exclude<FontStyle, "bold">]: FontWeightValue[];
+    }
+  >;
 }
 
 export interface FontFamilyDefinition {
@@ -64,6 +66,15 @@ export const fontConfig: FontConfig = {
     black: "900"
   },
   fontFamilyDefinitions: [
+    {
+      source: "google",
+      options: {
+        family: "Covered By Your Grace",
+        variants: {
+          normal: ["400"]
+        }
+      }
+    },
     {
       source: "google",
       options: {

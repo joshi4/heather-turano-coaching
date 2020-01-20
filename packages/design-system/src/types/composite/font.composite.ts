@@ -4,7 +4,11 @@ import { ColorProperties } from "./color.composite";
 
 export type FontSize = Size & SizeHeadings;
 export type FontFamilyType = "system" | "user-defined" | "google";
-export type FontFamily = "system" | "Montserrat" | "Raleway";
+export type FontFamily =
+  | "system"
+  | "Montserrat"
+  | "Raleway"
+  | "Covered By Your Grace";
 export type FontStyle = "normal" | "italic";
 export type FontWeightValue =
   | "100"
