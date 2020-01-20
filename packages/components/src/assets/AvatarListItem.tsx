@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { AvatarProps, Avatar } from "../assets";
+import { AvatarProps, Avatar } from "./Avatar";
 import styled from "styled-components";
 import {
   makeInset,

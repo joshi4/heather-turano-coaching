@@ -14,7 +14,7 @@ export interface BlogSocialOptions {
 }
 
 export interface BlogAuthor {
-  avatarImg: string;
+  avatarImg?: string;
   authorName: string;
 }
 

@@ -9,4 +9,3 @@ export * from "./blog";
 export * from "./layouts";
 export * from "./navigation";
 export * from "./utils";
-export * from "./list-items";

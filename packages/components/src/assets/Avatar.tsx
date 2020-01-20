@@ -73,13 +73,10 @@ const StyledAvatar = styled.div.attrs({ className: "avatar" })<
     }
   }
 
-  img {
-    border: ${makeSize({ custom: 2 })} solid ${makeColor({ fixed: "light" })};
-  }
-
   img,
   div.img {
     border-radius: 50%;
+    border: ${makeSize({ custom: 4 })} solid ${makeColor({ fixed: "light" })};
     z-index: 10;
     animation: fadein 0.25s;
     border-radius: 50%;

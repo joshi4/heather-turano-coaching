@@ -7,7 +7,7 @@ import {
 import { gutter } from "./LayoutContainer";
 
 interface LayoutColumnProps {
-  colWidth?: number;
+  colWidth?: number | string;
 }
 
 const StyledLayoutColumn = styled.div<LayoutColumnProps>`
@@ -16,7 +16,9 @@ const StyledLayoutColumn = styled.div<LayoutColumnProps>`
   ${({ colWidth }) =>
     colWidth
       ? css`
-          width: ${makeSize({ custom: colWidth })};
+          width: ${typeof colWidth === "number"
+            ? makeSize({ custom: colWidth })
+            : colWidth};
         `
       : css`
           flex: 1;
