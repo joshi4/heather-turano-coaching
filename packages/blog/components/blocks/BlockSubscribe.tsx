@@ -37,9 +37,12 @@ const StyledContentCopy = styled.div`
   }
 `;
 
-export const BlockSubscribe: FC<BlockSubscribeProps> = ({ subscribe }) => (
+export const BlockSubscribe: FC<BlockSubscribeProps> = ({
+  subscribe,
+  displayBlockTitle = true
+}) => (
   <LayoutBlock>
-    <LayoutBlockTitle title={subscribe.fields.title} />
+    {displayBlockTitle && <LayoutBlockTitle title={subscribe.fields.title} />}
     <LayoutBlockContent>
       <StyledSubscribeContnet>
         <StyledContentCopy>

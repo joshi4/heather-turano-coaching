@@ -1,12 +1,11 @@
 import React from "react";
 import { NextPage } from "next";
-import styled from "styled-components";
-import { makeReset } from "@heather-turano-coaching/design-system/utils";
 import {
   PageContainer,
   LayoutContainer,
   PageHeader,
-  LayoutColumn
+  LayoutColumn,
+  TagCardSection
 } from "../../components";
 import { Tag } from "@tryghost/content-api";
 import {
@@ -17,10 +16,6 @@ import {
 interface TagsPageProps {
   tags: Tag[];
 }
-
-const StyledAuthorPageContent = styled.ul`
-  ${makeReset("list")};
-`;
 
 export const TagsPage: NextPage<TagsPageProps> = ({ tags }) => (
   <PageContainer>
@@ -34,12 +29,8 @@ export const TagsPage: NextPage<TagsPageProps> = ({ tags }) => (
       </LayoutColumn>
     </LayoutContainer>
     <LayoutContainer>
-      <LayoutColumn>
-        <StyledAuthorPageContent>
-          {tags.map(tag => (
-            <li key={tag.id}>{tag.name}</li>
-          ))}
-        </StyledAuthorPageContent>
+      <LayoutColumn colWidth="100%">
+        <TagCardSection tags={tags} tagType="tag" page="tags" />
       </LayoutColumn>
       <LayoutColumn></LayoutColumn>
     </LayoutContainer>

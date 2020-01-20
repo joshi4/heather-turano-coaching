@@ -112,6 +112,21 @@ export const getAllTagsSansCategories = async (): Promise<GetAllTagsSansCategori
   };
 };
 
+export type GetAllTagsInPostsApiRequest = { postIds: Tag["id"][] };
+export type GetAllTagsInPostsApiResponse = TagsObject;
+
+export const getAllTagsInPosts = async ({
+  postIds
+}: GetAllTagsInPostsApiRequest): Promise<GetAllTagsInPostsApiResponse> => {
+  const res = await fetch(
+    `${contentApi}tags/?key=${ghostContentApiKey}&authors.id[${postIds.join(
+      ","
+    )}]`
+  );
+  const json = (await res.json()) as GetAllTagsInPostsApiResponse;
+  return json;
+};
+
 export type GetAllCategoriesApiResponse = TagsObject["tags"];
 
 export const getAllCategories = async (): Promise<GetAllCategoriesApiResponse> => {

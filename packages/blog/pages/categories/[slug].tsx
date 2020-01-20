@@ -1,12 +1,11 @@
 import React from "react";
 import { NextPage } from "next";
-import { PostObject } from "@tryghost/content-api";
+import { PostObject, TagsObject } from "@tryghost/content-api";
 import {
   getPostByTagSlug,
-  getAllCategories,
-  GetAllCategoriesApiResponse,
   getBlockSubscribe,
-  GetPostByTagApiResponse
+  GetPostByTagApiResponse,
+  getAllTagsInPosts
 } from "../../api";
 import {
   PageContainer,
@@ -14,15 +13,15 @@ import {
   PageHeader,
   LayoutColumn,
   BlogPostList,
-  BlockCategoriesList,
   BlockSubscribe,
-  BlockContributors
+  BlockContributors,
+  BlockTagsList
 } from "../../components";
-import { categoryDelimiter } from "../../utils";
+import { categoryDelimiter, filterOutCategoriesFromTags } from "../../utils";
 
 interface CategoryPageProps {
   category: string;
-  categories: GetAllCategoriesApiResponse;
+  tags: TagsObject["tags"];
   posts: PostObject["posts"];
   blocks: {
     subscribe: any;
@@ -30,7 +29,7 @@ interface CategoryPageProps {
 }
 
 const CategoryPage: NextPage<CategoryPageProps> = ({
-  categories,
+  tags,
   category,
   posts,
   blocks: { subscribe }
@@ -46,28 +45,29 @@ const CategoryPage: NextPage<CategoryPageProps> = ({
         <BlogPostList posts={posts} />
       </LayoutColumn>
       <LayoutColumn>
-        <BlockSubscribe subscribe={subscribe} />
-        <BlockContributors posts={posts} />
-        <BlockCategoriesList categories={categories} />
+        <BlockSubscribe subscribe={subscribe} displayBlockTitle={false} />
+        <BlockContributors title="Authors of this category" posts={posts} />
+        <BlockTagsList title="Tags in this category" tags={tags} />
       </LayoutColumn>
     </LayoutContainer>
   </PageContainer>
 );
 
 CategoryPage.getInitialProps = async ({ query }) => {
-  const [{ posts }, categories, blockSubscribe] = await Promise.all<
+  const [{ posts }, blockSubscribe] = await Promise.all<
     GetPostByTagApiResponse,
-    GetAllCategoriesApiResponse,
     any
-  >([
-    getPostByTagSlug(query.slug as string),
-    getAllCategories(),
-    getBlockSubscribe()
-  ]);
+  >([getPostByTagSlug(query.slug as string), getBlockSubscribe()]);
+
+  console.log(posts);
+
+  const { tags } = await getAllTagsInPosts({
+    postIds: posts.map(post => post.id)
+  });
 
   return {
     category: (query.slug as string).split(categoryDelimiter)[1],
-    categories: categories,
+    tags: filterOutCategoriesFromTags(tags),
     posts: posts,
     blocks: {
       subscribe: blockSubscribe

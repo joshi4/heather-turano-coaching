@@ -1,6 +1,6 @@
 import React from "react";
 import { NextPage } from "next";
-import { PostObject } from "@tryghost/content-api";
+import { PostObject, TagsObject } from "@tryghost/content-api";
 import {
   getPostByTagSlug,
   GetPostByTagApiResponse,
@@ -18,10 +18,11 @@ import {
   BlockSubscribe,
   BlockContributors
 } from "../../components";
+import { filterOutCategoriesFromTags } from "../../utils";
 
 interface TagsPageProps {
   tag: string;
-  tags: GetAllTagsApiResponse;
+  tags: TagsObject["tags"];
   posts: PostObject["posts"];
   blocks: {
     subscribe: any;
@@ -50,15 +51,15 @@ const TagsPage: NextPage<TagsPageProps> = ({
       </LayoutColumn>
       <LayoutColumn>
         <BlockSubscribe subscribe={subscribe} />
-        <BlockContributors title="Authors who've used this tag" posts={posts} />
-        <BlockTagsList tags={tags.tags} />
+        <BlockContributors title="Authors of tag posts" posts={posts} />
+        <BlockTagsList title="recent tags" tags={tags} limit={10} />
       </LayoutColumn>
     </LayoutContainer>
   </PageContainer>
 );
 
 TagsPage.getInitialProps = async ({ query }) => {
-  const [{ posts }, tags, subscribeBlock] = await Promise.all<
+  const [{ posts }, { tags }, subscribeBlock] = await Promise.all<
     GetPostByTagApiResponse,
     GetAllTagsApiResponse,
     any
@@ -70,7 +71,7 @@ TagsPage.getInitialProps = async ({ query }) => {
 
   return {
     tag: query.slug as string,
-    tags: tags,
+    tags: filterOutCategoriesFromTags(tags),
     posts: posts,
     blocks: {
       subscribe: subscribeBlock

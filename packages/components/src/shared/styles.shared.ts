@@ -13,11 +13,6 @@ import { ResponsiveBreakpoints } from "@heather-turano-coaching/design-system/co
 export const shareButtonAndInputFontSize: FontProperties["fontSize"] = "sm";
 export const sharedElementSpacing: SpaceProperties = 16;
 export const sharedButtonAndInputVerticalPadding: number = 12;
-// export const sharedButtonAndInputHorizontalPadding: number = 28;
-// export const sharedButtonAndInputPadding: string = makeInset({
-//   vertical: 12,
-//   horizontal: 28
-// });
 
 export const spaceFromSides: Partial<ResponsiveBreakpoints> = {
   phone: 24,

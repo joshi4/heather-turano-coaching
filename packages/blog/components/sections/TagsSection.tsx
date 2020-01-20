@@ -5,7 +5,7 @@ import {
   TagGroup,
   TagGroupProps
 } from "@heather-turano-coaching/components";
-import Link from "next/link";
+import { NextLink } from "../general";
 
 interface TagSectionProps {
   tags?: GhostTag[];
@@ -39,15 +39,13 @@ export const TagsSection: FC<TagSectionProps> = ({
             return !tag.name?.includes("category-");
           })
           .map(tag => (
-            <Link key={tag.id} href={`/${filter}/${tag.slug}`}>
-              <a>
-                <Tag
-                  tagType={filter === "categories" ? "category" : "tag"}
-                  key={tag.id}
-                  text={normalizeTagName(filter, tag.name as string)}
-                />
-              </a>
-            </Link>
+            <NextLink key={tag.id} href={`/${filter}/${tag.slug}`}>
+              <Tag
+                tagType={filter === "categories" ? "category" : "tag"}
+                key={tag.id}
+                text={normalizeTagName(filter, tag.name as string)}
+              />
+            </NextLink>
           ))}
       </TagGroup>
     )}

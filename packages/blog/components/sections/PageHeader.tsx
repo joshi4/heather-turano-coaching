@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, Fragment } from "react";
 import { useRouter } from "next/router";
 import { Copy, Heading, makeFlex } from "@heather-turano-coaching/components";
 import styled from "styled-components";
@@ -81,6 +81,7 @@ const copy = ({
   scale: ColorScalePosition;
 }) => (
   <Copy
+    key={label}
     type="label"
     fontSize="xl"
     fontColor={{
@@ -108,7 +109,7 @@ export const PageHeader: FC<PageHeaderProps> = ({
       <div>
         {routes.map((route, index) =>
           index !== routes.length - 1 ? (
-            <>
+            <Fragment key={route}>
               <NextLink href={`/${route}`}>
                 {copy({
                   label: index === 0 ? basePathName : route,
@@ -119,7 +120,7 @@ export const PageHeader: FC<PageHeaderProps> = ({
                 label: "|",
                 scale: 2
               })}
-            </>
+            </Fragment>
           ) : (
             copy({
               label: index === 0 ? basePathName : route,

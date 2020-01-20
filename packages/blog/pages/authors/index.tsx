@@ -11,12 +11,12 @@ import {
   PageContainer,
   LayoutContainer,
   PageHeader,
-  LayoutColumn
+  LayoutColumn,
+  NextLink
 } from "../../components";
 import { Author } from "@tryghost/content-api";
 import { getAllAuthors, GetAllAuthorsApiResponse } from "../../api";
 import { AvatarCard, makeFlex } from "@heather-turano-coaching/components";
-import Link from "next/link";
 
 interface AuthorsPageProps {
   authors: Author[];
@@ -69,16 +69,14 @@ export const AuthorsPage: NextPage<AuthorsPageProps> = ({ authors }) => (
         <StyledAuthorPageContent>
           {authors.map(author => (
             <li key={author.id}>
-              <Link href={`/authors/${author.slug}`}>
-                <a>
-                  <AvatarCard
-                    authorName={author.name as string}
-                    avatarImg={author.profile_image as string}
-                    bio={author.bio}
-                    featureImage={author.cover_image}
-                  />
-                </a>
-              </Link>
+              <NextLink href={`/authors/${author.slug}`}>
+                <AvatarCard
+                  authorName={author.name as string}
+                  avatarImg={author.profile_image as string}
+                  bio={author.bio}
+                  featureImage={author.cover_image}
+                />
+              </NextLink>
             </li>
           ))}
         </StyledAuthorPageContent>

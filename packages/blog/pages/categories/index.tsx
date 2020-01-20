@@ -1,23 +1,18 @@
 import React from "react";
 import { NextPage } from "next";
-import styled from "styled-components";
-import { makeReset } from "@heather-turano-coaching/design-system/utils";
 import {
   PageContainer,
   LayoutContainer,
   PageHeader,
-  LayoutColumn
+  LayoutColumn,
+  TagCardSection
 } from "../../components";
-import { Author } from "@tryghost/content-api";
+import { Tag } from "@tryghost/content-api";
 import { getAllCategories, GetAllCategoriesApiResponse } from "../../api";
 
 interface CategoriesPageProps {
-  categories: Author[];
+  categories: Tag[];
 }
-
-const StyledAuthorPageContent = styled.ul`
-  ${makeReset("list")};
-`;
 
 export const CategoriesPage: NextPage<CategoriesPageProps> = ({
   categories
@@ -34,13 +29,12 @@ export const CategoriesPage: NextPage<CategoriesPageProps> = ({
     </LayoutContainer>
     <LayoutContainer>
       <LayoutColumn>
-        <StyledAuthorPageContent>
-          {categories.map(category => (
-            <li key={category.id}>{category.name}</li>
-          ))}
-        </StyledAuthorPageContent>
+        <TagCardSection
+          tags={categories}
+          tagType="category"
+          page="categories"
+        />
       </LayoutColumn>
-      <LayoutColumn></LayoutColumn>
     </LayoutContainer>
   </PageContainer>
 );
