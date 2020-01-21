@@ -14,19 +14,15 @@ export const shareButtonAndInputFontSize: FontProperties["fontSize"] = "sm";
 export const sharedElementSpacing: SpaceProperties = 16;
 export const sharedButtonAndInputVerticalPadding: number = 12;
 
-export const spaceFromSides: Partial<ResponsiveBreakpoints> = {
+export const sharedHorizontalBodyPadding: ResponsiveBreakpoints = {
   phone: 24,
-  tabletPortrait: 60
-};
-
-export const sharedHorizontalPadding: Partial<ResponsiveBreakpoints> = {
-  phone: 24,
-  tabletPortrait: 24
-};
-
-export const sharedVerticalPadding: Partial<ResponsiveBreakpoints> = {
-  phone: 24,
-  tabletPortrait: 12
+  phoneMd: 24,
+  phoneLg: 24,
+  tabletPortrait: 32,
+  tabletLandscape: 32,
+  laptop: 32,
+  desktop: 32,
+  "4K": 32
 };
 
 export const createImageBorder = (color: ColorProperties) => css`

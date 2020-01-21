@@ -13,7 +13,7 @@ import {
 } from "@heather-turano-coaching/design-system/utils";
 
 import { useBreakpoints, useSticky } from "../hooks";
-import { sharedHorizontalPadding, sharedVerticalPadding } from "../shared";
+import { sharedHorizontalBodyPadding } from "../shared";
 
 interface HeaderNavProps {
   homeRoute?: string;
@@ -24,9 +24,7 @@ interface HeaderNavProps {
   };
 }
 
-export const headerNavHeight = 68;
-export const headerNavVerticalPadding = sharedVerticalPadding.tabletPortrait as number;
-export const headerNavHorizontalPadding = sharedHorizontalPadding.tabletPortrait as number;
+export const headerNavVerticalPadding = 20;
 
 const StyledHeaderNav = styled.header`
   box-sizing: border-box;
@@ -77,10 +75,16 @@ const StyledStickyWrapper = styled.div<{ wrapperHeight?: number }>`
 const StyledNav = styled.nav<{ isSticky: boolean }>`
   width: 100%;
   ${makeInset({
-    vertical: sharedVerticalPadding.tabletPortrait,
-    horizontal: sharedVerticalPadding.tabletPortrait
+    horizontal: sharedHorizontalBodyPadding.phone,
+    vertical: headerNavVerticalPadding
   })};
-  background: ${makeColor({ fixed: "light" })};
+
+  ${makeResponsive({
+    endAt: "tabletPortrait",
+    style: `
+      background: ${makeColor({ scalable: { color: "light", scale: 3 } })};
+    `
+  })}
 
   width: 100%;
   z-index: 100;
@@ -91,6 +95,10 @@ const StyledNav = styled.nav<{ isSticky: boolean }>`
     style: `
       flex: 1;
       ${makeFlex("row", "space-between", "center")};
+      ${makeInset({
+        horizontal: sharedHorizontalBodyPadding.tabletPortrait,
+        vertical: headerNavVerticalPadding
+      })};
     `
   })}
 
@@ -99,7 +107,10 @@ const StyledNav = styled.nav<{ isSticky: boolean }>`
     css`
       position: fixed;
       top: 0;
-      background: ${makeColor({ fixed: "light" })};
+      background: ${makeColor({ fixed: "light" })} !important;
+      box-shadow: ${`0 1px 15px 0 ${makeColor({
+        scalable: { color: "gray", scale: 3 }
+      })}`};
     `}
 `;
 
@@ -121,6 +132,7 @@ const StyledNavContent = styled.div`
   max-width: ${makeSize({ custom: 1024 })};
   margin: 0 auto;
   width: 100%;
+  height: inherit;
 
   ${makeResponsive({
     beginAt: "tabletPortrait",
@@ -184,12 +196,12 @@ const StyledNavListItem = styled.li<{ forceActiveState: boolean }>`
 export const HeaderNavLink = StyledNavListItem;
 
 export const HeaderNavLinkContent: FC = ({ children }) => {
-  const [windowWidth, { tabletPortrait }] = useBreakpoints();
+  const [windowWidth, { phoneMd }] = useBreakpoints();
 
   return (
     <Copy
       type="label"
-      fontSize={windowWidth < tabletPortrait ? "xs" : "sm"}
+      fontSize={windowWidth < phoneMd ? "xs" : "sm"}
       lineHeight="lg"
       fontColor={{ scalable: { color: "gray", scale: 0 } }}
     >
@@ -208,7 +220,7 @@ const HeaderTopLogo: FC<HeaderTopLogoProps> = ({
   return windowWidth < tabletPortrait ? (
     <StyledLogo>
       <a href={homeRoute}>
-        <Image src={stacked} alt="htcLogo" manualWidth={136} />
+        <Image src={stacked} alt="htcLogo" manualWidth={160} />
       </a>
     </StyledLogo>
   ) : null;
@@ -244,7 +256,6 @@ export const HeaderNav: FC<HeaderNavProps> = ({ navItems, ...restProps }) => {
       <HeaderTopLogo {...restProps} />
       <StyledStickyWrapper
         ref={wrapperRef}
-        id="test"
         wrapperHeight={targetRef.current?.offsetHeight}
       >
         <StyledNav ref={targetRef} isSticky={isSticky}>

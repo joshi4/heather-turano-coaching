@@ -9,8 +9,8 @@ import {
 import styled, { css } from "styled-components";
 import {
   makeSize,
-  makeSpace,
-  makeColor
+  makeColor,
+  makeSpace
 } from "@heather-turano-coaching/design-system/utils";
 
 interface BlockRecentPostsProps {
@@ -32,17 +32,16 @@ const StyledStickyWrapper = styled.div<{ wrapperHeight?: number }>`
 const StyledStickyTarget = styled.div<{ isSticky: boolean }>`
   transition: top 0.1s linear;
   background: transparent;
-  top: 0;
   width: 100%;
+  transition: all 0.2s ease-in-out;
 
   ${({ isSticky }) =>
     isSticky &&
     css`
       position: fixed;
       top: ${makeSpace({ custom: headerNavVerticalPadding })};
-
       background: ${makeColor({ fixed: "light" })};
-    `}
+    `};
 `;
 
 export const BlockRecentPosts: FC<BlockRecentPostsProps> = ({
