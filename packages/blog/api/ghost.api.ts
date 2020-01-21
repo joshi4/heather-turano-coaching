@@ -87,9 +87,16 @@ export const getTagsAndCategoriesByAuthorSlug = async (
     return accum;
   }, []);
 
+  const deDupedTags = authorTags.reduce<Tag[]>((accum, tag) => {
+    if (typeof accum.find(iTag => iTag.id === tag.id) === "undefined") {
+      return [...accum, tag];
+    }
+    return accum;
+  }, []);
+
   return {
-    tags: authorTags,
-    categories: getCategoriesFromTags(authorTags)
+    tags: filterOutCategoriesFromTags(deDupedTags),
+    categories: getCategoriesFromTags(deDupedTags)
   };
 };
 

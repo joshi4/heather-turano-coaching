@@ -4,8 +4,7 @@ import styled from "styled-components";
 import {
   makeReset,
   makeSize,
-  makeInset,
-  makeColor
+  makeInset
 } from "@heather-turano-coaching/design-system/utils";
 import {
   PageContainer,
@@ -17,6 +16,7 @@ import {
 import { Author } from "@tryghost/content-api";
 import { getAllAuthors, GetAllAuthorsApiResponse } from "../../api";
 import { AvatarCard, makeFlex } from "@heather-turano-coaching/components";
+import { universalHover } from "../../styles";
 
 interface AuthorsPageProps {
   authors: Author[];
@@ -43,12 +43,7 @@ const StyledAuthorPageContent = styled.ul`
       display: block;
       height: 100%;
       width: inherit;
-      transition: all 0.15s ease-in-out;
-
-      &:hover {
-        transform: scale(1.01);
-        box-shadow: 0 2px 12px 0 ${makeColor({ scalable: { color: "gray" } })};
-      }
+      ${universalHover};
     }
   }
 `;

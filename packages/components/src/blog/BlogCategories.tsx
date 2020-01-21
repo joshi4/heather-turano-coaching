@@ -134,7 +134,7 @@ export const BlogCategories: FC<BlogCategoriesProps> = ({ categories }) => (
   <StyledBlogContainer>
     <StyledBlogCategories>
       {categories.map(({ label, route, img }) => (
-        <StyledBlogCategory key={label}>
+        <StyledBlogCategory key={img}>
           <Link to={route}>
             <Copy type="paragraph" fontSize="md" fontColor={{ fixed: "light" }}>
               {label}

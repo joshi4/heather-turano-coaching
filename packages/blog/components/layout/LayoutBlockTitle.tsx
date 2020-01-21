@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import {
-  makeOutset,
   makeColor,
   makeFont,
   makeSize
@@ -15,7 +14,6 @@ interface LayoutBlockTitleProps {
 const StyledLayoutBlockTitle = styled.header`
   width: 100%;
   ${makeFlex("row", "space-between", "center")};
-  ${makeOutset({ bottom: 16 })};
   border-bottom: ${makeSize({ custom: 1 })} solid
     ${makeColor({
       scalable: { color: "gray", scale: 3 }

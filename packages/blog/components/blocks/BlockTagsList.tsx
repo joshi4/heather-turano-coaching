@@ -41,7 +41,7 @@ export const BlockTagsList: FC<BlockTagsListProps> = ({
       <LayoutBlockContent>
         <TagGroup>
           {ts.map(tag => (
-            <NextLink key={tag.id} href={`/tags/${tag.slug}`}>
+            <NextLink key={tag.slug} href={`/tags/${tag.slug}`}>
               <Tag tagType="tag" text={tag.name as string} />
             </NextLink>
           ))}

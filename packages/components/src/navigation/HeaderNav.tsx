@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useRef } from "react";
 import styled, { css } from "styled-components";
 
 import { Copy } from "../typography";
@@ -12,7 +12,7 @@ import {
   makeReset
 } from "@heather-turano-coaching/design-system/utils";
 
-import { useBreakpoints } from "../hooks";
+import { useBreakpoints, useSticky } from "../hooks";
 import { sharedHorizontalPadding, sharedVerticalPadding } from "../shared";
 
 interface HeaderNavProps {
@@ -24,30 +24,21 @@ interface HeaderNavProps {
   };
 }
 
+export const headerNavHeight = 68;
+export const headerNavVerticalPadding = sharedVerticalPadding.tabletPortrait as number;
+export const headerNavHorizontalPadding = sharedHorizontalPadding.tabletPortrait as number;
+
 const StyledHeaderNav = styled.header`
-  box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
+
   ${makeResponsive({
     beginAt: "tabletPortrait",
     style: `
-        ${makeFlex("row", "space-between", "center")};
-        ${makeInset({
-          horizontal: sharedHorizontalPadding.tabletPortrait,
-          vertical: sharedVerticalPadding.tabletPortrait
-        })}
-      `
+      height: ${makeSize({ custom: headerNavHeight })};
+    `
   })};
-
-  box-shadow: ${`0 1px 15px 0 ${makeColor({
-    scalable: { color: "gray", scale: 3 }
-  })}`};
-  width: 100%;
-  ${makeInset({
-    bottom: sharedVerticalPadding.tabletPortrait
-  })};
-
-  & > nav {
-    flex: 1;
-  }
 `;
 
 const StyledLogo = styled.div`
@@ -74,6 +65,34 @@ const StyledLogo = styled.div`
   }
 `;
 
+const StyledNav = styled.nav<{ isSticky: boolean }>`
+  width: 100%;
+  ${makeFlex("row", "space-between", "center")};
+  ${makeInset({
+    vertical: sharedVerticalPadding.tabletPortrait,
+    horizontal: sharedHorizontalPadding.tabletPortrait
+  })};
+  background: ${makeColor({ fixed: "light" })};
+  box-shadow: ${`0 1px 15px 0 ${makeColor({
+    scalable: { color: "gray", scale: 3 }
+  })}`};
+  width: 100%;
+  z-index: 100;
+
+  ${({ isSticky }) =>
+    isSticky &&
+    css`
+      position: fixed;
+      top: 0;
+
+      &::after {
+        content: "";
+        position: relative;
+        height: 100%;
+      }
+    `}
+`;
+
 const StyledNavList = styled.ul`
   ${makeReset("list")};
   ${makeFlex("row", "space-around", "center")};
@@ -83,6 +102,7 @@ const StyledNavList = styled.ul`
     beginAt: "tabletPortrait",
     style: `
       ${makeFlex("row", "flex-end", "center")};
+      flex: 1;
     `
   })};
 `;
@@ -156,27 +176,41 @@ export const HeaderNavLinkContent: FC = ({ children }) => {
   );
 };
 
-export const HeaderNav: FC<HeaderNavProps> = ({
-  homeRoute = "/",
-  navItems,
+type HeaderLogoProps = Omit<HeaderNavProps, "navItems">;
+
+const HeaderLogo: FC<HeaderLogoProps> = ({
+  homeRoute,
   logos: { stacked, inline }
 }) => {
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
 
+  console.log(windowWidth, tabletPortrait);
+
   return (
-    <StyledHeaderNav>
-      <StyledLogo>
-        <a href={homeRoute}>
-          <Image
-            src={windowWidth < tabletPortrait ? stacked : inline}
-            alt="htcLogo"
-            manualWidth={windowWidth < tabletPortrait ? 136 : 200}
-          />
-        </a>
-      </StyledLogo>
-      <nav>
-        <StyledNavList styleName="nav">{navItems}</StyledNavList>
-      </nav>
+    <StyledLogo>
+      <a href={homeRoute}>
+        <Image
+          src={windowWidth < tabletPortrait ? stacked : inline}
+          alt="htcLogo"
+          manualWidth={windowWidth < tabletPortrait ? 136 : 200}
+        />
+      </a>
+    </StyledLogo>
+  );
+};
+
+export const HeaderNav: FC<HeaderNavProps> = ({ navItems, ...restProps }) => {
+  const headerRef = useRef<HTMLElement>(null);
+  const isSticky = useSticky<HTMLElement>({ ref: headerRef });
+
+  console.log(isSticky);
+
+  return (
+    <StyledHeaderNav ref={headerRef}>
+      <StyledNav isSticky={isSticky}>
+        <HeaderLogo {...restProps} />
+        <StyledNavList>{navItems}</StyledNavList>
+      </StyledNav>
     </StyledHeaderNav>
   );
 };

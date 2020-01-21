@@ -11,8 +11,6 @@ interface LayoutColumnProps {
 }
 
 const StyledLayoutColumn = styled.div<LayoutColumnProps>`
-  z-index: 10;
-
   ${({ colWidth }) =>
     colWidth
       ? css`
