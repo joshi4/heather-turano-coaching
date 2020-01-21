@@ -19,6 +19,10 @@ import {
 } from "./blog.types";
 import { BlogSocialLinks } from "./BlogSocialLinks";
 import { BlogAvatar } from "./BlogAvatar";
+import {
+  ColorProperties,
+  FontProperties
+} from "@heather-turano-coaching/design-system/types/composite";
 
 type BlogCardProps = BaseBlog &
   BlogAuthor &
@@ -37,13 +41,20 @@ const CSSBlogCardMap: {
   [key in BlogType]: CSSBlogCardMapFn;
 } = {
   featured: () => css`
-    background: ${makeColor({ scalable: { color: "secondary" } })};
-    ${makeInset({ vertical: 20, horizontal: 16 })};
+    ${makeInset({ vertical: 20, horizontal: 32 })};
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      ${makeRhythm({ fontSize: "xs", top: 0, bottom: 1 })}
+    }
 
     ${makeResponsive({
       beginAt: "tabletPortrait",
       style: `
         ${makeInset({ vertical: 32, horizontal: 32 })};
+        background: ${makeColor({ scalable: { color: "secondary" } })};
       `
     })}
   `,
@@ -57,16 +68,25 @@ const CSSBlogCardMap: {
 const StyledBlogCard = styled.div<
   Required<Pick<BlogCardProps, "type">> & Pick<BlogCardProps, "social">
 >`
-  position: relative;
   ${({ type, social }) => CSSBlogCardMap[type]({ social })}
-
-  h2, h3, h4 {
+  position: relative;
+  h2,
+  h3,
+  h4 {
     line-height: 1.2;
-    ${makeRhythm({ top: 1, bottom: 1 })};
   }
+
+  ${makeResponsive({
+    beginAt: "tabletPortrait",
+    style: `
+      h2, h3, h4 {
+        ${makeRhythm({ top: 1, bottom: 1 })};
+      }
+    `
+  })}
 `;
 
-const StyledCopySection = styled.div<Required<Pick<BlogCardProps, "type">>>`
+const StyledExcerpt = styled.div<Required<Pick<BlogCardProps, "type">>>`
   & > ul {
     position: absolute;
 
@@ -107,21 +127,34 @@ export const BlogCard: FC<BlogCardProps> = ({
   children
 }) => {
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
+  const isWindowMobile = windowWidth < tabletPortrait;
+
+  const derriveFontColor = (): ColorProperties => {
+    if (type === "featured" && isWindowMobile) {
+      return { fixed: "dark" };
+    }
+    if (type === "featured" && !isWindowMobile) {
+      return { fixed: "light" };
+    }
+    return { scalable: { color: "gray" } };
+  };
+
+  const derriveExcerptFontSize = (): FontProperties["fontSize"] => {
+    if (type === "featured" && isWindowMobile) return "xs";
+    if (type === "featured" && !isWindowMobile) return "sm";
+    return "sm";
+  };
 
   return (
     <StyledBlogCard type={type} social={social}>
-      {tags}
+      {(!isWindowMobile || type !== "featured") && tags}
       <Heading
-        fontSize="h3"
-        fontColor={
-          type === "featured"
-            ? { fixed: "light" }
-            : { scalable: { color: "gray" } }
-        }
+        fontSize={isWindowMobile ? "h4" : "h3"}
+        fontColor={derriveFontColor()}
       >
         {title}
       </Heading>
-      {type === "regular" && authorName && (
+      {authorName && (
         <BlogAvatar
           type="inline"
           avatarImg={avatarImg}
@@ -129,27 +162,21 @@ export const BlogCard: FC<BlogCardProps> = ({
           datePublished={datePublished}
         />
       )}
-      <StyledCopySection type={type}>
+      <StyledExcerpt type={type}>
         <Copy
           type="paragraph"
-          fontSize={type === "featured" ? "sm" : "sm"}
-          fontColor={
-            type === "featured"
-              ? { fixed: "light" }
-              : { scalable: { color: "gray" } }
-          }
+          fontSize={derriveExcerptFontSize()}
+          fontColor={derriveFontColor()}
         >
           {excerpt}
         </Copy>
         <BlogSocialLinks
           social={social}
           orientation={
-            type === "regular" || windowWidth < tabletPortrait
-              ? "horizontal"
-              : "vertical"
+            type === "regular" || isWindowMobile ? "horizontal" : "vertical"
           }
         />
-      </StyledCopySection>
+      </StyledExcerpt>
       {children}
     </StyledBlogCard>
   );

@@ -20,6 +20,7 @@ import {
   getDailyInspiration,
   getBlockSubscribe
 } from "../api";
+import { useBreakpoints } from "@heather-turano-coaching/components";
 
 type IndexPageProps = PostObject & {
   featuredPosts: PostOrPage[];
@@ -41,22 +42,52 @@ const IndexPage: NextPage<IndexPageProps> = ({
   tags,
   blocks: { dailyInspiration, subscribe }
 }) => {
+  const [windowWidth, { tabletPortrait }] = useBreakpoints();
+  const isWindowMobile = windowWidth < tabletPortrait;
+
+  const AltColumn = (
+    <LayoutColumn>
+      <BlockSubscribe subscribe={subscribe} />
+      <BockDailyInspiration dailyInspiration={dailyInspiration} />
+      {!isWindowMobile && (
+        <>
+          <BlockContributors posts={posts} />
+          <BlockTagsList tags={tags} title="Recent tags" limit={10} />
+        </>
+      )}
+    </LayoutColumn>
+  );
+  const PostColumn = (
+    <LayoutColumn colWidth={628}>
+      <BlockFeaturedCategory tags={tags} />
+      <BlockRecentPosts posts={posts} />
+      {isWindowMobile && (
+        <>
+          <BlockContributors posts={posts} />
+          <BlockTagsList tags={tags} title="Recent tags" limit={10} />
+          <BlockSubscribe subscribe={subscribe} />
+        </>
+      )}
+    </LayoutColumn>
+  );
+
   return (
     <PageContainer>
       <LayoutContainer layoutType="stacked">
         <BlogFeature featuredPosts={featuredPosts} />
       </LayoutContainer>
       <LayoutContainer>
-        <LayoutColumn colWidth={628}>
-          <BlockFeaturedCategory tags={tags} />
-          <BlockRecentPosts posts={posts} />
-        </LayoutColumn>
-        <LayoutColumn>
-          <BlockSubscribe subscribe={subscribe} />
-          <BockDailyInspiration dailyInspiration={dailyInspiration} />
-          <BlockContributors posts={posts} />
-          <BlockTagsList tags={tags} title="Recent tags" limit={10} />
-        </LayoutColumn>
+        {isWindowMobile ? (
+          <>
+            {AltColumn}
+            {PostColumn}
+          </>
+        ) : (
+          <>
+            {PostColumn}
+            {AltColumn}
+          </>
+        )}
       </LayoutContainer>
     </PageContainer>
   );

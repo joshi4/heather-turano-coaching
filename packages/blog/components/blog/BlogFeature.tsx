@@ -5,7 +5,9 @@ import {
   makeFlex,
   BlogCard,
   Button,
-  Copy
+  Copy,
+  universalShadow,
+  useBreakpoints
 } from "@heather-turano-coaching/components";
 import {
   makeSize,
@@ -14,24 +16,44 @@ import {
   makeInset,
   makeSpace,
   makeFont,
-  makeOutset
+  makeOutset,
+  makeResponsive
 } from "@heather-turano-coaching/design-system/utils";
 import { formatLongDate } from "../../utils";
 import { TagsSection } from "../sections";
 import { BlogImage } from "./BlogImage";
-import Link from "next/link";
+import { NextLink } from "../general";
 
 const StyledFeaturedBlogContainer = styled.div`
-  position: relative;
-  ${makeFlex("row", "flex-start", "stretch")};
-  max-height: ${makeSize({ custom: 580 })};
-  height: ${makeSize({ custom: 580 })};
+  border-radius: ${makeSize({ custom: 8 })};
+  overflow: hidden;
+  box-shadow: ${universalShadow};
+  margin: 0 auto;
+  ${makeOutset({
+    horizontal: 8,
+    vertical: 8
+  })};
+
+  ${makeResponsive({
+    beginAt: "tabletPortrait",
+    style: `
+      position: relative;
+      ${makeFlex("row", "flex-start", "stretch")};
+      max-height: ${makeSize({ custom: 580 })};
+      height: ${makeSize({ custom: 580 })};
+    `
+  })};
 `;
 
 const StyledFeatureBlogSelector = styled.div`
-  ${makeFlex("row", "distribute-evently", "center")};
-  background: ${makeColor({ fixed: "light" })};
-  ${makeOutset({ bottom: 32 })};
+  ${makeResponsive({
+    beginAt: "tabletPortrait",
+    style: `
+      ${makeFlex("row", "distribute-evently", "center")};
+      background: ${makeColor({ fixed: "light" })};
+      ${makeOutset({ bottom: 32 })};
+    `
+  })};
 `;
 
 const StyledFeaturePostButton = styled.button.attrs({ type: "button" })<{
@@ -82,6 +104,8 @@ export const BlogFeature: FC<{ featuredPosts: PostOrPage[] }> = ({
   featuredPosts
 }) => {
   const [fp, setFp] = useState<PostOrPage>(featuredPosts[0]);
+  const [windowWidth, { tabletPortrait }] = useBreakpoints();
+  const isWindowMobile = windowWidth < tabletPortrait;
 
   return (
     <>
@@ -100,34 +124,36 @@ export const BlogFeature: FC<{ featuredPosts: PostOrPage[] }> = ({
             <TagsSection tags={fp.tags} alignment="right" filter="categories" />
           }
         >
-          <Link href={`/post/[slug]`} as={`/post/${fp.slug}`}>
-            <a>
+          {!isWindowMobile && (
+            <NextLink href={`/post/${fp.slug}`}>
               <Button styleType="primary" label="Read more" />
-            </a>
-          </Link>
+            </NextLink>
+          )}
         </BlogCard>
       </StyledFeaturedBlogContainer>
-      <StyledFeatureBlogSelector>
-        {featuredPosts.map(featPost => (
-          <StyledFeaturePostButton
-            key={featPost.id}
-            onClick={() => setFp(featPost)}
-            isActive={featPost.id === fp.id}
-          >
-            <Copy
-              type="label"
-              fontSize="xs"
-              fontColor={
-                featPost.id === fp.id
-                  ? { scalable: { color: "secondary" } }
-                  : { scalable: { color: "gray", scale: 2 } }
-              }
+      {!isWindowMobile && (
+        <StyledFeatureBlogSelector>
+          {featuredPosts.map(featPost => (
+            <StyledFeaturePostButton
+              key={featPost.id}
+              onClick={() => setFp(featPost)}
+              isActive={featPost.id === fp.id}
             >
-              {featPost.title}
-            </Copy>
-          </StyledFeaturePostButton>
-        ))}
-      </StyledFeatureBlogSelector>
+              <Copy
+                type="label"
+                fontSize="xs"
+                fontColor={
+                  featPost.id === fp.id
+                    ? { scalable: { color: "secondary" } }
+                    : { scalable: { color: "gray", scale: 2 } }
+                }
+              >
+                {featPost.title}
+              </Copy>
+            </StyledFeaturePostButton>
+          ))}
+        </StyledFeatureBlogSelector>
+      )}
     </>
   );
 };

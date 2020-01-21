@@ -19,6 +19,16 @@ const buttonGroupStyleMap: { [key in Layout]: SimpleInterpolation } = {
       margin-left: 1rem;
     }
   `,
+  "stacked-full": css`
+    ${StyledButton}, a {
+      display: block;
+      width: 100%;
+    }
+
+    & > ${StyledButton} + ${StyledButton}, & > a + a {
+      margin-top: 1rem;
+    }
+  `,
   stacked: css`
     ${StyledButton} {
       display: block;

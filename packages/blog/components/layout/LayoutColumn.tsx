@@ -2,31 +2,52 @@ import React, { FC } from "react";
 import styled, { css } from "styled-components";
 import {
   makeSize,
-  makeOutset
+  makeOutset,
+  makeResponsive
 } from "@heather-turano-coaching/design-system/utils";
 import { gutter } from "./LayoutContainer";
 
 interface LayoutColumnProps {
   colWidth?: number | string;
+  flexOrder?: number;
 }
 
 const StyledLayoutColumn = styled.div<LayoutColumnProps>`
-  ${({ colWidth }) =>
-    colWidth
-      ? css`
-          width: ${typeof colWidth === "number"
-            ? makeSize({ custom: colWidth })
-            : colWidth};
-        `
-      : css`
-          flex: 1;
-        `};
+  display: block;
+  width: 100%;
+  order: ${({ flexOrder }) => flexOrder || "initial"};
 
-  &:not(:first-child) {
-    ${makeOutset({ left: gutter })};
-  }
+  ${({ colWidth }) => {
+    if (colWidth) {
+      return css`
+        ${makeResponsive({
+          beginAt: "tabletPortrait",
+          style: `
+            width: ${
+              typeof colWidth === "number"
+                ? makeSize({ custom: colWidth })
+                : colWidth
+            };
+          `
+        })};
+      `;
+    }
+    return css`
+      flex: 1;
+    `;
+  }};
+
+  ${makeResponsive({
+    beginAt: "tabletPortrait",
+    style: `
+      &:not(:first-child) {
+        ${makeOutset({ left: gutter })};
+      }
+    `
+  })}
 `;
 
-export const LayoutColumn: FC<LayoutColumnProps> = ({ children, colWidth }) => (
-  <StyledLayoutColumn colWidth={colWidth}>{children}</StyledLayoutColumn>
-);
+export const LayoutColumn: FC<LayoutColumnProps> = ({
+  children,
+  ...restProps
+}) => <StyledLayoutColumn {...restProps}>{children}</StyledLayoutColumn>;

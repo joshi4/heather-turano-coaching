@@ -13,7 +13,8 @@ import {
   Copy,
   Button,
   ButtonGroup,
-  ButtonAction
+  ButtonAction,
+  useBreakpoints
 } from "@heather-turano-coaching/components";
 import { FontProperties } from "@heather-turano-coaching/design-system/types/composite";
 import { LayoutBlockContent, LayoutBlockTitle, LayoutBlock } from "../layout";
@@ -38,6 +39,9 @@ const StyledBlockFeaturedCategory = styled.div`
 `;
 
 export const BlockFeaturedCategory: FC<{ tags: Tag[] }> = ({ tags }) => {
+  const [windowWidth, { tabletPortrait }] = useBreakpoints();
+  const isWindowMobile = windowWidth < tabletPortrait;
+
   const categories = getCategoriesFromTags(tags);
   const featuredCategories = getFeaturedCategories(categories);
   const cat = featuredCategories[0];
@@ -63,7 +67,7 @@ export const BlockFeaturedCategory: FC<{ tags: Tag[] }> = ({ tags }) => {
           <Copy type="paragraph" fontSize={componentFontSize}>
             {cat.description}
           </Copy>
-          <ButtonGroup layout="inline">
+          <ButtonGroup layout={isWindowMobile ? "stacked-full" : "inline"}>
             <NextLink href={`/categories/${cat.slug}`}>
               <Button styleType="secondary" label="Explore this category" />
             </NextLink>
