@@ -29,16 +29,14 @@ export const headerNavVerticalPadding = sharedVerticalPadding.tabletPortrait as 
 export const headerNavHorizontalPadding = sharedHorizontalPadding.tabletPortrait as number;
 
 const StyledHeaderNav = styled.header`
+  box-sizing: border-box;
+  box-shadow: ${`0 1px 15px 0 ${makeColor({
+    scalable: { color: "gray", scale: 3 }
+  })}`};
+
   * {
     box-sizing: border-box;
   }
-
-  ${makeResponsive({
-    beginAt: "tabletPortrait",
-    style: `
-      height: ${makeSize({ custom: headerNavHeight })};
-    `
-  })};
 `;
 
 const StyledLogo = styled.div`
@@ -65,45 +63,50 @@ const StyledLogo = styled.div`
   }
 `;
 
-const StyledStickyTarget = styled.div<{ isSticky: boolean }>`
+const StyledStickyWrapper = styled.div<{ wrapperHeight?: number }>`
+  position: relative;
+  flex: 1;
+
+  ${({ wrapperHeight }) =>
+    wrapperHeight &&
+    css`
+      height: ${makeSize({ custom: wrapperHeight })};
+    `}
+`;
+
+const StyledNav = styled.nav<{ isSticky: boolean }>`
+  width: 100%;
+  ${makeInset({
+    vertical: sharedVerticalPadding.tabletPortrait,
+    horizontal: sharedVerticalPadding.tabletPortrait
+  })};
+  background: ${makeColor({ fixed: "light" })};
+
   width: 100%;
   z-index: 100;
-  background: ${makeColor({ fixed: "light" })};
-  box-shadow: ${`0 1px 15px 0 ${makeColor({
-    scalable: { color: "gray", scale: 3 }
-  })}`};
+  transition: all 0.2s ease-in-out;
+
+  ${makeResponsive({
+    beginAt: "tabletPortrait",
+    style: `
+      flex: 1;
+      ${makeFlex("row", "space-between", "center")};
+    `
+  })}
 
   ${({ isSticky }) =>
     isSticky &&
     css`
       position: fixed;
       top: 0;
-
-      &::after {
-        content: "";
-        position: relative;
-        height: 100%;
-      }
+      background: ${makeColor({ fixed: "light" })};
     `}
-`;
-
-const StyledNav = styled.nav`
-  width: 100%;
-  ${makeFlex("row", "space-between", "center")};
-  ${makeInset({
-    vertical: sharedVerticalPadding.tabletPortrait
-  })};
-
-  max-width: ${makeSize({ custom: 1024 })};
-  margin: 0 auto;
 `;
 
 const StyledNavList = styled.ul`
   ${makeReset("list")};
   ${makeFlex("row", "space-around", "center")};
   height: ${makeSize("lg")};
-  max-width: ${makeSize({ custom: 1024 })};
-  margin: 0 auto;
 
   ${makeResponsive({
     beginAt: "tabletPortrait",
@@ -111,6 +114,17 @@ const StyledNavList = styled.ul`
       ${makeFlex("row", "flex-end", "center")};
       flex: 1;
     `
+  })};
+`;
+
+const StyledNavContent = styled.div`
+  max-width: ${makeSize({ custom: 1024 })};
+  margin: 0 auto;
+  width: 100%;
+
+  ${makeResponsive({
+    beginAt: "tabletPortrait",
+    style: makeFlex("row", "space-between", "center")
   })};
 `;
 
@@ -184,43 +198,62 @@ export const HeaderNavLinkContent: FC = ({ children }) => {
   );
 };
 
-type HeaderLogoProps = Omit<HeaderNavProps, "navItems">;
+type HeaderTopLogoProps = Omit<HeaderNavProps, "navItems">;
 
-const HeaderLogo: FC<HeaderLogoProps> = ({
+const HeaderTopLogo: FC<HeaderTopLogoProps> = ({
   homeRoute,
-  logos: { stacked, inline }
+  logos: { stacked }
 }) => {
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
-
-  console.log(windowWidth, tabletPortrait);
-
-  return (
+  return windowWidth < tabletPortrait ? (
     <StyledLogo>
       <a href={homeRoute}>
-        <Image
-          src={windowWidth < tabletPortrait ? stacked : inline}
-          alt="htcLogo"
-          manualWidth={windowWidth < tabletPortrait ? 136 : 200}
-        />
+        <Image src={stacked} alt="htcLogo" manualWidth={136} />
       </a>
     </StyledLogo>
-  );
+  ) : null;
+};
+
+type HeaderInlineLogoProps = Omit<HeaderNavProps, "navItems">;
+
+const HeaderInlineLogo: FC<HeaderInlineLogoProps> = ({
+  homeRoute,
+  logos: { inline }
+}) => {
+  const [windowWidth, { tabletPortrait }] = useBreakpoints();
+  const isWindowMobile = windowWidth < tabletPortrait;
+  return !isWindowMobile ? (
+    <StyledLogo>
+      <a href={homeRoute}>
+        <Image src={inline} alt="htcLogo" manualWidth={200} />
+      </a>
+    </StyledLogo>
+  ) : null;
 };
 
 export const HeaderNav: FC<HeaderNavProps> = ({ navItems, ...restProps }) => {
-  const headerRef = useRef<HTMLElement>(null);
-  const isSticky = useSticky<HTMLElement>({ ref: headerRef });
-
-  console.log(isSticky);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const targetRef = useRef<HTMLDivElement>(null);
+  const isSticky = useSticky<HTMLElement>({
+    ref: wrapperRef,
+    testId: "test"
+  });
 
   return (
-    <StyledHeaderNav ref={headerRef}>
-      <StyledStickyTarget isSticky={isSticky}>
-        <StyledNav>
-          <HeaderLogo {...restProps} />
-          <StyledNavList>{navItems}</StyledNavList>
+    <StyledHeaderNav>
+      <HeaderTopLogo {...restProps} />
+      <StyledStickyWrapper
+        ref={wrapperRef}
+        id="test"
+        wrapperHeight={targetRef.current?.offsetHeight}
+      >
+        <StyledNav ref={targetRef} isSticky={isSticky}>
+          <StyledNavContent>
+            <HeaderInlineLogo {...restProps} />
+            <StyledNavList>{navItems}</StyledNavList>
+          </StyledNavContent>
         </StyledNav>
-      </StyledStickyTarget>
+      </StyledStickyWrapper>
     </StyledHeaderNav>
   );
 };

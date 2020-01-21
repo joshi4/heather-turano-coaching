@@ -33,8 +33,6 @@ const StyledStickyTarget = styled.div<{ isSticky: boolean }>`
   transition: top 0.1s linear;
   background: transparent;
   top: 0;
-  /* left: 0;
-  right: 0; */
   width: 100%;
 
   ${({ isSticky }) =>
@@ -42,18 +40,8 @@ const StyledStickyTarget = styled.div<{ isSticky: boolean }>`
     css`
       position: fixed;
       top: ${makeSpace({ custom: headerNavVerticalPadding })};
-      /* background: ${makeColor({
-        scalable: { color: "primary", scale: 3 }
-      })}; */
-      background: ${makeColor({ fixed: "light" })};
-      /* left: 0;
-      right: 0; */
-      /* width: 100%; */
 
-      /* & > * {
-        max-width: ${makeSize({ custom: 1024 })};
-        margin: 0 auto;
-      } */
+      background: ${makeColor({ fixed: "light" })};
     `}
 `;
 
@@ -61,23 +49,23 @@ export const BlockRecentPosts: FC<BlockRecentPostsProps> = ({
   title = "recent posts",
   posts
 }) => {
-  const conatinerRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const targetRef = useRef<HTMLDivElement>(null);
   const isSticky = useSticky<HTMLDivElement>({
-    ref: conatinerRef,
+    ref: wrapperRef,
     offset: headerNavVerticalPadding
   });
 
   return (
     <LayoutBlock>
       <StyledStickyWrapper
-        ref={conatinerRef}
-        wrapperHeight={titleRef.current?.offsetHeight}
+        ref={wrapperRef}
+        wrapperHeight={targetRef.current?.offsetHeight}
       >
         <StyledStickyTarget
           isSticky={isSticky}
-          ref={titleRef}
-          style={{ width: conatinerRef.current?.offsetWidth }}
+          ref={targetRef}
+          style={{ width: wrapperRef.current?.offsetWidth }}
         >
           <LayoutBlockTitle title={title} />
         </StyledStickyTarget>
