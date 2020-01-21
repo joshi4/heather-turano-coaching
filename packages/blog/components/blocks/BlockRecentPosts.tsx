@@ -4,7 +4,7 @@ import { PostOrPage } from "@tryghost/content-api";
 import { BlogPostList } from "../blog";
 import {
   useSticky,
-  headerNavHeight
+  headerNavVerticalPadding
 } from "@heather-turano-coaching/components";
 import styled, { css } from "styled-components";
 import {
@@ -30,26 +30,30 @@ const StyledStickyWrapper = styled.div<{ wrapperHeight?: number }>`
 `;
 
 const StyledStickyTarget = styled.div<{ isSticky: boolean }>`
-  transition: all 0.2s linear;
+  transition: top 0.1s linear;
   background: transparent;
-  left: 0;
-  right: 0;
+  top: 0;
+  /* left: 0;
+  right: 0; */
   width: 100%;
 
   ${({ isSticky }) =>
     isSticky &&
     css`
       position: fixed;
-      top: ${makeSpace({ custom: headerNavHeight })};
-      background: ${makeColor({ scalable: { color: "primary", scale: 3 } })};
-      left: 0;
-      right: 0;
-      width: 100%;
+      top: ${makeSpace({ custom: headerNavVerticalPadding })};
+      /* background: ${makeColor({
+        scalable: { color: "primary", scale: 3 }
+      })}; */
+      background: ${makeColor({ fixed: "light" })};
+      /* left: 0;
+      right: 0; */
+      /* width: 100%; */
 
-      & > * {
+      /* & > * {
         max-width: ${makeSize({ custom: 1024 })};
         margin: 0 auto;
-      }
+      } */
     `}
 `;
 
@@ -61,7 +65,7 @@ export const BlockRecentPosts: FC<BlockRecentPostsProps> = ({
   const titleRef = useRef<HTMLDivElement>(null);
   const isSticky = useSticky<HTMLDivElement>({
     ref: conatinerRef,
-    offset: headerNavHeight
+    offset: headerNavVerticalPadding
   });
 
   return (
@@ -70,7 +74,11 @@ export const BlockRecentPosts: FC<BlockRecentPostsProps> = ({
         ref={conatinerRef}
         wrapperHeight={titleRef.current?.offsetHeight}
       >
-        <StyledStickyTarget isSticky={isSticky} ref={titleRef}>
+        <StyledStickyTarget
+          isSticky={isSticky}
+          ref={titleRef}
+          style={{ width: conatinerRef.current?.offsetWidth }}
+        >
           <LayoutBlockTitle title={title} />
         </StyledStickyTarget>
       </StyledStickyWrapper>

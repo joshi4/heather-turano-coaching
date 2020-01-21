@@ -65,19 +65,13 @@ const StyledLogo = styled.div`
   }
 `;
 
-const StyledNav = styled.nav<{ isSticky: boolean }>`
+const StyledStickyTarget = styled.div<{ isSticky: boolean }>`
   width: 100%;
-  ${makeFlex("row", "space-between", "center")};
-  ${makeInset({
-    vertical: sharedVerticalPadding.tabletPortrait,
-    horizontal: sharedHorizontalPadding.tabletPortrait
-  })};
+  z-index: 100;
   background: ${makeColor({ fixed: "light" })};
   box-shadow: ${`0 1px 15px 0 ${makeColor({
     scalable: { color: "gray", scale: 3 }
   })}`};
-  width: 100%;
-  z-index: 100;
 
   ${({ isSticky }) =>
     isSticky &&
@@ -93,10 +87,23 @@ const StyledNav = styled.nav<{ isSticky: boolean }>`
     `}
 `;
 
+const StyledNav = styled.nav`
+  width: 100%;
+  ${makeFlex("row", "space-between", "center")};
+  ${makeInset({
+    vertical: sharedVerticalPadding.tabletPortrait
+  })};
+
+  max-width: ${makeSize({ custom: 1024 })};
+  margin: 0 auto;
+`;
+
 const StyledNavList = styled.ul`
   ${makeReset("list")};
   ${makeFlex("row", "space-around", "center")};
   height: ${makeSize("lg")};
+  max-width: ${makeSize({ custom: 1024 })};
+  margin: 0 auto;
 
   ${makeResponsive({
     beginAt: "tabletPortrait",
@@ -164,6 +171,7 @@ export const HeaderNavLink = StyledNavListItem;
 
 export const HeaderNavLinkContent: FC = ({ children }) => {
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
+
   return (
     <Copy
       type="label"
@@ -207,10 +215,12 @@ export const HeaderNav: FC<HeaderNavProps> = ({ navItems, ...restProps }) => {
 
   return (
     <StyledHeaderNav ref={headerRef}>
-      <StyledNav isSticky={isSticky}>
-        <HeaderLogo {...restProps} />
-        <StyledNavList>{navItems}</StyledNavList>
-      </StyledNav>
+      <StyledStickyTarget isSticky={isSticky}>
+        <StyledNav>
+          <HeaderLogo {...restProps} />
+          <StyledNavList>{navItems}</StyledNavList>
+        </StyledNav>
+      </StyledStickyTarget>
     </StyledHeaderNav>
   );
 };
