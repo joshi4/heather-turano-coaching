@@ -20,7 +20,10 @@ export interface AvatarProps {
 }
 
 const avatarSizeMap: {
-  [key in FontProperties["fontSize"]]: FontProperties["fontSize"];
+  [key in Exclude<
+    FontProperties["fontSize"],
+    { custom: number }
+  >]: FontProperties["fontSize"];
 } = {
   h1: "h2",
   h2: "h3",
@@ -49,7 +52,7 @@ const StyledAvatar = styled.div.attrs({ className: "avatar" })<
   align-items: center;
   border-radius: 50%;
 
-  div.img {
+  div.this-should-have-a-svg-as-its-child {
     background: ${makeColor({
       scalable: { color: "gray", scale: 3 }
     })};
@@ -74,13 +77,16 @@ const StyledAvatar = styled.div.attrs({ className: "avatar" })<
   }
 
   img,
-  div.img {
+  div.this-should-have-a-svg-as-its-child {
     border-radius: 50%;
     border: ${makeSize({ custom: 4 })} solid ${makeColor({ fixed: "light" })};
     z-index: 10;
     animation: fadein 0.25s;
     border-radius: 50%;
     object-fit: cover;
+  }
+
+  img {
     ${({ size }) => {
       if (typeof size === "string" && avatarSizeMap[size]) {
         return css`
@@ -90,6 +96,20 @@ const StyledAvatar = styled.div.attrs({ className: "avatar" })<
       }
       return css`
         height: ${makeSize(size)};
+        width: ${makeSize(size)};
+        transform: scale(0.88);
+      `;
+    }};
+  }
+
+  div.this-should-have-a-svg-as-its-child {
+    ${({ size }) => {
+      if (typeof size === "string" && avatarSizeMap[size]) {
+        return css`
+          width: ${makeSize(avatarSizeMap[size])};
+        `;
+      }
+      return css`
         width: ${makeSize(size)};
         transform: scale(0.88);
       `;
@@ -105,7 +125,7 @@ export const Avatar: FC<AvatarProps> = ({ image, alt, size = "h1" }) => {
       {image ? (
         <img src={image} alt={alt} />
       ) : (
-        <div className="img">
+        <div className="this-should-have-a-svg-as-its-child">
           <UserImage />
         </div>
       )}

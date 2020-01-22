@@ -72,22 +72,24 @@ export const makeFont = ({
       return { fontSize: fs, lineHeight: lh };
     }
 
-    // fontSize === "string" && typeof lineHeight === "string"
+    /**
+     * We can assume that `lineHeight` is going to be a {Size} since
+     * it's not an object and it's not undefined
+     *
+     * The checks above need to be exhaustive
+     */
     const convertedFs = convertHeadingSizeToSize(fontSize as Size);
-    const fs = sizeMap.fontSize[convertedFs][sizeConfig.sizeUnits];
-    const lh = sizeMap.lineHeight[convertedFs][sizeConfig.sizeUnits];
-    return { fontSize: fs, lineHeight: lh };
+    return {
+      fontSize: sizeMap.fontSize[convertedFs][sizeConfig.sizeUnits],
+      lineHeight: sizeMap.lineHeight[lineHeight as Size][sizeConfig.sizeUnits]
+    };
   };
 
   return {
-    // fontSize: createFontSize(),
-    // lineHeight: lineHeight
-    //   ? sizeMap.lineHeight[lineHeight][sizeConfig.sizeUnits]
-    //   : sizeMap.lineHeight[size][sizeConfig.sizeUnits],
     ...createFontSizeAndLineHeight(),
+    ...createFontColor(fontColor),
     fontFamily,
     fontWeight: Number(fontConfig.fontWeightMap[fontWeight]),
-    fontStyle,
-    ...createFontColor(fontColor)
+    fontStyle
   };
 };

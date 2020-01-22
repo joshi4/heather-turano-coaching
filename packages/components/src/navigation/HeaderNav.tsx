@@ -117,7 +117,6 @@ const StyledNav = styled.nav<{ isSticky: boolean }>`
 const StyledNavList = styled.ul`
   ${makeReset("list")};
   ${makeFlex("row", "space-around", "center")};
-  height: ${makeSize("lg")};
 
   ${makeResponsive({
     beginAt: "tabletPortrait",

@@ -5,7 +5,7 @@ import { PostOrPage } from "@tryghost/content-api";
 import {
   Hero,
   Section,
-  BlogAvatar,
+  BlogCardAvatar,
   Heading,
   BlogSocialLinks,
   Content
@@ -35,8 +35,8 @@ const BlogPost: NextPage<BlogPostProps> = ({
       {feature_image && <Hero image={feature_image} alt="hero" />}
     </StyledBlogHero>
     <Section styleType="blog-page">
-      <BlogAvatar
-        type={feature_image ? "stacked" : "inline"}
+      <BlogCardAvatar
+        layoutType={feature_image ? "stacked" : "inline"}
         authorName={primary_author?.name as string}
         avatarImg={primary_author?.profile_image as string}
         datePublished={formatLongDate(published_at as string)}
