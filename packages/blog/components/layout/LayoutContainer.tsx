@@ -13,7 +13,9 @@ interface LayoutContainerProps {
 }
 
 const StyledLayoutContainer = styled.section<Required<LayoutContainerProps>>`
+  width: 100%;
   max-width: ${makeSize({ custom: 1024 })};
+  box-sizing: border-box;
 
   ${makeInset({
     horizontal: sharedHorizontalBodyPadding.phone,

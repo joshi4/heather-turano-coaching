@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 
-import { BlogCard } from "./BlogCard";
+import { BlogCardContent } from "./BlogCardContent";
 import { blogAuthor, blogMeta, blogSocial } from "../../.storybook/contants";
 
 export default {
-  component: BlogCard,
+  component: BlogCardContent,
   title: "Blog|Card"
 };
 
@@ -18,7 +18,7 @@ const Container: FC<{ width?: string }> = ({ children, width = "700px" }) => (
 
 export const featured = () => (
   <Container>
-    <BlogCard
+    <BlogCardContent
       type="featured"
       {...blogAuthor}
       {...blogMeta}
@@ -30,7 +30,7 @@ export const featured = () => (
 
 export const featuredWithSocialLinks = () => (
   <Container>
-    <BlogCard
+    <BlogCardContent
       type="featured"
       {...blogAuthor}
       {...blogMeta}
@@ -43,7 +43,7 @@ export const featuredWithSocialLinks = () => (
 
 export const featuredWithSocialLinksAndTags = () => (
   <Container>
-    <BlogCard
+    <BlogCardContent
       type="featured"
       {...blogAuthor}
       {...blogMeta}
@@ -56,7 +56,7 @@ export const featuredWithSocialLinksAndTags = () => (
 
 export const regular = () => (
   <Container width="400px">
-    <BlogCard
+    <BlogCardContent
       type="regular"
       {...blogAuthor}
       {...blogMeta}
@@ -68,7 +68,7 @@ export const regular = () => (
 
 export const regularWithSocialLinks = () => (
   <Container width="400px">
-    <BlogCard
+    <BlogCardContent
       type="regular"
       {...blogAuthor}
       social={blogSocial}
@@ -81,7 +81,7 @@ export const regularWithSocialLinks = () => (
 
 export const regularWithSocialLinksAndTags = () => (
   <Container width="400px">
-    <BlogCard
+    <BlogCardContent
       type="regular"
       {...blogAuthor}
       social={blogSocial}

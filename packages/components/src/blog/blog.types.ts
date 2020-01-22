@@ -1,7 +1,7 @@
 export type BlogType = "featured" | "regular";
 
 export interface BaseBlog {
-  type: BlogType;
+  blogType: BlogType;
 }
 
 export interface BlogSocialOptions {

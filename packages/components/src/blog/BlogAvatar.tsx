@@ -12,27 +12,29 @@ import { Avatar } from "../assets";
 
 type BlogAvatarProps = BlogAuthor &
   BlogMetaInformation & {
-    type: "inline" | "stacked";
+    layoutType: "inline" | "stacked";
   };
 
-const avatarSize: { [key in BlogAvatarProps["type"]]: number } = {
+const avatarSize: { [key in BlogAvatarProps["layoutType"]]: number } = {
   stacked: 144,
   inline: 60
 };
 
-const StyledBlogAvatar = styled.div<Required<Pick<BlogAvatarProps, "type">>>`
+const StyledBlogAvatar = styled.div<
+  Required<Pick<BlogAvatarProps, "layoutType">>
+>`
   text-transform: uppercase;
   position: relative;
 
-  ${({ type }) => {
-    if (type === "stacked") {
+  ${({ layoutType }) => {
+    if (layoutType === "stacked") {
       return css`
         ${makeInset({ top: avatarSize.stacked / 2 })};
 
         & > .avatar {
           position: absolute;
-          top: -${makeSize({ custom: avatarSize[type] / 2 + 20 })};
-          margin-left: -${makeSize({ custom: avatarSize[type] / 2 })};
+          top: -${makeSize({ custom: avatarSize[layoutType] / 2 + 20 })};
+          margin-left: -${makeSize({ custom: avatarSize[layoutType] / 2 })};
           left: 50%;
         }
 
@@ -58,16 +60,16 @@ const StyledBlogAvatar = styled.div<Required<Pick<BlogAvatarProps, "type">>>`
 `;
 
 export const BlogAvatar: FC<BlogAvatarProps> = ({
-  type,
+  layoutType,
   avatarImg,
   authorName,
   datePublished
 }) => (
-  <StyledBlogAvatar type={type}>
+  <StyledBlogAvatar layoutType={layoutType}>
     <Avatar
       image={avatarImg}
       alt={authorName}
-      size={{ custom: avatarSize[type] }}
+      size={{ custom: avatarSize[layoutType] }}
     />
     <div className="alt">
       <Copy
@@ -77,7 +79,7 @@ export const BlogAvatar: FC<BlogAvatarProps> = ({
       >
         {authorName}
       </Copy>
-      {type === "stacked" && (
+      {layoutType === "stacked" && (
         <Copy
           type="caption"
           fontSize="xs"

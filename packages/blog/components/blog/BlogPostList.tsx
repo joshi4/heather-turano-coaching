@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { PostOrPage } from "@tryghost/content-api";
-import { BlogPost } from "./BlogPost";
+import { BlogPost } from "./BlogCardRegular";
 
 interface BlogPostListProps {
   posts: PostOrPage[];

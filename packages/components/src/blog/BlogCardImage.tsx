@@ -1,11 +1,16 @@
-import { BlogType } from "@heather-turano-coaching/components/dist/blog/blog.types";
+import React, { FC } from "react";
 import styled, { SimpleInterpolation, css } from "styled-components";
 import {
   makeSize,
   makeResponsive
 } from "@heather-turano-coaching/design-system/utils";
+import { BlogType } from "./blog.types";
 
-const CSSBlogImageMap: { [key in BlogType]: SimpleInterpolation } = {
+type BlogCardImageProps = { blogType: BlogType };
+
+const CSSBlogCardImageMap: {
+  [key in BlogCardImageProps["blogType"]]: SimpleInterpolation;
+} = {
   featured: css`
     height: ${makeSize({ custom: 180 })};
     ${makeResponsive({
@@ -29,8 +34,8 @@ const CSSBlogImageMap: { [key in BlogType]: SimpleInterpolation } = {
   `
 };
 
-const StyledBlogImage = styled.div<{ blogType: BlogType }>`
-  ${({ blogType }) => CSSBlogImageMap[blogType]};
+const StyledBlogCardImage = styled.div<BlogCardImageProps>`
+  ${({ blogType }) => CSSBlogCardImageMap[blogType]};
 
   img {
     width: 100%;
@@ -47,4 +52,7 @@ const StyledBlogImage = styled.div<{ blogType: BlogType }>`
   })}
 `;
 
-export const BlogImage = StyledBlogImage;
+export const BlogCardImage: FC<BlogCardImageProps> = ({
+  blogType,
+  children
+}) => <StyledBlogCardImage blogType={blogType}>{children}</StyledBlogCardImage>;

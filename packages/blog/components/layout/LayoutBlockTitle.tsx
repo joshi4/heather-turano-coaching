@@ -13,11 +13,20 @@ interface LayoutBlockTitleProps {
 
 const StyledLayoutBlockTitle = styled.header`
   width: 100%;
+  position: relative;
   ${makeFlex("row", "space-between", "center")};
-  border-bottom: ${makeSize({ custom: 1 })} solid
-    ${makeColor({
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: ${makeSize({ custom: 1 })};
+    background: ${makeColor({
       scalable: { color: "gray", scale: 3 }
     })};
+  }
 
   h5 {
     text-transform: uppercase;
