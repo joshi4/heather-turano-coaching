@@ -11,11 +11,15 @@ import {
   // makeFlex,
   BlogCardContainer,
   BlogCardImage,
-  BlogCardContent
+  useBreakpoints,
+  Heading,
+  BlogCardAvatar,
+  Copy
 } from "@heather-turano-coaching/components";
 import { formatLongDate } from "../../utils";
 import { TagsSection } from "..";
 import { NextLink } from "../general";
+import styled from "styled-components";
 
 interface BlogPost {
   post: PostOrPage;
@@ -39,23 +43,49 @@ interface BlogPost {
 //   }
 // `;
 
+const StyledCardContent = styled.div``;
+
 export const BlogPost: FC<BlogPost> = ({
   post: { feature_image, slug, authors, published_at, title, excerpt, tags }
-}) => (
-  <NextLink href={`/post/${slug}`}>
-    <BlogCardContainer blogType="regular">
-      <BlogCardImage blogType="regular">
-        <img src={feature_image as string} alt={slug} />
-      </BlogCardImage>
-      <BlogCardContent
-        blogType="regular"
-        authorName={authors ? (authors[0].name as string) : ""}
-        avatarImg={authors ? (authors[0].profile_image as string) : ""}
-        datePublished={formatLongDate(published_at as string)}
-        title={title as string}
-        excerpt={excerpt as string}
-        tags={<TagsSection tags={tags} filter="categories" alignment="right" />}
-      />
-    </BlogCardContainer>
-  </NextLink>
-);
+}) => {
+  const [windowWidth, { tabletPortrait }] = useBreakpoints();
+  const isWindowMobile = windowWidth < tabletPortrait;
+
+  const authorName = authors ? (authors[0].name as string) : "";
+  const avatarImg = authors ? (authors[0].profile_image as string) : "";
+  const datePublished = formatLongDate(published_at as string);
+  const pTitle = title as string;
+  const pExcerpt = excerpt as string;
+
+  return (
+    <NextLink href={`/post/${slug}`}>
+      <BlogCardContainer blogType="regular">
+        <BlogCardImage blogType="regular">
+          <img src={feature_image as string} alt={slug} />
+        </BlogCardImage>
+        <StyledCardContent>
+          <TagsSection tags={tags} filter="categories" alignment="right" />
+          <Heading
+            fontSize={isWindowMobile ? "h4" : "h3"}
+            fontColor={{ fixed: "dark" }}
+          >
+            {pTitle}
+          </Heading>
+          <BlogCardAvatar
+            authorName={authorName}
+            avatarImg={avatarImg}
+            datePublished={datePublished}
+            layoutType="inline"
+          />
+          <Copy
+            type="paragraph"
+            fontSize={{ custom: 14 }}
+            fontColor={{ fixed: "dark" }}
+          >
+            {pExcerpt}
+          </Copy>
+        </StyledCardContent>
+      </BlogCardContainer>
+    </NextLink>
+  );
+};

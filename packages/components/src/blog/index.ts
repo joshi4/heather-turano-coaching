@@ -1,6 +1,5 @@
-export * from "./BlogAvatar";
+export * from "./BlogCardAvatar";
 export * from "./BlogCardContainer";
-export * from "./BlogCardContent";
 export * from "./BlogCardImage";
 export * from "./BlogCategories";
 export * from "./BlogContainer";

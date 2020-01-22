@@ -10,18 +10,18 @@ import { makeFlex } from "../utils";
 import { Copy } from "../typography";
 import { Avatar } from "../assets";
 
-type BlogAvatarProps = BlogAuthor &
+type BlogCardAvatarProps = BlogAuthor &
   BlogMetaInformation & {
     layoutType: "inline" | "stacked";
   };
 
-const avatarSize: { [key in BlogAvatarProps["layoutType"]]: number } = {
+const avatarSize: { [key in BlogCardAvatarProps["layoutType"]]: number } = {
   stacked: 144,
   inline: 60
 };
 
-const StyledBlogAvatar = styled.div<
-  Required<Pick<BlogAvatarProps, "layoutType">>
+const StyledBlogCardAvatar = styled.div<
+  Required<Pick<BlogCardAvatarProps, "layoutType">>
 >`
   text-transform: uppercase;
   position: relative;
@@ -59,13 +59,13 @@ const StyledBlogAvatar = styled.div<
   }}
 `;
 
-export const BlogAvatar: FC<BlogAvatarProps> = ({
+export const BlogCardAvatar: FC<BlogCardAvatarProps> = ({
   layoutType,
   avatarImg,
   authorName,
   datePublished
 }) => (
-  <StyledBlogAvatar layoutType={layoutType}>
+  <StyledBlogCardAvatar layoutType={layoutType}>
     <Avatar
       image={avatarImg}
       alt={authorName}
@@ -96,5 +96,5 @@ export const BlogAvatar: FC<BlogAvatarProps> = ({
         {datePublished}
       </Copy>
     </div>
-  </StyledBlogAvatar>
+  </StyledBlogCardAvatar>
 );

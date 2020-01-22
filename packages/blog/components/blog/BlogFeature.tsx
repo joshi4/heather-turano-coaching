@@ -39,8 +39,6 @@ const BlogMobileFeature: FC<BlogMobileFeatureProps> = ({
   gutterWidth
 }) => {
   const [containerHeight, setContainerHeight] = useState();
-  // const index = useRef(0);
-  // set of all of the cards initial positions
   const cardRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -54,8 +52,6 @@ const BlogMobileFeature: FC<BlogMobileFeatureProps> = ({
   const numberOfCards = featuredPosts.length;
 
   const index = useRef(0);
-  // interface SetType { x: number, scale: number };
-
   const [springProps, set] = useSprings(numberOfCards, i => ({
     x: i * cardWidth,
     scale: index.current !== i ? 0.96 : 1

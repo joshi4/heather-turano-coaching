@@ -33,18 +33,10 @@ export type FontWeightName =
 export type FontOS = "OSX" | "windows" | "android" | "ubuntu";
 
 export interface FontProperties {
-  fontSize: Size | SizeHeadings;
-  lineHeight?: Size;
+  fontSize: (Size | SizeHeadings) | { custom: number };
+  lineHeight?: Size | { custom: number };
   fontFamily?: FontFamily;
   fontWeight?: FontWeightName;
   fontStyle?: FontStyle;
   fontColor?: ColorProperties | undefined;
-  custom?: {
-    fontSize: number;
-    lineHeight?: number;
-    fontFamily?: FontFamily;
-    fontWeight?: FontWeightName;
-    fontStyle?: FontStyle;
-    fontColor: ColorProperties | undefined;
-  };
 }
