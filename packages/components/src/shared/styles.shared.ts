@@ -31,5 +31,5 @@ export const createImageBorder = (color: ColorProperties) => css`
 `;
 
 export const universalShadow = `0 2px 12px 0 ${makeColor({
-  scalable: { color: "gray" }
+  scalable: { color: "gray", scale: 3 }
 })}`;

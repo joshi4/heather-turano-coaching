@@ -1,6 +1,6 @@
 import { sizeConfig } from "../configs";
 import { SpaceProperties } from "../types/composite";
-import { convertToUnits } from "./makeSize";
+import { convertToUnits, sizeMap } from "./makeSize";
 import { Size } from "../types/primitive";
 
 const baselineGridMismatchWarning = (
@@ -16,8 +16,6 @@ const alignsToBaselineGrid = (sizeValue: number): boolean =>
 
 const createLinearSpaceSize = (sizeValue: number): string => {
   if (alignsToBaselineGrid(sizeValue)) {
-    console.debug(sizeValue);
-    console.debug(convertToUnits(sizeValue));
     return convertToUnits(sizeValue);
   }
   throw new Error(baselineGridMismatchWarning(sizeValue));
@@ -27,14 +25,11 @@ const createCustomSpaceSize = (sizeValue: number): string => {
   if (!alignsToBaselineGrid(sizeValue)) {
     console.warn(baselineGridMismatchWarning(sizeValue));
   }
-  console.debug(sizeValue);
-  console.debug(convertToUnits(sizeValue));
   return convertToUnits(sizeValue);
 };
 
 const createExponentialSpaceSize = (sizeValue: Size): string => {
-  console.debug(sizeValue);
-  return "100px";
+  return sizeMap.size[sizeValue][sizeConfig.sizeUnits];
 };
 
 export const makeSpace = (value: SpaceProperties): string => {

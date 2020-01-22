@@ -3,12 +3,12 @@ import { NextPage } from "next";
 import { PostObject, PostOrPage, TagsObject } from "@tryghost/content-api";
 
 import {
-  BlogFeature,
   LayoutContainer,
   LayoutColumn,
   PageContainer,
   BlockSubscribe,
   BockDailyInspiration,
+  BlockFeaturedPosts,
   BlockContributors,
   BlockRecentPosts,
   BlockFeaturedCategory,
@@ -74,7 +74,7 @@ const IndexPage: NextPage<IndexPageProps> = ({
   return (
     <PageContainer>
       <LayoutContainer layoutType="stacked">
-        <BlogFeature featuredPosts={featuredPosts} />
+        <BlockFeaturedPosts featuredPosts={featuredPosts} />
       </LayoutContainer>
       <LayoutContainer>
         {isWindowMobile ? (

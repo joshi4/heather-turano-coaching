@@ -24,8 +24,6 @@ const copyFontStyle = makeFont({
   lineHeight: contentLineHeight
 });
 
-console.log(copyFontStyle);
-
 const StyledContent = styled.section`
   display: block;
   padding: ${makeSize({ custom: 30 })} 0;

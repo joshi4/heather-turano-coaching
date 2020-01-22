@@ -54,11 +54,11 @@ const StyledCardContent = styled.div`
 
   h3,
   h4 {
-    ${makeRhythm({ fontSize: "xs", top: 0, bottom: 1 })}
     line-height: 1.3;
+    ${makeRhythm({ fontSize: "xs", top: 0, bottom: 1 })};
   }
   & > p {
-    ${makeRhythm({ fontSize: "xs", top: 1, bottom: 1 })}
+    ${makeRhythm({ fontSize: "xs", top: 1, bottom: 1 })};
   }
 `;
 
