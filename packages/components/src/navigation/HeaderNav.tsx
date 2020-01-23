@@ -87,7 +87,7 @@ const StyledNav = styled.nav<{ isSticky: boolean }>`
   })}
 
   width: 100%;
-  z-index: 100;
+  z-index: 10000000;
   transition: all 0.2s ease-in-out;
 
   ${makeResponsive({

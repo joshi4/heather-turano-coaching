@@ -1,6 +1,7 @@
 import React, { FC, useState, useRef, useLayoutEffect } from "react";
 import { PostOrPage } from "@tryghost/content-api";
 import styled from "styled-components";
+import { rgba } from "polished";
 import {
   useBreakpoints,
   sharedHorizontalBodyPadding,
@@ -59,21 +60,22 @@ const StyledBubble = styled.li<{ isActive: boolean }>`
   }
 `;
 
-type BlogMobileFeatureProps = BlockFeaturedPostsProps & {
+type CardAnimationLayoutType = "middle" | "full";
+
+type BlogFeaturedMobileProps = BlockFeaturedPostsProps & {
   gutterWidth: number;
-  activeCardPosition: "middle" | "full";
+  layoutType: CardAnimationLayoutType;
 };
 
-const BlogMobileFeature: FC<BlogMobileFeatureProps> = ({
+const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
   featuredPosts,
   gutterWidth,
-  activeCardPosition = "middle"
+  layoutType = "middle"
 }) => {
   const initialSelectedCardIndex = 0;
   const [containerHeight, setContainerHeight] = useState();
   const [currentBubble, setCurrentBubble] = useState(initialSelectedCardIndex);
   const cardRef = useRef<HTMLDivElement>(null);
-  // const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     if (cardRef.current) {
@@ -81,34 +83,26 @@ const BlogMobileFeature: FC<BlogMobileFeatureProps> = ({
     }
   }, [cardRef, containerHeight]);
 
-  const cardWidth = window.innerWidth - 48 - gutterWidth * 2;
+  const cardWidth =
+    layoutType === "middle"
+      ? // where is this magic number coming from?
+        window.innerWidth - 48 - gutterWidth * 2
+      : window.innerWidth - gutterWidth * 2;
   const halfCardWidth = cardWidth / 2;
   const cardSlice = cardWidth * 0.13;
   const numberOfCards = featuredPosts.length;
   const xOffset =
-    activeCardPosition === "middle"
-      ? (window.innerWidth - 48) / 2 - halfCardWidth
-      : 0;
+    layoutType === "middle" ? (window.innerWidth - 48) / 2 - halfCardWidth : 0;
   const index = useRef(initialSelectedCardIndex);
+  const cardDragThreshold = layoutType === "middle" ? cardSlice : halfCardWidth;
 
   const getDistance = (cardNum: number): number =>
     Math.abs(index.current - cardNum);
 
-  /**
-   * Determines the absolute distance a card is away from the
-   * currently selected card and returns the percetange
-   * value at which that card should be scaled
-   * @param cardNum index of the card that is being set in a loop
-   */
   const getScale = (cardNum: number): number => {
     const scaleFactor = getDistance(cardNum);
     const scaleValue = (100 - scaleFactor * 8) / 100;
     return scaleValue;
-  };
-
-  const getBlur = (cardNum: number): number => {
-    const blurFactor = getDistance(cardNum);
-    return blurFactor;
   };
 
   const getOverlay = (cardNum: number): number => {
@@ -122,20 +116,31 @@ const BlogMobileFeature: FC<BlogMobileFeatureProps> = ({
     return zFactor;
   };
 
-  const getPosition = (cardNum: number): number => {
-    const position = (cardNum - index.current) * cardSlice + xOffset;
+  const getPosition = (cardNum: number, movement?: number): number => {
+    const position =
+      layoutType === "full"
+        ? (cardNum - index.current) * cardWidth
+        : (cardNum - index.current) * cardSlice + xOffset;
+    if (movement) {
+      return position + movement;
+    }
     return position;
   };
 
-  const [springProps, set] = useSprings(numberOfCards, i => {
-    return {
-      x: getPosition(i),
-      scale: getScale(i),
-      blur: getBlur(i),
-      overlay: getOverlay(i),
-      z: getZ(i)
-    };
+  const setSprings = (
+    cardNum: number,
+    movement?: number
+  ): {
+    x: number;
+    scale: number;
+    overlay: number;
+  } => ({
+    x: getPosition(cardNum, movement),
+    scale: getScale(cardNum),
+    overlay: getOverlay(cardNum)
   });
+
+  const [springProps, set] = useSprings(numberOfCards, i => setSprings(i));
 
   const bind = useDrag(
     ({
@@ -146,7 +151,7 @@ const BlogMobileFeature: FC<BlogMobileFeatureProps> = ({
       cancel,
       last
     }) => {
-      if (down && distance > cardSlice && cancel) {
+      if (down && distance > cardDragThreshold && cancel) {
         index.current = clamp(
           index.current + (xDir > 0 ? -1 : 1),
           0,
@@ -160,21 +165,7 @@ const BlogMobileFeature: FC<BlogMobileFeatureProps> = ({
         if (last) {
           setCurrentBubble(index.current);
         }
-
-        // console.log("------");
-        // console.log(i, index.current, xMove);
-
-        const movement = down ? xMove : 0;
-
-        console.log(getPosition(i) + movement);
-
-        return {
-          x: getPosition(i) + movement,
-          scale: getScale(i),
-          blur: getBlur(i),
-          overlay: getOverlay(i),
-          z: getZ(i)
-        };
+        return setSprings(i, down ? xMove : 0);
       });
     }
   );
@@ -191,14 +182,11 @@ const BlogMobileFeature: FC<BlogMobileFeatureProps> = ({
           ))}
         </StyledBubbleContainer>
       </LayoutBlockTitle>
-
       <LayoutBlockContent>
         <StyledMobileBlockFeaturedPosts style={{ height: containerHeight }}>
-          {springProps.map(({ x, scale }, i) => {
+          {springProps.map(({ x, scale, overlay }, i) => {
+            // only attach the drag action to the visible card
             const action = i === index.current ? bind : () => ({});
-            console.log(i, index);
-            console.log(action);
-
             return (
               <animated.div
                 {...action()}
@@ -208,17 +196,31 @@ const BlogMobileFeature: FC<BlogMobileFeatureProps> = ({
                   top: 0,
                   bottom: 0,
                   transform: x.interpolate(xv => `translate3d(${xv}px,0,0)`),
-                  // filter: blur.interpolate(
-                  //   b => `blur(${makeSize({ custom: b })})`
-                  // ),
                   zIndex: getZ(i)
                 }}
               >
                 <animated.div
                   ref={cardRef}
-                  style={{ transform: scale.interpolate(s => `scale(${s})`) }}
+                  style={{
+                    position: "relative",
+                    transform: scale.interpolate(s => `scale(${s})`)
+                  }}
                 >
                   <BlogCardFeature featuredPost={featuredPosts[i]} />
+                  <animated.div
+                    style={{
+                      position: "absolute",
+                      width: "100%",
+                      height: "100%",
+                      top: 0,
+                      left: 0,
+                      zIndex: 10,
+                      pointerEvents: "none",
+                      background: overlay.interpolate(op =>
+                        rgba(makeColor({ fixed: "dark" }), op)
+                      )
+                    }}
+                  />
                 </animated.div>
               </animated.div>
             );
@@ -242,10 +244,10 @@ export const BlockFeaturedPosts: FC<BlockFeaturedPostsProps> = ({
     windowWidth < tabletPortrait ? sharedHorizontalBodyPadding.phone : 100;
 
   return isWindowMobile ? (
-    <BlogMobileFeature
+    <BlogFeaturedMobile
       featuredPosts={featuredPosts}
       gutterWidth={gutterWidth}
-      activeCardPosition="middle"
+      layoutType={windowWidth < tabletPortrait ? "full" : "middle"}
     />
   ) : (
     <StyledDesktopBlockFeaturedPosts>
