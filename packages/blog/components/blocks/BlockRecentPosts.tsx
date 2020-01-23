@@ -20,7 +20,7 @@ interface BlockRecentPostsProps {
 
 const StyledStickyWrapper = styled.div<{ wrapperHeight?: number }>`
   position: relative;
-  z-index: 200;
+  z-index: 20000000;
 
   ${({ wrapperHeight }) =>
     wrapperHeight &&

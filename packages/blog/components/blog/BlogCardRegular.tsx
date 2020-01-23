@@ -3,8 +3,6 @@ import { PostOrPage } from "@tryghost/content-api";
 import { BlogType } from "@heather-turano-coaching/components/dist/blog/blog.types";
 
 import {
-  BlogCardContainer,
-  BlogCardImage,
   useBreakpoints,
   Heading,
   BlogCardAvatar,
@@ -20,7 +18,8 @@ import {
   makeInset,
   makeResponsive,
   makeOutset,
-  makeRhythm
+  makeRhythm,
+  makeSize
 } from "@heather-turano-coaching/design-system/utils";
 
 interface BlogPost {
@@ -36,6 +35,13 @@ const StyledRegularBlogCardContainer = styled.div`
     style: `
       position: relative;
       ${makeFlex("row", "flex-start", "stretch")};
+    `
+  })};
+
+  ${makeResponsive({
+    beginAt: "tabletLandscape",
+    style: `
+      position: relative;
       transition: all 0.2s ease-in-out;
 
       &:hover {
@@ -49,19 +55,69 @@ const StyledRegularBlogCardContainer = styled.div`
   })};
 `;
 
+const StyledBlogImage = styled.div`
+  img {
+    width: 100%;
+    height: ${makeSize({ custom: 200 })};
+    object-fit: cover;
+  }
+
+  ${makeResponsive({
+    beginAt: "tabletPortrait",
+    style: `
+      width: 40%;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    `
+  })}
+`;
+
 const StyledCardContent = styled.div`
   position: relative;
   ${makeInset({ horizontal: 24, vertical: 32 })};
   background: ${makeColor({ fixed: "light" })};
 
+  ${makeResponsive({
+    beginAt: "tabletPortrait",
+    style: `
+      ${makeRhythm({ fontSize: "sm", top: 1, bottom: 1 })};
+      ${makeInset({ horizontal: 36, vertical: 32 })};
+    `
+  })}
+
   h3,
   h4 {
     ${makeRhythm({ fontSize: "xs", top: 0, bottom: 1 })};
-    line-height: 1.3;
+    line-height: 1.2;
+
+    ${makeResponsive({
+      beginAt: "tabletPortrait",
+      style: `
+        ${makeRhythm({ fontSize: "sm", top: 2, bottom: 1 })};
+      `
+    })}
   }
+
   & > p {
     ${makeRhythm({ fontSize: "xs", top: 1, bottom: 2 })};
+
+    ${makeResponsive({
+      beginAt: "tabletPortrait",
+      style: `
+        ${makeRhythm({ fontSize: "sm", top: 1, bottom: 1 })};
+      `
+    })}
   }
+
+  ${makeResponsive({
+    beginAt: "tabletPortrait",
+    style: `
+      flex: 1;
+    `
+  })}
 `;
 
 export const BlogPost: FC<BlogPost> = ({
@@ -86,34 +142,32 @@ export const BlogPost: FC<BlogPost> = ({
   return (
     <NextLink href={`/post/${slug}`}>
       <StyledRegularBlogCardContainer>
-        <BlogCardContainer blogType="regular">
-          <BlogCardImage blogType="regular">
-            <img src={feature_image as string} alt={slug} />
-          </BlogCardImage>
-          <StyledCardContent>
-            {!isWindowMobile && Tags}
-            <Heading
-              fontSize={isWindowMobile ? "h4" : "h3"}
-              fontColor={{ fixed: "dark" }}
-            >
-              {pTitle}
-            </Heading>
-            <BlogCardAvatar
-              authorName={authorName}
-              avatarImg={avatarImg}
-              datePublished={datePublished}
-              layoutType="inline"
-            />
-            <Copy
-              type="paragraph"
-              fontSize={{ custom: 14 }}
-              fontColor={{ fixed: "dark" }}
-            >
-              {pExcerpt}
-            </Copy>
-            {isWindowMobile && Tags}
-          </StyledCardContent>
-        </BlogCardContainer>
+        <StyledBlogImage>
+          <img src={feature_image as string} alt={slug} />
+        </StyledBlogImage>
+        <StyledCardContent>
+          {!isWindowMobile && Tags}
+          <Heading
+            fontSize={isWindowMobile ? "h4" : "h3"}
+            fontColor={{ fixed: "dark" }}
+          >
+            {pTitle}
+          </Heading>
+          <BlogCardAvatar
+            authorName={authorName}
+            avatarImg={avatarImg}
+            datePublished={datePublished}
+            layoutType="inline"
+          />
+          <Copy
+            type="paragraph"
+            fontSize={isWindowMobile ? { custom: 14 } : "sm"}
+            fontColor={{ fixed: "dark" }}
+          >
+            {pExcerpt}
+          </Copy>
+          {isWindowMobile && Tags}
+        </StyledCardContent>
       </StyledRegularBlogCardContainer>
     </NextLink>
   );

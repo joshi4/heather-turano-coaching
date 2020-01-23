@@ -11,7 +11,8 @@ import styled from "styled-components";
 import {
   makeInset,
   makeColor,
-  makeRhythm
+  makeRhythm,
+  makeSize
 } from "@heather-turano-coaching/design-system/utils";
 
 interface BlockSubscribeProps {
@@ -21,6 +22,11 @@ interface BlockSubscribeProps {
 const StyledSubscribeContnet = styled.div`
   ${makeInset({ horizontal: 32, vertical: 32 })};
   background: ${makeColor({ fixed: "dark" })};
+
+  & > * {
+    max-width: ${makeSize({ custom: 400 })};
+    margin: 0 auto;
+  }
 `;
 
 const StyledContentCopy = styled.div`

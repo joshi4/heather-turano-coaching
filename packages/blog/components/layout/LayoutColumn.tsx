@@ -21,7 +21,7 @@ const StyledLayoutColumn = styled.div<LayoutColumnProps>`
     if (colWidth) {
       return css`
         ${makeResponsive({
-          beginAt: "tabletPortrait",
+          beginAt: "tabletLandscape",
           style: `
             width: ${
               typeof colWidth === "number"
@@ -38,7 +38,7 @@ const StyledLayoutColumn = styled.div<LayoutColumnProps>`
   }};
 
   ${makeResponsive({
-    beginAt: "tabletPortrait",
+    beginAt: "tabletLandscape",
     style: `
       &:not(:first-child) {
         ${makeOutset({ left: gutter })};
