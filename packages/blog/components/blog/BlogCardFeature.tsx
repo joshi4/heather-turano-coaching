@@ -7,7 +7,8 @@ import {
   Copy,
   Avatar,
   universalShadow,
-  BlogCardAvatar
+  BlogCardAvatar,
+  makeFlex
 } from "@heather-turano-coaching/components";
 import { TagsSection } from "../sections";
 import { NextLink } from "../general";
@@ -20,16 +21,26 @@ import {
   makeColor
 } from "@heather-turano-coaching/design-system/utils";
 import { formatLongDate } from "../../utils";
+import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
 
 interface BlogCardFeatureProps {
   featuredPost: PostOrPage;
 }
 
 const StyledFeaturedBlogCardContainer = styled.div`
-  border-radius: ${makeSize({ custom: 8 })};
-  overflow: hidden;
-  box-shadow: ${universalShadow};
-  background: ${makeColor({ fixed: "light" })};
+  ${makeResponsive({
+    endAt: "tabletPortrait",
+    style: `
+      border-radius: ${makeSize({ custom: 8 })};
+      overflow: hidden;
+      box-shadow: ${universalShadow};
+      background: ${makeColor({ fixed: "light" })};
+
+      & + * {
+        border-radius: ${makeSize({ custom: 8 })};
+      }
+    `
+  })};
 
   ${makeResponsive({
     beginAt: "tabletPortrait",
@@ -39,9 +50,46 @@ const StyledFeaturedBlogCardContainer = styled.div`
     `
   })};
 
-  & + * {
-    border-radius: ${makeSize({ custom: 8 })};
+  ${makeResponsive({
+    beginAt: "tabletLandscape",
+    style: `
+      width: 100%;
+      ${makeFlex("row", "flex-start", "stretch")};
+      height: ${makeSize({ custom: 520 })};
+    `
+  })};
+`;
+
+const StyledBlogImage = styled.div`
+  img {
+    width: 100%;
+    height: ${makeSize({ custom: 200 })};
+    object-fit: cover;
   }
+
+  ${makeResponsive({
+    beginAt: "tabletPortrait",
+    style: `
+      height: ${makeSize({ custom: 240 })};
+
+      img {
+        height: 100%;
+      }
+    `
+  })}
+
+  ${makeResponsive({
+    beginAt: "tabletLandscape",
+    style: `
+      height: initial;
+      align-self: stretch;
+      
+      img {
+          height: 100%;
+          max-height: 100%;
+        }
+      `
+  })};
 `;
 
 const StyledCardContent = styled.div`
@@ -73,6 +121,16 @@ const StyledCardContent = styled.div`
       ${makeInset({ horizontal: 32, top: 32 })};
     `
   })}
+
+  ${makeResponsive({
+    beginAt: "tabletLandscape",
+    style: `
+      ${makeInset({ horizontal: 32, vertical: 32 })};
+      background: ${makeColor({ scalable: { color: "secondary" } })};
+      box-sizing: border-box;
+      height: 100%;
+    `
+  })};
 `;
 
 const StyledAvatarContainer = styled.div`
@@ -82,25 +140,6 @@ const StyledAvatarContainer = styled.div`
       position: absolute;
       left: ${makeSize("sm")};
       top: ${`calc(${makeSize({ custom: 42 })} / -1)`};
-    `
-  })}
-`;
-
-const StyledBlogImage = styled.div`
-  img {
-    width: 100%;
-    height: ${makeSize({ custom: 200 })};
-    object-fit: cover;
-  }
-
-  ${makeResponsive({
-    beginAt: "tabletPortrait",
-    style: `
-      height: ${makeSize({ custom: 240 })};
-
-      img {
-        height: 100%;
-      }
     `
   })}
 `;
@@ -115,6 +154,10 @@ export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
   const datePublished = formatLongDate(fp.published_at as string);
   const title = fp.title as string;
   const excerpt = fp.excerpt as string;
+
+  const textColor: ColorProperties = {
+    fixed: windowWidth >= tabletLandscape ? "light" : "dark"
+  };
 
   return (
     <StyledFeaturedBlogCardContainer>
@@ -136,7 +179,7 @@ export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
         )}
         <Heading
           fontSize={windowWidth < tabletPortrait ? "h4" : "h3"}
-          fontColor={{ fixed: "dark" }}
+          fontColor={textColor}
         >
           {title}
         </Heading>
@@ -145,11 +188,12 @@ export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
           avatarImg={avatarImg}
           datePublished={datePublished}
           layoutType="inline"
+          themeType={windowWidth >= tabletLandscape ? "light" : "dark"}
         />
         <Copy
           type="paragraph"
           fontSize={windowWidth < tabletPortrait ? { custom: 14 } : "sm"}
-          fontColor={{ fixed: "dark" }}
+          fontColor={textColor}
         >
           {excerpt}
         </Copy>

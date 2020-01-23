@@ -9,10 +9,12 @@ import {
 import { makeFlex } from "../utils";
 import { Copy } from "../typography";
 import { Avatar } from "../assets";
+import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
 
 type BlogCardAvatarProps = BlogAuthor &
   BlogMetaInformation & {
     layoutType: "inline" | "stacked";
+    themeType?: "light" | "dark";
   };
 
 const avatarSize: { [key in BlogCardAvatarProps["layoutType"]]: number } = {
@@ -63,38 +65,42 @@ export const BlogCardAvatar: FC<BlogCardAvatarProps> = ({
   layoutType,
   avatarImg,
   authorName,
-  datePublished
-}) => (
-  <StyledBlogCardAvatar layoutType={layoutType}>
-    <Avatar
-      image={avatarImg}
-      alt={authorName}
-      size={{ custom: avatarSize[layoutType] }}
-    />
-    <div className="alt">
-      <Copy
-        type="caption"
-        fontSize="xs"
-        fontColor={{ scalable: { color: "secondary" } }}
-      >
-        {authorName}
-      </Copy>
-      {layoutType === "stacked" && (
+  datePublished,
+  themeType = "dark"
+}) => {
+  const copyColor: ColorProperties =
+    themeType === "dark"
+      ? { scalable: { color: "gray", scale: 1 } }
+      : { scalable: { color: "gray", scale: 3 } };
+
+  return (
+    <StyledBlogCardAvatar layoutType={layoutType}>
+      <Avatar
+        image={avatarImg}
+        alt={authorName}
+        size={{ custom: avatarSize[layoutType] }}
+      />
+      <div className="alt">
         <Copy
           type="caption"
           fontSize="xs"
-          fontColor={{ scalable: { color: "gray", scale: 1 } }}
+          fontColor={
+            themeType === "dark"
+              ? { scalable: { color: "secondary" } }
+              : { fixed: "dark" }
+          }
         >
-          &nbsp;|&nbsp;
+          {authorName}
         </Copy>
-      )}
-      <Copy
-        type="label"
-        fontSize="xs"
-        fontColor={{ scalable: { color: "gray", scale: 1 } }}
-      >
-        {datePublished}
-      </Copy>
-    </div>
-  </StyledBlogCardAvatar>
-);
+        {layoutType === "stacked" && (
+          <Copy type="caption" fontSize="xs" fontColor={copyColor}>
+            &nbsp;|&nbsp;
+          </Copy>
+        )}
+        <Copy type="label" fontSize="xs" fontColor={copyColor}>
+          {datePublished}
+        </Copy>
+      </div>
+    </StyledBlogCardAvatar>
+  );
+};

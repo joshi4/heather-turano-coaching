@@ -1,10 +1,14 @@
 import React, { FC } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   makeSize,
-  makeInset
+  makeInset,
+  makeResponsive
 } from "@heather-turano-coaching/design-system/utils";
-import { sharedHorizontalBodyPadding } from "@heather-turano-coaching/components";
+import {
+  sharedHorizontalBodyPadding,
+  makeFlex
+} from "@heather-turano-coaching/components";
 
 export const gutter = 40;
 
@@ -15,12 +19,27 @@ interface LayoutContainerProps {
 const StyledLayoutContainer = styled.section<Required<LayoutContainerProps>>`
   width: 100%;
   max-width: ${makeSize({ custom: 1024 })};
-  box-sizing: border-box;
+  box-sizing: content-box;
+  margin: 0 auto;
 
   ${makeInset({
     horizontal: sharedHorizontalBodyPadding.phone,
     vertical: sharedHorizontalBodyPadding.phone
   })};
+
+  ${({ layoutType }) => {
+    if (layoutType === "inline") {
+      return css`
+        ${makeResponsive({
+          beginAt: "tabletLandscape",
+          style: `
+            ${makeFlex("row", "flex-start", "flex-start")};
+          `
+        })}
+      `;
+    }
+    return css``;
+  }}
 `;
 
 export const LayoutContainer: FC<LayoutContainerProps> = ({

@@ -39,7 +39,7 @@ const StyledRegularBlogCardContainer = styled.div`
   })};
 
   ${makeResponsive({
-    beginAt: "tabletLandscape",
+    beginAt: "tabletPortrait",
     style: `
       position: relative;
       transition: all 0.2s ease-in-out;
@@ -83,7 +83,6 @@ const StyledCardContent = styled.div`
   ${makeResponsive({
     beginAt: "tabletPortrait",
     style: `
-      ${makeRhythm({ fontSize: "sm", top: 1, bottom: 1 })};
       ${makeInset({ horizontal: 36, vertical: 32 })};
     `
   })}

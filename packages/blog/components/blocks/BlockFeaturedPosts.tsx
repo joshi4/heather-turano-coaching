@@ -237,13 +237,12 @@ export const BlockFeaturedPosts: FC<BlockFeaturedPostsProps> = ({
   const [visibleFeaturedPost, setVisibleFeaturedPost] = useState(
     featuredPosts[0]
   );
-  const [windowWidth, { tabletPortrait }] = useBreakpoints();
-  const isWindowMobile = windowWidth <= tabletPortrait;
+  const [windowWidth, { tabletPortrait, tabletLandscape }] = useBreakpoints();
 
   const gutterWidth =
     windowWidth < tabletPortrait ? sharedHorizontalBodyPadding.phone : 100;
 
-  return isWindowMobile ? (
+  return windowWidth < tabletLandscape ? (
     <BlogFeaturedMobile
       featuredPosts={featuredPosts}
       gutterWidth={gutterWidth}
@@ -252,13 +251,11 @@ export const BlockFeaturedPosts: FC<BlockFeaturedPostsProps> = ({
   ) : (
     <StyledDesktopBlockFeaturedPosts>
       <BlogCardFeature featuredPost={visibleFeaturedPost} />
-      {!isWindowMobile && (
-        <BlogCardFeatureSelector
-          posts={featuredPosts}
-          currentlySelectedPost={visibleFeaturedPost}
-          setFp={setVisibleFeaturedPost}
-        />
-      )}
+      <BlogCardFeatureSelector
+        posts={featuredPosts}
+        currentlySelectedPost={visibleFeaturedPost}
+        setFp={setVisibleFeaturedPost}
+      />
     </StyledDesktopBlockFeaturedPosts>
   );
 };
