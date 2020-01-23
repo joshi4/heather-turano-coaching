@@ -106,9 +106,7 @@ IndexPage.getInitialProps = async (): Promise<IndexPageProps> => {
     getBlockSubscribe()
   ]);
   return {
-    featuredPosts: posts
-      .filter(post => post.featured)
-      .filter((_post, index) => index < 3),
+    featuredPosts: posts.filter(post => post.featured),
     posts: posts.filter(post => !post.featured),
     meta: meta,
     tags,

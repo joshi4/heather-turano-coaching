@@ -1,17 +1,13 @@
 import React, { FC } from "react";
 import { PostOrPage } from "@tryghost/content-api";
 import {
-  BlogCardImage,
   Button,
   useBreakpoints,
   Heading,
   Copy,
-  // BlogCardAvatar,
   Avatar,
-  universalShadow,
-  makeFlex
+  universalShadow
 } from "@heather-turano-coaching/components";
-// import { formatLongDate } from "../../utils";
 import { TagsSection } from "../sections";
 import { NextLink } from "../general";
 import styled from "styled-components";
@@ -19,8 +15,8 @@ import {
   makeInset,
   makeRhythm,
   makeSize,
-  makeOutset,
-  makeResponsive
+  makeResponsive,
+  makeColor
 } from "@heather-turano-coaching/design-system/utils";
 
 interface BlogCardFeatureProps {
@@ -31,19 +27,14 @@ const StyledFeaturedBlogCardContainer = styled.div`
   border-radius: ${makeSize({ custom: 8 })};
   overflow: hidden;
   box-shadow: ${universalShadow};
-  margin: 0 auto;
-  ${makeOutset({
-    horizontal: 8,
-    vertical: 8
-  })};
+  background: ${makeColor({ fixed: "light" })};
 
   ${makeResponsive({
     beginAt: "tabletPortrait",
     style: `
       position: relative;
-      ${makeFlex("row", "flex-start", "stretch")};
-      max-height: ${makeSize({ custom: 580 })};
-      height: ${makeSize({ custom: 580 })};
+      height: ${makeSize({ custom: 600 })};
+      width: ${makeSize({ custom: 500 })};
     `
   })};
 `;
@@ -51,6 +42,7 @@ const StyledFeaturedBlogCardContainer = styled.div`
 const StyledCardContent = styled.div`
   position: relative;
   ${makeInset({ horizontal: 24, top: 32 })};
+  background: ${makeColor({ fixed: "light" })};
 
   h3,
   h4 {
@@ -68,6 +60,21 @@ const StyledAvatarContainer = styled.div`
   top: ${`calc(${makeSize("xxl")} / -2)`};
 `;
 
+const StyledBlogImage = styled.div`
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  ${makeResponsive({
+    beginAt: "tabletPortrait",
+    style: `
+      height: ${makeSize({ custom: 240 })};
+    `
+  })}
+`;
+
 export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
   featuredPost: fp
 }) => {
@@ -82,9 +89,9 @@ export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
 
   return (
     <StyledFeaturedBlogCardContainer>
-      <BlogCardImage blogType="featured">
+      <StyledBlogImage>
         <img src={fp.feature_image as string} alt={fp.slug} />
-      </BlogCardImage>
+      </StyledBlogImage>
       <StyledCardContent>
         <StyledAvatarContainer>
           <Avatar image={avatarImg} alt={authorName} size="xxl" />

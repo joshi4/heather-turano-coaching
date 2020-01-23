@@ -8,7 +8,6 @@ import {
   generateRandomColor,
   ButtonAction
 } from "@heather-turano-coaching/components";
-import Link from "next/link";
 import styled from "styled-components";
 import {
   makeReset,
@@ -81,17 +80,15 @@ export const BlockContributors: FC<BlockContributorsProps> = ({
             const color = generateRandomColor();
             return (
               <StyledLinks hoverColor={color} key={author.id}>
-                <Link href={`/authors/${author.slug}`}>
-                  <a>
-                    <AvatarListItem
-                      name={author.name as string}
-                      image={author.profile_image as string}
-                      alt={author.name as string}
-                      accentColor={color}
-                      bio={author.bio}
-                    />
-                  </a>
-                </Link>
+                <NextLink href={`/authors/${author.slug}`}>
+                  <AvatarListItem
+                    name={author.name as string}
+                    image={author.profile_image as string}
+                    alt={author.name as string}
+                    accentColor={color}
+                    bio={author.bio}
+                  />
+                </NextLink>
               </StyledLinks>
             );
           })}

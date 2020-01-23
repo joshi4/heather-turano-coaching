@@ -61,16 +61,19 @@ const StyledBubble = styled.li<{ isActive: boolean }>`
 
 type BlogMobileFeatureProps = BlockFeaturedPostsProps & {
   gutterWidth: number;
+  activeCardPosition: "middle" | "full";
 };
 
 const BlogMobileFeature: FC<BlogMobileFeatureProps> = ({
   featuredPosts,
-  gutterWidth
+  gutterWidth,
+  activeCardPosition = "middle"
 }) => {
-  const startingPosition = 0;
+  const initialSelectedCardIndex = 0;
   const [containerHeight, setContainerHeight] = useState();
-  const [currentBubble, setCurrentBubble] = useState(startingPosition);
+  const [currentBubble, setCurrentBubble] = useState(initialSelectedCardIndex);
   const cardRef = useRef<HTMLDivElement>(null);
+  // const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     if (cardRef.current) {
@@ -78,15 +81,61 @@ const BlogMobileFeature: FC<BlogMobileFeatureProps> = ({
     }
   }, [cardRef, containerHeight]);
 
-  const cardWidth = window.innerWidth - gutterWidth * 2;
+  const cardWidth = window.innerWidth - 48 - gutterWidth * 2;
   const halfCardWidth = cardWidth / 2;
+  const cardSlice = cardWidth * 0.13;
   const numberOfCards = featuredPosts.length;
+  const xOffset =
+    activeCardPosition === "middle"
+      ? (window.innerWidth - 48) / 2 - halfCardWidth
+      : 0;
+  const index = useRef(initialSelectedCardIndex);
 
-  const index = useRef(startingPosition);
-  const [springProps, set] = useSprings(numberOfCards, i => ({
-    x: i * cardWidth,
-    scale: index.current !== i ? 0.96 : 1
-  }));
+  const getDistance = (cardNum: number): number =>
+    Math.abs(index.current - cardNum);
+
+  /**
+   * Determines the absolute distance a card is away from the
+   * currently selected card and returns the percetange
+   * value at which that card should be scaled
+   * @param cardNum index of the card that is being set in a loop
+   */
+  const getScale = (cardNum: number): number => {
+    const scaleFactor = getDistance(cardNum);
+    const scaleValue = (100 - scaleFactor * 8) / 100;
+    return scaleValue;
+  };
+
+  const getBlur = (cardNum: number): number => {
+    const blurFactor = getDistance(cardNum);
+    return blurFactor;
+  };
+
+  const getOverlay = (cardNum: number): number => {
+    const overlayFactor = getDistance(cardNum);
+    const overlayValue = (overlayFactor * 4) / 10;
+    return overlayValue;
+  };
+
+  const getZ = (cardNum: number): number => {
+    const zFactor = 1000 - getDistance(cardNum);
+    return zFactor;
+  };
+
+  const getPosition = (cardNum: number): number => {
+    const position = (cardNum - index.current) * cardSlice + xOffset;
+    return position;
+  };
+
+  const [springProps, set] = useSprings(numberOfCards, i => {
+    return {
+      x: getPosition(i),
+      scale: getScale(i),
+      blur: getBlur(i),
+      overlay: getOverlay(i),
+      z: getZ(i)
+    };
+  });
 
   const bind = useDrag(
     ({
@@ -97,7 +146,7 @@ const BlogMobileFeature: FC<BlogMobileFeatureProps> = ({
       cancel,
       last
     }) => {
-      if (down && distance > halfCardWidth && cancel) {
+      if (down && distance > cardSlice && cancel) {
         index.current = clamp(
           index.current + (xDir > 0 ? -1 : 1),
           0,
@@ -112,9 +161,20 @@ const BlogMobileFeature: FC<BlogMobileFeatureProps> = ({
           setCurrentBubble(index.current);
         }
 
-        const x = (i - index.current) * cardWidth + (down ? xMove : 0);
-        const scale = index.current === i ? 1 : 0.96;
-        return { x, scale };
+        // console.log("------");
+        // console.log(i, index.current, xMove);
+
+        const movement = down ? xMove : 0;
+
+        console.log(getPosition(i) + movement);
+
+        return {
+          x: getPosition(i) + movement,
+          scale: getScale(i),
+          blur: getBlur(i),
+          overlay: getOverlay(i),
+          z: getZ(i)
+        };
       });
     }
   );
@@ -134,28 +194,35 @@ const BlogMobileFeature: FC<BlogMobileFeatureProps> = ({
 
       <LayoutBlockContent>
         <StyledMobileBlockFeaturedPosts style={{ height: containerHeight }}>
-          {springProps.map(({ x, scale }, i) => (
-            <animated.div
-              {...bind()}
-              key={i.toString()}
-              style={{
-                display: "inline-block",
-                position: "absolute",
-                top: 0,
-                bottom: 0,
-                transform: x.interpolate(x => `translate3d(${x}px,0,0)`)
-              }}
-            >
+          {springProps.map(({ x, scale }, i) => {
+            const action = i === index.current ? bind : () => ({});
+            console.log(i, index);
+            console.log(action);
+
+            return (
               <animated.div
-                ref={cardRef}
+                {...action()}
+                key={i.toString()}
                 style={{
-                  transform: scale.interpolate(s => `scale(${s})`)
+                  position: "absolute",
+                  top: 0,
+                  bottom: 0,
+                  transform: x.interpolate(xv => `translate3d(${xv}px,0,0)`),
+                  // filter: blur.interpolate(
+                  //   b => `blur(${makeSize({ custom: b })})`
+                  // ),
+                  zIndex: getZ(i)
                 }}
               >
-                <BlogCardFeature featuredPost={featuredPosts[i]} />
+                <animated.div
+                  ref={cardRef}
+                  style={{ transform: scale.interpolate(s => `scale(${s})`) }}
+                >
+                  <BlogCardFeature featuredPost={featuredPosts[i]} />
+                </animated.div>
               </animated.div>
-            </animated.div>
-          ))}
+            );
+          })}
         </StyledMobileBlockFeaturedPosts>
       </LayoutBlockContent>
     </LayoutBlock>
@@ -171,14 +238,14 @@ export const BlockFeaturedPosts: FC<BlockFeaturedPostsProps> = ({
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
   const isWindowMobile = windowWidth <= tabletPortrait;
 
-  const gutterWidth = isWindowMobile
-    ? sharedHorizontalBodyPadding.phone
-    : sharedHorizontalBodyPadding.tabletPortrait;
+  const gutterWidth =
+    windowWidth < tabletPortrait ? sharedHorizontalBodyPadding.phone : 100;
 
   return isWindowMobile ? (
     <BlogMobileFeature
       featuredPosts={featuredPosts}
       gutterWidth={gutterWidth}
+      activeCardPosition="middle"
     />
   ) : (
     <StyledDesktopBlockFeaturedPosts>
