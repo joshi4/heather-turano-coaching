@@ -28,7 +28,15 @@ const StyledBlogHeading = styled.div`
 `;
 
 const BlogPost: NextPage<BlogPostProps> = ({
-  blogPost: { feature_image, primary_author, published_at, title, html, tags }
+  blogPost: {
+    id,
+    feature_image,
+    primary_author,
+    published_at,
+    title,
+    html,
+    tags
+  }
 }) => (
   <>
     <StyledBlogHero>
@@ -55,6 +63,15 @@ const BlogPost: NextPage<BlogPostProps> = ({
           instagram: "test-instagram"
         }}
       />
+    </Section>
+    <Section styleType="blog-page">
+      <Heading fontSize="h2">Comments</Heading>
+      <script
+        defer
+        src={process.env.COMMENTO_ORIGIN}
+        data-auto-init="true"
+      ></script>
+      <div id={id}></div>
     </Section>
   </>
 );

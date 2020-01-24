@@ -10,7 +10,8 @@ import {
   makeColor,
   makeSize,
   makeResponsive,
-  makeOutset
+  makeOutset,
+  makeReset
 } from "@heather-turano-coaching/design-system/utils";
 import { makeFlex } from "../utils";
 import { BlogSocialOptions } from "./blog.types";
@@ -23,6 +24,8 @@ type BlogSocialLinksProps = Partial<BlogSocialOptions> & {
 const StyledBlogSocial = styled.ul<
   Required<Pick<BlogSocialLinksProps, "orientation" | "linkStyle">>
 >`
+  ${makeReset("list")};
+
   ${({ orientation, linkStyle }) =>
     (orientation === "horizontal" || linkStyle === "grayscale") &&
     makeFlex("row", "center", "center")}
