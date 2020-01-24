@@ -28,6 +28,8 @@ services:
     staticPublishPath: ./packages/blog/out
     domains:
       - blog.livelifemindful.com
+    envVars:
+      - fromGroup: npm
 
   - type: web
     name: HTC | Live Life Mindful | Blog (CMS)
