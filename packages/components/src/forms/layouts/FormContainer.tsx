@@ -20,7 +20,7 @@ const StyledFormContainer = styled.div<FormContainerProps>`
   })}
 `;
 
-export const FormConatiner: FC<FormContainerProps> = ({
+export const FormContainer: FC<FormContainerProps> = ({
   layout = "stacked",
   children
 }) => <StyledFormContainer layout={layout}>{children}</StyledFormContainer>;

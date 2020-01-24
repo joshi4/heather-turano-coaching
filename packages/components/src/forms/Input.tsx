@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 import { HTMLInput } from "@heather-turano-coaching/design-system/types/composite";
 
 import { Control, Label, Error, ErrorProps } from "./base";
@@ -16,7 +16,7 @@ import {
   sharedButtonAndInputVerticalPadding
 } from "../shared";
 
-export type InputProps = HTMLInput &
+export type InputProps = Omit<HTMLInput, "ref"> &
   ErrorProps & {
     name: string;
     label?: string;
@@ -79,23 +79,29 @@ const StyledInput = styled.input<InputProps>`
   ${CSSInputStyle}
 `;
 
-export const Input: FC<InputProps> = ({
-  name,
-  label = undefined,
-  type = "text",
-  isValid = true,
-  errorMessage = undefined,
-  ...restProps
-}) => (
-  <Control>
-    <Label label={label} htmlFor={name} isValid={isValid} />
-    <StyledInput
-      id={name}
-      name={name}
-      type={type}
-      isValid={isValid}
-      {...restProps}
-    />
-    <Error errorMessage={errorMessage} />
-  </Control>
+export const Input = forwardRef<any, InputProps>(
+  (
+    {
+      name,
+      label = undefined,
+      type = "text",
+      isValid = true,
+      errorMessage = undefined,
+      ...restProps
+    },
+    ref
+  ) => (
+    <Control>
+      <Label label={label} htmlFor={name} isValid={isValid} />
+      <StyledInput
+        id={name}
+        name={name}
+        type={type}
+        isValid={isValid}
+        ref={ref}
+        {...restProps}
+      />
+      <Error errorMessage={errorMessage} />
+    </Control>
+  )
 );

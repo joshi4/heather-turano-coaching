@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { HTMLTextarea } from "@heather-turano-coaching/design-system/types/composite";
 
@@ -18,16 +18,27 @@ const StyledTextarea = styled.textarea<TextareaProps>`
   min-width: 100%;
 `;
 
-export const Textarea: FC<TextareaProps> = ({
-  name,
-  label = undefined,
-  isValid = true,
-  errorMessage = undefined,
-  ...restProps
-}) => (
-  <Control>
-    <Label label={label} htmlFor={name} isValid={isValid} />
-    <StyledTextarea id={name} name={name} isValid={isValid} {...restProps} />
-    <Error errorMessage={errorMessage} />
-  </Control>
+export const Textarea = forwardRef<any, TextareaProps>(
+  (
+    {
+      name,
+      label = undefined,
+      isValid = true,
+      errorMessage = undefined,
+      ...restProps
+    },
+    ref
+  ) => (
+    <Control>
+      <Label label={label} htmlFor={name} isValid={isValid} />
+      <StyledTextarea
+        id={name}
+        name={name}
+        isValid={isValid}
+        {...restProps}
+        ref={ref}
+      />
+      <Error errorMessage={errorMessage} />
+    </Control>
+  )
 );
