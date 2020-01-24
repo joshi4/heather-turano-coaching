@@ -9,7 +9,8 @@ import {
 import fetch from "isomorphic-unfetch";
 import { getCategoriesFromTags, filterOutCategoriesFromTags } from "../utils";
 
-const contentApi = "https://blog.livelifemindful.com/ghost/api/v3/content/";
+const contentApi =
+  "https://admin.blog.livelifemindful.com/ghost/api/v3/content/";
 const ghostContentApiKey = process.env.NEXT_GHOST_API_KEY;
 
 export const getAllPosts = async (): Promise<PostObject> => {
@@ -162,6 +163,7 @@ export type GetTagByTagSlugApiResponse = Tag;
 export const getTagByTagSlug = async (
   tagSlug: GetTagByTagSlugApiRequest
 ): Promise<GetTagByTagSlugApiResponse> => {
+  console.log(tagSlug);
   const res = await fetch(
     `${contentApi}tags/slug/${tagSlug}/?key=${ghostContentApiKey}`
   );

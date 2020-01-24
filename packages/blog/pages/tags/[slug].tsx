@@ -73,8 +73,6 @@ TagsPage.getInitialProps = async ({ query }) => {
     getBlockSubscribe()
   ]);
 
-  console.log(tag.name);
-
   return {
     tag: tag.name as string,
     tags: filterOutCategoriesFromTags(tags),
