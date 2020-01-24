@@ -79,7 +79,7 @@ export const withValidation = () => {
 };
 export const customErrorMessages = () => {
   const CustomErrorMessages: FC = () => {
-    const { register, handleSubmit } = useForm<FormData>();
+    const { register, errors, handleSubmit } = useForm<FormData>();
     const onSubmit = (data: FormData) => {
       console.log(data);
     };
@@ -92,6 +92,10 @@ export const customErrorMessages = () => {
               name="firstName"
               label="First name"
               ref={register({ required: true, min: 5 })}
+              isValid={!errors.firstName}
+              errorMessage={
+                errors.firstName && "uhhhh, you need to indicate your name"
+              }
             />
             <Input
               name="lastName"
@@ -104,6 +108,10 @@ export const customErrorMessages = () => {
               type="number"
               label="Age"
               ref={register({ required: true })}
+              errorMessage={
+                errors.firstName &&
+                "you're old, we get it. You still need to include this"
+              }
             />
             <Button styleType="secondary" label="Submit" type="submit" />
           </InputGroup>
