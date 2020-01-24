@@ -3,7 +3,7 @@
   "version": "0.2.1",
   "private": true,
   "scripts": {
-    "prepareBuild": "dotenv -- tsc --project ./tsconfig.prepare.json",
+    "prepareBuild": "tsc --project ./tsconfig.prepare.json",
     "dev": "next dev",
     "build": "npm run prepareBuild && next build",
     "build:static": "npm run build && next export",
@@ -12,12 +12,12 @@
   "dependencies": {
     "@heather-turano-coaching/components": "^0.2.0",
     "@heather-turano-coaching/design-system": "^0.2.0",
-    "@tryghost/content-api": "^1.3.6",
+    "@tryghost/content-api": "^1.3.7",
     "contentful": "^7.13.1",
     "date-fns": "^2.9.0",
     "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.15",
-    "next": "^9.2.0",
+    "next": "^9.2.1",
     "polished": "^3.4.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -27,9 +27,10 @@
   },
   "devDependencies": {
     "@heather-turano-coaching/typescript": "^0.2.0",
-    "@svgr/webpack": "^5.0.1",
+    "@svgr/webpack": "^5.1.0",
     "@types/tryghost__content-api": "^1.3.0",
     "dotenv": "^8.2.0",
+    "dotenv-cli": "^3.1.0",
     "dotenv-webpack": "^1.7.0",
     "url-loader": "^3.0.0"
   }
