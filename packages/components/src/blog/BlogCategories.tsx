@@ -11,7 +11,6 @@ import {
 } from "@heather-turano-coaching/design-system/utils";
 
 import { Copy } from "../typography";
-import { Link } from "../buttons-links";
 
 export interface BlogCategory {
   rawLabel: string;
@@ -133,13 +132,11 @@ const StyledBackground = styled.div<{ img: string }>`
 export const BlogCategories: FC<BlogCategoriesProps> = ({ categories }) => (
   <StyledBlogContainer>
     <StyledBlogCategories>
-      {categories.map(({ label, route, img }) => (
+      {categories.map(({ label, img }) => (
         <StyledBlogCategory key={img}>
-          <Link to={route}>
-            <Copy type="paragraph" fontSize="md" fontColor={{ fixed: "light" }}>
-              {label}
-            </Copy>
-          </Link>
+          <Copy type="paragraph" fontSize="md" fontColor={{ fixed: "light" }}>
+            {label}
+          </Copy>
           <StyledBackground img={img} />
         </StyledBlogCategory>
       ))}
