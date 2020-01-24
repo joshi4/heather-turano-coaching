@@ -1,7 +1,6 @@
 {
   "extends": "@heather-turano-coaching/typescript/tsconfig.react.json",
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"],
   "compilerOptions": {
     "noEmit": true,
     "isolatedModules": true,
