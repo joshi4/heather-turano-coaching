@@ -1,7 +1,7 @@
 {
   "name": "@live-life-mindful/serverless",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Cloudflare worker router converted to TS",
   "main": "index.js",
   "scripts": {

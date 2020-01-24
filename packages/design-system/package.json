@@ -1,6 +1,6 @@
 {
   "name": "@heather-turano-coaching/design-system",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "author": "Drew DeCarme (drew@imaginedelements.com)",
   "main": "dist/index.js",
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
-    "@heather-turano-coaching/typescript": "^0.1.0",
+    "@heather-turano-coaching/typescript": "^0.2.0",
     "@types/jest": "^24.9.0",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",

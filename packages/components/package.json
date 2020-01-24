@@ -1,6 +1,6 @@
 {
   "name": "@heather-turano-coaching/components",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "React component library for Heather Turano Coaching, LLC",
   "author": "Drew DeCarme (drew@imaginedelements.com)",
   "license": "MIT",
@@ -58,8 +58,8 @@
   },
   "devDependencies": {
     "@babel/core": "7.8.3",
-    "@heather-turano-coaching/design-system": "^0.1.0",
-    "@heather-turano-coaching/typescript": "^0.1.0",
+    "@heather-turano-coaching/design-system": "^0.2.0",
+    "@heather-turano-coaching/typescript": "^0.2.0",
     "@rollup/plugin-url": "^4.0.1",
     "@storybook/addon-a11y": "^5.3.6",
     "@storybook/addon-actions": "^5.3.6",
