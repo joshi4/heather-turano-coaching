@@ -63,17 +63,17 @@ services:
         sync: false
 
   - type: web
-    name: HTC | Commento
+    name: HTC | Live Life Mindful | Blog (Comments)
     env: docker
     dockerfilePath: ./commento/Dockerfile
     dockerContext: ./commento
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
     domains:
-      - community.livelifemindful.com
+      - community.blog.livelifemindful.com
     envVars:
       - key: COMMENTO_ORIGIN
-        value: https://community.livelifemindful.com
+        value: https://community.blog.livelifemindful.com
       - key: COMMENTO_SMTP_HOST
         value: smtp.mailgun.org
       - key: COMMENTO_SMTP_PORT
