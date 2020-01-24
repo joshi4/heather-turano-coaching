@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@live-life-mindful/blog@0.2.0...@live-life-mindful/blog@0.2.1) (2020-01-24)
+
+
+### Bug Fixes
+
+* **Blog:** Add API to get specific tag that fixes undefined ([f39a6b8](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/f39a6b8f9baf71da32e1831f6ed5f4a849025833))
+
+
+
+
+
 # 0.2.0 (2020-01-24)
 
 
