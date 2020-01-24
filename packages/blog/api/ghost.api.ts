@@ -30,16 +30,16 @@ export const getPostById = async (
   return json;
 };
 
-export type GetPostByTagApiRequest = Tag["slug"];
-export type GetPostByTagApiResponse = { posts: [PostOrPage] };
+export type GetPostByTagSlugApiRequest = Tag["slug"];
+export type GetPostByTagSlugApiResponse = { posts: [PostOrPage] };
 
 export const getPostByTagSlug = async (
-  tagSlug: GetPostByTagApiRequest
-): Promise<GetPostByTagApiResponse> => {
+  tagSlug: GetPostByTagSlugApiRequest
+): Promise<GetPostByTagSlugApiResponse> => {
   const res = await fetch(
     `${contentApi}posts/?key=${ghostContentApiKey}&include=authors,tags&filter=tag:${tagSlug}`
   );
-  const json = (await res.json()) as GetPostByTagApiResponse;
+  const json = (await res.json()) as GetPostByTagSlugApiResponse;
   return json;
 };
 
@@ -152,20 +152,29 @@ export const getAuthorBySlug = async (
     `${contentApi}authors/slug/${authorSlug}/?key=${ghostContentApiKey}&include=count.posts`
   );
   const json = (await res.json()) as AuthorsObject;
-  console.log(json);
   return {
     author: json.authors[0]
   };
 };
 
-export type GetAllAuthorsApiResponse = { authors: Author[] };
+export type GetTagByTagSlugApiRequest = Tag["slug"];
+export type GetTagByTagSlugApiResponse = Tag;
+export const getTagByTagSlug = async (
+  tagSlug: GetTagByTagSlugApiRequest
+): Promise<GetTagByTagSlugApiResponse> => {
+  const res = await fetch(
+    `${contentApi}tags/slug/${tagSlug}/?key=${ghostContentApiKey}`
+  );
+  const json = (await res.json()) as TagsObject;
+  return json.tags[0];
+};
 
+export type GetAllAuthorsApiResponse = { authors: Author[] };
 export const getAllAuthors = async (): Promise<GetAllAuthorsApiResponse> => {
   const res = await fetch(
     `${contentApi}authors/?key=${ghostContentApiKey}&include=count.posts`
   );
   const json = (await res.json()) as AuthorsObject;
-  console.log(json);
   return {
     authors: json.authors
   };

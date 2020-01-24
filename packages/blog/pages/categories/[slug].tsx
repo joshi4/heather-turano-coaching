@@ -4,8 +4,10 @@ import { PostObject, TagsObject } from "@tryghost/content-api";
 import {
   getPostByTagSlug,
   getBlockSubscribe,
-  GetPostByTagApiResponse,
-  getAllTagsInPosts
+  GetPostByTagSlugApiResponse,
+  getAllTagsInPosts,
+  getTagByTagSlug,
+  GetTagByTagSlugApiResponse
 } from "../../api";
 import {
   PageContainer,
@@ -54,20 +56,23 @@ const CategoryPage: NextPage<CategoryPageProps> = ({
 );
 
 CategoryPage.getInitialProps = async ({ query }) => {
-  const [{ posts }, blockSubscribe] = await Promise.all<
-    GetPostByTagApiResponse,
+  const [tag, { posts }, blockSubscribe] = await Promise.all<
+    GetTagByTagSlugApiResponse,
+    GetPostByTagSlugApiResponse,
     any
-  >([getPostByTagSlug(query.slug as string), getBlockSubscribe()]);
+  >([
+    getTagByTagSlug(query.slug as string),
+    getPostByTagSlug(query.slug as string),
+    getBlockSubscribe()
+  ]);
 
-  console.log(posts);
-
-  const { tags } = await getAllTagsInPosts({
+  const { tags: tagsInPosts } = await getAllTagsInPosts({
     postIds: posts.map(post => post.id)
   });
 
   return {
-    category: (query.slug as string).split(categoryDelimiter)[1],
-    tags: filterOutCategoriesFromTags(tags),
+    category: (tag.name as string).split(categoryDelimiter)[1],
+    tags: filterOutCategoriesFromTags(tagsInPosts),
     posts: posts,
     blocks: {
       subscribe: blockSubscribe

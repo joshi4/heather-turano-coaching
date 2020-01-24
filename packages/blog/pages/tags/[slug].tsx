@@ -3,10 +3,12 @@ import { NextPage } from "next";
 import { PostObject, TagsObject } from "@tryghost/content-api";
 import {
   getPostByTagSlug,
-  GetPostByTagApiResponse,
+  GetPostByTagSlugApiResponse,
   GetAllTagsApiResponse,
   getAllTags,
-  getBlockSubscribe
+  getBlockSubscribe,
+  getTagByTagSlug,
+  GetTagByTagSlugApiResponse
 } from "../../api";
 import {
   PageContainer,
@@ -59,18 +61,22 @@ const TagsPage: NextPage<TagsPageProps> = ({
 );
 
 TagsPage.getInitialProps = async ({ query }) => {
-  const [{ posts }, { tags }, subscribeBlock] = await Promise.all<
-    GetPostByTagApiResponse,
+  const [tag, { posts }, { tags }, subscribeBlock] = await Promise.all<
+    GetTagByTagSlugApiResponse,
+    GetPostByTagSlugApiResponse,
     GetAllTagsApiResponse,
     any
   >([
+    getTagByTagSlug(query.slug as string),
     getPostByTagSlug(query.slug as string),
     getAllTags(),
     getBlockSubscribe()
   ]);
 
+  console.log(tag.name);
+
   return {
-    tag: query.slug as string,
+    tag: tag.name as string,
     tags: filterOutCategoriesFromTags(tags),
     posts: posts,
     blocks: {
