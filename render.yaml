@@ -44,7 +44,7 @@ services:
       sizeGB: 10
     envVars:
       - key: url
-        value: https://blog.livelifemindful.com
+        value: https://admin.blog.livelifemindful.com
       - key: mail__transport
         value: SMTP
       - key: mail__from
