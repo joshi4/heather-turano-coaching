@@ -4,7 +4,9 @@ import styled from "styled-components";
 import {
   makeReset,
   makeSize,
-  makeInset
+  makeInset,
+  makeResponsive,
+  makeOutset
 } from "@heather-turano-coaching/design-system/utils";
 import {
   PageContainer,
@@ -24,19 +26,46 @@ interface AuthorsPageProps {
 
 const StyledAuthorPageContent = styled.ul`
   ${makeReset("list")};
-  ${makeFlex("row", "flex-start", "flex-start")};
+
+  ${makeResponsive({
+    beginAt: "tabletPortrait",
+    style: `
+      ${makeFlex("row", "flex-start", "flex-start")};
+    `
+  })}
 
   & > li {
     min-width: ${makeSize({ custom: 280 })};
     align-self: stretch;
-    flex-basis: 33.33%;
 
-    &:not(:first-child) {
-      ${makeInset({ left: 12 })};
-    }
-    &:not(:last-child) {
-      ${makeInset({ right: 12 })};
-    }
+    ${makeResponsive({
+      endAt: "tabletPortrait",
+      style: `
+        ${makeOutset({ bottom: 24 })};
+      `
+    })}
+
+    ${makeResponsive({
+      beginAt: "tabletPortrait",
+      style: `
+      flex-basis: 50%;
+        &:not(:first-child) {
+          ${makeInset({ left: 12 })};
+        }
+        &:not(:last-child) {
+          ${makeInset({ right: 12 })};
+        }
+      `
+    })}
+
+    ${makeResponsive({
+      beginAt: "tabletLandscape",
+      style: `
+      flex-basis: 33.33%;
+    `
+    })}
+
+
 
     a {
       ${makeReset("anchor")};

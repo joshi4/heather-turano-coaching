@@ -105,9 +105,15 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
     return scaleValue;
   };
 
+  const getFilter = (cardNum: number): number => {
+    const filterFactor = getDistance(cardNum);
+    const filterValue = cardNum !== index.current ? filterFactor * 1.1 : 0;
+    return filterValue;
+  };
+
   const getOverlay = (cardNum: number): number => {
     const overlayFactor = getDistance(cardNum);
-    const overlayValue = (overlayFactor * 4) / 10;
+    const overlayValue = (overlayFactor * 2.8) / 10;
     return overlayValue;
   };
 
@@ -134,10 +140,12 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
     x: number;
     scale: number;
     overlay: number;
+    filter: number;
   } => ({
     x: getPosition(cardNum, movement),
     scale: getScale(cardNum),
-    overlay: getOverlay(cardNum)
+    overlay: getOverlay(cardNum),
+    filter: getFilter(cardNum)
   });
 
   const [springProps, set] = useSprings(numberOfCards, i => setSprings(i));
@@ -184,7 +192,7 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
       </LayoutBlockTitle>
       <LayoutBlockContent>
         <StyledMobileBlockFeaturedPosts style={{ height: containerHeight }}>
-          {springProps.map(({ x, scale, overlay }, i) => {
+          {springProps.map(({ x, scale, overlay, filter }, i) => {
             // only attach the drag action to the visible card
             const action = i === index.current ? bind : () => ({});
             return (
@@ -196,7 +204,8 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
                   top: 0,
                   bottom: 0,
                   transform: x.interpolate(xv => `translate3d(${xv}px,0,0)`),
-                  zIndex: getZ(i)
+                  zIndex: getZ(i),
+                  filter: filter.interpolate(f => `blur(${f}px)`)
                 }}
               >
                 <animated.div
@@ -216,8 +225,8 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
                       left: 0,
                       zIndex: 10,
                       pointerEvents: "none",
-                      background: overlay.interpolate(op =>
-                        rgba(makeColor({ fixed: "dark" }), op)
+                      background: overlay.interpolate(ov =>
+                        rgba(makeColor({ fixed: "dark" }), ov)
                       )
                     }}
                   />

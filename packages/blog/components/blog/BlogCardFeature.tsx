@@ -28,17 +28,19 @@ interface BlogCardFeatureProps {
 }
 
 const StyledFeaturedBlogCardContainer = styled.div`
+  overflow: hidden;
+  border-radius: ${makeSize({ custom: 8 })};
+
+  & + * {
+    border-radius: ${makeSize({ custom: 8 })};
+  }
+
   ${makeResponsive({
     endAt: "tabletPortrait",
     style: `
       border-radius: ${makeSize({ custom: 8 })};
-      overflow: hidden;
       box-shadow: ${universalShadow};
       background: ${makeColor({ fixed: "light" })};
-
-      & + * {
-        border-radius: ${makeSize({ custom: 8 })};
-      }
     `
   })};
 
@@ -56,6 +58,7 @@ const StyledFeaturedBlogCardContainer = styled.div`
       width: 100%;
       ${makeFlex("row", "flex-start", "stretch")};
       height: ${makeSize({ custom: 520 })};
+      border-radius: 0;
     `
   })};
 `;
@@ -106,7 +109,7 @@ const StyledCardContent = styled.div`
     ${makeResponsive({
       beginAt: "tabletPortrait",
       style: `
-      ${makeRhythm({ fontSize: "xs", top: 1, bottom: 1 })};
+      ${makeRhythm({ fontSize: "xs", top: 2, bottom: 1 })};
     `
     })}
   }
@@ -117,7 +120,7 @@ const StyledCardContent = styled.div`
   ${makeResponsive({
     beginAt: "tabletPortrait",
     style: `
-      height: ${makeSize({ custom: 460 })};
+      height: ${makeSize({ custom: 412 })};
       ${makeInset({ horizontal: 32, top: 32 })};
     `
   })}
@@ -183,13 +186,15 @@ export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
         >
           {title}
         </Heading>
-        <BlogCardAvatar
-          authorName={authorName}
-          avatarImg={avatarImg}
-          datePublished={datePublished}
-          layoutType="inline"
-          themeType={windowWidth >= tabletLandscape ? "light" : "dark"}
-        />
+        {windowWidth >= tabletLandscape && (
+          <BlogCardAvatar
+            authorName={authorName}
+            avatarImg={avatarImg}
+            datePublished={datePublished}
+            layoutType="inline"
+            themeType={windowWidth >= tabletLandscape ? "light" : "dark"}
+          />
+        )}
         <Copy
           type="paragraph"
           fontSize={windowWidth < tabletPortrait ? { custom: 14 } : "sm"}

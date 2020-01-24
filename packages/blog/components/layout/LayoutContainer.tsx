@@ -3,7 +3,8 @@ import styled, { css } from "styled-components";
 import {
   makeSize,
   makeInset,
-  makeResponsive
+  makeResponsive,
+  makeSpace
 } from "@heather-turano-coaching/design-system/utils";
 import {
   sharedHorizontalBodyPadding,
@@ -19,13 +20,27 @@ interface LayoutContainerProps {
 const StyledLayoutContainer = styled.section<Required<LayoutContainerProps>>`
   width: 100%;
   max-width: ${makeSize({ custom: 1024 })};
-  box-sizing: content-box;
+  box-sizing: border-box;
   margin: 0 auto;
 
   ${makeInset({
     horizontal: sharedHorizontalBodyPadding.phone,
-    vertical: sharedHorizontalBodyPadding.phone
+    top: sharedHorizontalBodyPadding.phone
   })};
+
+  ${makeResponsive({
+    beginAt: "tabletLandscape",
+    style: `
+      ${makeInset({
+        horizontal: 0,
+        top: sharedHorizontalBodyPadding.phone
+      })};
+    `
+  })}
+
+  &:last-child {
+    margin-bottom: ${makeSpace({ custom: 48 })};
+  }
 
   ${({ layoutType }) => {
     if (layoutType === "inline") {

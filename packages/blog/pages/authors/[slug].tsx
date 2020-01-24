@@ -28,7 +28,8 @@ import styled from "styled-components";
 import {
   makeInset,
   makeColor,
-  makeOutset
+  makeOutset,
+  makeResponsive
 } from "@heather-turano-coaching/design-system/utils";
 
 interface AuthorPageProps {
@@ -42,16 +43,35 @@ interface AuthorPageProps {
 }
 
 const StyledBioBlock = styled.div`
-  ${makeFlex("row", "flex-start", "stretch")};
+  text-align: center;
+  box-sizing: border-box;
+
+  & * {
+    box-sizing: border-box;
+  }
+
+  ${makeResponsive({
+    beginAt: "tabletPortrait",
+    style: `
+      ${makeFlex("row", "flex-start", "stretch")};
+    `
+  })}
 `;
 
 const StyledBioArea = styled.div`
-  ${makeOutset({ left: 16 })};
   ${makeInset({ horizontal: 24, vertical: 16 })};
   background: ${makeColor({ scalable: { color: "light", scale: 3 } })};
   width: 100%;
   align-self: stretch;
+
   ${makeFlex("row", "center", "center")};
+
+  ${makeResponsive({
+    beginAt: "tabletPortrait",
+    style: `
+    ${makeOutset({ left: 16 })};
+    `
+  })}
 `;
 
 const StyledBioPlaceholder = styled.div``;

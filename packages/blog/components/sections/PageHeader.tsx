@@ -1,6 +1,11 @@
 import React, { FC, Fragment } from "react";
 import { useRouter } from "next/router";
-import { Copy, Heading, makeFlex } from "@heather-turano-coaching/components";
+import {
+  Copy,
+  Heading,
+  makeFlex,
+  useBreakpoints
+} from "@heather-turano-coaching/components";
 import styled from "styled-components";
 import {
   makeRhythm,
@@ -8,7 +13,8 @@ import {
   makeInset,
   makeSize,
   makeColor,
-  makeOutset
+  makeOutset,
+  makeResponsive
 } from "@heather-turano-coaching/design-system/utils";
 import {
   ColorProperties,
@@ -24,8 +30,15 @@ interface PageHeaderProps {
 
 const StyledLayoutPageHeader = styled.header`
   & > div {
-    ${makeRhythm({ fontSize: "sm", top: 3, bottom: 0 })};
     ${makeFlex("row", "flex-start", "center")};
+    ${makeRhythm({ fontSize: "sm", top: 1, bottom: 0 })};
+
+    ${makeResponsive({
+      beginAt: "tabletLandscape",
+      style: `
+        ${makeRhythm({ fontSize: "sm", top: 3, bottom: 0 })};
+      `
+    })}
 
     & > * {
       &:not(:last-child) {
@@ -59,11 +72,12 @@ const StyledLayoutPageHeader = styled.header`
   h1,
   h2 {
     text-transform: capitalize;
-    ${makeRhythm({ fontSize: "sm", top: 0, bottom: 1 })};
     ${makeInset({ bottom: 16 })};
     width: 100%;
     border-bottom: ${makeSize({ custom: 1 })} solid
       ${makeColor({ scalable: { color: "secondary", scale: 3 } })};
+    line-height: 1.2;
+    ${makeRhythm({ fontSize: "sm", top: 1, bottom: 0 })};
   }
 
   h4 {
@@ -101,6 +115,7 @@ export const PageHeader: FC<PageHeaderProps> = ({
   titleColor = { scalable: { color: "secondary" } }
 }) => {
   const router = useRouter();
+  const [windowWidth, { tabletPortrait }] = useBreakpoints();
   const routes = router.asPath.split("/");
   routes[routes.length - 1] = pageName ? pageName : routes[routes.length - 1];
 
@@ -129,7 +144,10 @@ export const PageHeader: FC<PageHeaderProps> = ({
           )
         )}
       </div>
-      <Heading fontSize="h1" fontColor={titleColor}>
+      <Heading
+        fontSize={windowWidth <= tabletPortrait ? "h2" : "h1"}
+        fontColor={titleColor}
+      >
         {pageTitle}
       </Heading>
     </StyledLayoutPageHeader>
