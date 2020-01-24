@@ -32,6 +32,14 @@ services:
       - fromGroup: npm
       - key: FONTAWESOME_NPM_AUTH_TOKEN
         sync: false
+      - key: NEXT_GHOST_API_KEY
+        sync: false
+      - key: NEXT_CONTENTFUL_SPACE_ID
+        sync: false
+      - key: NEXT_CONTENTFUL_ACCESS_TOKEN
+        sync: false
+      - key: COMMENTO_ORIGIN
+        sync: false
 
   - type: web
     name: HTC | Live Life Mindful | Blog (CMS)
