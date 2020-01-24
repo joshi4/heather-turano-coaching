@@ -6,6 +6,9 @@ module.exports = {
     CONTENTFUL_SPACE_ID: process.env.NEXT_CONTENTFUL_SPACE_ID,
     CONTENTFUL_ACCESS_TOKEN: process.env.NEXT_CONTENTFUL_ACCESS_TOKEN
   },
+  generateBuildId: async () => {
+    return require("./package.json").version;
+  },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     /**
      * SVGR

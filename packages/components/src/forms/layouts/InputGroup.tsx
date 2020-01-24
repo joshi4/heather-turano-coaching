@@ -29,6 +29,7 @@ const CSSInputGroupMap: {
       }
     }
   `,
+  "stacked-full": css``,
   inline: css`
     & > * {
       /* width: 100%; */
