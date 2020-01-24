@@ -30,6 +30,8 @@ services:
       - blog.livelifemindful.com
     envVars:
       - fromGroup: npm
+      - key: FONTAWESOME_NPM_AUTH_TOKEN
+        sync: false
 
   - type: web
     name: HTC | Live Life Mindful | Blog (CMS)
