@@ -19,15 +19,15 @@ services:
     domains:
       - dev.livelifemindful.com
 
-  # - type: web
-  #   name: HTC | Live Life Mindful | Blog (Static)
-  #   env: static
-  #   branch: master
-  #   repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
-  #   buildCommand: npm run bootstrap:ci && npm run build:blog
-  #   staticPublishPath: ./packages/blog/public
-  #   domains:
-  #     - blog.livelifemindful.com
+  - type: web
+    name: HTC | Live Life Mindful | Blog (Static)
+    env: static
+    branch: master
+    repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
+    buildCommand: npm run bootstrap:ci && npm run build:blog
+    staticPublishPath: ./packages/blog/out
+    domains:
+      - blog.livelifemindful.com
 
   - type: web
     name: HTC | Live Life Mindful | Blog
