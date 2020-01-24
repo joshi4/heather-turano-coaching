@@ -10,7 +10,7 @@ import fetch from "isomorphic-unfetch";
 import { getCategoriesFromTags, filterOutCategoriesFromTags } from "../utils";
 
 const contentApi = "https://blog.livelifemindful.com/ghost/api/v3/content/";
-const ghostContentApiKey = process.env.GHOST_API_KEY;
+const ghostContentApiKey = process.env.NEXT_GHOST_API_KEY;
 
 export const getAllPosts = async (): Promise<PostObject> => {
   const res = await fetch(

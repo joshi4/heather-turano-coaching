@@ -1,12 +1,13 @@
 require("dotenv").config();
+const api = require("./.prepare/api");
 
 module.exports = {
   env: {
-    GHOST_API_KEY: process.env.NEXT_GHOST_API_KEY,
-    CONTENTFUL_SPACE_ID: process.env.NEXT_CONTENTFUL_SPACE_ID,
-    CONTENTFUL_ACCESS_TOKEN: process.env.NEXT_CONTENTFUL_ACCESS_TOKEN
+    NEXT_GHOST_API_KEY: process.env.NEXT_GHOST_API_KEY,
+    NEXT_CONTENTFUL_SPACE_ID: process.env.NEXT_CONTENTFUL_SPACE_ID,
+    NEXT_CONTENTFUL_ACCESS_TOKEN: process.env.NEXT_CONTENTFUL_ACCESS_TOKEN
   },
-  generateBuildId: async () => {
+  async generateBuildId() {
     return require("./package.json").version;
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
@@ -32,5 +33,55 @@ module.exports = {
     });
 
     return config;
+  },
+  async exportPathMap() {
+    console.log(process.env.CONTENTFUL_ACCESS_TOKEN);
+
+    const [{ authors }, { posts }, categories, { tags }] = await Promise.all([
+      api.getAllAuthors(),
+      api.getAllPosts(),
+      api.getAllCategories(),
+      api.getAllTags()
+    ]);
+
+    const authorPages = authors.reduce(
+      (accum, author) => ({
+        ...accum,
+        [`/authors/${author.slug}`]: { page: "/authors/[slug]" }
+      }),
+      {}
+    );
+
+    const postPages = posts.reduce(
+      (accum, post) => ({
+        ...accum,
+        [`/post/${post.slug}`]: { page: "/post/[slug]" }
+      }),
+      {}
+    );
+
+    const categoryPages = categories.reduce(
+      (accum, category) => ({
+        ...accum,
+        [`/categories/${category.slug}`]: { page: "/categories/[slug]" }
+      }),
+      {}
+    );
+
+    const tagPages = tags.reduce(
+      (accum, tag) => ({
+        ...accum,
+        [`/tags/${tag.slug}`]: { page: "/tags/[slug]" }
+      }),
+      {}
+    );
+
+    return {
+      ...authorPages,
+      ...postPages,
+      ...categoryPages,
+      ...tagPages,
+      "/": { page: "/" }
+    };
   }
 };

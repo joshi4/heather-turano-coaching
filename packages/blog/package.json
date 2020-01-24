@@ -3,9 +3,10 @@
   "version": "0.2.1",
   "private": true,
   "scripts": {
+    "prepareBuild": "dotenv -- tsc --project ./tsconfig.prepare.json",
     "dev": "next dev",
-    "build": "next build",
-    "build:static": "next export",
+    "build": "npm run prepareBuild && next build",
+    "build:static": "npm run build && next export",
     "start": "next start"
   },
   "dependencies": {
