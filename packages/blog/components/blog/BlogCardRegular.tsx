@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { PostOrPage } from "@tryghost/content-api";
-import { BlogType } from "@heather-turano-coaching/components/dist/blog/blog.types";
 
 import {
   useBreakpoints,
@@ -24,7 +23,7 @@ import {
 
 interface BlogPost {
   post: PostOrPage;
-  blogType: BlogType;
+  blogType: "featured" | "regular";
 }
 
 const StyledRegularBlogCardContainer = styled.div`

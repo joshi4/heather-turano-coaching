@@ -4,3 +4,4 @@ export * from "./BlogCardImage";
 export * from "./BlogCategories";
 export * from "./BlogContainer";
 export * from "./BlogSocialLinks";
+export * from "./blog.types";

@@ -10,7 +10,7 @@ import {
   FontProperties
 } from "@heather-turano-coaching/design-system/types/composite";
 
-import { default as UserImage } from "./images/user-circle-duotone.svg";
+import { ReactComponent as UserImage } from "./images/user-circle-duotone.svg";
 import { generateRandomColor, RandomColor } from "../utils";
 
 export interface AvatarProps {
