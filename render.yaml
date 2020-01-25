@@ -42,6 +42,16 @@ services:
         sync: false
 
   - type: web
+    name: HTC | Live Life Mindful | Design
+    env: static
+    branch: master
+    repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
+    buildCommand: npm run bootstrap:ci && npm run build:components:storybook
+    staticPublishPath: ./packages/components/storybook-status
+    domains:
+      - design.livelifemindful.com
+
+  - type: web
     name: HTC | Live Life Mindful | Blog (CMS)
     env: docker
     dockerfilePath: ./ghost/Dockerfile
