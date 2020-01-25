@@ -2,7 +2,6 @@
   "version": "independent",
   "packages": ["packages/**"],
   "npmClient": "npm",
-  "npmClientArgs": ["--no-package-lock"],
   "command": {
     "bootstrap": {
       "ignore": ["@heather-turano-coaching/legacy"]
