@@ -22,7 +22,7 @@ export const Label: FC<LabelProps> = ({
 }) => (
   <>
     {label && (
-      <StyledLabel htmlFor={htmlFor} styleName="input-label">
+      <StyledLabel htmlFor={htmlFor}>
         <Copy
           type="label"
           fontSize="sm"
