@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
 import {
   makeRhythm,
@@ -155,18 +154,11 @@ const StyledContent = styled.section`
   }
 `;
 
-export const Content: FC<{ markdown?: string; htmlContent: string }> = ({
-  markdown,
-  htmlContent
-}) => (
+export const Content: FC<{ htmlContent: string }> = ({ htmlContent }) => (
   <StyledContent>
-    {markdown ? (
-      <ReactMarkdown>{markdown}</ReactMarkdown>
-    ) : (
-      <div
-        className="content"
-        dangerouslySetInnerHTML={{ __html: htmlContent }}
-      />
-    )}
+    <div
+      className="content"
+      dangerouslySetInnerHTML={{ __html: htmlContent }}
+    />
   </StyledContent>
 );
