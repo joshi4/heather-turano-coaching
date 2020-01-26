@@ -35,56 +35,56 @@ module.exports = {
     });
 
     return config;
-  },
-  async exportPathMap(defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
-    if (!dev) {
-      const [{ authors }, { posts }, categories, { tags }] = await Promise.all([
-        api.getAllAuthors(),
-        api.getAllPosts(),
-        api.getAllCategories(),
-        api.getAllTags()
-      ]);
-
-      const authorPages = authors.reduce(
-        (accum, author) => ({
-          ...accum,
-          [`/authors/${author.slug}`]: { page: "/authors/[slug]" }
-        }),
-        {}
-      );
-
-      const postPages = posts.reduce(
-        (accum, post) => ({
-          ...accum,
-          [`/post/${post.slug}`]: { page: "/post/[slug]" }
-        }),
-        {}
-      );
-
-      const categoryPages = categories.reduce(
-        (accum, category) => ({
-          ...accum,
-          [`/categories/${category.slug}`]: { page: "/categories/[slug]" }
-        }),
-        {}
-      );
-
-      const tagPages = tags.reduce(
-        (accum, tag) => ({
-          ...accum,
-          [`/tags/${tag.slug}`]: { page: "/tags/[slug]" }
-        }),
-        {}
-      );
-
-      return {
-        ...authorPages,
-        ...postPages,
-        ...categoryPages,
-        ...tagPages,
-        "/": { page: "/" }
-      };
-    }
-    return defaultPathMap;
   }
+  // async exportPathMap(defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
+  //   if (!dev) {
+  //     const [{ authors }, { posts }, categories, { tags }] = await Promise.all([
+  //       api.getAllAuthors(),
+  //       api.getAllPosts(),
+  //       api.getAllCategories(),
+  //       api.getAllTags()
+  //     ]);
+
+  //     const authorPages = authors.reduce(
+  //       (accum, author) => ({
+  //         ...accum,
+  //         [`/authors/${author.slug}`]: { page: "/authors/[slug]" }
+  //       }),
+  //       {}
+  //     );
+
+  //     const postPages = posts.reduce(
+  //       (accum, post) => ({
+  //         ...accum,
+  //         [`/post/${post.slug}`]: { page: "/post/[slug]" }
+  //       }),
+  //       {}
+  //     );
+
+  //     const categoryPages = categories.reduce(
+  //       (accum, category) => ({
+  //         ...accum,
+  //         [`/categories/${category.slug}`]: { page: "/categories/[slug]" }
+  //       }),
+  //       {}
+  //     );
+
+  //     const tagPages = tags.reduce(
+  //       (accum, tag) => ({
+  //         ...accum,
+  //         [`/tags/${tag.slug}`]: { page: "/tags/[slug]" }
+  //       }),
+  //       {}
+  //     );
+
+  //     return {
+  //       ...authorPages,
+  //       ...postPages,
+  //       ...categoryPages,
+  //       ...tagPages,
+  //       "/": { page: "/" }
+  //     };
+  //   }
+  //   return defaultPathMap;
+  // }
 };
