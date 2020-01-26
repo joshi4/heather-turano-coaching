@@ -1,11 +1,11 @@
-name = "serverless"
+name = "livelifemindful"
 type = "webpack"
 account_id = "4f6417b64074f390809f869734d4d208"
-workers_dev = true
 route = ""
 zone_id = "70efcc7c691a7e4df44a4601ee33643b"
 webpack_config = "webpack.config.js"
+workers_dev = true
 
 [env.production]
-name = "livelifemindful-workers"
+name = "livelifemindful-prod"
 route = "https://*.livelifemindful.com/serverless/*"

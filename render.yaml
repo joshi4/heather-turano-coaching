@@ -30,14 +30,14 @@ services:
       - blog.livelifemindful.com
     envVars:
       - fromGroup: npm
-      - key: FONTAWESOME_NPM_AUTH_TOKEN
-        sync: false
       - key: NEXT_GHOST_API_KEY
         sync: false
       - key: NEXT_CONTENTFUL_SPACE_ID
         sync: false
       - key: NEXT_CONTENTFUL_ACCESS_TOKEN
         sync: false
+      - key: SERVERLESS_API
+        value: https://blog.livelifemindful.com/serverless
       - key: COMMENTO_ORIGIN
         sync: false
 

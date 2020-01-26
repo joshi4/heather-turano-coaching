@@ -4,7 +4,11 @@
   "npmClient": "npm",
   "command": {
     "bootstrap": {
-      "ignore": ["@heather-turano-coaching/legacy"]
+      "ignore": [
+        "@heather-turano-coaching/legacy",
+        "@heather-turano-coaching/website",
+        "@heather-turano-coaching/styles"
+      ]
     },
     "publish": {
       "ignoreChanges": ["*.md", "*.spec.ts", "*.spec.tsx"],

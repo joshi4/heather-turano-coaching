@@ -25,7 +25,9 @@
     "react-hook-form": "^4.6.2",
     "react-spring": "^8.0.27",
     "react-use-gesture": "^6.0.14",
-    "styled-components": "^5.0.0"
+    "styled-components": "^5.0.0",
+    "swr": "^0.1.16",
+    "unfetch": "^4.1.0"
   },
   "devDependencies": {
     "@heather-turano-coaching/typescript": "^0.2.0",

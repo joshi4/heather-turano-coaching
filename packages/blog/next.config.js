@@ -6,7 +6,8 @@ module.exports = {
     NEXT_GHOST_API_KEY: process.env.NEXT_GHOST_API_KEY,
     NEXT_CONTENTFUL_SPACE_ID: process.env.NEXT_CONTENTFUL_SPACE_ID,
     NEXT_CONTENTFUL_ACCESS_TOKEN: process.env.NEXT_CONTENTFUL_ACCESS_TOKEN,
-    COMMENTO_ORIGIN: process.env.COMMENTO_ORIGIN
+    COMMENTO_ORIGIN: process.env.COMMENTO_ORIGIN,
+    SERVERLESS_API: process.env.SERVERLESS_API
   },
   async generateBuildId() {
     return require("./package.json").version;

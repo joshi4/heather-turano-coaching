@@ -23,6 +23,8 @@
     "build:ds": "lerna run build --scope=@heather-turano-coaching/design-system --stream",
     "build:blog": "npm run build:ds && npm run build:components && lerna run build:static --scope=@live-life-mindful/blog --stream",
     "build:serverless": "npm run build --scope=@heather-turano-coaching/serverless",
+    "publish:serverless:dev": "npm run publish:dev --scope=@heather-turano-coaching/serverless",
+    "publish:serverless:prod": "npm run publish:prod --scope=@heather-turano-coaching/serverless",
     "start:ds": "lerna run start --scope=@heather-turano-coaching/design-system --stream",
     "start:components": "npm run build:ds && cd ./packages/components && npm run start",
     "start:legacy": "lerna run dev --scope=@heather-turano-coaching/legacy",

@@ -1,5 +1,7 @@
 import React, { FC } from "react";
-import { LayoutBlockTitle, LayoutBlock, LayoutBlockContent } from "../layout";
+import styled from "styled-components";
+import { useForm } from "react-hook-form";
+
 import {
   InputGroup,
   Input,
@@ -7,13 +9,21 @@ import {
   Copy,
   Heading
 } from "@heather-turano-coaching/components";
-import styled from "styled-components";
+
+import { LayoutBlockTitle, LayoutBlock, LayoutBlockContent } from "../layout";
+
 import {
   makeInset,
   makeColor,
   makeRhythm,
   makeSize
 } from "@heather-turano-coaching/design-system/utils";
+import {
+  subscribeToBlog,
+  SubscribeToBlogResponse,
+  useApi,
+  SubscribeToBlogRequest
+} from "../../api";
 
 interface BlockSubscribeProps {
   subscribe: any;
@@ -43,45 +53,84 @@ const StyledContentCopy = styled.div`
   }
 `;
 
+interface FormData {
+  firstName: string;
+  emailAddress: string;
+}
+
 export const BlockSubscribe: FC<BlockSubscribeProps> = ({
   subscribe,
   displayBlockTitle = true
-}) => (
-  <LayoutBlock>
-    {displayBlockTitle && <LayoutBlockTitle title={subscribe.fields.title} />}
-    <LayoutBlockContent>
-      <StyledSubscribeContnet>
-        <StyledContentCopy>
-          <Heading
-            fontSize="h1"
-            fontColor={{ fixed: "light" }}
-            fontFamily="Covered By Your Grace"
-          >
-            {subscribe.fields.content.fields.contentTitle}
-          </Heading>
-          <Copy type="text" fontColor={{ fixed: "light" }}>
-            {subscribe.fields.content.fields.description}
-          </Copy>
-        </StyledContentCopy>
-        <InputGroup layout="stacked">
-          <Input
-            id="subscribe-name"
-            name="name"
-            placeholder={subscribe.fields.content.fields.namePlaceholder}
-          />
-          <Input
-            id="subscribe-email"
-            name="email"
-            placeholder={subscribe.fields.content.fields.emailPlaceholder}
-          />
-          <Button
-            id="submit-subscription"
-            styleType="accent"
-            type="submit"
-            label={subscribe.fields.content.fields.submitText}
-          />
-        </InputGroup>
-      </StyledSubscribeContnet>
-    </LayoutBlockContent>
-  </LayoutBlock>
-);
+}) => {
+  const { register, errors, handleSubmit } = useForm<FormData>();
+
+  const [{ loading, error, data }, subcribe] = useApi<
+    SubscribeToBlogRequest,
+    SubscribeToBlogResponse
+  >(subscribeToBlog);
+
+  const onSubmit = async (formData: FormData) => {
+    console.log(formData);
+    subcribe(formData);
+  };
+
+  console.log(loading, error, data);
+
+  return (
+    <LayoutBlock>
+      {displayBlockTitle && <LayoutBlockTitle title={subscribe.fields.title} />}
+      <LayoutBlockContent>
+        <StyledSubscribeContnet>
+          <StyledContentCopy>
+            <Heading
+              fontSize="h1"
+              fontColor={{ fixed: "light" }}
+              fontFamily="Covered By Your Grace"
+            >
+              {subscribe.fields.content.fields.contentTitle}
+            </Heading>
+            <Copy type="text" fontColor={{ fixed: "light" }}>
+              {subscribe.fields.content.fields.description}
+            </Copy>
+          </StyledContentCopy>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <InputGroup layout="stacked">
+              <Input
+                id="subscribe-name"
+                name="firstName"
+                placeholder={subscribe.fields.content.fields.namePlaceholder}
+                ref={register({ required: true })}
+                disabled={loading}
+                errorMessage={
+                  errors.firstName &&
+                  "This is field required. Feel free to only put your first name"
+                }
+              />
+              <Input
+                id="subscribe-email"
+                name="emailAddress"
+                placeholder={subscribe.fields.content.fields.emailPlaceholder}
+                ref={register({ required: true })}
+                disabled={loading}
+                errorMessage={
+                  errors.emailAddress && "This is also a required fied"
+                }
+              />
+              <Button
+                id="submit-subscription"
+                styleType="accent"
+                type="submit"
+                label={subscribe.fields.content.fields.submitText}
+                disabled={
+                  !!errors.firstName || !!errors.emailAddress || loading
+                }
+                loading={loading}
+                onSubmit={handleSubmit(onSubmit)}
+              />
+            </InputGroup>
+          </form>
+        </StyledSubscribeContnet>
+      </LayoutBlockContent>
+    </LayoutBlock>
+  );
+};
