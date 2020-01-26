@@ -1,4 +1,5 @@
-import React, { FC, ReactNode, useRef } from "react";
+// import React, { FC, ReactNode, useRef } from "react";
+import React, { FC, ReactNode } from "react";
 import styled, { css } from "styled-components";
 
 import { Copy } from "../typography";
@@ -12,7 +13,8 @@ import {
   makeReset
 } from "@heather-turano-coaching/design-system/utils";
 
-import { useBreakpoints, useSticky } from "../hooks";
+// import { useBreakpoints, useSticky } from "../hooks";
+import { useBreakpoints } from "../hooks";
 import { sharedHorizontalBodyPadding } from "../shared";
 
 interface HeaderNavProps {
@@ -243,28 +245,28 @@ const HeaderInlineLogo: FC<HeaderInlineLogoProps> = ({
 };
 
 export const HeaderNav: FC<HeaderNavProps> = ({ navItems, ...restProps }) => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const targetRef = useRef<HTMLDivElement>(null);
-  const isSticky = useSticky<HTMLElement>({
-    ref: wrapperRef,
-    testId: "test"
-  });
+  // const wrapperRef = useRef<HTMLDivElement>(null);
+  // const targetRef = useRef<HTMLDivElement>(null);
+  // const isSticky = useSticky<HTMLElement>({
+  //   ref: wrapperRef,
+  //   testId: "test"
+  // });
 
   return (
     <StyledHeaderNav>
       <HeaderTopLogo {...restProps} />
-      <div ref={wrapperRef}>
-        <StyledStickyWrapper wrapperHeight={targetRef.current?.offsetHeight}>
-          <div ref={targetRef}>
-            <StyledNav isSticky={isSticky}>
-              <StyledNavContent>
-                <HeaderInlineLogo {...restProps} />
-                <StyledNavList>{navItems}</StyledNavList>
-              </StyledNavContent>
-            </StyledNav>
-          </div>
-        </StyledStickyWrapper>
-      </div>
+      {/* <div ref={wrapperRef}> */}
+      <StyledStickyWrapper wrapperHeight={100}>
+        {/* <div ref={targetRef}> */}
+        <StyledNav isSticky={false}>
+          <StyledNavContent>
+            <HeaderInlineLogo {...restProps} />
+            <StyledNavList>{navItems}</StyledNavList>
+          </StyledNavContent>
+        </StyledNav>
+        {/* </div> */}
+      </StyledStickyWrapper>
+      {/* </div> */}
     </StyledHeaderNav>
   );
 };
