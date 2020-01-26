@@ -27,7 +27,6 @@ services:
     numInstances: 1
     buildCommand: npm run bootstrap:ci && npm run build:blog
     startCommand: npm run serve:blog
-    staticPublishPath: ./packages/blog/out
     domains:
       - blog.livelifemindful.com
     envVars:
