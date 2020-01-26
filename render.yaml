@@ -20,7 +20,7 @@ services:
       - dev.livelifemindful.com
 
   - type: web
-    name: HTC | Live Life Mindful | Blog
+    name: HTC | Live Life Mindful | Blog (SSR)
     env: node
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
