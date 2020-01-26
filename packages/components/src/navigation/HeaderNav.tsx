@@ -253,17 +253,18 @@ export const HeaderNav: FC<HeaderNavProps> = ({ navItems, ...restProps }) => {
   return (
     <StyledHeaderNav>
       <HeaderTopLogo {...restProps} />
-      <StyledStickyWrapper
-        ref={wrapperRef}
-        wrapperHeight={targetRef.current?.offsetHeight}
-      >
-        <StyledNav ref={targetRef} isSticky={isSticky}>
-          <StyledNavContent>
-            <HeaderInlineLogo {...restProps} />
-            <StyledNavList>{navItems}</StyledNavList>
-          </StyledNavContent>
-        </StyledNav>
-      </StyledStickyWrapper>
+      <div ref={wrapperRef}>
+        <StyledStickyWrapper wrapperHeight={targetRef.current?.offsetHeight}>
+          <div ref={targetRef}>
+            <StyledNav isSticky={isSticky}>
+              <StyledNavContent>
+                <HeaderInlineLogo {...restProps} />
+                <StyledNavList>{navItems}</StyledNavList>
+              </StyledNavContent>
+            </StyledNav>
+          </div>
+        </StyledStickyWrapper>
+      </div>
     </StyledHeaderNav>
   );
 };

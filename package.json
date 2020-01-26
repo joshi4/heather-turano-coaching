@@ -26,6 +26,7 @@
     "publish:serverless:prod": "npm run publish:prod --scope=@heather-turano-coaching/serverless",
     "start:ds": "lerna run start --scope=@heather-turano-coaching/design-system --stream",
     "start:components": "npm run build:ds && cd ./packages/components && npm run start",
+    "start:components:storybook": "npm run build:ds && cd ./packages/components && npm run start:storybook",
     "start:blog": "cd packages/blog && npm run dev",
     "start:serverless": "cd packages/serverless && npm run start"
   },
