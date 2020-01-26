@@ -2,10 +2,7 @@ import React, { FC } from "react";
 import styled, { css } from "styled-components";
 import { darken } from "polished";
 
-import {
-  HTMLButton,
-  ColorProperties
-} from "@heather-turano-coaching/design-system/types/composite";
+import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
 import { Color } from "@heather-turano-coaching/design-system/types/primitive";
 import {
   makeColor,
@@ -19,6 +16,7 @@ import {
   shareButtonAndInputFontSize,
   sharedButtonAndInputVerticalPadding
 } from "../shared";
+import { HTMLButton } from "../../types";
 
 type ButtonStyleTypes = Extract<
   Color,

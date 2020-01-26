@@ -1,5 +1,4 @@
 import React, { forwardRef } from "react";
-import { HTMLInput } from "@heather-turano-coaching/design-system/types/composite";
 
 import { Control, Label, Error, ErrorProps } from "./base";
 
@@ -15,6 +14,7 @@ import {
   shareButtonAndInputFontSize,
   sharedButtonAndInputVerticalPadding
 } from "../shared";
+import { HTMLInput } from "../../types";
 
 export type InputProps = Omit<HTMLInput, "ref"> &
   ErrorProps & {

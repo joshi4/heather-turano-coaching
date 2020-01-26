@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { IconName } from "@fortawesome/pro-light-svg-icons";
 import {
-  HTMLButton,
   ColorProperties,
   FontProperties
 } from "@heather-turano-coaching/design-system/types/composite";
@@ -13,6 +12,7 @@ import {
   makeReset,
   makeOutset
 } from "@heather-turano-coaching/design-system/utils";
+import { HTMLButton } from "../../types";
 
 type ButtonActionProps = HTMLButton & {
   label?: string;

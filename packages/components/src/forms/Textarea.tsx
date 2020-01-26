@@ -1,9 +1,9 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { HTMLTextarea } from "@heather-turano-coaching/design-system/types/composite";
 
 import { Control, Label, Error, ErrorProps } from "./base";
 import { CSSInputStyle } from "./Input";
+import { HTMLTextarea } from "../../types";
 
 export type TextareaProps = HTMLTextarea &
   ErrorProps & {

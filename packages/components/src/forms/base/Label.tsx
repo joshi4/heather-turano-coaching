@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { HTMLLabel } from "@heather-turano-coaching/design-system/types/composite";
 
 import { Copy } from "../../typography";
 import styled from "styled-components";
 import { makeOutset } from "@heather-turano-coaching/design-system/utils";
+import { HTMLLabel } from "../../../types";
 
 export type LabelProps = HTMLLabel & {
   label?: string;

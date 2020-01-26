@@ -2,7 +2,6 @@ import React from "react";
 
 import { Image } from "./Image";
 
-// const htcLogo = require("../../.storybook/assets/htc-logo-stacked.png");
 const htcLogo = require("../../.storybook/assets/htc-logo-stacked.svg");
 const logo = htcLogo.default;
 

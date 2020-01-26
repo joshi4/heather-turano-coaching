@@ -8,9 +8,12 @@ const handler = (percentage, message, ...args) => {
 
 module.exports = {
   mode: "production",
-  entry: path.resolve(__dirname, "./src/index.ts"),
+  entry: [
+    path.resolve(__dirname, "./src/index.ts"),
+    path.resolve(__dirname, "./types/html.types.ts")
+  ],
   output: {
-    path: path.resolve(__dirname, "./dist"),
+    path: path.resolve(__dirname, "./dist/"),
     filename: "index.js",
     libraryTarget: "umd",
     // umdNamedDefine: true,

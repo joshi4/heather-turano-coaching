@@ -3,8 +3,9 @@
   "include": ["src", "types"],
   "compilerOptions": {
     "module": "ES2015",
-    "outDir": "dist",
-    "noEmit": false
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationDir": "./dist"
   },
   "exclude": ["**/*.spec.ts", "**/*.stories.tsx"]
 }

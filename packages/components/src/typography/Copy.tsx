@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
 import {
-  HTMLParagraph,
   ColorProperties,
   FontProperties
 } from "@heather-turano-coaching/design-system/types/composite";
@@ -9,6 +8,7 @@ import {
   makeReset,
   makeFont
 } from "@heather-turano-coaching/design-system/utils";
+import { HTMLParagraph } from "../../types";
 
 export type CopyProps = HTMLParagraph & {
   type: "caption" | "text" | "label" | "paragraph";
