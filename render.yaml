@@ -25,7 +25,7 @@ services:
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
     numInstances: 1
-    buildCommand: npm run bootstrap:ci && npm run build:blog
+    buildCommand: npm install && npm run bootstrap:ci && npm run build:blog
     startCommand: npm run serve:blog
     domains:
       - blog.livelifemindful.com
