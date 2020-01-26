@@ -14,7 +14,7 @@ import {
   shareButtonAndInputFontSize,
   sharedButtonAndInputVerticalPadding
 } from "../shared";
-import { HTMLInput } from "../../types";
+import { HTMLInput } from "../types";
 
 export type InputProps = Partial<Omit<HTMLInput, "ref">> &
   ErrorProps & {

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { Copy } from "../../typography";
 import styled from "styled-components";
 import { makeOutset } from "@heather-turano-coaching/design-system/utils";
-import { HTMLLabel } from "../../../types";
+import { HTMLLabel } from "../../types";
 
 export type LabelProps = HTMLLabel & {
   label?: string;

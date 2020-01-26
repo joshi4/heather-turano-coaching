@@ -1,6 +1,8 @@
 import React from "react";
 
 import { Avatar } from "./Avatar";
+// @ts-ignore
+import { ReactComponent as UserImage } from "./images/user-circle-duotone.svg";
 
 const Moana = require("../../.storybook/assets/moana.jpg");
 
@@ -10,7 +12,7 @@ export default {
 };
 
 export const base = () => <Avatar image={Moana} alt="moana" />;
-export const noImage = () => <Avatar alt="moana" />;
+export const noImage = () => <Avatar alt="moana" DefaultImage={UserImage} />;
 export const allSizes = () => (
   <>
     <Avatar image={Moana} alt="moana" size="h1" />

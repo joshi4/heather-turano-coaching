@@ -14,5 +14,3 @@ declare module "*.svg" {
   const src: string;
   export default src;
 }
-
-export * from "./html.types";

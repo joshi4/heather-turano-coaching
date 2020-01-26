@@ -9,7 +9,7 @@ import {
   makeReset,
   makeFont
 } from "@heather-turano-coaching/design-system/utils";
-import { HTMLHeading } from "../../types";
+import { HTMLHeading } from "../types";
 
 export type HeadingProps = HTMLHeading & {
   fontSize?: SizeHeadings;

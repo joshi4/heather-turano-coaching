@@ -5,11 +5,10 @@
   "author": "Drew DeCarme (drew@imaginedelements.com)",
   "license": "MIT",
   "main": "dist/index.js",
-  "types": "dist/src/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "start": "start-storybook -p 6006",
-    "tsc": "tsc",
-    "build": "webpack",
+    "build": "tsc",
     "build:storybook": "build-storybook",
     "postinstall": "rm -rf node_modules/@types/react-native"
   },

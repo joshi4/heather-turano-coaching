@@ -10,14 +10,13 @@ import {
   FontProperties
 } from "@heather-turano-coaching/design-system/types/composite";
 
-// @ts-ignore
-import { ReactComponent as UserImage } from "./images/user-circle-duotone.svg";
 import { generateRandomColor, RandomColor } from "../utils";
 
 export interface AvatarProps {
   image?: string;
   alt: string;
   size?: SizeProperties;
+  DefaultImage?: FC;
 }
 
 const avatarSizeMap: {
@@ -118,7 +117,12 @@ const StyledAvatar = styled.div.attrs({ className: "avatar" })<
   }
 `;
 
-export const Avatar: FC<AvatarProps> = ({ image, alt, size = "h1" }) => {
+export const Avatar: FC<AvatarProps> = ({
+  image,
+  alt,
+  size = "h1",
+  DefaultImage
+}) => {
   const color = generateRandomColor();
 
   return (
@@ -127,7 +131,7 @@ export const Avatar: FC<AvatarProps> = ({ image, alt, size = "h1" }) => {
         <img src={image} alt={alt} />
       ) : (
         <div className="this-should-have-a-svg-as-its-child">
-          <UserImage />
+          {DefaultImage}
         </div>
       )}
     </StyledAvatar>

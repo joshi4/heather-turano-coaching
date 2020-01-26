@@ -12,7 +12,7 @@ import {
   makeReset,
   makeOutset
 } from "@heather-turano-coaching/design-system/utils";
-import { HTMLButton } from "../../types";
+import { HTMLButton } from "../types";
 
 type ButtonActionProps = HTMLButton & {
   label?: string;

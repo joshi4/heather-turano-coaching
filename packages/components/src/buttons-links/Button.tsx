@@ -16,7 +16,7 @@ import {
   shareButtonAndInputFontSize,
   sharedButtonAndInputVerticalPadding
 } from "../shared";
-import { HTMLButton } from "../../types";
+import { HTMLButton } from "../types";
 
 type ButtonStyleTypes = Extract<
   Color,

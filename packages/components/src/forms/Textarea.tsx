@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Control, Label, Error, ErrorProps } from "./base";
 import { CSSInputStyle } from "./Input";
-import { HTMLTextarea } from "../../types";
+import { HTMLTextarea } from "../types";
 
 export type TextareaProps = HTMLTextarea &
   ErrorProps & {

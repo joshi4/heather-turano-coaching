@@ -8,7 +8,7 @@ import {
   makeReset,
   makeFont
 } from "@heather-turano-coaching/design-system/utils";
-import { HTMLParagraph } from "../../types";
+import { HTMLParagraph } from "../types";
 
 export type CopyProps = HTMLParagraph & {
   type: "caption" | "text" | "label" | "paragraph";
