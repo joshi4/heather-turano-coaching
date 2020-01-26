@@ -22,7 +22,7 @@
     "polished": "^3.4.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-hook-form": "^4.6.2",
+    "react-hook-form": "^4.7.1",
     "react-spring": "^8.0.27",
     "react-use-gesture": "^6.0.14",
     "styled-components": "^5.0.0",
@@ -30,6 +30,7 @@
     "unfetch": "^4.1.0"
   },
   "devDependencies": {
+    "@babel/runtime-corejs2": "^7.8.3",
     "@heather-turano-coaching/typescript": "^0.2.0",
     "@svgr/webpack": "^5.1.0",
     "@types/lodash": "4.14.149",

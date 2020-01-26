@@ -64,7 +64,7 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
 }) => {
   const { register, errors, handleSubmit } = useForm<FormData>();
 
-  const [{ loading, error, data }, subcribe] = useApi<
+  const [{ loading }, subcribe] = useApi<
     SubscribeToBlogRequest,
     SubscribeToBlogResponse
   >(subscribeToBlog);
@@ -73,8 +73,6 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
     console.log(formData);
     subcribe(formData);
   };
-
-  console.log(loading, error, data);
 
   return (
     <LayoutBlock>
