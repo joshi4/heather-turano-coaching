@@ -5,9 +5,7 @@
   "author": "Drew DeCarme (drew@imaginedelements.com)",
   "files": [
     "configs/",
-    "types/composite",
-    "types/html",
-    "types/primitive",
+    "types/",
     "utils/"
   ],
   "scripts": {
