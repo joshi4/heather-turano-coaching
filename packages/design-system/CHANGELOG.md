@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/design-system@0.2.0...@heather-turano-coaching/design-system@0.2.1) (2020-01-27)
+
+
+### Bug Fixes
+
+* Remove markdown from content component ([52691ab](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/52691abab9eb06443ba18af379d2dec3d943415b))
+
+
+
+
+
 # 0.2.0 (2020-01-24)
 
 

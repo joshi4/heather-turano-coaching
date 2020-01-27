@@ -1,6 +1,6 @@
 {
   "name": "@heather-turano-coaching/components",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "React component library for Heather Turano Coaching, LLC",
   "author": "Drew DeCarme (drew@imaginedelements.com)",
   "license": "MIT",
@@ -55,7 +55,7 @@
     "@fortawesome/pro-light-svg-icons": "^5.12.0",
     "@fortawesome/pro-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
-    "@heather-turano-coaching/design-system": "^0.2.0",
+    "@heather-turano-coaching/design-system": "^0.2.1",
     "@heather-turano-coaching/typescript": "^0.2.0",
     "polished": "^3.4.2",
     "react": "^16.12.0",
@@ -65,9 +65,9 @@
     "typescript": "^3.7.5"
   },
   "devDependencies": {
+    "@babel/core": "7.8.3",
     "@heather-turano-coaching/design-system": "^0.2.0",
     "@heather-turano-coaching/typescript": "^0.2.0",
-    "@babel/core": "7.8.3",
     "@storybook/addon-a11y": "^5.3.9",
     "@storybook/addon-actions": "^5.3.9",
     "@storybook/addon-info": "^5.3.9",
@@ -86,8 +86,8 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-hook-form": "^4.7.1",
-    "typescript": "^3.7.5",
     "styled-components": "^5.0.0",
+    "typescript": "^3.7.5",
     "url-loader": "^3.0.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
