@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "clean": "lerna clean --yes && lerna exec -- rimraf lib/ dist/",
-    "bootstrap": "lerna bootstrap --force-local && rm -rf node_modules/@types/react-native",
-    "bootstrap:ci": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap --hoist && rimraf **/@types/react-native",
+    "bootstrap:ci": "lerna bootstrap --hoist",
     "version": "lerna version --yes",
     "reset": "npm run clean && npm run bootstrap",
     "release": "npm run build && lerna publish --yes",

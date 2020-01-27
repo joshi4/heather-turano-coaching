@@ -10,10 +10,15 @@
     "serve": "next start"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-brands-svg-icons": "^5.12.0",
+    "@fortawesome/pro-duotone-svg-icons": "^5.12.0",
+    "@fortawesome/pro-light-svg-icons": "^5.12.0",
+    "@fortawesome/pro-solid-svg-icons": "^5.12.0",
+    "@fortawesome/react-fontawesome": "^0.1.8",
     "@heather-turano-coaching/components": "^0.2.0",
     "@heather-turano-coaching/design-system": "^0.2.0",
     "@tryghost/content-api": "^1.3.7",
-    "@types/styled-components": "^4.4.2",
     "contentful": "^7.13.1",
     "date-fns": "^2.9.0",
     "isomorphic-unfetch": "^3.0.0",

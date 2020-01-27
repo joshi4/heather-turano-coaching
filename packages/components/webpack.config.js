@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const nodeExternals = require("webpack-node-externals");
 
 const handler = (percentage, message, ...args) => {
   console.info(`${Math.ceil(percentage * 100)}%   - `, message);
@@ -15,20 +16,11 @@ module.exports = {
     libraryTarget: "umd",
     globalObject: "this"
   },
-  externals: {
-    react: {
-      root: "React",
-      commonjs: "react",
-      commonjs2: "react",
-      amd: "react"
-    },
-    "react-dom": {
-      root: "ReactDOM",
-      commonjs: "react-dom",
-      commonjs2: "react-dom",
-      amd: "react-dom"
-    }
-  },
+  externals: [
+    nodeExternals({
+      modulesFromFile: true
+    })
+  ],
   resolve: {
     extensions: [".ts", ".tsx", ".js"]
   },

@@ -16,7 +16,7 @@ import {
 } from "../shared";
 import { HTMLInput } from "../types";
 
-export type InputProps = Partial<Omit<HTMLInput, "ref">> &
+export type InputProps = Partial<Omit<HTMLInput, "ref" | "type">> &
   ErrorProps & {
     name: string;
     label?: string;

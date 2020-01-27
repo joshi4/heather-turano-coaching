@@ -5,8 +5,7 @@
     "outDir": "./dist",
     "declaration": true,
     "noEmit": false,
-    "declarationDir": "./dist",
-    "module": "CommonJS"
+    "declarationDir": "./dist"
   },
   "exclude": ["**/*.spec.ts", "**/*.stories.tsx"]
 }
