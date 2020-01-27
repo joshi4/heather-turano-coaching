@@ -2,12 +2,12 @@ import React, { FC } from "react";
 import { PostOrPage } from "@tryghost/content-api";
 
 import {
-  useBreakpoints,
   Heading,
   BlogCardAvatar,
   Copy,
   makeFlex
 } from "@heather-turano-coaching/components";
+import { useBreakpoints } from "../../hooks";
 import { formatLongDate } from "../../utils";
 import { TagsSection } from "..";
 import { NextLink } from "../general";

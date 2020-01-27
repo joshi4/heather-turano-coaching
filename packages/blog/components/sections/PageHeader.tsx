@@ -1,11 +1,6 @@
 import React, { FC, Fragment } from "react";
 import { useRouter } from "next/router";
-import {
-  Copy,
-  Heading,
-  makeFlex,
-  useBreakpoints
-} from "@heather-turano-coaching/components";
+import { Copy, Heading, makeFlex } from "@heather-turano-coaching/components";
 import styled from "styled-components";
 import {
   makeRhythm,
@@ -21,6 +16,7 @@ import {
   ColorScalePosition
 } from "@heather-turano-coaching/design-system/types/composite";
 import { NextLink } from "../general";
+import { useBreakpoints } from "../../hooks";
 
 interface PageHeaderProps {
   pageTitle: string;

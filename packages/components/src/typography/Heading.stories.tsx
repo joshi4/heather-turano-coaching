@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Heading } from "./Heading";
-import { Baseline } from "../development";
+import { Baseline } from "../../development/Baseline";
 
 export default {
   component: Heading,

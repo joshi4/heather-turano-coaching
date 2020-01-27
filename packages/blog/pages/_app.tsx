@@ -9,7 +9,7 @@ import {
   FooterNav,
   FooterNavLink,
   FooterNavLinkContent
-} from "@heather-turano-coaching/components";
+} from "../components";
 import { logos } from ".";
 
 const GlobalStyle = createGlobalStyle`

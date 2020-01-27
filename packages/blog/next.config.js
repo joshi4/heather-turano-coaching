@@ -1,5 +1,6 @@
 require("dotenv").config();
 const api = require("./.prepare/api");
+const path = require("path");
 
 module.exports = {
   env: {
@@ -33,6 +34,12 @@ module.exports = {
       test: /\.(png|jpg|jpeg)$/,
       use: ["url-loader"]
     });
+
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      react: path.resolve("./node_modules/react"),
+      "react-dom": path.resolve("./node_modules/react-dom")
+    };
 
     return config;
   }

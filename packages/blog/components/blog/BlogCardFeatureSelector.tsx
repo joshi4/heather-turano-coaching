@@ -1,10 +1,7 @@
 import React, { FC } from "react";
-import {
-  useBreakpoints,
-  Copy,
-  makeFlex
-} from "@heather-turano-coaching/components";
+import { Copy, makeFlex } from "@heather-turano-coaching/components";
 import styled, { css } from "styled-components";
+import { useBreakpoints } from "../../hooks";
 import {
   makeResponsive,
   makeColor,

@@ -2,11 +2,10 @@ import React, { FC, useRef } from "react";
 import { LayoutBlockTitle, LayoutBlock, LayoutBlockContent } from "../layout";
 import { PostOrPage } from "@tryghost/content-api";
 import { BlogPostList } from "../blog";
-import {
-  useSticky,
-  headerNavVerticalPadding
-} from "@heather-turano-coaching/components";
+import {} from "@heather-turano-coaching/components";
 import styled, { css } from "styled-components";
+import { useSticky } from "../../hooks";
+import { headerNavVerticalPadding } from "../navigation";
 import {
   makeSize,
   makeColor,

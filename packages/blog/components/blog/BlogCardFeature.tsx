@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import { PostOrPage } from "@tryghost/content-api";
 import {
   Button,
-  useBreakpoints,
   Heading,
   Copy,
   Avatar,
@@ -12,6 +11,7 @@ import {
 } from "@heather-turano-coaching/components";
 import { TagsSection } from "../sections";
 import { NextLink } from "../general";
+import { useBreakpoints } from "../../hooks";
 import styled from "styled-components";
 import {
   makeInset,

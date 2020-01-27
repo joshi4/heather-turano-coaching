@@ -13,12 +13,12 @@ import {
   Copy,
   Button,
   ButtonGroup,
-  ButtonAction,
-  useBreakpoints
+  ButtonAction
 } from "@heather-turano-coaching/components";
 import { FontProperties } from "@heather-turano-coaching/design-system/types/composite";
 import { LayoutBlockContent, LayoutBlockTitle, LayoutBlock } from "../layout";
 import { NextLink } from "../general";
+import { useBreakpoints } from "../../hooks";
 
 const componentFontSize: FontProperties["fontSize"] = "sm";
 

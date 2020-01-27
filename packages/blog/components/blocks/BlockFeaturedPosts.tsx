@@ -3,10 +3,10 @@ import { PostOrPage } from "@tryghost/content-api";
 import styled from "styled-components";
 import { rgba } from "polished";
 import {
-  useBreakpoints,
   sharedHorizontalBodyPadding,
   makeFlex
 } from "@heather-turano-coaching/components";
+import { useBreakpoints } from "../../hooks";
 
 import { clamp } from "lodash";
 import { useSprings, animated } from "react-spring";
