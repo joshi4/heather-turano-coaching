@@ -16,7 +16,7 @@ import {
   ColorScalePosition
 } from "@heather-turano-coaching/design-system/types/composite";
 import { NextLink } from "../general";
-import { useBreakpoints } from "../../hooks";
+import { useBreakpoints } from "@heather-turano-coaching/hooks";
 
 interface PageHeaderProps {
   pageTitle: string;

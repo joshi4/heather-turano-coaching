@@ -22,7 +22,7 @@ import {
   makeFlex
 } from "@heather-turano-coaching/components";
 
-import { useBreakpoints } from "../../hooks";
+import { useBreakpoints } from "@heather-turano-coaching/hooks";
 
 interface NavBlock {
   title: string;

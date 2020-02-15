@@ -1,0 +1,47 @@
+{
+  "name": "@heather-turano-coaching/hooks",
+  "version": "0.1.0",
+  "description": "Common React Hooks for Heather Turano Coaching, LLC",
+  "author": "Drew DeCarme (drew@imaginedelements.com)",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:imaginedelements/heather-turano-coaching/live-life-mindful.git"
+  },
+  "scripts": {
+    "start": "tsc -w --pretty -p tsconfig.json",
+    "build": "tsc -p tsconfig.json",
+    "postinstall": "rm -rf node_modules/@types/react-native"
+  },
+  "keywords": [
+    "heather",
+    "turano",
+    "coaching",
+    "live",
+    "life",
+    "mindful",
+    "heather-turano-coaching",
+    "live-life-mindful",
+    "react",
+    "components",
+    "component-library",
+    "typescript",
+    "react-hooks",
+    "hooks"
+  ],
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "unfetch": "^4.1.0"
+  },
+  "devDependencies": {
+    "@heather-turano-coaching/design-system": "^0.2.1",
+    "@heather-turano-coaching/typescript": "^0.2.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "typescript": "^3.7.5",
+    "unfetch": "^4.1.0"
+  }
+}

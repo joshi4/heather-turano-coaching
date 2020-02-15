@@ -3,13 +3,13 @@ import { LayoutBlockTitle, LayoutBlock, LayoutBlockContent } from "../layout";
 import { PostOrPage } from "@tryghost/content-api";
 import { BlogPostList } from "../blog";
 import styled, { css } from "styled-components";
-import { useSticky } from "../../hooks";
 import { headerNavVerticalPadding } from "../navigation";
 import {
   makeSize,
   makeColor,
   makeSpace
 } from "@heather-turano-coaching/design-system/utils";
+import { useSticky } from "@heather-turano-coaching/hooks";
 
 interface BlockRecentPostsProps {
   posts: PostOrPage[];

@@ -21,9 +21,9 @@ import {
 import {
   subscribeToBlog,
   SubscribeToBlogResponse,
-  useApi,
   SubscribeToBlogRequest
 } from "../../api";
+import { useApi } from "@heather-turano-coaching/hooks";
 
 interface BlockSubscribeProps {
   subscribe: any;

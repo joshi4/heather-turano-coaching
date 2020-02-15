@@ -16,9 +16,9 @@ import {
   ButtonAction
 } from "@heather-turano-coaching/components";
 import { FontProperties } from "@heather-turano-coaching/design-system/types/composite";
+import { useBreakpoints } from "@heather-turano-coaching/hooks";
 import { LayoutBlockContent, LayoutBlockTitle, LayoutBlock } from "../layout";
 import { NextLink } from "../general";
-import { useBreakpoints } from "../../hooks";
 
 const componentFontSize: FontProperties["fontSize"] = "sm";
 

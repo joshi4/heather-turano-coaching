@@ -20,7 +20,7 @@ import {
   getDailyInspiration,
   getBlockSubscribe
 } from "../api";
-import { useBreakpoints } from "../hooks";
+import { useBreakpoints } from "@heather-turano-coaching/hooks";
 
 type IndexPageProps = PostObject & {
   featuredPosts: PostOrPage[];

@@ -7,7 +7,7 @@ import {
   Copy,
   makeFlex
 } from "@heather-turano-coaching/components";
-import { useBreakpoints } from "../../hooks";
+import { useBreakpoints } from "@heather-turano-coaching/hooks";
 import { formatLongDate } from "../../utils";
 import { TagsSection } from "..";
 import { NextLink } from "../general";

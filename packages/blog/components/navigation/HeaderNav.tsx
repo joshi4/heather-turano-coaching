@@ -15,7 +15,7 @@ import {
   makeReset
 } from "@heather-turano-coaching/design-system/utils";
 
-import { useBreakpoints, useSticky } from "../../hooks";
+import { useBreakpoints, useSticky } from "@heather-turano-coaching/hooks";
 
 interface HeaderNavProps {
   homeRoute?: string;

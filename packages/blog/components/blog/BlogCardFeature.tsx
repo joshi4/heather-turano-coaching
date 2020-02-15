@@ -11,7 +11,7 @@ import {
 } from "@heather-turano-coaching/components";
 import { TagsSection } from "../sections";
 import { NextLink } from "../general";
-import { useBreakpoints } from "../../hooks";
+import { useBreakpoints } from "@heather-turano-coaching/hooks";
 import styled from "styled-components";
 import {
   makeInset,

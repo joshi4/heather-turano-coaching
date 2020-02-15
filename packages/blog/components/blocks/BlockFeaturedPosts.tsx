@@ -6,7 +6,7 @@ import {
   sharedHorizontalBodyPadding,
   makeFlex
 } from "@heather-turano-coaching/components";
-import { useBreakpoints } from "../../hooks";
+import { useBreakpoints } from "@heather-turano-coaching/hooks";
 
 import { clamp } from "lodash";
 import { useSprings, animated } from "react-spring";
