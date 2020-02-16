@@ -257,7 +257,7 @@ export const HeaderNav: FC<HeaderNavProps> = ({ navItems, ...restProps }) => {
     <StyledHeaderNav>
       <HeaderTopLogo {...restProps} />
       <div ref={wrapperRef}>
-        <StyledStickyWrapper wrapperHeight={100}>
+        <StyledStickyWrapper wrapperHeight={targetRef.current?.offsetHeight}>
           <div ref={targetRef}>
             <StyledNav isSticky={isSticky}>
               <StyledNavContent>
