@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/serverless@0.3.0...@heather-turano-coaching/serverless@0.3.2) (2020-02-16)
+
+
+### Bug Fixes
+
+* Add forms to subscribe and update conigs ([1bb3651](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/1bb36517388e12332f2cefaccf5130f09dc86d88))
+
+
+
+
+
 ## [0.3.1](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/serverless@0.3.0...@heather-turano-coaching/serverless@0.3.1) (2020-01-27)
 
 

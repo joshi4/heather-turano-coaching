@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@live-life-mindful/blog@0.2.1...@live-life-mindful/blog@0.4.0) (2020-02-16)
+
+
+### Bug Fixes
+
+* Add forms to subscribe and update conigs ([1bb3651](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/1bb36517388e12332f2cefaccf5130f09dc86d88))
+* Switch app deployment to SSR node app ([ccca304](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/ccca304ec62eabe12d39ac8ae6b2317ba08f7606))
+* Update API route and fix development workflow ([605bd86](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/605bd861e25c2ff48257aca422c3904b05ae4348))
+* **HeaderNav:** Adjust height for headerNav fixed positioning ([12c0975](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/12c0975b7a72b89621d0b07c830f248b1e1c05bf))
+
+
+### Features
+
+* **comments:** Add blogging comments from commento into solution ([4edcefc](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/4edcefca04eedf629062f2629b1971660aba547a))
+
+
+
+
+
 # [0.3.0](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@live-life-mindful/blog@0.2.1...@live-life-mindful/blog@0.3.0) (2020-01-27)
 
 

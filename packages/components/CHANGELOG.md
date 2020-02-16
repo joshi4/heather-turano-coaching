@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/components@0.2.0...@heather-turano-coaching/components@0.4.0) (2020-02-16)
+
+
+### Bug Fixes
+
+* **Link:** Remove uneeded link component with outdated dep ([e941e91](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/e941e91398ddcfef2ae4e754fea2b415f3c94f43))
+* Add forms to subscribe and update conigs ([1bb3651](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/1bb36517388e12332f2cefaccf5130f09dc86d88))
+* Move all component dependencies to peer ([1406fcf](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/1406fcf8e31fe8d6e086b78f8064d3bbb6c92163))
+* Remove markdown from content component ([52691ab](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/52691abab9eb06443ba18af379d2dec3d943415b))
+
+
+### Features
+
+* **comments:** Add blogging comments from commento into solution ([4edcefc](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/4edcefca04eedf629062f2629b1971660aba547a))
+
+
+
+
+
 # [0.3.0](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/components@0.2.0...@heather-turano-coaching/components@0.3.0) (2020-01-27)
 
 
