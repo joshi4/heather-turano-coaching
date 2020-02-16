@@ -94,7 +94,8 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
   const xOffset =
     layoutType === "middle" ? (window.innerWidth - 48) / 2 - halfCardWidth : 0;
   const index = useRef(initialSelectedCardIndex);
-  const cardDragThreshold = layoutType === "middle" ? cardSlice : halfCardWidth;
+  // const cardDragThreshold = layoutType === "middle" ? cardSlice : halfCardWidth;
+  const cardDragThreshold = 30;
 
   const getDistance = (cardNum: number): number =>
     Math.abs(index.current - cardNum);
