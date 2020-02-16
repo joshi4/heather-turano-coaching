@@ -16,7 +16,6 @@
       "conventionalCommits": true
     },
     "version": {
-      "ignoreChanges": ["*.md", "*.spec.ts", "*.spec.tsx"],
       "message": "chore(release): Version",
       "conventionalCommits": true
     }
