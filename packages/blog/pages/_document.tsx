@@ -1,6 +1,22 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import { makeFontFace } from "@heather-turano-coaching/design-system/utils";
+
+const fontFaceDefs = makeFontFace();
+const fontFaceLinks = fontFaceDefs.reduce(
+  (accum, fontFaceDef) =>
+    typeof fontFaceDef === "string"
+      ? [
+          ...accum,
+          <link
+            rel="stylesheet"
+            href={fontFaceDef.split('("')[1].split('")')[0]}
+          />
+        ]
+      : accum,
+  [] as ReactNode[]
+);
 
 class MyDocument extends Document {
   // @ts-ignore
@@ -33,12 +49,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html style={{ margin: 0, padding: 0 }}>
-        <Head>
-          <script
-            src="https://kit.fontawesome.com/3807d27162.js"
-            crossOrigin="anonymous"
-          ></script>
-        </Head>
+        <Head>{fontFaceLinks}</Head>
         <body style={{ margin: 0, padding: 0 }}>
           <Main />
           <NextScript />

@@ -1,10 +1,7 @@
 import React, { Fragment } from "react";
 // import App from 'next/app'
 import { createGlobalStyle } from "styled-components";
-import {
-  makeResponsive,
-  makeFontFace
-} from "@heather-turano-coaching/design-system/utils";
+import { makeResponsive } from "@heather-turano-coaching/design-system/utils";
 import {
   HeaderNav,
   HeaderNavLink,
@@ -16,8 +13,6 @@ import {
 import { logos } from ".";
 
 const GlobalStyle = createGlobalStyle`
-  ${makeFontFace()};
-
   html{
     ${makeResponsive({
       beginAt: "desktop",
