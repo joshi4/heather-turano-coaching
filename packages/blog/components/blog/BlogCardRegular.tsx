@@ -5,7 +5,8 @@ import {
   Heading,
   BlogCardAvatar,
   Copy,
-  makeFlex
+  makeFlex,
+  universalShadow
 } from "@heather-turano-coaching/components";
 import { useBreakpoints } from "@heather-turano-coaching/hooks";
 import { formatLongDate } from "../../utils";
@@ -27,7 +28,16 @@ interface BlogPost {
 }
 
 const StyledRegularBlogCardContainer = styled.div`
-  ${makeOutset({ bottom: 24 })};
+  ${makeOutset({ bottom: 52 })};
+
+  ${makeResponsive({
+    endAt: "tabletPortrait",
+    style: `
+      border-radius: ${makeSize({ custom: 2 })};
+      overflow: hidden;
+      box-shadow: ${universalShadow};
+    `
+  })};
 
   ${makeResponsive({
     beginAt: "tabletPortrait",
@@ -55,11 +65,20 @@ const StyledRegularBlogCardContainer = styled.div`
 `;
 
 const StyledBlogImage = styled.div`
-  img {
+  & > img {
+    height: 100%;
     width: 100%;
-    height: ${makeSize({ custom: 200 })};
     object-fit: cover;
+    object-position: top;
   }
+
+  ${makeResponsive({
+    endAt: "tabletPortrait",
+    style: `
+      width: 100%;
+      height: ${makeSize({ custom: 200 })};
+    `
+  })}
 
   ${makeResponsive({
     beginAt: "tabletPortrait",
