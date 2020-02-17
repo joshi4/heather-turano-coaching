@@ -94,8 +94,7 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
   const xOffset =
     layoutType === "middle" ? (window.innerWidth - 48) / 2 - halfCardWidth : 0;
   const index = useRef(initialSelectedCardIndex);
-  // const cardDragThreshold = layoutType === "middle" ? cardSlice : halfCardWidth;
-  const cardDragThreshold = 30;
+  const cardDragThreshold = 60;
 
   const getDistance = (cardNum: number): number =>
     Math.abs(index.current - cardNum);
@@ -152,15 +151,8 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
   const [springProps, set] = useSprings(numberOfCards, i => setSprings(i));
 
   const bind = useDrag(
-    ({
-      down,
-      movement: [xMove],
-      direction: [xDir],
-      distance,
-      cancel,
-      last
-    }) => {
-      if (down && distance > cardDragThreshold && cancel) {
+    ({ down, movement: [xMove], direction: [xDir], cancel, last }) => {
+      if (down && Math.abs(xMove) > cardDragThreshold && cancel) {
         index.current = clamp(
           index.current + (xDir > 0 ? -1 : 1),
           0,
