@@ -25,17 +25,17 @@ export const copyFontMap: {
   [key in CopyProps["type"]]: Partial<FontProperties>;
 } = {
   paragraph: {
-    fontFamily: "Raleway"
+    fontFamily: "Muli"
   },
   caption: {
-    fontFamily: "Raleway",
+    fontFamily: "Muli",
     fontWeight: "bold"
   },
   text: {
-    fontFamily: "Raleway"
+    fontFamily: "Muli"
   },
   label: {
-    fontFamily: "Raleway",
+    fontFamily: "Muli",
     fontWeight: "medium"
   }
 };

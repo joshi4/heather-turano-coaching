@@ -63,7 +63,7 @@ const CSSSectionMap: {
     })}
   `,
   "blog-page": css`
-    ${makeInset({ bottom: 56, horizontal: 32 })};
+    ${makeInset({ top: 0, bottom: 56, horizontal: 32 })};
   `
 };
 

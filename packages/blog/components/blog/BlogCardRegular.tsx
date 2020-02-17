@@ -66,8 +66,8 @@ const StyledRegularBlogCardContainer = styled.div`
 
 const StyledBlogImage = styled.div`
   & > img {
-    height: 100%;
     width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: top;
   }
@@ -105,6 +105,7 @@ const StyledCardContent = styled.div`
     `
   })}
 
+  h2,
   h3,
   h4 {
     ${makeRhythm({ fontSize: "xs", top: 0, bottom: 1 })};
@@ -165,7 +166,7 @@ export const BlogPost: FC<BlogPost> = ({
         <StyledCardContent>
           {!isWindowMobile && Tags}
           <Heading
-            fontSize={isWindowMobile ? "h4" : "h3"}
+            fontSize={isWindowMobile ? "h3" : "h2"}
             fontColor={{ fixed: "dark" }}
           >
             {pTitle}
@@ -179,7 +180,7 @@ export const BlogPost: FC<BlogPost> = ({
           <Copy
             type="paragraph"
             fontSize={isWindowMobile ? { custom: 14 } : "sm"}
-            fontColor={{ fixed: "dark" }}
+            fontColor={{ scalable: { color: "gray", scale: 0 } }}
           >
             {pExcerpt}
           </Copy>

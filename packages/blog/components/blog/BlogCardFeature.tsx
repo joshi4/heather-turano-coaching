@@ -21,7 +21,6 @@ import {
   makeColor
 } from "@heather-turano-coaching/design-system/utils";
 import { formatLongDate } from "../../utils";
-import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
 
 interface BlogCardFeatureProps {
   featuredPost: PostOrPage;
@@ -66,7 +65,7 @@ const StyledFeaturedBlogCardContainer = styled.div`
 const StyledBlogImage = styled.div`
   img {
     width: 100%;
-    height: ${makeSize({ custom: 200 })};
+    height: ${makeSize({ custom: 140 })};
     object-fit: cover;
   }
 
@@ -99,8 +98,9 @@ const StyledCardContent = styled.div`
   position: relative;
   ${makeInset({ horizontal: 24, top: 32 })};
   background: ${makeColor({ fixed: "light" })};
-  height: ${makeSize({ custom: 340 })};
+  height: ${makeSize({ custom: 384 })};
 
+  h2,
   h3,
   h4 {
     line-height: 1.3;
@@ -158,10 +158,6 @@ export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
   const title = fp.title as string;
   const excerpt = fp.excerpt as string;
 
-  const textColor: ColorProperties = {
-    fixed: windowWidth >= tabletLandscape ? "light" : "dark"
-  };
-
   return (
     <StyledFeaturedBlogCardContainer>
       <StyledBlogImage>
@@ -181,8 +177,10 @@ export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
           />
         )}
         <Heading
-          fontSize={windowWidth < tabletPortrait ? "h4" : "h3"}
-          fontColor={textColor}
+          fontSize={windowWidth < tabletPortrait ? "h3" : "h2"}
+          fontColor={{
+            fixed: windowWidth >= tabletLandscape ? "light" : "dark"
+          }}
         >
           {title}
         </Heading>
@@ -198,7 +196,11 @@ export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
         <Copy
           type="paragraph"
           fontSize={windowWidth < tabletPortrait ? { custom: 14 } : "sm"}
-          fontColor={textColor}
+          fontColor={
+            windowWidth >= tabletLandscape
+              ? { fixed: "light" }
+              : { scalable: { color: "gray", scale: 0 } }
+          }
         >
           {excerpt}
         </Copy>

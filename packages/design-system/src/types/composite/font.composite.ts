@@ -8,7 +8,9 @@ export type FontFamily =
   | "system"
   | "Montserrat"
   | "Raleway"
-  | "Covered By Your Grace";
+  | "Covered By Your Grace"
+  | "Muli"
+  | "Playfair Display";
 export type FontStyle = "normal" | "italic";
 export type FontWeightValue =
   | "100"

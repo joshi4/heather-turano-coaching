@@ -42,7 +42,7 @@ export interface FontConfig {
 }
 export const fontConfig: FontConfig = {
   defaults: {
-    fontFamily: "Raleway",
+    fontFamily: "Muli",
     fontStyle: "normal",
     fontWeight: "regular",
     fontColor: undefined
@@ -98,7 +98,47 @@ export const fontConfig: FontConfig = {
     {
       source: "google",
       options: {
+        family: "Playfair Display",
+        variants: {
+          italic: ["400", "500"],
+          normal: [
+            "100",
+            "200",
+            "300",
+            "400",
+            "500",
+            "600",
+            "700",
+            "800",
+            "900"
+          ]
+        }
+      }
+    },
+    {
+      source: "google",
+      options: {
         family: "Raleway",
+        variants: {
+          italic: ["300", "400"],
+          normal: [
+            "100",
+            "200",
+            "300",
+            "400",
+            "500",
+            "600",
+            "700",
+            "800",
+            "900"
+          ]
+        }
+      }
+    },
+    {
+      source: "google",
+      options: {
+        family: "Muli",
         variants: {
           italic: ["300", "400"],
           normal: [

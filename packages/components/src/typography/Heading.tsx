@@ -32,24 +32,24 @@ const defaultFontColor: ColorProperties = {
 type HeadingStyleProps = Pick<HeadingProps, "fontColor" | "fontFamily">;
 
 export const CSSH1 = css<HeadingStyleProps>`
-  ${({ fontColor = defaultFontColor, fontFamily = "Montserrat" }) =>
+  ${({ fontColor = defaultFontColor, fontFamily = "Playfair Display" }) =>
     makeFont({ fontSize: "h1", fontFamily, fontColor })}
 `;
 
 export const CSSH2 = css<HeadingStyleProps>`
-  ${({ fontColor = defaultFontColor, fontFamily = "Montserrat" }) =>
+  ${({ fontColor = defaultFontColor, fontFamily = "Playfair Display" }) =>
     makeFont({ fontSize: "h2", fontFamily, fontColor })};
 `;
 export const CSSH3 = css<HeadingStyleProps>`
-  ${({ fontColor = defaultFontColor, fontFamily = "Montserrat" }) =>
+  ${({ fontColor = defaultFontColor, fontFamily = "Playfair Display" }) =>
     makeFont({ fontSize: "h3", fontFamily, fontColor })};
 `;
 export const CSSH4 = css<HeadingStyleProps>`
-  ${({ fontColor = defaultFontColor, fontFamily = "Montserrat" }) =>
+  ${({ fontColor = defaultFontColor, fontFamily = "Playfair Display" }) =>
     makeFont({ fontSize: "h4", fontFamily, fontColor })};
 `;
 export const CSSH5 = css<HeadingStyleProps>`
-  ${({ fontColor = defaultFontColor, fontFamily = "Raleway" }) =>
+  ${({ fontColor = defaultFontColor, fontFamily = "Muli" }) =>
     makeFont({ fontSize: "h5", fontFamily, fontColor })};
 `;
 

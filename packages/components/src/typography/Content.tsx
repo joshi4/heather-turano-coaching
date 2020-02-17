@@ -9,23 +9,25 @@ import {
   makeSpace,
   makeSize
 } from "@heather-turano-coaching/design-system/utils";
-import { CSSH2, CSSH3, CSSH4 } from "./Heading";
+import { CSSH2, CSSH4 } from "./Heading";
 import { copyFontMap } from "./Copy";
 import { FontProperties } from "@heather-turano-coaching/design-system/types/composite";
 import { createImageBorder } from "../shared";
 
-const contentLineHeight: FontProperties["fontSize"] = "md";
+const contentLineHeight: FontProperties["fontSize"] = "sm";
 
 const copyFontStyle = makeFont({
   ...copyFontMap["text"],
+  fontFamily: "Muli",
   fontWeight: "regular",
   fontSize: "sm",
+  fontColor: { scalable: { color: "gray", scale: 0 } },
   lineHeight: contentLineHeight
 });
 
 const StyledContent = styled.section`
   display: block;
-  padding: ${makeSize({ custom: 30 })} 0;
+  ${makeInset({ top: 0, bottom: { custom: 30 }, horizontal: 0 })};
 
   & > div.content {
     * {
@@ -35,18 +37,23 @@ const StyledContent = styled.section`
     h1 {
       ${CSSH2};
       ${makeRhythm({ fontSize: contentLineHeight, top: 3, bottom: 1 })};
+      line-height: 1.2;
+      color: ${makeColor({ fixed: "dark" })};
+
+      & + h2 {
+        ${makeRhythm({ fontSize: contentLineHeight, top: 2, bottom: 1 })};
+      }
     }
 
     h2 {
-      ${CSSH3};
+      ${CSSH4};
       ${makeRhythm({ fontSize: contentLineHeight, top: 3, bottom: 1 })};
       line-height: 1.2;
+      font-weight: 600;
+      font-family: "Muli";
+      color: ${makeColor({ fixed: "dark" })};
     }
 
-    h3 {
-      ${CSSH4};
-      ${makeRhythm({ fontSize: contentLineHeight, top: 2, bottom: 1 })};
-    }
 
     p {
       ${copyFontStyle}
@@ -93,7 +100,7 @@ const StyledContent = styled.section`
 
     figure {
       ${makeReset("figure")};
-      ${makeRhythm({ fontSize: contentLineHeight, top: 2, bottom: 2 })};
+      ${makeRhythm({ fontSize: contentLineHeight, top: 1, bottom: 1 })};
       background: ${makeColor({ scalable: { color: "light", scale: 2 } })};
 
       figcaption {
@@ -111,7 +118,7 @@ const StyledContent = styled.section`
     blockquote {
       ${makeReset("blockquote")};
       position: relative;
-      ${makeRhythm({ fontSize: contentLineHeight, top: 2, bottom: 2 })};
+      ${makeRhythm({ fontSize: contentLineHeight, top: 1, bottom: 1 })};
       background: ${makeColor({ scalable: { color: "primary", scale: 3 } })};
       ${makeInset({ horizontal: 32, vertical: 32 })};
       margin-left: ${makeSpace("md")};

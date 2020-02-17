@@ -13,7 +13,10 @@ import {
 import { formatLongDate } from "../../utils";
 import { TagsSection } from "../../components";
 import styled from "styled-components";
-import { makeRhythm } from "@heather-turano-coaching/design-system/utils";
+import {
+  makeRhythm,
+  makeColor
+} from "@heather-turano-coaching/design-system/utils";
 
 interface BlogPostProps {
   blogPost: PostOrPage;
@@ -21,9 +24,10 @@ interface BlogPostProps {
 
 const StyledBlogHero = styled.header``;
 const StyledBlogHeading = styled.div`
-  h1 {
+  h2 {
     line-height: 1.2;
-    ${makeRhythm({ top: 1, bottom: 1 })};
+    color: ${makeColor({ fixed: "dark" })};
+    ${makeRhythm({ top: 2, bottom: 1 })};
   }
 `;
 
@@ -50,7 +54,7 @@ const BlogPost: NextPage<BlogPostProps> = ({
         datePublished={formatLongDate(published_at as string)}
       />
       <StyledBlogHeading>
-        <Heading fontSize="h1">{title}</Heading>
+        <Heading fontSize="h2">{title}</Heading>
       </StyledBlogHeading>
       <Content htmlContent={html as string} />
       <TagsSection tags={tags} />
