@@ -11,6 +11,14 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
     "Content-Type": "application/json"
   });
 
+  try {
+    const requestBody = await req.json();
+    console.log(requestBody);
+  } catch (error) {
+    // change to error response
+    // throw new Error("No data provided");
+  }
+
   if (isDev) {
     headers.append("Access-Control-Allow-Origin", "*");
   }
@@ -27,7 +35,6 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
     method: "POST",
     headers
   });
-  const response = new Response(res.body);
-  console.log(response.bodyUsed);
-  return response;
+
+  return new Response(JSON.stringify(await res.json()));
 }

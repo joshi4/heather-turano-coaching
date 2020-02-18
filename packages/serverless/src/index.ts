@@ -16,5 +16,6 @@ async function handleRequest(request: Request) {
   //   r.get("/", async () => new Response("Hello worker!")); // return a default message for the root route
 
   const resp = await r.route(request);
-  return resp;
+  console.log(resp);
+  return new Response("testings!!");
 }

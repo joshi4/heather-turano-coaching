@@ -1,5 +1,6 @@
-import fetch from "unfetch";
+// import fetch from "unfetch";
 import { useState, useEffect } from "react";
+import axios, { AxiosRequestConfig } from "axios";
 
 export type ApiState<ResponseObj> =
   | {
@@ -24,11 +25,14 @@ const initialApiState: ApiState<any> = {
   error: null
 };
 
+interface ApiConfig {
+  url: string;
+  options: Omit<AxiosRequestConfig, "url">;
+}
+
 export type HookApiRequest<RequestBody> = (
   body?: RequestBody
-) => {
-  url: RequestInfo;
-  options: RequestInit;
+) => ApiConfig & {
   onSuccess?: (res: Response) => void;
   onError?: (res: any) => void;
 };
@@ -39,10 +43,7 @@ export function useApi<RequestBody, ResponseObj>(
   const [apiResponse, setApiResponse] = useState<ApiState<ResponseObj>>(
     initialApiState
   );
-  const [apiRequest, setApiRequest] = useState<{
-    url: RequestInfo;
-    options: RequestInit;
-  }>();
+  const [apiRequest, setApiRequest] = useState<ApiConfig>();
 
   useEffect(() => {
     if (!apiRequest) return;
@@ -54,26 +55,15 @@ export function useApi<RequestBody, ResponseObj>(
 
     const { url, options } = apiRequest;
 
-    fetch(url, {
-      ...options,
-      headers: new Headers({
-        "Content-Type": "application/json"
-      })
-    })
+    axios
+      .request<ResponseObj>({ url, ...options })
       .then(res => {
-        console.log("--- RESPONSE ---");
-        console.log(res.bodyUsed);
-        console.log(res);
-        console.log("--- END RESPONSE ---");
-        return res.text();
-      })
-      .then(json => {
         console.log("--- JSON ---");
-        console.log(json);
+        console.log(res);
         console.log("--- END JSON ---");
         setApiResponse({
           loading: false,
-          data: JSON.parse(json),
+          data: res.data,
           error: null
         });
       })
