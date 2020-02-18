@@ -26,7 +26,12 @@ const initialApiState: ApiState<any> = {
 
 export type HookApiRequest<RequestBody> = (
   body?: RequestBody
-) => { url: RequestInfo; options: RequestInit };
+) => {
+  url: RequestInfo;
+  options: RequestInit;
+  onSuccess?: (res: Response) => void;
+  onError?: (res: any) => void;
+};
 
 export function useApi<RequestBody, ResponseObj>(
   request: HookApiRequest<RequestBody>
@@ -52,12 +57,13 @@ export function useApi<RequestBody, ResponseObj>(
     fetch(url, options)
       .then(res => {
         console.log(res);
-        debugger;
+        const json = res.json();
+        const text = res.text();
         return res.json();
       })
       .then(json => {
-        debugger;
         console.log(json);
+        debugger;
         setApiResponse({
           loading: false,
           data: json,
