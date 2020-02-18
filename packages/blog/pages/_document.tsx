@@ -5,11 +5,12 @@ import { makeFontFace } from "@heather-turano-coaching/design-system/utils";
 
 const fontFaceDefs = makeFontFace();
 const fontFaceLinks = fontFaceDefs.reduce(
-  (accum, fontFaceDef) =>
+  (accum, fontFaceDef, i) =>
     typeof fontFaceDef === "string"
       ? [
           ...accum,
           <link
+            key={`link-${i.toString()}`}
             rel="stylesheet"
             href={fontFaceDef.split('("')[1].split('")')[0]}
           />
