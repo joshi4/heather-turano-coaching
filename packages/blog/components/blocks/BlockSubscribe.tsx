@@ -64,7 +64,7 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
 }) => {
   const { register, errors, handleSubmit } = useForm<FormData>();
 
-  const [{ loading }, subcribe] = useApi<
+  const [{ loading, data, error }, subcribe] = useApi<
     SubscribeToBlogRequest,
     SubscribeToBlogResponse
   >(subscribeToBlog);
@@ -73,6 +73,8 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
     console.log(formData);
     subcribe(formData);
   };
+
+  console.log(loading, data, error);
 
   return (
     <LayoutBlock>
@@ -91,42 +93,54 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
               {subscribe.fields.content.fields.description}
             </Copy>
           </StyledContentCopy>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <InputGroup layout="stacked">
-              <Input
-                id="subscribe-name"
-                name="firstName"
-                placeholder={subscribe.fields.content.fields.namePlaceholder}
-                ref={register({ required: true })}
-                disabled={loading}
-                errorMessage={
-                  errors.firstName &&
-                  "This is field required. Feel free to only put your first name"
-                }
-              />
-              <Input
-                id="subscribe-email"
-                name="emailAddress"
-                placeholder={subscribe.fields.content.fields.emailPlaceholder}
-                ref={register({ required: true })}
-                disabled={loading}
-                errorMessage={
-                  errors.emailAddress && "This is also a required fied"
-                }
-              />
-              <Button
-                id="submit-subscription"
-                styleType="accent"
-                type="submit"
-                label={subscribe.fields.content.fields.submitText}
-                disabled={
-                  !!errors.firstName || !!errors.emailAddress || loading
-                }
-                loading={loading}
-                onSubmit={handleSubmit(onSubmit)}
-              />
-            </InputGroup>
-          </form>
+          {error && (
+            <Copy type="text" fontColor={{ fixed: "light" }}>
+              Oh no, it didn't work.
+            </Copy>
+          )}
+          {!data && (
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <InputGroup layout="stacked">
+                <Input
+                  id="subscribe-name"
+                  name="firstName"
+                  placeholder={subscribe.fields.content.fields.namePlaceholder}
+                  ref={register({ required: true })}
+                  disabled={loading}
+                  errorMessage={
+                    errors.firstName &&
+                    "This is field required. Feel free to only put your first name"
+                  }
+                />
+                <Input
+                  id="subscribe-email"
+                  name="emailAddress"
+                  placeholder={subscribe.fields.content.fields.emailPlaceholder}
+                  ref={register({ required: true })}
+                  disabled={loading}
+                  errorMessage={
+                    errors.emailAddress && "This is also a required fied"
+                  }
+                />
+                <Button
+                  id="submit-subscription"
+                  styleType="accent"
+                  type="submit"
+                  label={subscribe.fields.content.fields.submitText}
+                  disabled={
+                    !!errors.firstName || !!errors.emailAddress || loading
+                  }
+                  loading={loading}
+                  onSubmit={handleSubmit(onSubmit)}
+                />
+              </InputGroup>
+            </form>
+          )}
+          {error && (
+            <Copy type="text" fontColor={{ fixed: "light" }}>
+              Horay! Welcome to the list
+            </Copy>
+          )}
         </StyledSubscribeContnet>
       </LayoutBlockContent>
     </LayoutBlock>
