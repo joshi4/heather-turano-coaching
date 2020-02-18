@@ -50,7 +50,11 @@ export function useApi<RequestBody, ResponseObj>(
     const { url, options } = apiRequest;
 
     fetch(url, options)
-      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        debugger;
+        return res.json();
+      })
       .then(json => {
         debugger;
         console.log(json);
