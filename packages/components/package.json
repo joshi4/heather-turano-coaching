@@ -11,7 +11,7 @@
     "url": "git@gitlab.com:imaginedelements/heather-turano-coaching/live-life-mindful.git"
   },
   "scripts": {
-    "start": "tsc -w --pretty -p tsconfig.json",
+    "start": "webpack --watch",
     "start:storybook": "start-storybook -p 6006",
     "build": "webpack",
     "build:storybook": "build-storybook",
