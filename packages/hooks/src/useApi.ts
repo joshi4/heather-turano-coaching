@@ -59,9 +59,8 @@ export function useApi<RequestBody, ResponseObj>(
         console.log("--- RESPONSE ---");
         console.log(res.bodyUsed);
         console.log(res);
-        console.log(res.bodyUsed);
         console.log("--- END RESPONSE ---");
-        return res.json();
+        return res.clone().json();
       })
       .then(json => {
         console.log("--- JSON ---");
@@ -69,7 +68,7 @@ export function useApi<RequestBody, ResponseObj>(
         console.log("--- END JSON ---");
         setApiResponse({
           loading: false,
-          data: json,
+          data: JSON.parse(json),
           error: null
         });
       })
