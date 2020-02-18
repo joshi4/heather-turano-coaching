@@ -52,6 +52,8 @@ export function useApi<RequestBody, ResponseObj>(
     fetch(url, options)
       .then(res => res.json())
       .then(json => {
+        debugger;
+        console.log(json);
         setApiResponse({
           loading: false,
           data: json,
@@ -59,6 +61,8 @@ export function useApi<RequestBody, ResponseObj>(
         });
       })
       .catch(error => {
+        debugger;
+        console.log(error);
         setApiResponse({
           loading: false,
           data: null,
