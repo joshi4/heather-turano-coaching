@@ -57,10 +57,7 @@ export function useApi<RequestBody, ResponseObj>(
     fetch(url, options)
       .then(res => {
         console.log(res);
-        const json = res.json();
-        const text = res.text();
-        console.log(json);
-        console.log(text);
+        res.text().then(txt => console.log(txt));
         return res.json();
       })
       .then(json => {
