@@ -54,7 +54,12 @@ export function useApi<RequestBody, ResponseObj>(
 
     const { url, options } = apiRequest;
 
-    fetch(url, options)
+    fetch(url, {
+      ...options,
+      headers: new Headers({
+        "Content-Type": "application/json"
+      })
+    })
       .then(res => {
         console.log("--- RESPONSE ---");
         console.log(res.bodyUsed);
