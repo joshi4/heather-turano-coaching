@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/website@1.1.2...@heather-turano-coaching/website@1.1.3) (2020-02-18)
+
+**Note:** Version bump only for package @heather-turano-coaching/website
+
+
+
+
+
 ## [1.1.2](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/website@1.1.0...@heather-turano-coaching/website@1.1.2) (2020-02-16)
 
 **Note:** Version bump only for package @heather-turano-coaching/website

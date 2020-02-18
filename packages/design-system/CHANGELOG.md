@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/design-system@0.2.2...@heather-turano-coaching/design-system@0.2.3) (2020-02-18)
+
+
+### Bug Fixes
+
+* Adjust style and spacing of headings ([b2788e8](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/b2788e88756e384b7bf9e721df8b14cd66a7c338))
+
+
+
+
+
 ## [0.2.2](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/design-system@0.2.0...@heather-turano-coaching/design-system@0.2.2) (2020-02-16)
 
 

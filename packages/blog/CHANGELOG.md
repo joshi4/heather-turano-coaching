@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@live-life-mindful/blog@0.4.0...@live-life-mindful/blog@0.4.1) (2020-02-18)
+
+
+### Bug Fixes
+
+* **fonts:** Add makeFontFace to every rendered page ([dda0f92](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/dda0f92050701d96f6dfe62ce55f9a042b4b83d0))
+* Add makeFontFace transformation to output links ([4e6b86d](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/4e6b86d43df53b30f1ead3926823428f850aba26))
+* Adjust style and spacing of headings ([b2788e8](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/b2788e88756e384b7bf9e721df8b14cd66a7c338))
+* Increase spacing between cards ([ea8262a](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/ea8262ae999d842028102b3dbbd4ee9c00437cc9))
+* Increase the threshold by 2 for swiping ([1ec0787](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/1ec0787b294d283a2369c29fdd1b19f10e938cd3))
+* Reduce card threshold to static 30 ([317eb65](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/317eb65a97c2da4492ebb30c04d6e723f4f28e69))
+
+
+
+
+
 # [0.4.0](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@live-life-mindful/blog@0.2.1...@live-life-mindful/blog@0.4.0) (2020-02-16)
 
 

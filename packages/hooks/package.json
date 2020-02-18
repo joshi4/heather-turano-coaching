@@ -1,6 +1,6 @@
 {
   "name": "@heather-turano-coaching/hooks",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Common React Hooks for Heather Turano Coaching, LLC",
   "author": "Drew DeCarme (drew@imaginedelements.com)",
   "license": "MIT",
@@ -37,7 +37,7 @@
     "unfetch": "^4.1.0"
   },
   "devDependencies": {
-    "@heather-turano-coaching/design-system": "^0.2.2",
+    "@heather-turano-coaching/design-system": "^0.2.3",
     "@heather-turano-coaching/typescript": "^0.2.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

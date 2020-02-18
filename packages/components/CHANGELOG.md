@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/components@0.4.0...@heather-turano-coaching/components@0.4.1) (2020-02-18)
+
+
+### Bug Fixes
+
+* Adjust style and spacing of headings ([b2788e8](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/b2788e88756e384b7bf9e721df8b14cd66a7c338))
+* Run webpack in watch mode and revert avatar ([86645f1](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/86645f1e022eb844dd0f0e8d5910c854e2783378))
+
+
+
+
+
 # [0.4.0](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/components@0.2.0...@heather-turano-coaching/components@0.4.0) (2020-02-16)
 
 
