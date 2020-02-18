@@ -136,7 +136,7 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
               </InputGroup>
             </form>
           )}
-          {error && (
+          {data && (
             <Copy type="text" fontColor={{ fixed: "light" }}>
               Horay! Welcome to the list
             </Copy>

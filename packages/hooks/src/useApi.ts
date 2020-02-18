@@ -59,6 +59,8 @@ export function useApi<RequestBody, ResponseObj>(
         console.log(res);
         const json = res.json();
         const text = res.text();
+        console.log(json);
+        console.log(text);
         return res.json();
       })
       .then(json => {
