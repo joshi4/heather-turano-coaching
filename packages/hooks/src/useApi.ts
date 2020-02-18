@@ -57,7 +57,9 @@ export function useApi<RequestBody, ResponseObj>(
     fetch(url, options)
       .then(res => {
         console.log("--- RESPONSE ---");
+        console.log(res.bodyUsed);
         console.log(res);
+        console.log(res.bodyUsed);
         console.log("--- END RESPONSE ---");
         return res.json();
       })

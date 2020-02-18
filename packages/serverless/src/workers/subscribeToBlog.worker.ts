@@ -27,15 +27,7 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
     method: "POST",
     headers
   });
-
-  console.log(res.bodyUsed);
-
-  const jsonResponse = await res.json();
-
-  console.log(res.bodyUsed);
-
-  const response = new Response(JSON.stringify(jsonResponse));
+  const response = new Response(res.body);
   console.log(response.bodyUsed);
-
   return response;
 }
