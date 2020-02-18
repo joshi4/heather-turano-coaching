@@ -3,9 +3,10 @@ type = "webpack"
 account_id = "4f6417b64074f390809f869734d4d208"
 route = ""
 zone_id = "70efcc7c691a7e4df44a4601ee33643b"
-webpack_config = "webpack.config.js"
+webpack_config = "webpack.config.dev.js"
 workers_dev = true
 
 [env.production]
 name = "livelifemindful-prod"
 route = "https://*.livelifemindful.com/serverless/*"
+webpack_config = "webpack.config.prod.js"

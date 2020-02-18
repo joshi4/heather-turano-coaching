@@ -1,4 +1,5 @@
 import queryString from "query-string";
+import { isDev } from "./util";
 
 export async function subscribeToBlog(req: Request): Promise<Response> {
   const basicAuthCreds = Buffer.from(
@@ -9,6 +10,10 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
     Authorization: `Basic ${basicAuthCreds}`,
     "Content-Type": "application/json"
   });
+
+  if (isDev) {
+    headers.append("Access-Control-Allow-Origin", "*");
+  }
 
   const mgUrl = queryString.stringifyUrl({
     url: `https://api.mailgun.net/v3/lists/${process.env.MAILGUN_MAILING_LIST}/members`,
@@ -22,6 +27,15 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
     method: "POST",
     headers
   });
-  const json = await res.json();
-  return new Response(JSON.stringify(json));
+
+  console.log(res.bodyUsed);
+
+  const jsonResponse = await res.json();
+
+  console.log(res.bodyUsed);
+
+  const response = new Response(JSON.stringify(jsonResponse));
+  console.log(response.bodyUsed);
+
+  return response;
 }
