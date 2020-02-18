@@ -60,7 +60,7 @@ export function useApi<RequestBody, ResponseObj>(
         console.log(res.bodyUsed);
         console.log(res);
         console.log("--- END RESPONSE ---");
-        return res.clone().json();
+        return res.text();
       })
       .then(json => {
         console.log("--- JSON ---");
