@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/serverless@0.4.0...@heather-turano-coaching/serverless@0.5.0) (2020-02-19)
+
+
+### Features
+
+* Remove mailgun and integrate Mailchimp ([2dcdc6e](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/2dcdc6ee7fbef6c2df7783de0804632bf09904a0))
+
+
+
+
+
 # [0.4.0](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/serverless@0.3.2...@heather-turano-coaching/serverless@0.4.0) (2020-02-19)
 
 
