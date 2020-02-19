@@ -8,5 +8,5 @@ workers_dev = true
 
 [env.production]
 name = "livelifemindful-prod"
-route = "https://*.livelifemindful.com/serverless/*"
+route = "https://api.livelifemindful.com/*"
 webpack_config = "webpack.config.prod.js"
