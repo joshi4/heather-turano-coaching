@@ -53,27 +53,20 @@ const StyledContentCopy = styled.div`
   }
 `;
 
-interface FormData {
-  firstName: string;
-  emailAddress: string;
-}
-
 export const BlockSubscribe: FC<BlockSubscribeProps> = ({
   subscribe,
   displayBlockTitle = true
 }) => {
-  const { register, errors, handleSubmit } = useForm<FormData>();
+  const { register, errors, handleSubmit } = useForm<SubscribeToBlogRequest>();
 
   const [{ loading, data, error }, subcribe] = useApi<
     SubscribeToBlogRequest,
     SubscribeToBlogResponse
   >(subscribeToBlog);
 
-  const onSubmit = async (formData: FormData) => {
+  const onSubmit = async (formData: SubscribeToBlogRequest) => {
     subcribe(formData);
   };
-
-  console.log(loading, data, error);
 
   return (
     <LayoutBlock>
@@ -97,28 +90,33 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
               Oh no, it didn't work.
             </Copy>
           )}
+          {data && (
+            <Copy type="text" fontColor={{ fixed: "light" }}>
+              Horay! Welcome to the list
+            </Copy>
+          )}
           {!data && (
             <form onSubmit={handleSubmit(onSubmit)}>
               <InputGroup layout="stacked">
                 <Input
                   id="subscribe-name"
-                  name="firstName"
+                  name="name"
                   placeholder={subscribe.fields.content.fields.namePlaceholder}
                   ref={register({ required: true })}
                   disabled={loading}
                   errorMessage={
-                    errors.firstName &&
+                    errors.name &&
                     "This is field required. Feel free to only put your first name"
                   }
                 />
                 <Input
                   id="subscribe-email"
-                  name="emailAddress"
+                  name="address"
                   placeholder={subscribe.fields.content.fields.emailPlaceholder}
                   ref={register({ required: true })}
                   disabled={loading}
                   errorMessage={
-                    errors.emailAddress && "This is also a required fied"
+                    errors.address && "This is also a required fied"
                   }
                 />
                 <Button
@@ -126,19 +124,12 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
                   styleType="accent"
                   type="submit"
                   label={subscribe.fields.content.fields.submitText}
-                  disabled={
-                    !!errors.firstName || !!errors.emailAddress || loading
-                  }
+                  disabled={!!errors.name || !!errors.address || loading}
                   loading={loading}
                   onSubmit={handleSubmit(onSubmit)}
                 />
               </InputGroup>
             </form>
-          )}
-          {data && (
-            <Copy type="text" fontColor={{ fixed: "light" }}>
-              Horay! Welcome to the list
-            </Copy>
           )}
         </StyledSubscribeContnet>
       </LayoutBlockContent>

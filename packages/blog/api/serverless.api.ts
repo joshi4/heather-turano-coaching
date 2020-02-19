@@ -1,8 +1,8 @@
 import { HookApiRequest } from "@heather-turano-coaching/hooks";
 
 export type SubscribeToBlogRequest = {
-  firstName: string;
-  emailAddress: string;
+  name: string;
+  address: string;
 };
 export type SubscribeToBlogResponse = {
   member: {
