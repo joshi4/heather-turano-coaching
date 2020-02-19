@@ -21,6 +21,6 @@ export const subscribeToBlog: HookApiRequest<
   url: `${process.env.SERVERLESS_API}/blog/subscribe`,
   options: {
     method: "POST",
-    body: body
+    data: body
   }
 });
