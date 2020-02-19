@@ -70,7 +70,6 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
   >(subscribeToBlog);
 
   const onSubmit = async (formData: FormData) => {
-    console.log(formData);
     subcribe(formData);
   };
 

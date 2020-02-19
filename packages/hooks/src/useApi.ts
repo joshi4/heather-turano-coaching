@@ -35,15 +35,15 @@ interface ApiConfig {
   options: Omit<AxiosRequestConfig, "url">;
 }
 
-export type HookApiRequest<RequestBody> = (
+export type HookApiRequest<RequestBody, ResponseObj> = (
   body?: RequestBody
 ) => ApiConfig & {
-  onSuccess?: (res: Response) => void;
+  onSuccess?: (responseBody: ResponseObj) => void;
   onError?: (res: any) => void;
 };
 
 export function useApi<RequestBody, ResponseObj>(
-  request: HookApiRequest<RequestBody>
+  request: HookApiRequest<RequestBody, ResponseObj>
 ): [ApiState<ResponseObj>, (body?: RequestBody) => void] {
   const [apiResponse, setApiResponse] = useState<ApiState<ResponseObj>>(
     initialApiState

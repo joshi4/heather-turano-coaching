@@ -1,4 +1,5 @@
 import queryString from "query-string";
+import * as ServerResponse from "../response";
 
 export async function subscribeToBlog(req: Request): Promise<Response> {
   const mgAuthCredentials = Buffer.from(
@@ -10,9 +11,8 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
   try {
     requestBody = await req.json();
   } catch (error) {
-    return new Response(
-      `Error trying to parse request body. Check to make sure that you are sending a proper request`,
-      { status: 500, statusText: "SERVER ERROR" }
+    return ServerResponse.error(
+      `Error trying to parse request body. Check to make sure that you are sending a proper request`
     );
   }
 
@@ -32,9 +32,11 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
       body: requestBody
     });
     const json = await res.json();
-    return new Response(JSON.stringify(json));
+    return ServerResponse.success(json);
   } catch (error) {
     // change to error response
-    return new Response(error);
+    return ServerResponse.error(
+      `There was an issue in adding the email address to the transactional system: ${error}`
+    );
   }
 }
