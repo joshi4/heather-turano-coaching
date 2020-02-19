@@ -1,5 +1,3 @@
-import { responseHeaders } from "./util";
-
 const formatError = (message: string): { message: string } => ({
   message
 });
@@ -11,12 +9,6 @@ export const error = (errorMessage: string): Response =>
   });
 
 export const success = (json: any): Response =>
-  new Response(JSON.stringify(json));
-
-export const preFlight = (): Response => {
-  const response = new Response();
-  Object.entries(responseHeaders).forEach(([headerKey, headerValue]) =>
-    response.headers.append(headerKey, headerValue)
-  );
-  return response;
-};
+  new Response(JSON.stringify(json), {
+    statusText: "OK"
+  });

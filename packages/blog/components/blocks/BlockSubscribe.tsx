@@ -68,7 +68,9 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
     subcribe(formData);
   };
 
-  console.log(loading, data, error);
+  console.log(loading);
+  console.log(data);
+  console.log(error);
 
   return (
     <LayoutBlock>
@@ -90,6 +92,11 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
           {error && (
             <Copy type="text" fontColor={{ fixed: "light" }}>
               Oh no, it didn't work.
+            </Copy>
+          )}
+          {data && (
+            <Copy type="text" fontColor={{ fixed: "light" }}>
+              Horay! Welcome to the list
             </Copy>
           )}
           {!data && (
@@ -127,11 +134,6 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
                 />
               </InputGroup>
             </form>
-          )}
-          {data && (
-            <Copy type="text" fontColor={{ fixed: "light" }}>
-              Horay! Welcome to the list
-            </Copy>
           )}
         </StyledSubscribeContnet>
       </LayoutBlockContent>
