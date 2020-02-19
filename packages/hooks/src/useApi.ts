@@ -63,6 +63,7 @@ export function useApi<RequestBody, ResponseObj>(
     axios
       .request<ResponseObj>({ url, ...options })
       .then(response => {
+        console.log(response);
         if (response.status === 200 && response.statusText === "OK") {
           setApiResponse({
             loading: false,

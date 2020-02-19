@@ -12,3 +12,8 @@ export const success = (json: any): Response =>
   new Response(JSON.stringify(json), {
     statusText: "OK"
   });
+
+export const preFlight = (): Response =>
+  new Response("", {
+    statusText: "OK"
+  });

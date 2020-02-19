@@ -68,10 +68,6 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
     subcribe(formData);
   };
 
-  console.log(loading);
-  console.log(data);
-  console.log(error);
-
   return (
     <LayoutBlock>
       {displayBlockTitle && <LayoutBlockTitle title={subscribe.fields.title} />}

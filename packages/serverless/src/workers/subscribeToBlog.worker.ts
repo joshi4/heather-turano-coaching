@@ -42,4 +42,4 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
 }
 
 export const subscribeToBlogPreflight = async (): Promise<Response> =>
-  new Response();
+  ServerResponse.preFlight();
