@@ -4,12 +4,23 @@ export type SubscribeToBlogRequest = {
   firstName: string;
   emailAddress: string;
 };
-export type SubscribeToBlogResponse = {};
+export type SubscribeToBlogResponse = {
+  member: {
+    address: string;
+    name: string;
+    subscribed: boolean;
+    vars?: {};
+  };
+  message: string;
+};
 
-export const subscribeToBlog: HookApiRequest<SubscribeToBlogRequest> = body => ({
+export const subscribeToBlog: HookApiRequest<
+  SubscribeToBlogRequest,
+  SubscribeToBlogResponse
+> = body => ({
   url: `${process.env.SERVERLESS_API}/blog/subscribe`,
   options: {
     method: "POST",
-    body
+    body: body
   }
 });

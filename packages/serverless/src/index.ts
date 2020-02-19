@@ -1,22 +1,31 @@
 /* eslint-disable no-restricted-globals */
 
-// import { Router } from "./router";
-// import { subscribeToBlog } from "./workers/subscribeToBlog.worker";
+import { Router } from "./router";
+import { subscribeToBlog } from "./workers/subscribeToBlog.worker";
+
+import { isDev } from "./util";
 
 addEventListener("fetch", event => {
-  // event.respondWith(handleRequest(event.request));
-  event.respondWith(new Response("hello there"));
+  event.respondWith(handleRequest(event.request));
 });
 
-async function handleRequest(request: Request) {
-  // const r = new Router();
-  // r.post("/blog/subscribe", subscribeToBlog);
-  // r.post("/blog/validate-email", subscribeToBlog);
-  // //   r.get("/demos/router/foo", (req: Request) => fetch(req)); // return the response from the origin
+async function handleRequest(request: Request): Promise<Response> {
+  const r = new Router();
+  r.post("/blog/subscribe", subscribeToBlog);
+  r.post("/blog/validate-email", subscribeToBlog);
 
-  // //   r.get("/", async () => new Response("Hello worker!")); // return a default message for the root route
+  const response = (await r.route(request)) as Response;
+  response.headers.append(
+    "Access-Control-Allow-Origin",
+    "https://blog.livelifemindful.com"
+  );
 
-  // const resp = await r.route(request);
-  // console.log(resp);
-  return new Response("testings!");
+  if (isDev) {
+    response.headers.append(
+      "Access-Control-Allow-Origin",
+      "http://localhost:3000"
+    );
+  }
+
+  return response;
 }

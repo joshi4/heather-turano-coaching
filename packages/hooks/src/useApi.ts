@@ -5,18 +5,23 @@ import axios, { AxiosRequestConfig } from "axios";
 export type ApiState<ResponseObj> =
   | {
       loading: boolean;
-      error: null;
       data: null;
-    }
-  | {
-      loading: false;
       error: null;
-      data: ResponseObj;
     }
   | {
       loading: false;
+      data: ResponseObj | null;
+      error: null;
+    }
+  | {
+      loading: false;
+      data: null;
       error: Error;
-      data: null;
+    }
+  | {
+      loading: false;
+      data: string;
+      error: Error;
     };
 
 const initialApiState: ApiState<any> = {
@@ -57,20 +62,22 @@ export function useApi<RequestBody, ResponseObj>(
 
     axios
       .request<ResponseObj>({ url, ...options })
-      .then(res => {
-        console.log("--- JSON ---");
-        console.log(res);
-        console.log("--- END JSON ---");
-        setApiResponse({
-          loading: false,
-          data: res.data,
-          error: null
-        });
+      .then(response => {
+        if (response.status === 200 && response.statusText === "OK") {
+          setApiResponse({
+            loading: false,
+            data: response.data,
+            error: null
+          });
+        } else {
+          setApiResponse({
+            loading: false,
+            data: null,
+            error: new Error(String(response.data))
+          });
+        }
       })
       .catch(error => {
-        console.log("--- ERROR ---");
-        console.log(error);
-        console.log("--- END ERROR ---");
         setApiResponse({
           loading: false,
           data: null,
