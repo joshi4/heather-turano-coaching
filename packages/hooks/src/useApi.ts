@@ -1,6 +1,5 @@
-// import fetch from "unfetch";
 import { useState, useEffect } from "react";
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig, AxiosError } from "axios";
 
 export type ApiState<ResponseObj> =
   | {
@@ -10,18 +9,18 @@ export type ApiState<ResponseObj> =
     }
   | {
       loading: false;
-      data: ResponseObj | null;
+      data: null;
+      error: AxiosError<ResponseObj>;
+    }
+  | {
+      loading: false;
+      data: ResponseObj;
       error: null;
     }
   | {
       loading: false;
-      data: null;
-      error: Error;
-    }
-  | {
-      loading: false;
-      data: string;
-      error: Error;
+      data: ResponseObj;
+      error: true;
     };
 
 const initialApiState: ApiState<any> = {
@@ -63,8 +62,7 @@ export function useApi<RequestBody, ResponseObj>(
     axios
       .request<ResponseObj>({ url, ...options })
       .then(response => {
-        console.log(response);
-        if (response.status === 200 && response.statusText === "OK") {
+        if (response.status >= 200 && response.status < 300) {
           setApiResponse({
             loading: false,
             data: response.data,
@@ -73,12 +71,12 @@ export function useApi<RequestBody, ResponseObj>(
         } else {
           setApiResponse({
             loading: false,
-            data: null,
-            error: new Error(String(response.data))
+            data: response.data,
+            error: true
           });
         }
       })
-      .catch(error => {
+      .catch((error: AxiosError<ResponseObj>) => {
         setApiResponse({
           loading: false,
           data: null,
