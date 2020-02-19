@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@live-life-mindful/blog@0.4.1...@live-life-mindful/blog@0.4.2) (2020-02-19)
+
+
+### Bug Fixes
+
+* **serverless:** Add error handling and body request ([5db8b5c](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/5db8b5cc7bdf6d46cc8eb43004bc4a3652ebd57c))
+* Add allowed headers and update field names ([ff73b31](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/ff73b31efb8536b21970cc5a7e4b3b66d07301f9))
+* Change body to data for axios request body ([4fb7693](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/4fb7693ee95dab84b81c5350ae2c1c0f092c095f))
+
+
+
+
+
 ## [0.4.1](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@live-life-mindful/blog@0.4.0...@live-life-mindful/blog@0.4.1) (2020-02-18)
 
 

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/serverless@0.3.2...@heather-turano-coaching/serverless@0.4.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* **serverless:** Add error handling and body request ([5db8b5c](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/5db8b5cc7bdf6d46cc8eb43004bc4a3652ebd57c))
+* Add allowed headers and update field names ([ff73b31](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/ff73b31efb8536b21970cc5a7e4b3b66d07301f9))
+* WIP: Add more debug points ([bc05765](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/bc057652430cb3737325e46152b931d500d5d6f5))
+
+
+### Features
+
+* **blog:** Add serverless functionality to forms ([37d379a](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/37d379a6cb7167f50190b02b420077f766b948c6))
+
+
+
+
+
 ## [0.3.2](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/serverless@0.3.0...@heather-turano-coaching/serverless@0.3.2) (2020-02-16)
 
 
