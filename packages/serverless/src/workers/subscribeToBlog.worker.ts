@@ -1,9 +1,8 @@
-import queryString from "query-string";
 import * as ServerResponse from "../response";
 
 export async function subscribeToBlog(req: Request): Promise<Response> {
-  const mgAuthCredentials = Buffer.from(
-    process.env.MAILGUN_API_USERNAME + ":" + process.env.MAILGUN_API_PASSWORD
+  const credentials = Buffer.from(
+    `anystring:${process.env.MAILCHIMP_API_KEY}`
   ).toString("base64");
 
   let requestBody;
@@ -12,27 +11,42 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
     requestBody = await req.json();
   } catch (error) {
     return ServerResponse.error(
-      `Error trying to parse request body. Check to make sure that you are sending a proper request`
+      `Error trying to parse request body. Check to make sure that you are sending a proper request`,
+      error
     );
   }
 
   try {
-    const mgUrl = queryString.stringifyUrl({
-      url: `https://api.mailgun.net/v3/lists/${process.env.MAILGUN_MAILING_LIST}/members`,
-      query: {
-        ...requestBody,
-        upsert: "true"
-      }
-    });
-    const res = await fetch(mgUrl, {
+    const url = `https://us4.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_SUBSCRIBE_AUDIENCE_ID}/members/`;
+    const response = await fetch(url, {
       method: "POST",
-      headers: new Headers({
-        Authorization: `Basic ${mgAuthCredentials}`
-      }),
-      body: requestBody
+      headers: {
+        Authorization: `Basic ${credentials}`
+      },
+      body: JSON.stringify({
+        email_address: requestBody.address,
+        email_type: "html",
+        status: "subscribed",
+        merge_fields: {
+          FNAME: requestBody.firstName,
+          LNAME: requestBody.lastName || ""
+        }
+      })
     });
-    const json = await res.json();
-    return ServerResponse.success(json);
+
+    const responseJson = await response.json();
+
+    console.log(response.status);
+
+    if (response.status === 200) {
+      return ServerResponse.success(responseJson);
+    }
+    if (responseJson.title === "Member Exists") {
+      return ServerResponse.error(
+        `The email address "${requestBody.address}" is already subscribed.`
+      );
+    }
+    return ServerResponse.error(responseJson.detail);
   } catch (error) {
     return ServerResponse.error(
       `There was an issue in adding the email address to the transactional system: ${error}`

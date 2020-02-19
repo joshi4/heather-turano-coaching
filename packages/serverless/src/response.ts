@@ -1,9 +1,15 @@
-const formatError = (message: string): { message: string } => ({
-  message
+const formatError = (
+  message: string,
+  errorContext = {}
+): { message: string; errorContext: any } => ({
+  message,
+  errorContext
 });
 
-export const error = (errorMessage: string): Response =>
-  new Response(JSON.stringify(formatError(errorMessage)), {
+type ErrorResponse = (errorMessage: string, errorContext?: any) => Response;
+
+export const error: ErrorResponse = (errorMessage, errorContext = {}) =>
+  new Response(JSON.stringify(formatError(errorMessage, errorContext)), {
     status: 500,
     statusText: "SERVER ERROR"
   });

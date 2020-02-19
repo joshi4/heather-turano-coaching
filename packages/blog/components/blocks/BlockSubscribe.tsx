@@ -99,15 +99,21 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
             <form onSubmit={handleSubmit(onSubmit)}>
               <InputGroup layout="stacked">
                 <Input
-                  id="subscribe-name"
-                  name="name"
-                  placeholder={subscribe.fields.content.fields.namePlaceholder}
+                  id="subscribe-first-name"
+                  name="firstName"
+                  placeholder="First name"
                   ref={register({ required: true })}
                   disabled={loading}
                   errorMessage={
-                    errors.name &&
-                    "This is field required. Feel free to only put your first name"
+                    errors.firstName && "We need your first name at a minimum"
                   }
+                />
+                <Input
+                  id="subscribe-last-name"
+                  name="lastName"
+                  placeholder="Last name (optional)"
+                  ref={register()}
+                  disabled={loading}
                 />
                 <Input
                   id="subscribe-email"
@@ -116,7 +122,8 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
                   ref={register({ required: true })}
                   disabled={loading}
                   errorMessage={
-                    errors.address && "This is also a required fied"
+                    errors.address &&
+                    "You'll need to add your email address so we can send you awesome stuff!"
                   }
                 />
                 <Button
@@ -124,7 +131,7 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
                   styleType="accent"
                   type="submit"
                   label={subscribe.fields.content.fields.submitText}
-                  disabled={!!errors.name || !!errors.address || loading}
+                  disabled={!!errors.firstName || !!errors.address || loading}
                   loading={loading}
                   onSubmit={handleSubmit(onSubmit)}
                 />
