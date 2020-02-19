@@ -34,7 +34,6 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
     const json = await res.json();
     return ServerResponse.success(json);
   } catch (error) {
-    // change to error response
     return ServerResponse.error(
       `There was an issue in adding the email address to the transactional system: ${error}`
     );
