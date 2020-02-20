@@ -28,8 +28,7 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
         email_type: "html",
         status: "subscribed",
         merge_fields: {
-          FNAME: requestBody.firstName,
-          LNAME: requestBody.lastName || ""
+          FNAME: requestBody.firstName
         }
       })
     });

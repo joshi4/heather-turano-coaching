@@ -109,13 +109,6 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
                   }
                 />
                 <Input
-                  id="subscribe-last-name"
-                  name="lastName"
-                  placeholder="Last name (optional)"
-                  ref={register()}
-                  disabled={loading}
-                />
-                <Input
                   id="subscribe-email"
                   name="address"
                   placeholder={subscribe.fields.content.fields.emailPlaceholder}
