@@ -7,6 +7,7 @@
     "dev": "next dev",
     "build": "npm run prepareBuild && next build",
     "build:static": "npm run build && next export",
+    "export": "next export",
     "serve": "next start"
   },
   "dependencies": {

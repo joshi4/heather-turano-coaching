@@ -48,7 +48,10 @@ module.exports = {
       const authorPages = authors.reduce(
         (accum, author) => ({
           ...accum,
-          [`/authors/${author.slug}`]: { page: "/authors/[slug]" }
+          [`/authors/${author.slug}`]: {
+            page: "/authors/[slug]",
+            query: { slug: author.slug }
+          }
         }),
         {}
       );
@@ -56,7 +59,10 @@ module.exports = {
       const postPages = posts.reduce(
         (accum, post) => ({
           ...accum,
-          [`/post/${post.slug}`]: { page: "/post/[slug]" }
+          [`/post/${post.slug}`]: {
+            page: "/post/[slug]",
+            query: { slug: post.slug }
+          }
         }),
         {}
       );
@@ -64,7 +70,10 @@ module.exports = {
       const categoryPages = categories.reduce(
         (accum, category) => ({
           ...accum,
-          [`/categories/${category.slug}`]: { page: "/categories/[slug]" }
+          [`/categories/${category.slug}`]: {
+            page: "/categories/[slug]",
+            query: { slug: category.slug }
+          }
         }),
         {}
       );
@@ -72,7 +81,10 @@ module.exports = {
       const tagPages = tags.reduce(
         (accum, tag) => ({
           ...accum,
-          [`/tags/${tag.slug}`]: { page: "/tags/[slug]" }
+          [`/tags/${tag.slug}`]: {
+            page: "/tags/[slug]",
+            query: { slug: tag.slug }
+          }
         }),
         {}
       );
