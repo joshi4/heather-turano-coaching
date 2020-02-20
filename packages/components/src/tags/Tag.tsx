@@ -4,7 +4,8 @@ import {
   makeColor,
   makeSpace,
   makeInset,
-  makeSize
+  makeSize,
+  makeResponsive
 } from "@heather-turano-coaching/design-system/utils";
 
 import { Copy } from "../typography";
@@ -19,15 +20,39 @@ export interface TagProps {
 const CSSTag: { [key in TagType]: SimpleInterpolation } = {
   category: css`
     ${makeInset({ horizontal: 12 })};
+    transition: background 0.15s ease-in-out;
     background: ${makeColor({
       scalable: { color: "secondary", scale: 3 }
     })};
+
+    ${makeResponsive({
+      beginAt: "laptop",
+      style: `
+        &:hover {
+          background: ${makeColor({
+            scalable: { color: "secondary", scale: 2 }
+          })};
+        }
+      `
+    })}
   `,
   tag: css`
     ${makeInset({ horizontal: 12 })};
+    transition: background 0.15s ease-in-out;
     background: ${makeColor({
       scalable: { color: "primary", scale: 3 }
     })};
+
+    ${makeResponsive({
+      beginAt: "laptop",
+      style: `
+        &:hover {
+          background: ${makeColor({
+            scalable: { color: "primary", scale: 2 }
+          })};
+        }
+      `
+    })}
   `,
   list: css`
     ${makeInset({ horizontal: 16 })};
