@@ -62,7 +62,7 @@ const StyledFeaturedBlogCardContainer = styled.div`
   })};
 `;
 
-const StyledBlogImage = styled.div`
+const StyledBlogFeaturedImage = styled.div`
   img {
     width: 100%;
     height: ${makeSize({ custom: 140 })};
@@ -89,6 +89,7 @@ const StyledBlogImage = styled.div`
       img {
           height: 100%;
           max-height: 100%;
+          width: ${makeSize({ custom: 380 })};
         }
       `
   })};
@@ -109,7 +110,7 @@ const StyledCardContent = styled.div`
     ${makeResponsive({
       beginAt: "tabletPortrait",
       style: `
-      ${makeRhythm({ fontSize: "xs", top: 2, bottom: 1 })};
+      ${makeRhythm({ fontSize: "xs", top: 1, bottom: 1 })};
     `
     })}
   }
@@ -160,9 +161,9 @@ export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
 
   return (
     <StyledFeaturedBlogCardContainer>
-      <StyledBlogImage>
+      <StyledBlogFeaturedImage>
         <img src={fp.feature_image as string} alt={fp.slug} />
-      </StyledBlogImage>
+      </StyledBlogFeaturedImage>
       <StyledCardContent>
         {windowWidth < tabletPortrait && (
           <StyledAvatarContainer>
