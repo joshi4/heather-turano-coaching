@@ -1,3 +1,11 @@
+import Helmet from "react-helmet";
+import { StaticQuery, graphql } from "gatsby";
+
+/**
+ * @todo Convert images to gatsby-image
+ */
+// import Img from "gatsby-image";
+
 import React, { Fragment } from "react";
 import { createGlobalStyle } from "styled-components";
 import { makeResponsive } from "@heather-turano-coaching/design-system/utils";
@@ -7,9 +15,9 @@ import {
   HeaderNavLinkContent,
   FooterNav,
   FooterNavLink,
-  FooterNavLinkContent
+  FooterNavLinkContent,
+  logos
 } from "../components";
-import { logos } from ".";
 
 const GlobalStyle = createGlobalStyle`
   html{
@@ -66,11 +74,14 @@ const footerNavLinks = {
   ]
 };
 
-// @ts-ignore
-const MyApp = ({ Component, pageProps }) => {
-  // @ts-ignore
+const Layout = ({ data, children }) => {
+  const site = data.allGhostSettings.edges[0].node;
+
   return (
     <>
+      <Helmet>
+        <html lang={site.lang} />
+      </Helmet>
       <GlobalStyle />
       <HeaderNav
         homeRoute="https://heatherturanocoaching.com"
@@ -83,7 +94,7 @@ const MyApp = ({ Component, pageProps }) => {
           </HeaderNavLink>
         ))}
       />
-      <Component {...pageProps} />
+      {children}
       <FooterNav
         leftNav={{
           title: "Browse",
@@ -125,16 +136,21 @@ const MyApp = ({ Component, pageProps }) => {
   );
 };
 
-// Only uncomment this method if you have blocking data requirements for
-// every single page in your application. This disables the ability to
-// perform automatic static optimization, causing every page in your app to
-// be server-side rendered.
-//
-// MyApp.getInitialProps = async (appContext) => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const appProps = await App.getInitialProps(appContext);
-//
-//   return { ...appProps }
-// }
+const LayoutSettingsQuery = props => (
+  <StaticQuery
+    query={graphql`
+      query GhostSettings {
+        allGhostSettings {
+          edges {
+            node {
+              ...GhostSettingsFields
+            }
+          }
+        }
+      }
+    `}
+    render={data => <Layout data={data} {...props} />}
+  />
+);
 
-export default MyApp;
+export default LayoutSettingsQuery;

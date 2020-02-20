@@ -89,6 +89,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-feed`,
       options: {
+        title: "Live Life Mindful",
         query: `
                 {
                     allGhostSettings {

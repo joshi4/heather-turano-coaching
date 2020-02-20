@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 
 import { Layout, PostCard, Pagination } from "../components/common";
-import { MetaData } from "../components/common/meta";
+import { MetaData } from "../components";
 
 /**
  * Main index page (home page)
