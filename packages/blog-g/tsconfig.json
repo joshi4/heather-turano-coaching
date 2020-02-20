@@ -1,11 +1,9 @@
 {
   "extends": "@heather-turano-coaching/typescript/tsconfig.react.json",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "compilerOptions": {
     "noEmit": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "downlevelIteration": true,
-    "baseUrl": "."
+    "downlevelIteration": true
   }
 }
