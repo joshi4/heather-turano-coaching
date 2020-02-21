@@ -4,25 +4,6 @@ const path = require(`path`);
 const config = require(`./src/utils/siteConfig`);
 const generateRSSFeed = require(`./src/utils/rss/generate-feed`);
 
-let ghostConfig;
-
-try {
-  ghostConfig = require(`./.ghost`);
-} catch (e) {
-  ghostConfig = {
-    apiUrl: process.env.GHOST_API_URL,
-    contentApiKey: process.env.GHOST_CONTENT_API_KEY
-  };
-} finally {
-  const { apiUrl, contentApiKey } = ghostConfig;
-
-  if (!apiUrl || !contentApiKey || contentApiKey.match(/<key>/)) {
-    throw new Error(
-      `GHOST_API_URL and GHOST_CONTENT_API_KEY are required to build.`
-    );
-  }
-}
-
 module.exports = {
   siteMetadata: {
     siteUrl: config.siteUrl
@@ -60,7 +41,17 @@ module.exports = {
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-ghost`,
-      options: ghostConfig
+      options: {
+        apiUrl: process.env.GHOST_API_URL,
+        contentApiKey: process.env.GHOST_CONTENT_API_KEY
+      }
+    },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+      }
     },
     {
       resolve: `gatsby-plugin-ghost-manifest`,

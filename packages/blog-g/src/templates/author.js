@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 
-import { Layout, PostCard, Pagination } from "../components/common";
+import { PostCard, Pagination } from "../components/common";
+import { Layout } from "../layout";
 import { MetaData } from "../components/common/meta";
 
 /**
