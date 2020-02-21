@@ -242,3 +242,17 @@ export const ghostSettingsFields = graphql`
     }
   }
 `;
+
+// Used for Subscribe Block
+export const blockSubscribeFields = graphql`
+  fragment BlockSubscribeFields on ContentfulBlockSubscribe {
+    contentTitle
+    description
+    emailPlaceholder
+    namePlaceholder
+    submitText
+    block {
+      title
+    }
+  }
+`;

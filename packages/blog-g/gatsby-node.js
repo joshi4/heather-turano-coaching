@@ -36,14 +36,6 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      allGhostPage(sort: { order: ASC, fields: published_at }) {
-        edges {
-          node {
-            slug
-            url
-          }
-        }
-      }
     }
   `);
 
@@ -55,14 +47,12 @@ exports.createPages = async ({ graphql, actions }) => {
   // Extract query results
   const tags = result.data.allGhostTag.edges;
   const authors = result.data.allGhostAuthor.edges;
-  const pages = result.data.allGhostPage.edges;
   const posts = result.data.allGhostPost.edges;
 
   // Load templates
   const indexTemplate = path.resolve(`./src/templates/index.tsx`);
   const tagsTemplate = path.resolve(`./src/templates/tag.js`);
-  const authorTemplate = path.resolve(`./src/templates/author.js`);
-  const pageTemplate = path.resolve(`./src/templates/page.js`);
+  const authorTemplate = path.resolve(`./src/templates/author.tsx`);
   const postTemplate = path.resolve(`./src/templates/post.js`);
 
   // Create tag pages
@@ -115,7 +105,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
     // This part here defines, that our author pages will use
     // a `/author/:slug/` permalink.
-    node.url = `/author/${node.slug}/`;
+    node.url = `/authors/${node.slug}/`;
 
     Array.from({ length: numberOfPages }).forEach((_, i) => {
       const currentPage = i + 1;
@@ -148,23 +138,6 @@ exports.createPages = async ({ graphql, actions }) => {
           nextPagePath: nextPagePath
         }
       });
-    });
-  });
-
-  // Create pages
-  pages.forEach(({ node }) => {
-    // This part here defines, that our pages will use
-    // a `/:slug/` permalink.
-    node.url = `/${node.slug}/`;
-
-    createPage({
-      path: node.url,
-      component: pageTemplate,
-      context: {
-        // Data passed to context is available
-        // in page queries as GraphQL variables.
-        slug: node.slug
-      }
     });
   });
 

@@ -1,7 +1,7 @@
 export * from "./formatDate";
 export * from "./getCategoriesFromTags";
+export * from "./removeCategoriesFromTags";
 export * from "./getFeaturedCategories";
-export * from "./filterOutCategoriesFromTags";
 
 type Node<Structure> = { node: Structure };
 

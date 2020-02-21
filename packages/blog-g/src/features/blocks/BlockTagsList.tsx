@@ -19,11 +19,13 @@ import { destructureNodes } from "../../utils";
 interface BlockTagsListProps {
   title?: string;
   limit?: number;
+  tags?: TagType[];
 }
 
 export const BlockTagsList: FC<BlockTagsListProps> = ({
   title = "all tags",
-  limit
+  limit,
+  tags
 }) => {
   /**
    * @todo use a dynamic limit
@@ -43,11 +45,11 @@ export const BlockTagsList: FC<BlockTagsListProps> = ({
     }
   `);
 
-  const tags = destructureNodes(edges);
+  const tgs = tags || destructureNodes(edges);
 
   const ts = limit
-    ? tags.filter((_tag: any, index: number) => index < limit)
-    : tags;
+    ? tgs.filter((_tag: any, index: number) => index < limit)
+    : tgs;
 
   return (
     <LayoutBlock>

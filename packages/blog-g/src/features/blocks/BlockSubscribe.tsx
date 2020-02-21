@@ -63,14 +63,7 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
   const { contentfulBlockSubscribe: queryData } = useStaticQuery(graphql`
     {
       contentfulBlockSubscribe {
-        contentTitle
-        description
-        emailPlaceholder
-        namePlaceholder
-        submitText
-        block {
-          title
-        }
+        ...BlockSubscribeFields
       }
     }
   `);

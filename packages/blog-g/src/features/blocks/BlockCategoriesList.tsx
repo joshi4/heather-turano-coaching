@@ -11,12 +11,13 @@ import {
 import { destructureNodes } from "../../utils";
 
 interface BlockCategoriesListProps {
-  categories: TagType[];
+  categories?: TagType[];
   title?: string;
 }
 
 export const BlockCategoriesList: FC<BlockCategoriesListProps> = ({
-  title = "Cateogories"
+  title = "Cateogories",
+  categories
 }) => {
   const {
     allGhostTag: { edges }
@@ -33,14 +34,14 @@ export const BlockCategoriesList: FC<BlockCategoriesListProps> = ({
     }
   `);
 
-  const categories = destructureNodes(edges);
+  const cats = categories || destructureNodes(edges);
 
   return (
     <LayoutBlock>
       <LayoutBlockTitle title={title} />
       <LayoutBlockContent>
         <TagGroup>
-          {categories.map((category: TagType) => (
+          {cats.map((category: TagType) => (
             <FrameworkLink
               key={category.id}
               to={`/categories/${category.slug}`}
