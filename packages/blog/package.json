@@ -1,6 +1,7 @@
 {
-  "name": "@live-life-mindful/blog-g",
+  "name": "@live-life-mindful/blog",
   "version": "1.0.0",
+  "private": true,
   "license": "MIT",
   "author": "Drew DeCarme (drew@imaginedelements.com)",
   "engines": {

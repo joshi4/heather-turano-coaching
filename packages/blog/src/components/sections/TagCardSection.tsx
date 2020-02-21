@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Tag } from "@tryghost/content-api";
 import { TagGroup, TagCard } from "@heather-turano-coaching/components";
-import { FrameworkLink } from "..";
+import { FrameworkLink } from "../../components";
 import styled from "styled-components";
 import { universalHover } from "../../styles";
 

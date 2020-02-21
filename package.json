@@ -20,16 +20,17 @@
     "build:components:storybook": "npm run build:ds && && npm run build:hooks && lerna run build:storybook --scope=@heather-turano-coaching/components --stream",
     "build:ds": "lerna run build --scope=@heather-turano-coaching/design-system --stream",
     "build:hooks": "lerna run build --scope=@heather-turano-coaching/hooks --stream",
-    "build:blog": "npm run build:ds && npm run build:components && lerna run build --scope=@live-life-mindful/blog-g --stream",
+    "build:blog": "npm run build:ds && npm run build:components && lerna run build --scope=@live-life-mindful/blog --stream",
     "build:serverless": "lerna run build --scope=@heather-turano-coaching/serverless --stream",
     "publish:serverless:dev": "lerna run publish:dev --scope=@heather-turano-coaching/serverless --stream",
     "publish:serverless:prod": "lerna run publish:prod --scope=@heather-turano-coaching/serverless --stream",
     "start:ds": "lerna run start --scope=@heather-turano-coaching/design-system --stream",
     "start:components": "npm run build:ds && npm run build:hooks && cd ./packages/components && npm run start",
     "start:components:storybook": "npm run build:ds && npm run build:hooks && cd ./packages/components && npm run start:storybook",
-    "start:blog": "cd packages/blog-g && npm run start",
+    "start:blog": "cd packages/blog && npm run start",
     "start:serverless": "cd packages/serverless && npm run start",
-    "start:hooks": "cd packages/hooks && npm run start"
+    "start:hooks": "cd packages/hooks && npm run start",
+    "preview:blog": "cd packages/blog && npm run serve"
   },
   "repository": {
     "type": "git",
