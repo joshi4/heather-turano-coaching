@@ -11,7 +11,7 @@ import {
 import { useBreakpoints } from "@heather-turano-coaching/hooks";
 import { formatLongDate } from "../../utils";
 import { TagsSection } from "..";
-import { NextLink } from "../general";
+import { FrameworkLink } from "../general";
 import styled from "styled-components";
 import {
   makeColor,
@@ -65,12 +65,10 @@ const StyledRegularBlogCardContainer = styled.div`
 `;
 
 const StyledBlogImage = styled.div`
-  & > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-  }
+  ${makeResponsive({
+    endAt: "tabletPortrait",
+    style: `width: 100%;`
+  })};
 
   ${makeResponsive({
     endAt: "tabletPortrait",
@@ -78,19 +76,44 @@ const StyledBlogImage = styled.div`
       width: 100%;
       height: ${makeSize({ custom: 200 })};
     `
-  })}
+  })};
 
   ${makeResponsive({
     beginAt: "tabletPortrait",
-    style: `
-      width: 40%;
+    style: `width: 40%;`
+  })};
 
-      img {
-        width: 100%;
+  & > * {
+    ${makeResponsive({
+      endAt: "tabletPortrait",
+      style: `width: 100%;`
+    })};
+
+    ${makeResponsive({
+      beginAt: "tabletPortrait",
+      style: `
         height: 100%;
-      }
-    `
-  })}
+        width: 100%;
+      `
+    })}
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+
+      ${makeResponsive({
+        beginAt: "tabletPortrait",
+        style: `
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        `
+      })};
+    }
+  }
 `;
 
 const StyledCardContent = styled.div`
@@ -114,12 +137,12 @@ const StyledCardContent = styled.div`
     ${makeResponsive({
       beginAt: "tabletPortrait",
       style: `
-        ${makeRhythm({ fontSize: "sm", top: 2, bottom: 1 })};
+        ${makeRhythm({ fontSize: "sm", top: 1, bottom: 1 })};
       `
     })}
   }
 
-  & > p {
+  & > * > p {
     ${makeRhythm({ fontSize: "xs", top: 1, bottom: 2 })};
 
     ${makeResponsive({
@@ -158,13 +181,15 @@ export const BlogPost: FC<BlogPost> = ({
   );
 
   return (
-    <NextLink href={`/post/${slug}`}>
-      <StyledRegularBlogCardContainer>
-        <StyledBlogImage>
+    <StyledRegularBlogCardContainer>
+      <StyledBlogImage>
+        <FrameworkLink to={`/${slug}`}>
           <img src={feature_image as string} alt={slug} />
-        </StyledBlogImage>
-        <StyledCardContent>
-          {!isWindowMobile && Tags}
+        </FrameworkLink>
+      </StyledBlogImage>
+      <StyledCardContent>
+        {!isWindowMobile && Tags}
+        <FrameworkLink to={`/${slug}`}>
           <Heading
             fontSize={isWindowMobile ? "h3" : "h2"}
             fontColor={{ fixed: "dark" }}
@@ -184,9 +209,9 @@ export const BlogPost: FC<BlogPost> = ({
           >
             {pExcerpt}
           </Copy>
-          {isWindowMobile && Tags}
-        </StyledCardContent>
-      </StyledRegularBlogCardContainer>
-    </NextLink>
+        </FrameworkLink>
+        {isWindowMobile && Tags}
+      </StyledCardContent>
+    </StyledRegularBlogCardContainer>
   );
 };

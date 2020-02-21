@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Tag } from "@tryghost/content-api";
 import { TagGroup, TagCard } from "@heather-turano-coaching/components";
-import { NextLink } from "..";
+import { FrameworkLink } from "..";
 import styled from "styled-components";
 import { universalHover } from "../../styles";
 
@@ -27,9 +27,9 @@ export const TagCardSection: FC<TagCardSectionProps> = ({
   <StyledTagCardSection>
     <TagGroup>
       {tags.map(tag => (
-        <NextLink key={tag.id} href={`/${page}/${tag.slug}`}>
+        <FrameworkLink key={tag.id} to={`/${page}/${tag.slug}`}>
           <TagCard type={tagType} name={tag.name as string} />
-        </NextLink>
+        </FrameworkLink>
       ))}
     </TagGroup>
   </StyledTagCardSection>

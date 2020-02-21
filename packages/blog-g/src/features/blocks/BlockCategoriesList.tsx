@@ -6,7 +6,7 @@ import {
   LayoutBlockTitle,
   LayoutBlock,
   LayoutBlockContent,
-  NextLink
+  FrameworkLink
 } from "../../components";
 import { destructureNodes } from "../../utils";
 
@@ -41,9 +41,12 @@ export const BlockCategoriesList: FC<BlockCategoriesListProps> = ({
       <LayoutBlockContent>
         <TagGroup>
           {categories.map((category: TagType) => (
-            <NextLink key={category.id} href={`/categories/${category.slug}`}>
+            <FrameworkLink
+              key={category.id}
+              to={`/categories/${category.slug}`}
+            >
               <Tag tagType="category" text={category.name as string} />
-            </NextLink>
+            </FrameworkLink>
           ))}
         </TagGroup>
       </LayoutBlockContent>

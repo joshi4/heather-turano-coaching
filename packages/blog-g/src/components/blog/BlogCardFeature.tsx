@@ -10,7 +10,7 @@ import {
   makeFlex
 } from "@heather-turano-coaching/components";
 import { TagsSection } from "../sections";
-import { NextLink } from "../general";
+import { FrameworkLink } from "../general";
 import { useBreakpoints } from "@heather-turano-coaching/hooks";
 import styled from "styled-components";
 import {
@@ -207,9 +207,9 @@ export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
         </Copy>
 
         {windowWidth >= tabletLandscape && (
-          <NextLink href={`/post/${fp.slug}`}>
+          <FrameworkLink to={`/post/${fp.slug}`}>
             <Button styleType="primary" label="Read more" />
-          </NextLink>
+          </FrameworkLink>
         )}
       </StyledCardContent>
     </StyledFeaturedBlogCardContainer>

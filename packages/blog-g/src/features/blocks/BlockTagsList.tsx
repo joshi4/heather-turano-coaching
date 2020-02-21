@@ -8,7 +8,7 @@ import {
   ButtonAction
 } from "@heather-turano-coaching/components";
 
-import { NextLink } from "../../components/general";
+import { FrameworkLink } from "../../components/general";
 import {
   LayoutBlockTitle,
   LayoutBlock,
@@ -52,7 +52,7 @@ export const BlockTagsList: FC<BlockTagsListProps> = ({
   return (
     <LayoutBlock>
       <LayoutBlockTitle title={title}>
-        <NextLink href="/tags">
+        <FrameworkLink to="/tags">
           <ButtonAction
             buttonSize="md"
             buttonColor={{ scalable: { color: "secondary", scale: 1 } }}
@@ -60,14 +60,14 @@ export const BlockTagsList: FC<BlockTagsListProps> = ({
             iconWeight="fad"
             title="View all tags"
           />
-        </NextLink>
+        </FrameworkLink>
       </LayoutBlockTitle>
       <LayoutBlockContent>
         <TagGroup>
           {ts.map((tag: TagType) => (
-            <NextLink key={tag.slug} href={`/tags/${tag.slug}`}>
+            <FrameworkLink key={tag.slug} to={`/tags/${tag.slug}`}>
               <Tag tagType="tag" text={tag.name as string} />
-            </NextLink>
+            </FrameworkLink>
           ))}
         </TagGroup>
       </LayoutBlockContent>

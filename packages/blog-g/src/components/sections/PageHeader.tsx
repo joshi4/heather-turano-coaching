@@ -15,8 +15,9 @@ import {
   ColorProperties,
   ColorScalePosition
 } from "@heather-turano-coaching/design-system/types/composite";
-import { NextLink } from "../general";
 import { useBreakpoints } from "@heather-turano-coaching/hooks";
+
+import { FrameworkLink } from "../general";
 
 interface PageHeaderProps {
   pageTitle: string;
@@ -121,12 +122,12 @@ export const PageHeader: FC<PageHeaderProps> = ({
         {routes.map((route, index) =>
           index !== routes.length - 1 ? (
             <Fragment key={route}>
-              <NextLink href={`/${route}`}>
+              <FrameworkLink to={`/${route}`}>
                 {copy({
                   label: index === 0 ? basePathName : route,
                   scale: index !== routes.length - 1 ? 2 : 0
                 })}
-              </NextLink>
+              </FrameworkLink>
               {copy({
                 label: "|",
                 scale: 2

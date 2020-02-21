@@ -20,9 +20,9 @@ import {
   LayoutBlockContent,
   LayoutBlockTitle,
   LayoutBlock,
-  NextLink
+  FrameworkLink
 } from "../../components";
-import { destructureNodes } from "../../utils";
+import { destructureNodes, featuredCategoryDelimiter } from "../../utils";
 
 const componentFontSize: FontProperties["fontSize"] = "sm";
 
@@ -74,7 +74,7 @@ export const BlockFeaturedCategory: FC = () => {
   return (
     <LayoutBlock>
       <LayoutBlockTitle title="Featured Category">
-        <NextLink href="/categories">
+        <FrameworkLink to="/categories">
           <ButtonAction
             buttonSize="md"
             buttonColor={{ scalable: { color: "secondary", scale: 1 } }}
@@ -82,23 +82,23 @@ export const BlockFeaturedCategory: FC = () => {
             iconWeight="fad"
             title="View all categories"
           />
-        </NextLink>
+        </FrameworkLink>
       </LayoutBlockTitle>
       <LayoutBlockContent>
         <StyledBlockFeaturedCategory>
           <Heading fontSize="h3" fontColor={{ scalable: { color: "gray" } }}>
-            {cat.name}
+            {cat.name?.split("-")[1]}
           </Heading>
           <Copy type="paragraph" fontSize={componentFontSize}>
-            {cat.description}
+            {cat.description?.split(featuredCategoryDelimiter)[1]}
           </Copy>
           <ButtonGroup layout={isWindowMobile ? "stacked-full" : "inline"}>
-            <NextLink href={`/categories/${cat.slug}`}>
+            <FrameworkLink to={`/categories/${cat.slug}`}>
               <Button styleType="secondary" label="Explore this category" />
-            </NextLink>
-            <NextLink href="/categories">
+            </FrameworkLink>
+            <FrameworkLink to="/categories">
               <Button styleType="primary" label="View all categories" />
-            </NextLink>
+            </FrameworkLink>
           </ButtonGroup>
         </StyledBlockFeaturedCategory>
       </LayoutBlockContent>

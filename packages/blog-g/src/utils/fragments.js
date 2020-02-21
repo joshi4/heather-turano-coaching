@@ -103,6 +103,7 @@ export const ghostPostFields = graphql`
       visibility
     }
     tags {
+      id
       name
       slug
       description

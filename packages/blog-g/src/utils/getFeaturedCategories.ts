@@ -1,6 +1,6 @@
 import { Tag } from "@tryghost/content-api";
 
-const featuredCategoryDelimiter = "__FEATURE__";
+export const featuredCategoryDelimiter = "__FEATURE__";
 
 export const getFeaturedCategories = (categories: Tag[]) =>
   categories

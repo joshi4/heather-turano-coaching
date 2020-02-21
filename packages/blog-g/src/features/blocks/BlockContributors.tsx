@@ -4,7 +4,7 @@ import {
   LayoutBlockTitle,
   LayoutBlock,
   LayoutBlockContent,
-  NextLink
+  FrameworkLink
 } from "../../components";
 import { PostOrPage, Author } from "@tryghost/content-api";
 import {
@@ -83,7 +83,7 @@ export const BlockContributors: FC<BlockContributorsProps> = ({
   return (
     <LayoutBlock>
       <LayoutBlockTitle title={title}>
-        <NextLink href="/authors">
+        <FrameworkLink to="/authors">
           <ButtonAction
             buttonSize="md"
             buttonColor={{ scalable: { color: "gray", scale: 1 } }}
@@ -91,7 +91,7 @@ export const BlockContributors: FC<BlockContributorsProps> = ({
             iconWeight="fad"
             title="View all contributors"
           />
-        </NextLink>
+        </FrameworkLink>
       </LayoutBlockTitle>
       <LayoutBlockContent>
         <StyledBlockContributors>
@@ -99,7 +99,7 @@ export const BlockContributors: FC<BlockContributorsProps> = ({
             const color = generateRandomColor();
             return (
               <StyledLinks hoverColor={color} key={author.id}>
-                <NextLink href={`/authors/${author.slug}`}>
+                <FrameworkLink to={`/authors/${author.slug}`}>
                   <AvatarListItem
                     name={author.name as string}
                     image={author.profile_image as string}
@@ -107,7 +107,7 @@ export const BlockContributors: FC<BlockContributorsProps> = ({
                     accentColor={color}
                     bio={author.bio}
                   />
-                </NextLink>
+                </FrameworkLink>
               </StyledLinks>
             );
           })}
