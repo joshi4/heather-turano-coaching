@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from "react";
-import { useRouter } from "next/router";
+import { useLocation } from "@reach/router";
 import { Copy, Heading, makeFlex } from "@heather-turano-coaching/components";
 import styled from "styled-components";
 import {
@@ -111,9 +111,9 @@ export const PageHeader: FC<PageHeaderProps> = ({
   pageTitle,
   titleColor = { scalable: { color: "secondary" } }
 }) => {
-  const router = useRouter();
+  const location = useLocation();
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
-  const routes = router.asPath.split("/");
+  const routes = location.pathname.split("/");
   routes[routes.length - 1] = pageName ? pageName : routes[routes.length - 1];
 
   return (
