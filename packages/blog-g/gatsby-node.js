@@ -51,7 +51,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Load templates
   const indexTemplate = path.resolve(`./src/templates/index.tsx`);
-  const tagsTemplate = path.resolve(`./src/templates/tag.js`);
+  const tagsTemplate = path.resolve(`./src/templates/tag.tsx`);
   const authorTemplate = path.resolve(`./src/templates/author.tsx`);
   const postTemplate = path.resolve(`./src/templates/post.tsx`);
 
@@ -62,7 +62,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
     // This part here defines, that our tag pages will use
     // a `/tag/:slug/` permalink.
-    node.url = `/tag/${node.slug}/`;
+    node.url = `/tags/${node.slug}/`;
 
     Array.from({ length: numberOfPages }).forEach((_, i) => {
       const currentPage = i + 1;

@@ -42,7 +42,7 @@ const Index = ({ data, location, pageContext }) => {
       <BockDailyInspiration />
       {!isWindowMobile && (
         <>
-          <BlockContributors posts={posts} />
+          <BlockContributors />
           <BlockTagsList title="Recent tags" limit={10} />
         </>
       )}
@@ -54,7 +54,7 @@ const Index = ({ data, location, pageContext }) => {
       <BlockRecentPosts posts={posts} />
       {isWindowMobile && (
         <>
-          <BlockContributors posts={posts} />
+          <BlockContributors />
           <BlockTagsList title="Recent tags" limit={10} />
           <BlockSubscribe />
         </>

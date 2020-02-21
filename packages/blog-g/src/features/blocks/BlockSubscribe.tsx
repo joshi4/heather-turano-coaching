@@ -81,7 +81,9 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
 
   return (
     <LayoutBlock>
-      {displayBlockTitle && <LayoutBlockTitle title={queryData.block.title} />}
+      {displayBlockTitle && (
+        <LayoutBlockTitle title={queryData.block[0].title} />
+      )}
       <LayoutBlockContent>
         <StyledSubscribeContnet>
           <StyledContentCopy>

@@ -3,7 +3,8 @@ import styled from "styled-components";
 import {
   makeColor,
   makeFont,
-  makeSize
+  makeSize,
+  makeOutset
 } from "@heather-turano-coaching/design-system/utils";
 import { Heading, makeFlex } from "@heather-turano-coaching/components";
 
@@ -15,6 +16,7 @@ const StyledLayoutBlockTitle = styled.header`
   width: 100%;
   position: relative;
   ${makeFlex("row", "space-between", "center")};
+  ${makeOutset({ bottom: 16 })};
 
   &::after {
     content: "";

@@ -21,10 +21,11 @@ import {
   makeOutset
 } from "@heather-turano-coaching/design-system/utils";
 import { destructureNodes } from "../../utils";
+import { uniqBy } from "lodash";
 
 interface BlockContributorsProps {
   title?: string;
-  posts: PostOrPage[];
+  posts?: PostOrPage[];
   filter?: "all" | "unique";
 }
 
@@ -57,7 +58,8 @@ const StyledLinks = styled.li<{ hoverColor: RandomColor }>`
 `;
 
 export const BlockContributors: FC<BlockContributorsProps> = ({
-  title = "Authors"
+  title = "Authors",
+  posts
 }) => {
   const {
     allGhostAuthor: { edges }
@@ -78,7 +80,15 @@ export const BlockContributors: FC<BlockContributorsProps> = ({
     }
   `);
 
-  const postAuthors = destructureNodes(edges);
+  const postAuthors = posts
+    ? uniqBy(
+        posts.reduce<Author[]>(
+          (accum, post) => [...accum, ...post.authors],
+          []
+        ),
+        "id"
+      )
+    : destructureNodes(edges);
 
   return (
     <LayoutBlock>
