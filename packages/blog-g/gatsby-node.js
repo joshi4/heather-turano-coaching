@@ -53,7 +53,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const indexTemplate = path.resolve(`./src/templates/index.tsx`);
   const tagsTemplate = path.resolve(`./src/templates/tag.js`);
   const authorTemplate = path.resolve(`./src/templates/author.tsx`);
-  const postTemplate = path.resolve(`./src/templates/post.js`);
+  const postTemplate = path.resolve(`./src/templates/post.tsx`);
 
   // Create tag pages
   tags.forEach(({ node }) => {

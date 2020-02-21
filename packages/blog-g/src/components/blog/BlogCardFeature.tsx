@@ -207,7 +207,7 @@ export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
         </Copy>
 
         {windowWidth >= tabletLandscape && (
-          <FrameworkLink to={`/post/${fp.slug}`}>
+          <FrameworkLink to={`/${fp.slug}`}>
             <Button styleType="primary" label="Read more" />
           </FrameworkLink>
         )}
