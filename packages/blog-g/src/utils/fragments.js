@@ -14,6 +14,7 @@ export const ghostTagFields = graphql`
   fragment GhostTagFields on GhostTag {
     slug
     name
+    id
     visibility
     feature_image
     description

@@ -12,7 +12,8 @@ import {
   BlogPostList
 } from "../components";
 import { BlockSubscribe, BlockContributors, BlockTagsList } from "../features";
-import { destructureNodes } from "../utils";
+import { destructureNodes, removeCategoriesFromTags } from "../utils";
+import { uniqBy } from "lodash";
 
 /**
  * Tag page (/tag/:slug)
@@ -20,14 +21,9 @@ import { destructureNodes } from "../utils";
  * Loads all posts for the requested tag incl. pagination.
  *
  */
-interface TagsPageProps {
+interface CategoryPageProps {
   data: {
     ghostTag: Tag;
-    allGhostTag: {
-      edges: {
-        node: Tag;
-      }[];
-    };
     allGhostPost: {
       edges: {
         node: PostOrPage;
@@ -38,10 +34,20 @@ interface TagsPageProps {
   pageContext: any;
 }
 
-const TagPage: FC<TagsPageProps> = ({ data, location }) => {
-  const tag = data.ghostTag;
+const CategoryPage: FC<CategoryPageProps> = ({ data, location }) => {
+  const category = data.ghostTag;
   const posts = destructureNodes(data.allGhostPost.edges);
-  const tags = destructureNodes(data.allGhostTag.edges);
+
+  const tags = posts
+    .filter(post =>
+      post.tags?.find(tag => {
+        console.log(tag.slug, category.slug, tag.slug === category.slug);
+        return tag.slug === category.slug;
+      })
+    )
+    .flatMap(({ tags }) => tags);
+  const tagsUnique = uniqBy(removeCategoriesFromTags(tags as Tag[]), "id");
+  debugger;
 
   return (
     <>
@@ -51,9 +57,8 @@ const TagPage: FC<TagsPageProps> = ({ data, location }) => {
           <LayoutContainer layoutType="stacked">
             <LayoutColumn>
               <PageHeader
-                pageName="tag"
-                pageTitle={tag.name as string}
-                titleColor={{ scalable: { color: "primary" } }}
+                pageName="category"
+                pageTitle={category.name ? category.name.split("-")[1] : ""}
               />
             </LayoutColumn>
           </LayoutContainer>
@@ -63,8 +68,11 @@ const TagPage: FC<TagsPageProps> = ({ data, location }) => {
             </LayoutColumn>
             <LayoutColumn>
               <BlockSubscribe displayBlockTitle={false} />
-              <BlockContributors title="Authors of tag posts" posts={posts} />
-              <BlockTagsList title="recent tags" tags={tags} />
+              <BlockContributors
+                title="Authors of this category"
+                posts={posts}
+              />
+              <BlockTagsList title="Tags in this category" tags={tagsUnique} />
             </LayoutColumn>
           </LayoutContainer>
         </PageContainer>
@@ -73,10 +81,10 @@ const TagPage: FC<TagsPageProps> = ({ data, location }) => {
   );
 };
 
-export default TagPage;
+export default CategoryPage;
 
 export const pageQuery = graphql`
-  query GhostTagQuery($slug: String!) {
+  query GhostCategoryQuery($slug: String!) {
     # Tag Information
     ghostTag(slug: { eq: $slug }) {
       ...GhostTagFields
@@ -90,15 +98,6 @@ export const pageQuery = graphql`
       edges {
         node {
           ...GhostPostFields
-        }
-      }
-    }
-
-    # Recent Tags
-    allGhostTag(filter: {}, limit: 10) {
-      edges {
-        node {
-          ...GhostTagFields
         }
       }
     }

@@ -51,7 +51,8 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Load templates
   const indexTemplate = path.resolve(`./src/templates/index.tsx`);
-  const tagsTemplate = path.resolve(`./src/templates/tag.tsx`);
+  const tagTemplate = path.resolve(`./src/templates/tag.tsx`);
+  const categoryTemplate = path.resolve(`./src/templates/category.tsx`);
   const authorTemplate = path.resolve(`./src/templates/author.tsx`);
   const postTemplate = path.resolve(`./src/templates/post.tsx`);
 
@@ -80,7 +81,50 @@ exports.createPages = async ({ graphql, actions }) => {
 
       createPage({
         path: i === 0 ? node.url : `${node.url}page/${i + 1}/`,
-        component: tagsTemplate,
+        component: tagTemplate,
+        context: {
+          // Data passed to context is available
+          // in page queries as GraphQL variables.
+          slug: node.slug,
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numberOfPages: numberOfPages,
+          humanPageNumber: currentPage,
+          prevPageNumber: prevPageNumber,
+          nextPageNumber: nextPageNumber,
+          previousPagePath: previousPagePath,
+          nextPagePath: nextPagePath
+        }
+      });
+    });
+  });
+
+  // Create category pages
+  tags.forEach(({ node }) => {
+    const totalPosts = node.postCount !== null ? node.postCount : 0;
+    const numberOfPages = Math.ceil(totalPosts / postsPerPage);
+
+    // This part here defines, that our tag pages will use
+    // a `/categories/:slug/` permalink.
+    node.url = `/categories/${node.slug}/`;
+
+    Array.from({ length: numberOfPages }).forEach((_, i) => {
+      const currentPage = i + 1;
+      const prevPageNumber = currentPage <= 1 ? null : currentPage - 1;
+      const nextPageNumber =
+        currentPage + 1 > numberOfPages ? null : currentPage + 1;
+      const previousPagePath = prevPageNumber
+        ? prevPageNumber === 1
+          ? node.url
+          : `${node.url}page/${prevPageNumber}/`
+        : null;
+      const nextPagePath = nextPageNumber
+        ? `${node.url}page/${nextPageNumber}/`
+        : null;
+
+      createPage({
+        path: i === 0 ? node.url : `${node.url}page/${i + 1}/`,
+        component: categoryTemplate,
         context: {
           // Data passed to context is available
           // in page queries as GraphQL variables.
