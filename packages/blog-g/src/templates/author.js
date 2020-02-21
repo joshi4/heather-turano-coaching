@@ -2,9 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 
-import { PostCard, Pagination } from "../components/common";
-import { Layout } from "../layout";
-import { MetaData } from "../components/common/meta";
+import { MetaData, Layout } from "../components";
 
 /**
  * Author page (/author/:slug)
@@ -14,7 +12,7 @@ import { MetaData } from "../components/common/meta";
  */
 const Author = ({ data, location, pageContext }) => {
   const author = data.ghostAuthor;
-  const posts = data.allGhostPost.edges;
+  // const posts = data.allGhostPost.edges;
   const twitterUrl = author.twitter
     ? `https://twitter.com/${author.twitter.replace(/^@/, ``)}`
     : null;
@@ -71,12 +69,12 @@ const Author = ({ data, location, pageContext }) => {
             </div>
           </header>
           <section className="post-feed">
-            {posts.map(({ node }) => (
+            {/* {posts.map(({ node }) => (
               // The tag below includes the markup for each post - components/common/PostCard.js
               <PostCard key={node.id} post={node} />
-            ))}
+            ))} */}
           </section>
-          <Pagination pageContext={pageContext} />
+          {/* <Pagination pageContext={pageContext} /> */}
         </div>
       </Layout>
     </>

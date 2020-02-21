@@ -1,15 +1,21 @@
 import React, { FC, useRef } from "react";
-import { LayoutBlockTitle, LayoutBlock, LayoutBlockContent } from "../layout";
-import { PostOrPage } from "@tryghost/content-api";
-import { BlogPostList } from "../blog";
 import styled, { css } from "styled-components";
-import { headerNavVerticalPadding } from "../navigation";
+import {
+  LayoutBlockTitle,
+  LayoutBlock,
+  LayoutBlockContent,
+  BlogPostList,
+  headerNavVerticalPadding
+} from "../../components";
+import { PostOrPage } from "@tryghost/content-api";
 import {
   makeSize,
   makeColor,
   makeSpace
 } from "@heather-turano-coaching/design-system/utils";
 import { useSticky } from "@heather-turano-coaching/hooks";
+import { useStaticQuery, graphql } from "gatsby";
+import { destructureNodes } from "../../utils";
 
 interface BlockRecentPostsProps {
   posts: PostOrPage[];
@@ -42,10 +48,32 @@ const StyledStickyTarget = styled.div<{ isSticky: boolean }>`
     `};
 `;
 
+// Recent posts will always contain infinite scroll
+// query params could be author
+
+/**
+ * @todo infinite scroll
+ */
+
 export const BlockRecentPosts: FC<BlockRecentPostsProps> = ({
-  title = "recent posts",
-  posts
+  title = "recent posts"
 }) => {
+  const {
+    allGhostPost: { edges }
+  } = useStaticQuery(graphql`
+    {
+      allGhostPost {
+        edges {
+          node {
+            ...GhostPostFields
+          }
+        }
+      }
+    }
+  `);
+
+  const posts = destructureNodes(edges);
+
   const wrapperRef = useRef<HTMLDivElement>(null);
   const targetRef = useRef<HTMLDivElement>(null);
   const isSticky = useSticky<HTMLDivElement>({

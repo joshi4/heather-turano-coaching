@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import Helmet from "react-helmet";
 
-import { Layout } from "../layout";
-import { MetaData } from "../components/common/meta";
+import { Layout, MetaData } from "../components";
 
 /**
  * Single post view (/:slug)

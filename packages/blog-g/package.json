@@ -13,10 +13,10 @@
   },
   "devDependencies": {
     "@heather-turano-coaching/typescript": "^0.2.0",
-    "babel-eslint": "10.0.3",
-    "eslint": "6.8.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0",
     "eslint-plugin-ghost": "1.0.0",
-    "eslint-plugin-react": "7.18.3",
+    "eslint-plugin-react": "^7.18.0",
     "typescript": "^3.7.5"
   },
   "dependencies": {
@@ -59,6 +59,6 @@
     "react-hook-form": "^4.7.1",
     "react-spring": "^8.0.27",
     "react-use-gesture": "^6.0.14",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.0"
   }
 }

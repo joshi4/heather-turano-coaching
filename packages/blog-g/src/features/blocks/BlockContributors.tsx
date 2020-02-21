@@ -1,6 +1,11 @@
 import React, { FC } from "react";
-import { uniqBy } from "lodash";
-import { LayoutBlockTitle, LayoutBlock, LayoutBlockContent } from "../layout";
+import { useStaticQuery, graphql } from "gatsby";
+import {
+  LayoutBlockTitle,
+  LayoutBlock,
+  LayoutBlockContent,
+  NextLink
+} from "../../components";
 import { PostOrPage, Author } from "@tryghost/content-api";
 import {
   AvatarListItem,
@@ -15,7 +20,7 @@ import {
   makeColor,
   makeOutset
 } from "@heather-turano-coaching/design-system/utils";
-import { NextLink } from "../general";
+import { destructureNodes } from "../../utils";
 
 interface BlockContributorsProps {
   title?: string;
@@ -52,15 +57,29 @@ const StyledLinks = styled.li<{ hoverColor: RandomColor }>`
 `;
 
 export const BlockContributors: FC<BlockContributorsProps> = ({
-  title = "Authors",
-  filter = "unique",
-  posts
+  title = "Authors"
 }) => {
-  const authors = posts.reduce<Author[]>(
-    (accum, post) => [...accum, ...post.authors],
-    []
-  );
-  const postAuthors = filter === "unique" ? uniqBy(authors, "id") : authors;
+  const {
+    allGhostAuthor: { edges }
+  } = useStaticQuery(graphql`
+    {
+      allGhostAuthor(filter: { postCount: { gt: 0 } }) {
+        edges {
+          node {
+            name
+            cover_image
+            profile_image
+            bio
+            id
+            slug
+          }
+        }
+      }
+    }
+  `);
+
+  const postAuthors = destructureNodes(edges);
+
   return (
     <LayoutBlock>
       <LayoutBlockTitle title={title}>
@@ -76,7 +95,7 @@ export const BlockContributors: FC<BlockContributorsProps> = ({
       </LayoutBlockTitle>
       <LayoutBlockContent>
         <StyledBlockContributors>
-          {postAuthors.map(author => {
+          {postAuthors.map((author: Author) => {
             const color = generateRandomColor();
             return (
               <StyledLinks hoverColor={color} key={author.id}>

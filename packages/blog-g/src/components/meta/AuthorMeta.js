@@ -6,7 +6,7 @@ import { StaticQuery, graphql } from "gatsby";
 
 import ImageMeta from "./ImageMeta";
 import getAuthorProperties from "./getAuthorProperties";
-import config from "../../../utils/siteConfig";
+import config from "../../utils/siteConfig";
 
 const AuthorMeta = ({ data, settings, canonical }) => {
   settings = settings.allGhostSettings.edges[0].node;

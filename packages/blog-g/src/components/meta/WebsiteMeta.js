@@ -6,7 +6,7 @@ import { StaticQuery, graphql } from "gatsby";
 import url from "url";
 
 import ImageMeta from "./ImageMeta";
-import config from "../../../utils/siteConfig";
+import config from "../../utils/siteConfig";
 
 const WebsiteMeta = ({
   data,

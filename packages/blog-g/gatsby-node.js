@@ -59,7 +59,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const posts = result.data.allGhostPost.edges;
 
   // Load templates
-  const indexTemplate = path.resolve(`./src/templates/index.js`);
+  const indexTemplate = path.resolve(`./src/templates/index.tsx`);
   const tagsTemplate = path.resolve(`./src/templates/tag.js`);
   const authorTemplate = path.resolve(`./src/templates/author.js`);
   const pageTemplate = path.resolve(`./src/templates/page.js`);

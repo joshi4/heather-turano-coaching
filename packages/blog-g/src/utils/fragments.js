@@ -7,8 +7,6 @@ import { graphql } from "gatsby";
  *   ...GhostPostFields
  * for example to load all post fields into your GraphQL query.
  *
- * Further info 👉🏼 https://www.gatsbyjs.org/docs/graphql-reference/#fragments
- *
  */
 
 // Used for tag archive pages

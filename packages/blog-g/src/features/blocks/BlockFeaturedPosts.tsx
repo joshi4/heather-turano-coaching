@@ -12,14 +12,23 @@ import { clamp } from "lodash";
 import { useSprings, animated } from "react-spring";
 import { useDrag } from "react-use-gesture";
 
-import { LayoutBlock, LayoutBlockTitle, LayoutBlockContent } from "../layout";
-import { BlogCardFeature, BlogCardFeatureSelector } from "../blog";
+import {
+  LayoutBlock,
+  LayoutBlockTitle,
+  LayoutBlockContent
+} from "../../components/layout";
+import {
+  BlogCardFeature,
+  BlogCardFeatureSelector
+} from "../../components/blog";
 import {
   makeSize,
   makeColor,
   makeOutset,
   makeReset
 } from "@heather-turano-coaching/design-system/utils";
+import { useStaticQuery, graphql } from "gatsby";
+import { destructureNodes } from "../../utils";
 
 interface BlockFeaturedPostsProps {
   featuredPosts: PostOrPage[];
@@ -233,9 +242,22 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
   );
 };
 
-export const BlockFeaturedPosts: FC<BlockFeaturedPostsProps> = ({
-  featuredPosts
-}) => {
+export const BlockFeaturedPosts: FC = () => {
+  const {
+    allGhostPost: { edges }
+  } = useStaticQuery(graphql`
+    {
+      allGhostPost(filter: { featured: { eq: true } }) {
+        edges {
+          node {
+            ...GhostPostFields
+          }
+        }
+      }
+    }
+  `);
+
+  const featuredPosts = destructureNodes(edges);
   const [visibleFeaturedPost, setVisibleFeaturedPost] = useState(
     featuredPosts[0]
   );

@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
+import { useStaticQuery, graphql } from "gatsby";
 
 import {
   InputGroup,
@@ -10,7 +11,11 @@ import {
   Heading
 } from "@heather-turano-coaching/components";
 
-import { LayoutBlockTitle, LayoutBlock, LayoutBlockContent } from "../layout";
+import {
+  LayoutBlockTitle,
+  LayoutBlock,
+  LayoutBlockContent
+} from "../../components";
 
 import {
   makeInset,
@@ -26,7 +31,6 @@ import {
 import { useApi } from "@heather-turano-coaching/hooks";
 
 interface BlockSubscribeProps {
-  subscribe: any;
   displayBlockTitle?: boolean;
 }
 const StyledSubscribeContnet = styled.div`
@@ -54,9 +58,23 @@ const StyledContentCopy = styled.div`
 `;
 
 export const BlockSubscribe: FC<BlockSubscribeProps> = ({
-  subscribe,
   displayBlockTitle = true
 }) => {
+  const { contentfulBlockSubscribe: queryData } = useStaticQuery(graphql`
+    {
+      contentfulBlockSubscribe {
+        contentTitle
+        description
+        emailPlaceholder
+        namePlaceholder
+        submitText
+        block {
+          title
+        }
+      }
+    }
+  `);
+
   const { register, errors, handleSubmit } = useForm<SubscribeToBlogRequest>();
 
   const [{ loading, data, error }, subcribe] = useApi<
@@ -70,7 +88,7 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
 
   return (
     <LayoutBlock>
-      {displayBlockTitle && <LayoutBlockTitle title={subscribe.fields.title} />}
+      {displayBlockTitle && <LayoutBlockTitle title={queryData.block.title} />}
       <LayoutBlockContent>
         <StyledSubscribeContnet>
           <StyledContentCopy>
@@ -79,10 +97,10 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
               fontColor={{ fixed: "light" }}
               fontFamily="Covered By Your Grace"
             >
-              {subscribe.fields.content.fields.contentTitle}
+              {queryData.contentTitle}
             </Heading>
             <Copy type="text" fontColor={{ fixed: "light" }}>
-              {subscribe.fields.content.fields.description}
+              {queryData.description}
             </Copy>
           </StyledContentCopy>
           {error && (
@@ -101,7 +119,7 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
                 <Input
                   id="subscribe-first-name"
                   name="firstName"
-                  placeholder="First name"
+                  placeholder={queryData.namePlaceholder}
                   ref={register({ required: true })}
                   disabled={loading}
                   errorMessage={
@@ -111,7 +129,7 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
                 <Input
                   id="subscribe-email"
                   name="address"
-                  placeholder={subscribe.fields.content.fields.emailPlaceholder}
+                  placeholder={queryData.emailPlaceholder}
                   ref={register({ required: true })}
                   disabled={loading}
                   errorMessage={
@@ -123,7 +141,7 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
                   id="submit-subscription"
                   styleType="accent"
                   type="submit"
-                  label={subscribe.fields.content.fields.submitText}
+                  label={queryData.submitText}
                   disabled={!!errors.firstName || !!errors.address || loading}
                   loading={loading}
                   onSubmit={handleSubmit(onSubmit)}

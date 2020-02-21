@@ -1,8 +1,7 @@
 import React, { FC } from "react";
 import { Tag } from "@tryghost/content-api";
-import { getCategoriesFromTags } from "../../utils/getCategoriesFromTags";
-import { getFeaturedCategories } from "../../utils";
 import styled from "styled-components";
+import { useStaticQuery, graphql } from "gatsby";
 import {
   makeInset,
   makeRhythm,
@@ -17,8 +16,13 @@ import {
 } from "@heather-turano-coaching/components";
 import { FontProperties } from "@heather-turano-coaching/design-system/types/composite";
 import { useBreakpoints } from "@heather-turano-coaching/hooks";
-import { LayoutBlockContent, LayoutBlockTitle, LayoutBlock } from "../layout";
-import { NextLink } from "../general";
+import {
+  LayoutBlockContent,
+  LayoutBlockTitle,
+  LayoutBlock,
+  NextLink
+} from "../../components";
+import { destructureNodes } from "../../utils";
 
 const componentFontSize: FontProperties["fontSize"] = "sm";
 
@@ -38,13 +42,34 @@ const StyledBlockFeaturedCategory = styled.div`
   }
 `;
 
-export const BlockFeaturedCategory: FC<{ tags: Tag[] }> = ({ tags }) => {
+export const BlockFeaturedCategory: FC = () => {
+  const {
+    allGhostTag: { edges }
+  } = useStaticQuery(graphql`
+    {
+      allGhostTag(
+        filter: {
+          name: { glob: "category-*" }
+          description: { glob: "__FEATURE__*" }
+        }
+      ) {
+        edges {
+          node {
+            slug
+            name
+            description
+          }
+        }
+      }
+    }
+  `);
+
+  const featuredCategories = destructureNodes(edges);
+
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
   const isWindowMobile = windowWidth < tabletPortrait;
 
-  const categories = getCategoriesFromTags(tags);
-  const featuredCategories = getFeaturedCategories(categories);
-  const cat = featuredCategories[0];
+  const cat: Tag = featuredCategories[0];
 
   return (
     <LayoutBlock>

@@ -2,9 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 
-import { PostCard, Pagination } from "../components/common";
-import { Layout } from "../layout";
-import { MetaData } from "../components/common/meta";
+import { Layout, MetaData } from "../components";
 
 /**
  * Tag page (/tag/:slug)
@@ -14,7 +12,7 @@ import { MetaData } from "../components/common/meta";
  */
 const Tag = ({ data, location, pageContext }) => {
   const tag = data.ghostTag;
-  const posts = data.allGhostPost.edges;
+  // const posts = data.allGhostPost.edges;
 
   return (
     <>
@@ -26,12 +24,12 @@ const Tag = ({ data, location, pageContext }) => {
             {tag.description ? <p>{tag.description}</p> : null}
           </header>
           <section className="post-feed">
-            {posts.map(({ node }) => (
+            {/* {posts.map(({ node }) => (
               // The tag below includes the markup for each post - components/common/PostCard.js
               <PostCard key={node.id} post={node} />
-            ))}
+            ))} */}
           </section>
-          <Pagination pageContext={pageContext} />
+          {/* <Pagination pageContext={pageContext} /> */}
         </div>
       </Layout>
     </>
