@@ -25,21 +25,23 @@ services:
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
     buildCommand: npm run bootstrap:ci && npm run build:blog
-    staticPublishPath: ./packages/blog/out
+    staticPublishPath: ./packages/blog/public
     domains:
       - blog.livelifemindful.com
     envVars:
       - fromGroup: npm
-      - key: NEXT_GHOST_API_KEY
+      - key: GHOST_API_URL
         sync: false
-      - key: NEXT_CONTENTFUL_SPACE_ID
+      - key: GHOST_CONTENT_API_KEY
         sync: false
-      - key: NEXT_CONTENTFUL_ACCESS_TOKEN
+      - key: CONTENTFUL_SPACE_ID
+        sync: false
+      - key: CONTENTFUL_ACCESS_TOKEN
+        sync: false
+      - key: COMMENTO_ORIGIN
         sync: false
       - key: SERVERLESS_API
         value: https://api.livelifemindful.com
-      - key: COMMENTO_ORIGIN
-        sync: false
 
   - type: web
     name: HTC | Live Life Mindful | Design
