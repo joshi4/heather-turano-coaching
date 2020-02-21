@@ -1,4 +1,7 @@
 import React, { FC } from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import { Tag } from "@tryghost/content-api";
+
 import {
   PageContainer,
   LayoutContainer,
@@ -7,9 +10,7 @@ import {
   TagCardSection,
   Layout
 } from "../components";
-import { Tag } from "@tryghost/content-api";
 import { destructureNodes } from "../utils";
-import { useStaticQuery, graphql } from "gatsby";
 
 const CategoriesPage: FC = () => {
   const {
