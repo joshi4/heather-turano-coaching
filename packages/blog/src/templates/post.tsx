@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import { graphql } from "gatsby";
 import styled from "styled-components";
 import { PostOrPage } from "@tryghost/content-api";
-import Helmet from "react-helmet";
 
 import {
   Section,
