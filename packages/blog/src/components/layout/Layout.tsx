@@ -8,7 +8,10 @@ import { StaticQuery, graphql } from "gatsby";
 
 import React, { Fragment } from "react";
 import { createGlobalStyle } from "styled-components";
-import { makeResponsive } from "@heather-turano-coaching/design-system/utils";
+import {
+  makeResponsive,
+  makeFontFace
+} from "@heather-turano-coaching/design-system/utils";
 import {
   HeaderNav,
   HeaderNavLink,
@@ -20,6 +23,8 @@ import {
 } from "../../components";
 
 const GlobalStyle = createGlobalStyle`
+  ${makeFontFace()};
+
   html,body {
     margin: 0;
     padding: 0;
