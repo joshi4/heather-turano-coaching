@@ -1,0 +1,4 @@
+{
+  "extends": "@heather-turano-coaching/typescript/tsconfig.react.json",
+  "exclude": ["./packages/archive/**", "node_modules"]
+}
