@@ -39,7 +39,7 @@ const StyledFeaturePostButton = styled.button.attrs({ type: "button" })<{
   align-self: stretch;
   ${makeInset({ vertical: 20, horizontal: 16 })};
   position: relative;
-  text-align: left;
+  text-align: center;
 
   &:not(:first-child) {
     &::after {
