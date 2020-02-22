@@ -33,7 +33,7 @@
     "preview:blog": "cd packages/blog && npm run serve"
   },
   "engines": {
-    "node": ">= 10.16.0"
+    "node": "10.16.0"
   },
   "repository": {
     "type": "git",
