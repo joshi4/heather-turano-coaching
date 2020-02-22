@@ -6,7 +6,7 @@ import { StaticQuery, graphql } from "gatsby";
  */
 // import Img from "gatsby-image";
 
-import React, { Fragment } from "react";
+import React, { Fragment, ReactNode } from "react";
 import { createGlobalStyle } from "styled-components";
 import {
   makeResponsive,
@@ -23,8 +23,6 @@ import {
 } from "../../components";
 
 const GlobalStyle = createGlobalStyle`
-  ${makeFontFace()};
-
   html,body {
     margin: 0;
     padding: 0;
@@ -43,6 +41,22 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
   }
 `;
+
+const fontFaceDefs = makeFontFace();
+const fontFaceLinks = fontFaceDefs.reduce(
+  (accum, fontFaceDef, i) =>
+    typeof fontFaceDef === "string"
+      ? [
+          ...accum,
+          <link
+            key={`link-${i.toString()}`}
+            rel="stylesheet"
+            href={fontFaceDef.split('("')[1].split('")')[0]}
+          />
+        ]
+      : accum,
+  [] as ReactNode[]
+);
 
 /**
  * @todo Get this data from Contentful API
@@ -104,6 +118,7 @@ export const Layout = (props: any) => (
         <>
           <Helmet>
             <html lang={site.lang} />
+            {fontFaceLinks}
           </Helmet>
           <GlobalStyle />
           <HeaderNav
