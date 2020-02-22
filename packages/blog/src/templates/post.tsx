@@ -59,6 +59,9 @@ const PostPage: FC<BlogPostProps> = ({ data, location }) => {
   return (
     <>
       <MetaData data={data} location={location} type="article" />
+      <Helmet>
+        <script src="https://cdn.commento.io/js/commento.js"></script>
+      </Helmet>
       <Layout>
         <StyledBlogHero>
           {feature_image && <Hero image={feature_image} alt="hero" />}
@@ -88,7 +91,6 @@ const PostPage: FC<BlogPostProps> = ({ data, location }) => {
         <Section styleType="blog-page">
           <Heading fontSize="h2">Comments</Heading>
           <div id="commento"></div>
-          <script src="https://cdn.commento.io/js/commento.js"></script>
         </Section>
       </Layout>
     </>
