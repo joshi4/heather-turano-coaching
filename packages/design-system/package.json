@@ -17,9 +17,6 @@
     "typescript": "^3.7.5"
   },
   "devDependencies": {
-    "@heather-turano-coaching/typescript": "^0.2.0",
-    "npm-check-updates": "^4.0.1",
-    "polished": "^3.4.2",
-    "typescript": "^3.7.5"
+    "@heather-turano-coaching/typescript": "file:../typescript"
   }
 }

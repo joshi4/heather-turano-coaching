@@ -37,12 +37,6 @@
     "unfetch": "^4.1.0"
   },
   "devDependencies": {
-    "@heather-turano-coaching/design-system": "^0.2.4",
-    "@heather-turano-coaching/typescript": "^0.2.0",
-    "axios": "^0.19.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "typescript": "^3.7.5",
-    "unfetch": "^4.1.0"
+    "@heather-turano-coaching/typescript": "file:../typescript"
   }
 }
