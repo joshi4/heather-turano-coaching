@@ -1,5 +1,7 @@
 import { HookApiRequest } from "@heather-turano-coaching/hooks";
 
+const serverlessApiEndpoint = `https://api.livelifemindful.com`;
+
 export type SubscribeToBlogRequest = {
   firstName: string;
   address: string;
@@ -18,7 +20,7 @@ export const subscribeToBlog: HookApiRequest<
   SubscribeToBlogRequest,
   SubscribeToBlogResponse
 > = body => ({
-  url: `${process.env.SERVERLESS_API}/blog/subscribe`,
+  url: `${serverlessApiEndpoint}/blog/subscribe`,
   options: {
     method: "POST",
     data: body
