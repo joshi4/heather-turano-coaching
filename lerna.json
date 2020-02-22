@@ -3,7 +3,7 @@
   "packages": ["packages/**"],
   "npmClient": "npm",
   "ignore": [
-    "@heather-turano-coaching/blog-archive",
+    "@live-life-mindful/blog-archive",
     "@heather-turano-coaching/legacy",
     "@heather-turano-coaching/website",
     "@heather-turano-coaching/styles"
