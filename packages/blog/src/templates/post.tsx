@@ -88,10 +88,7 @@ const PostPage: FC<BlogPostProps> = ({ data, location }) => {
         <Section styleType="blog-page">
           <Heading fontSize="h2">Comments</Heading>
           <div id="commento"></div>
-          <script
-            src="https://community.blog.livelifemindful.com/js/commento.js"
-            data-page-id={id}
-          ></script>
+          <script src="https://community.blog.livelifemindful.com/js/commento.js"></script>
         </Section>
       </Layout>
     </>
