@@ -18,6 +18,7 @@ import {
 
 import { Layout, MetaData, TagsSection } from "../components";
 import { formatLongDate } from "../utils";
+import Helmet from "react-helmet";
 
 interface BlogPostProps {
   data: {
@@ -86,12 +87,11 @@ const PostPage: FC<BlogPostProps> = ({ data, location }) => {
         </Section>
         <Section styleType="blog-page">
           <Heading fontSize="h2">Comments</Heading>
+          <div id="commento"></div>
           <script
-            defer
-            src={process.env.COMMENTO_ORIGIN}
+            src="https://community.blog.livelifemindful.com/js/commento.js"
             data-page-id={id}
           ></script>
-          <div id="commento"></div>
         </Section>
       </Layout>
     </>
