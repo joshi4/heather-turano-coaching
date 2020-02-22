@@ -2,14 +2,14 @@
   "version": "independent",
   "packages": ["packages/**"],
   "npmClient": "npm",
+  "ignore": [
+    "@heather-turano-coaching/blog-archive",
+    "@heather-turano-coaching/legacy",
+    "@heather-turano-coaching/website",
+    "@heather-turano-coaching/styles"
+  ],
   "command": {
-    "bootstrap": {
-      "ignore": [
-        "@heather-turano-coaching/legacy",
-        "@heather-turano-coaching/website",
-        "@heather-turano-coaching/styles"
-      ]
-    },
+    "bootstrap": {},
     "publish": {
       "ignoreChanges": ["*.md", "*.spec.ts", "*.spec.tsx"],
       "message": "chore(release): Publish",
@@ -19,12 +19,6 @@
       "message": "chore(release): Version",
       "conventionalCommits": true
     },
-    "exec": {
-      "ignore": [
-        "@heather-turano-coaching/legacy",
-        "@heather-turano-coaching/website",
-        "@heather-turano-coaching/styles"
-      ]
-    }
+    "exec": {}
   }
 }
