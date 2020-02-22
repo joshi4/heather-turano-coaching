@@ -59,13 +59,6 @@ const PostPage: FC<BlogPostProps> = ({ data, location }) => {
   return (
     <>
       <MetaData data={data} location={location} type="article" />
-      <Helmet>
-        <script
-          defer
-          src={process.env.COMMENTO_ORIGIN}
-          data-page-id={id}
-        ></script>
-      </Helmet>
       <Layout>
         <StyledBlogHero>
           {feature_image && <Hero image={feature_image} alt="hero" />}
@@ -94,6 +87,11 @@ const PostPage: FC<BlogPostProps> = ({ data, location }) => {
         </Section>
         <Section styleType="blog-page">
           <Heading fontSize="h2">Comments</Heading>
+          <script
+            defer
+            src={process.env.COMMENTO_ORIGIN}
+            data-page-id={id}
+          ></script>
           <div id="commento"></div>
         </Section>
       </Layout>
