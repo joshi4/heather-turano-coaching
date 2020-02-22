@@ -41,7 +41,6 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, location }) => {
   const tags = posts
     .filter(post =>
       post.tags?.find(tag => {
-        console.log(tag.slug, category.slug, tag.slug === category.slug);
         return tag.slug === category.slug;
       })
     )

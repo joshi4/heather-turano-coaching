@@ -32,6 +32,9 @@
     "start:hooks": "cd packages/hooks && npm run start",
     "preview:blog": "cd packages/blog && npm run serve"
   },
+  "engines": {
+    "node": ">= 10.16.0"
+  },
   "repository": {
     "type": "git",
     "url": "git@gitlab.com:imaginedelements/heather-turano-coaching/live-life-mindful.git"
