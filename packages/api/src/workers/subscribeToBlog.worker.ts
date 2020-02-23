@@ -1,4 +1,5 @@
 import * as ServerResponse from "../response";
+import { validateOriginRequest } from "../util";
 
 export async function subscribeToBlog(req: Request): Promise<Response> {
   const credentials = Buffer.from(
@@ -6,6 +7,14 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
   ).toString("base64");
 
   let requestBody;
+
+  try {
+    validateOriginRequest(req.url);
+  } catch (error) {
+    return ServerResponse.notAllowed(
+      `Requests from this origin "${req.url}" are not allowed.`
+    );
+  }
 
   try {
     requestBody = await req.json();

@@ -4,7 +4,6 @@
   "version": "0.5.0",
   "description": "TS Cloudflare serverless API router",
   "main": "dist/worker.prod.js",
-  "types": "dist/definitions.d.ts",
   "scripts": {
     "build": "webpack",
     "dev": "webpack --config=webpack.config.dev.js --watch",

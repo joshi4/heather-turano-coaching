@@ -8,6 +8,12 @@ const formatError = (
 
 type ErrorResponse = (errorMessage: string, errorContext?: any) => Response;
 
+export const notAllowed: ErrorResponse = (errorMessage, errorContext = {}) =>
+  new Response(JSON.stringify(formatError(errorMessage, errorContext)), {
+    status: 405,
+    statusText: "NOT ALLOWED"
+  });
+
 export const error: ErrorResponse = (errorMessage, errorContext = {}) =>
   new Response(JSON.stringify(formatError(errorMessage, errorContext)), {
     status: 500,
