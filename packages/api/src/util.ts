@@ -12,9 +12,14 @@ export const responseHeaders = {
 const allowedOrigins = ["blog.livelifemindful.com", "mindfulmovement100.com"];
 
 export const validateOriginRequest = (origin: string) => {
-  allowedOrigins.forEach(allowedOrigin => {
-    if (!origin.includes(allowedOrigin)) {
-      throw new Error("Sorry, charlie.");
+  const isAllowed = allowedOrigins.reduce((accum, allowedOrigin) => {
+    if (origin.includes(allowedOrigin)) {
+      return true;
     }
-  });
+    return accum;
+  }, false);
+
+  if (!isAllowed) {
+    throw new Error("Sorry, charlie.");
+  }
 };
