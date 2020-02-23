@@ -10,18 +10,10 @@ services:
       - blog.livelifemindful.com
     envVars:
       - fromGroup: npm
-      - key: GHOST_API_URL
-        sync: false
-      - key: GHOST_CONTENT_API_KEY
-        sync: false
-      - key: CONTENTFUL_SPACE_ID
-        sync: false
-      - key: CONTENTFUL_ACCESS_TOKEN
-        sync: false
+      - fromGroup: htc-ghost
+      - fromGroup: htc-contentful
       - key: COMMENTO_ORIGIN
         sync: false
-      - key: SERVERLESS_API
-        value: https://api.livelifemindful.com
 
   - type: web
     name: 100 Days of Mindful Movement
@@ -34,18 +26,7 @@ services:
       - mindfulmovement100.com
     envVars:
       - fromGroup: npm
-      - key: GHOST_API_URL
-        sync: false
-      - key: GHOST_CONTENT_API_KEY
-        sync: false
-      - key: CONTENTFUL_SPACE_ID
-        sync: false
-      - key: CONTENTFUL_ACCESS_TOKEN
-        sync: false
-      - key: COMMENTO_ORIGIN
-        sync: false
-      - key: SERVERLESS_API
-        value: https://api.livelifemindful.com
+      - fromGroup: htc-contentful
 
   - type: web
     name: HTC | Live Life Mindful | Design
