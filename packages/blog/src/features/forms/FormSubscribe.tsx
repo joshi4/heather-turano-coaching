@@ -6,15 +6,15 @@ import {
   InputGroup,
   Input,
   Button,
-  Copy
+  FormNotification
 } from "@heather-turano-coaching/components";
-
-import {
-  subscribeToBlog,
-  SubscribeToBlogResponse,
-  SubscribeToBlogRequest
-} from "../../api";
 import { useApi } from "@heather-turano-coaching/hooks";
+import {
+  SubscribeRequest,
+  SubscribeResponse
+} from "@heather-turano-coaching/domain";
+
+import { subscribeToBlog } from "../../api";
 
 interface FormSubscribeProps {
   fieldPrefix: string;
@@ -29,28 +29,26 @@ export const FormSubscribe: FC<FormSubscribeProps> = ({ fieldPrefix }) => {
     }
   `);
 
-  const { register, errors, handleSubmit } = useForm<SubscribeToBlogRequest>();
+  const { register, errors, handleSubmit } = useForm<SubscribeRequest>();
 
   const [{ loading, data, error }, subcribe] = useApi<
-    SubscribeToBlogRequest,
-    SubscribeToBlogResponse
+    SubscribeRequest,
+    SubscribeResponse
   >(subscribeToBlog);
 
-  const onSubmit = async (formData: SubscribeToBlogRequest) => {
+  const onSubmit = async (formData: SubscribeRequest) => {
     subcribe(formData);
   };
 
   return (
     <>
       {error && (
-        <Copy type="text" fontColor={{ fixed: "light" }}>
-          Oh no, it didn't work.
-        </Copy>
+        <FormNotification type="error">Oh no, it didn't work.</FormNotification>
       )}
       {data && (
-        <Copy type="text" fontColor={{ fixed: "light" }}>
+        <FormNotification type="success">
           Horay! Welcome to the list
-        </Copy>
+        </FormNotification>
       )}
       {!data && (
         <form onSubmit={handleSubmit(onSubmit)}>

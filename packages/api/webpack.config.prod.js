@@ -2,12 +2,11 @@ const path = require("path");
 const Dotenv = require("dotenv-webpack");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   output: {
-    filename: `worker.dev.js`,
+    filename: `worker.prod.js`,
     path: path.join(__dirname, "dist")
   },
-  devtool: "source-map",
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
     plugins: []
@@ -16,12 +15,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(tsx|ts)?$/,
         loader: "ts-loader",
-        exclude: /node_modules/,
-        options: {
-          transpileOnly: true
-        }
+        exclude: /node_modules/
       },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
     ]

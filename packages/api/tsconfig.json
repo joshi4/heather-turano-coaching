@@ -9,7 +9,10 @@
     "preserveConstEnums": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "declaration": true,
+    "noEmit": false,
+    "declarationDir": "./dist"
   },
   "include": [
     "./src/*.ts",
@@ -17,7 +20,8 @@
     "./src/**/*.ts",
     "./test/**/*.ts",
     "./node_modules/@cloudflare/workers-types/index.d.ts",
-    "./types/index.d.ts"
+    "./types/index.d.ts",
+    "src/api/index.ts"
   ],
   "exclude": ["node_modules/", "dist/"]
 }

@@ -12,8 +12,7 @@
   },
   "scripts": {
     "start": "tsc -w --pretty -p tsconfig.json",
-    "build": "tsc -p tsconfig.json",
-    "postinstall": "rm -rf node_modules/@types/react-native"
+    "build": "tsc -p tsconfig.json"
   },
   "keywords": [
     "heather",

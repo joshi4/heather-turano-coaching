@@ -10,7 +10,7 @@ import {
 } from "@heather-turano-coaching/components";
 import { useBreakpoints } from "@heather-turano-coaching/hooks";
 import { formatLongDate } from "../../utils";
-import { TagsSection } from "..";
+import { TagsSection } from "../../components";
 import { NextLink } from "../general";
 import styled from "styled-components";
 import {

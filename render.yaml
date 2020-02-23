@@ -24,6 +24,30 @@ services:
         value: https://api.livelifemindful.com
 
   - type: web
+    name: 100 Days of Mindful Movement
+    env: static
+    branch: master
+    repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
+    buildCommand: npm run build:100days
+    staticPublishPath: ./packages/100days/public
+    domains:
+      - mindfulmovement100.com
+    envVars:
+      - fromGroup: npm
+      - key: GHOST_API_URL
+        sync: false
+      - key: GHOST_CONTENT_API_KEY
+        sync: false
+      - key: CONTENTFUL_SPACE_ID
+        sync: false
+      - key: CONTENTFUL_ACCESS_TOKEN
+        sync: false
+      - key: COMMENTO_ORIGIN
+        sync: false
+      - key: SERVERLESS_API
+        value: https://api.livelifemindful.com
+
+  - type: web
     name: HTC | Live Life Mindful | Design
     env: static
     branch: master

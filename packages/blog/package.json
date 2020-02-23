@@ -13,6 +13,7 @@
     "start": "gatsby develop"
   },
   "devDependencies": {
+    "@heather-turano-coaching/domain": "file:../domain",
     "@heather-turano-coaching/typescript": "file:../typescript"
   },
   "dependencies": {

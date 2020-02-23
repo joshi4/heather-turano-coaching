@@ -8,3 +8,4 @@ export * from "./blog";
 export * from "./layouts";
 export * from "./utils";
 export * from "./shared";
+export * from "./notifications";

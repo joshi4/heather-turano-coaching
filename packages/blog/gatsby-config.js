@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const path = require(`path`);
 const config = require(`./src/utils/siteConfig`);
-const generateRSSFeed = require(`./src/utils/rss/generate-feed`);
+// const generateRSSFeed = require(`./src/utils/rss/generate-feed`);
 
 module.exports = {
   siteMetadata: {
@@ -21,6 +21,15 @@ module.exports = {
         dimensions: false
       }
     },
+    `gatsby-plugin-typescript`,
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+      }
+    },
+    // default
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -36,7 +45,6 @@ module.exports = {
         name: `images`
       }
     },
-    `gatsby-plugin-typescript`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     {
