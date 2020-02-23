@@ -9,17 +9,8 @@ export const responseHeaders = {
   "Access-Control-Allow-Headers": "Content-Type"
 };
 
-const allowedOrigins = ["blog.livelifemindful.com", "mindfulmovement100.com"];
-
-export const validateOriginRequest = (origin: string) => {
-  const isAllowed = allowedOrigins.reduce((accum, allowedOrigin) => {
-    if (origin.includes(allowedOrigin)) {
-      return true;
-    }
-    return accum;
-  }, false);
-
-  if (!isAllowed) {
+export const authorizeRequest = (token: string) => {
+  if (token !== (process.env.HTC_AUTH_TOKEN as string)) {
     throw new Error("Sorry, charlie.");
   }
 };

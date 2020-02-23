@@ -1,5 +1,5 @@
 import * as ServerResponse from "../response";
-import { validateOriginRequest } from "../util";
+// import { validateOriginRequest } from "../util";
 
 export async function subscribeToBlog(req: Request): Promise<Response> {
   const credentials = Buffer.from(
@@ -8,13 +8,15 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
 
   let requestBody;
 
-  try {
-    validateOriginRequest(req.url);
-  } catch (error) {
-    return ServerResponse.notAllowed(
-      `Requests from this origin "${req.url}" are not allowed.`
-    );
-  }
+  console.log(req);
+
+  // try {
+  //   validateOriginRequest(req.url);
+  // } catch (error) {
+  //   return ServerResponse.notAllowed(
+  //     `Requests from this origin "${req.url}" are not allowed.`
+  //   );
+  // }
 
   try {
     requestBody = await req.json();
