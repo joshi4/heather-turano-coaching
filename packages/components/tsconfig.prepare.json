@@ -1,0 +1,7 @@
+{
+  "extends": "@heather-turano-coaching/typescript/tsconfig.react.json",
+  "compilerOptions": {
+    "module": "ESNext"
+  },
+  "include": ["./development"]
+}

@@ -81,6 +81,13 @@ const CSSSectionContentMap: {
           scalable: { color: "light", scale: 3 }
         })};
 
+        & > * {
+          background: ${makeColor({
+            scalable: { color: "light", scale: 3 }
+          })};
+          ${makeInset({ vertical: 56, horizontal: 56 })};
+        }
+
         &::after {
           content: "";
           position: absolute;
