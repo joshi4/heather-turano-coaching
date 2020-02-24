@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library, IconName } from "@fortawesome/fontawesome-svg-core";
 import { fal } from "@fortawesome/pro-light-svg-icons";
 import { fas } from "@fortawesome/pro-solid-svg-icons";
+import { far } from "@fortawesome/pro-regular-svg-icons";
 import { fad } from "@fortawesome/pro-duotone-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import {
@@ -15,11 +16,11 @@ import {
   makeFont
 } from "@heather-turano-coaching/design-system/utils";
 
-library.add(fal, fas, fab, fad);
+library.add(fal, fas, fab, fad, far);
 
 export type IconProps = {
   icon: IconName;
-  iconWeight?: "fab" | "fal" | "fas" | "fad" | undefined;
+  iconWeight?: "fab" | "fal" | "fas" | "fad" | "far" | undefined;
   iconSize?: FontProperties["fontSize"];
   iconColor?: ColorProperties;
   spin?: boolean;

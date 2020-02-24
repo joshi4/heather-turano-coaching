@@ -37,29 +37,27 @@
     "@fortawesome/free-brands-svg-icons": "^5.12.0",
     "@fortawesome/pro-duotone-svg-icons": "^5.12.0",
     "@fortawesome/pro-light-svg-icons": "^5.12.0",
+    "@fortawesome/pro-regular-svg-icons": "^5.12.1",
     "@fortawesome/pro-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
-    "@heather-turano-coaching/design-system": "^0.2.0",
-    "@heather-turano-coaching/typescript": "^0.2.0",
     "polished": "^3.4.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-hook-form": "^4.7.1",
-    "styled-components": "^5.0.0",
-    "typescript": "^3.7.5"
+    "styled-components": "^5.0.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-brands-svg-icons": "^5.12.0",
     "@fortawesome/pro-duotone-svg-icons": "^5.12.0",
     "@fortawesome/pro-light-svg-icons": "^5.12.0",
+    "@fortawesome/pro-regular-svg-icons": "^5.12.1",
     "@fortawesome/pro-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "polished": "^3.4.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-hook-form": "^4.7.1",
-    "styled-components": "^5.0.0",
-    "typescript": "^3.7.5"
+    "styled-components": "^5.0.0"
   }
 }
