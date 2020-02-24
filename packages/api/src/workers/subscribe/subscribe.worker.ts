@@ -1,21 +1,10 @@
 import { RequestFailure, RequestSuccess } from "../../utils/response";
-// import { validateOriginRequest } from "../util";
+import { mailchimpUrl, mailchimpCredentials } from "../../configs";
 
 export async function subscribeToBlog(req: Request): Promise<Response> {
-  const credentials = Buffer.from(
-    `anystring:${process.env.MAILCHIMP_API_KEY}`
-  ).toString("base64");
-
   let requestBody;
 
-  // try {
-  //   validateOriginRequest(req.url);
-  // } catch (error) {
-  //   return ServerResponse.notAllowed(
-  //     `Requests from this origin "${req.url}" are not allowed.`
-  //   );
-  // }
-
+  // validate if body can be parsed with json
   try {
     requestBody = await req.json();
   } catch (error) {
@@ -26,12 +15,12 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
     });
   }
 
+  // add new user to the audience
   try {
-    const url = `https://us4.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_SUBSCRIBE_AUDIENCE_ID}/members/`;
-    const response = await fetch(url, {
+    const response = await fetch(mailchimpUrl, {
       method: "POST",
       headers: {
-        Authorization: `Basic ${credentials}`
+        Authorization: `Basic ${mailchimpCredentials}`
       },
       body: JSON.stringify({
         email_address: requestBody.address,
