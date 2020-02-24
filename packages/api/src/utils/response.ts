@@ -1,29 +1,28 @@
-const formatError = (
-  message: string,
-  errorContext = {}
-): { message: string; errorContext: any } => ({
-  message,
-  errorContext
-});
+import { ErrorResponse } from "@heather-turano-coaching/domain";
 
-type ErrorParams = {
-  errorMessage: string;
-  errorContext?: any;
-};
-type ErrorResponse = (params: ErrorParams) => Response;
-type SuccessResponse = (json?: any) => Response;
+const formatError = (
+  errorMessage: ErrorResponse["errorMessage"],
+  errorContext = {}
+): string =>
+  JSON.stringify({
+    errorMessage,
+    errorContext
+  });
+
+type ErrorResponseFn = (params: ErrorResponse) => Response;
+type SuccessResponseFn = (json?: any) => Response;
 
 type SuccessStatusCode = 200;
 type FailureStatusCode = 405 | 500 | 404;
 
-const notAllowed: ErrorResponse = ({ errorMessage, errorContext = {} }) =>
-  new Response(JSON.stringify(formatError(errorMessage, errorContext)), {
+const notAllowed: ErrorResponseFn = ({ errorMessage, errorContext = {} }) =>
+  new Response(formatError(errorMessage, errorContext), {
     status: 405,
     statusText: "NOT ALLOWED"
   });
 
-const serverError: ErrorResponse = ({ errorMessage, errorContext = {} }) =>
-  new Response(JSON.stringify(formatError(errorMessage, errorContext)), {
+const serverError: ErrorResponseFn = ({ errorMessage, errorContext = {} }) =>
+  new Response(formatError(errorMessage, errorContext), {
     status: 500,
     statusText: "SERVER ERROR"
   });
@@ -39,16 +38,16 @@ const success = (json?: any): Response => {
   });
 };
 
-const notFound: ErrorResponse = ({ errorMessage, errorContext = {} }) =>
-  new Response(JSON.stringify(formatError(errorMessage, errorContext)), {
+const notFound: ErrorResponseFn = ({ errorMessage, errorContext = {} }) =>
+  new Response(formatError(errorMessage, errorContext), {
     status: 404,
     statusText: "NOT FOUND"
   });
 
-const successMap: { [key in SuccessStatusCode]: SuccessResponse } = {
+const successMap: { [key in SuccessStatusCode]: SuccessResponseFn } = {
   "200": success
 };
-const failureMap: { [key in FailureStatusCode]: ErrorResponse } = {
+const failureMap: { [key in FailureStatusCode]: ErrorResponseFn } = {
   "404": notFound,
   "500": serverError,
   "405": notAllowed
@@ -60,5 +59,5 @@ export const RequestFailure = ({
   code,
   errorMessage,
   errorContext
-}: ErrorParams & { code: FailureStatusCode }) =>
+}: ErrorResponse & { code: FailureStatusCode }) =>
   failureMap[code]({ errorMessage, errorContext });

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios, { AxiosRequestConfig, AxiosError } from "axios";
+import { ErrorResponse } from "@heather-turano-coaching/domain";
 
 export type ApiState<ResponseObj> =
   | {
@@ -9,18 +10,13 @@ export type ApiState<ResponseObj> =
     }
   | {
       loading: false;
-      data: null;
-      error: AxiosError<ResponseObj>;
-    }
-  | {
-      loading: false;
       data: ResponseObj;
       error: null;
     }
   | {
       loading: false;
-      data: ResponseObj;
-      error: true;
+      data: null;
+      error: ErrorResponse;
     };
 
 const initialApiState: ApiState<any> = {
@@ -69,18 +65,20 @@ export function useApi<RequestBody, ResponseObj>(
             error: null
           });
         } else {
+          // always going to send back an error response
           setApiResponse({
             loading: false,
-            data: response.data,
-            error: true
+            data: null,
+            error: (response.data as unknown) as ErrorResponse
           });
         }
       })
-      .catch((error: AxiosError<ResponseObj>) => {
+      .catch((error: Required<AxiosError<ErrorResponse>>) => {
+        console.log(error.response.data);
         setApiResponse({
           loading: false,
           data: null,
-          error
+          error: error.response.data
         });
       });
   }, [apiRequest]);

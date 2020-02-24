@@ -31,7 +31,7 @@ const formNotificationStyleMap: {
 const StyledFormNotification = styled.div<FormNotificationProps>`
   box-sizing: border-box;
   ${makeInset({ horizontal: 20, vertical: 20 })};
-  ${makeOutset({ horizontal: 20, vertical: 20 })};
+  ${makeOutset({ vertical: 24 })};
   border-radius: ${makeSize({ custom: 4 })};
   ${makeFlex("row", "flex-start", "center")};
 
@@ -54,19 +54,22 @@ export const FormNotification: FC<FormNotificationProps> = ({
   if (type === "success") stateIcon = "laugh-wink";
 
   return (
-    <StyledFormNotification type={type}>
-      <Icon
-        icon={stateIcon as IconName}
-        iconSize="xl"
-        iconWeight="fas"
-        iconColor={{ fixed: type !== "warning" ? "light" : "dark" }}
-      />
-      <Copy
-        type="text"
-        fontColor={{ fixed: type !== "warning" ? "light" : "dark" }}
-      >
-        {children}
-      </Copy>
-    </StyledFormNotification>
+    <div>
+      <StyledFormNotification type={type}>
+        <Icon
+          icon={stateIcon as IconName}
+          iconSize="lg"
+          iconWeight="fas"
+          iconColor={{ fixed: type !== "warning" ? "light" : "dark" }}
+        />
+        <Copy
+          type="text"
+          fontSize="xs"
+          fontColor={{ fixed: type !== "warning" ? "light" : "dark" }}
+        >
+          {children}
+        </Copy>
+      </StyledFormNotification>
+    </div>
   );
 };

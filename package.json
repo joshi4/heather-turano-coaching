@@ -26,6 +26,7 @@
     "build:domain": "lerna run build --scope=@heather-turano-coaching/domain --stream",
     "publish:api:dev": "lerna run publish:dev --scope=@heather-turano-coaching/api --stream",
     "publish:api:prod": "lerna run publish:prod --scope=@heather-turano-coaching/api --stream",
+    "publish:api:all": "npm run publish:api:dev && npm run publish:api:prod",
     "start:ds": "lerna run start --scope=@heather-turano-coaching/design-system --stream",
     "start:components": "npm run build:ds && npm run build:hooks && cd ./packages/components && npm run start",
     "start:components:storybook": "npm run build:ds && npm run build:hooks && cd ./packages/components && npm run buildDevUtils && npm run start:storybook",

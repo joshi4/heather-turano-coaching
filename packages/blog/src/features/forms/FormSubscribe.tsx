@@ -43,11 +43,14 @@ export const FormSubscribe: FC<FormSubscribeProps> = ({ fieldPrefix }) => {
   return (
     <>
       {error && (
-        <FormNotification type="error">Oh no, it didn't work.</FormNotification>
+        <FormNotification type="error">
+          {`Oh no! It looks like something went wrong. Error: "${error.errorMessage}"`}
+        </FormNotification>
       )}
       {data && (
         <FormNotification type="success">
-          Horay! Welcome to the list
+          Horay! Thank you for signing up! You're going to recieve a welcome
+          email at the address you provided.
         </FormNotification>
       )}
       {!data && (
