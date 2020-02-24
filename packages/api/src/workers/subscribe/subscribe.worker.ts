@@ -1,4 +1,4 @@
-import * as ServerResponse from "../response";
+import { RequestFailure, RequestSuccess } from "../../utils/response";
 // import { validateOriginRequest } from "../util";
 
 export async function subscribeToBlog(req: Request): Promise<Response> {
@@ -7,8 +7,6 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
   ).toString("base64");
 
   let requestBody;
-
-  console.log(req);
 
   // try {
   //   validateOriginRequest(req.url);
@@ -21,10 +19,11 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
   try {
     requestBody = await req.json();
   } catch (error) {
-    return ServerResponse.error(
-      `Error trying to parse request body. Check to make sure that you are sending a proper request`,
-      error
-    );
+    return RequestFailure({
+      code: 500,
+      errorMessage: `Error trying to parse request body. Check to make sure that you are sending a proper request`,
+      errorContext: error
+    });
   }
 
   try {
@@ -46,23 +45,27 @@ export async function subscribeToBlog(req: Request): Promise<Response> {
 
     const responseJson = await response.json();
 
-    console.log(response.status);
-
     if (response.status === 200) {
-      return ServerResponse.success(responseJson);
+      return RequestSuccess(200, responseJson);
     }
     if (responseJson.title === "Member Exists") {
-      return ServerResponse.error(
-        `The email address "${requestBody.address}" is already subscribed.`
-      );
+      return RequestFailure({
+        code: 500,
+        errorMessage: `The email address "${requestBody.address}" is already subscribed.`
+      });
     }
-    return ServerResponse.error(responseJson.detail);
+    return RequestFailure({
+      code: 500,
+      errorMessage: responseJson.detail
+    });
   } catch (error) {
-    return ServerResponse.error(
-      `There was an issue in adding the email address to the transactional system: ${error}`
-    );
+    return RequestFailure({
+      code: 500,
+      errorMessage: `There was an issue in adding the email address to the transactional system: ${error}`,
+      errorContext: error
+    });
   }
 }
 
 export const subscribeToBlogPreflight = async (): Promise<Response> =>
-  ServerResponse.preFlight();
+  RequestSuccess(200);

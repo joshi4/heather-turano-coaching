@@ -1,25 +1,26 @@
 /* eslint-disable no-restricted-globals */
-import { Router } from "./router";
-import {
-  subscribeToBlog,
-  subscribeToBlogPreflight
-} from "./workers/subscribeToBlog.worker";
-import { responseHeaders } from "./util";
+import { responseHeaders } from "./utils/util";
 
-import { subscribeRoute } from "@heather-turano-coaching/domain";
+import { subscribeRouter } from "./workers/subscribe";
+import { Api } from "./utils/api";
 
 addEventListener("fetch", event => {
   event.respondWith(handleRequest(event.request));
 });
 
 async function handleRequest(request: Request): Promise<Response> {
-  const r = new Router();
-  r.options(subscribeRoute, subscribeToBlogPreflight);
-  r.post(subscribeRoute, subscribeToBlog);
-  r.post("/blog/validate-email", subscribeToBlog);
+  // instantiate the API class
+  const worker = new Api();
 
-  const response = (await r.route(request)) as Response;
+  // register routes
+  worker.register(subscribeRouter);
 
+  // match and run the route
+  const response = await worker.route(request);
+
+  /**
+   * @todo find a better way to do this
+   */
   Object.entries(responseHeaders).forEach(([headerKey, headerValue]) =>
     response.headers.append(headerKey, headerValue)
   );

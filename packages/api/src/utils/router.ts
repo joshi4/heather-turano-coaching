@@ -1,3 +1,5 @@
+import { RequestFailure } from "./response";
+
 /**
  * Helper functions that when passed a request will return a
  * boolean indicating if the request uses that HTTP method,
@@ -39,7 +41,10 @@ type RouteHandler<T> = (req: Request) => Promise<T>; // @todo better define this
 type RouteConditions =
   | [ReturnType<ValidateMethod>, ReturnType<ValidatePath>]
   | [];
-type Route<T = any> = { handler: RouteHandler<T>; conditions: RouteConditions };
+export type Route<T = any> = {
+  handler: RouteHandler<T>;
+  conditions: RouteConditions;
+};
 
 export class Router {
   routes: Route[];
@@ -96,37 +101,38 @@ export class Router {
     return this.handle<T>([], handler);
   }
 
-  route(req: Request) {
-    const route = this.resolve(req);
-
-    if (route) {
-      return route.handler(req);
-    }
-
-    return new Response("resource not found", {
-      status: 404,
-      statusText: "not found",
-      headers: {
-        "content-type": "text/plain"
-      }
-    });
-  }
-
   /**
    * resolve returns the matching route for a request that returns
    * true for all conditions (if any).
    */
   resolve(req: Request) {
-    return this.routes.find(r => {
-      if (!r.conditions || (Array.isArray(r) && !r.conditions.length)) {
+    return this.routes.find(route => {
+      // if there aren't any conditions to meet return true
+      // so the route will resolve
+      if (
+        !route.conditions ||
+        (Array.isArray(route) && !route.conditions.length)
+      ) {
         return true;
       }
 
-      // if (typeof r.conditions === "function") {
-      //   return r.conditions(req);
-      // }
+      // otherwise validated each of the conditions
+      return route.conditions.every(condition => {
+        return condition(req);
+      });
+    });
+  }
 
-      return r.conditions.every(c => c(req));
+  route(request: Request) {
+    const route = this.resolve(request);
+
+    if (route) {
+      return route.handler(request);
+    }
+
+    RequestFailure({
+      code: 404,
+      errorMessage: `The route "${request.url}" does not exist.`
     });
   }
 }
