@@ -49,7 +49,7 @@ export const FormNotification: FC<FormNotificationProps> = ({
   children
 }) => {
   let stateIcon;
-  if (type === "error") stateIcon = "thumbs-down";
+  if (type === "error") stateIcon = "sad-tear";
   if (type === "warning") stateIcon = "meh";
   if (type === "success") stateIcon = "laugh-wink";
 
