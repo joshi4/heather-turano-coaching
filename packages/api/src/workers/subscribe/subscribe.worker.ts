@@ -1,57 +1,20 @@
+import { addSubscriberToMailchimpAudience } from "./subscribe.service";
 import { RequestFailure, RequestSuccess } from "../../utils/response";
-import { mailchimpUrl, mailchimpCredentials } from "../../configs";
+import { parseRequestBody } from "../../utils/util";
+import { SubscribeRequest } from "@heather-turano-coaching/domain";
 
-export async function subscribeToBlog(req: Request): Promise<Response> {
-  let requestBody;
-
-  // validate if body can be parsed with json
+export async function subscribeToBlog(request: Request): Promise<Response> {
   try {
-    requestBody = await req.json();
-  } catch (error) {
-    return RequestFailure({
-      code: 500,
-      errorMessage: `Error trying to parse request body. Check to make sure that you are sending a proper request`,
-      errorContext: error
-    });
-  }
+    const requestBody = await parseRequestBody<SubscribeRequest>(request);
+    const userResponse = await addSubscriberToMailchimpAudience(requestBody);
 
-  // add new user to the audience
-  try {
-    const response = await fetch(mailchimpUrl, {
-      method: "POST",
-      headers: {
-        Authorization: `Basic ${mailchimpCredentials}`
-      },
-      body: JSON.stringify({
-        email_address: requestBody.address,
-        email_type: "html",
-        status: "subscribed",
-        merge_fields: {
-          FNAME: requestBody.firstName
-        }
-      })
-    });
-
-    const responseJson = await response.json();
-
-    if (response.status === 200) {
-      return RequestSuccess(200, responseJson);
-    }
-    if (responseJson.title === "Member Exists") {
-      return RequestFailure({
-        code: 500,
-        errorMessage: `The email address "${requestBody.address}" is already subscribed.`
-      });
-    }
+    // change to response
+    return RequestSuccess(200, userResponse);
+  } catch ({ code, message, context }) {
     return RequestFailure({
-      code: 500,
-      errorMessage: responseJson.detail
-    });
-  } catch (error) {
-    return RequestFailure({
-      code: 500,
-      errorMessage: `There was an issue in adding the email address to the transactional system: ${error}`,
-      errorContext: error
+      code: code,
+      errorMessage: message,
+      errorContext: context
     });
   }
 }
