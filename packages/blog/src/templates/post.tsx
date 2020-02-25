@@ -62,7 +62,7 @@ const PostPage: FC<BlogPostProps> = ({ data, location }) => {
       <Helmet>
         <script
           data-page-id={id}
-          src="https://cdn.commento.io/js/commento.js"
+          src="https://community.blog.livelifemindful.com/js/commento.js"
         ></script>
       </Helmet>
       <Layout>
