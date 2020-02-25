@@ -40,7 +40,6 @@ const StyledLayoutPageHeader = styled.header`
     & > * {
       &:not(:last-child) {
         ${makeOutset({ right: 8 })};
-        ${makeInset({ right: 8 })};
       }
     }
 
@@ -59,10 +58,10 @@ const StyledLayoutPageHeader = styled.header`
 
     & p {
       text-transform: uppercase;
-      ${makeFont({
-        fontSize: "h4",
+      /* ${makeFont({
+        fontSize: "sm",
         fontWeight: "bold"
-      })}
+      })} */
     }
   }
 
@@ -94,7 +93,7 @@ const copy = ({
   <Copy
     key={label}
     type="label"
-    fontSize="xl"
+    size="xs"
     fontColor={{
       scalable: {
         color: "gray",
@@ -107,36 +106,41 @@ const copy = ({
 );
 
 export const PageHeader: FC<PageHeaderProps> = ({
-  pageName,
   pageTitle,
   titleColor = { scalable: { color: "secondary" } }
 }) => {
   const location = useLocation();
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
   const routes = location.pathname.split("/");
-  routes[routes.length - 1] = pageName ? pageName : routes[routes.length - 1];
+  routes.pop();
+  routes[routes.length - 1] = routes[routes.length - 1];
+
+  const r = routes.map(route =>
+    route.indexOf("-") !== -1 ? route.split("-")[1] : route
+  );
+  console.log(r);
 
   return (
     <StyledLayoutPageHeader>
       <div>
-        {routes.map((route, index) =>
-          index !== routes.length - 1 ? (
+        {r.map((route, index) =>
+          index !== r.length - 1 ? (
             <Fragment key={route}>
               <FrameworkLink to={`/${route}`}>
                 {copy({
                   label: index === 0 ? basePathName : route,
-                  scale: index !== routes.length - 1 ? 2 : 0
+                  scale: index !== r.length - 1 ? 2 : 0
                 })}
               </FrameworkLink>
               {copy({
-                label: "|",
+                label: "/",
                 scale: 2
               })}
             </Fragment>
           ) : (
             copy({
               label: index === 0 ? basePathName : route,
-              scale: index !== routes.length - 1 ? 2 : 0
+              scale: index !== r.length - 1 ? 2 : 0
             })
           )
         )}

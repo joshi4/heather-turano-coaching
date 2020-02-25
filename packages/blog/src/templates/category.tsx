@@ -46,7 +46,6 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, location }) => {
     )
     .flatMap(({ tags }) => tags);
   const tagsUnique = uniqBy(removeCategoriesFromTags(tags as Tag[]), "id");
-  debugger;
 
   return (
     <>
