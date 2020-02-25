@@ -2,14 +2,14 @@ import { HookApiRequest } from "@heather-turano-coaching/hooks";
 import {
   SubscribeRequest,
   SubscribeResponse,
-  subscribeEndpoint
+  makeEndpoint
 } from "@heather-turano-coaching/domain";
 
 export const subscribeToBlog: HookApiRequest<
   SubscribeRequest,
   SubscribeResponse
 > = body => ({
-  url: subscribeEndpoint,
+  url: makeEndpoint("subscribe/hundred-days"),
   options: {
     method: "POST",
     data: body

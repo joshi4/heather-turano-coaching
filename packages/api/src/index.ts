@@ -2,7 +2,7 @@
 import { responseHeaders } from "./utils/util";
 
 import { subscribeRouter } from "./workers/subscribe";
-import { Api } from "./utils/api";
+import { Api } from "./utils/Api";
 
 addEventListener("fetch", event => {
   event.respondWith(handleRequest(event.request));

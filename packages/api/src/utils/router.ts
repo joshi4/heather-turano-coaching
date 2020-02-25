@@ -1,4 +1,4 @@
-import { RequestFailure } from "./response";
+import { ResponseFailure } from "./response";
 
 /**
  * Helper functions that when passed a request will return a
@@ -37,7 +37,10 @@ const validatePath: ValidatePath = regExp => req => {
  * The Router handles determines which handler is matched given the
  * conditions present for each request.
  */
-type RouteHandler<T> = (req: Request) => Promise<T>; // @todo better define this interface
+interface RouterOptions {
+  preFlight?: boolean;
+}
+type RouteHandler<T> = (req: Request, options?: RouterOptions) => Promise<T>; // @todo better define this interface
 type RouteConditions =
   | [ReturnType<ValidateMethod>, ReturnType<ValidatePath>]
   | [];
@@ -130,7 +133,7 @@ export class Router {
       return route.handler(request);
     }
 
-    RequestFailure({
+    ResponseFailure({
       code: 404,
       errorMessage: `The route "${request.url}" does not exist.`
     });

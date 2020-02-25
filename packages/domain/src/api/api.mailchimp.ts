@@ -65,7 +65,7 @@ export type MailchimpListMember__Links = {
 };
 
 export interface MailchimpListMember {
-  id: string;
+  id: string; // also known as subscriber_hash
   email_address: string;
   unique_email_id: string;
   web_id: string;
@@ -109,6 +109,10 @@ export type Mailchimp__Request__AddListMember = {
   timestamp_signup?: string;
   ip_opt?: string;
   timestamp_opt?: string;
-  tags?: MailchimpListMember__Tags[];
+  tags?: string[];
 };
 export type Mailchimp__Response__AddListMember = MailchimpListMember;
+export type Mailchimp__Request__AddTagsToListMember = {
+  name: string;
+  status: "inactive" | "active";
+};

@@ -1,10 +1,10 @@
 import {
   SubscribeRequest,
   Mailchimp__Request__AddListMember,
-  Mailchimp__Response__AddListMember,
+  MailchimpListMember,
   MailchimpResponse__Error
 } from "@heather-turano-coaching/domain";
-import { mailchimpUrl, mailchimpHeaders } from "../../configs";
+import { mailchimpHeaders, mailchimpBaseUrl } from "../../configs";
 import { ServiceError } from "../../utils/ServiceError";
 
 export const isMailchimpError = <ResponseType>(
@@ -14,19 +14,23 @@ export const isMailchimpError = <ResponseType>(
 };
 
 export const addSubscriberToMailchimpAudience = async (
-  requestBody: SubscribeRequest
-): Promise<Mailchimp__Response__AddListMember> => {
+  requestBody: SubscribeRequest,
+  tags?: string[]
+): Promise<MailchimpListMember> => {
   try {
     const mailchimpAddListMemberBody: Mailchimp__Request__AddListMember = {
       email_address: requestBody.address,
       email_type: "html",
       status: "subscribed",
+      tags: tags || [],
       merge_fields: {
         FNAME: requestBody.firstName
       }
     };
 
-    const user = await fetch(mailchimpUrl, {
+    const url = `${mailchimpBaseUrl}/lists/${process.env.MAILCHIMP_SUBSCRIBE_AUDIENCE_ID}/members`;
+
+    const user = await fetch(url, {
       method: "POST",
       headers: mailchimpHeaders,
       body: JSON.stringify(mailchimpAddListMemberBody)

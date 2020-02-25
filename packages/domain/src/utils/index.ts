@@ -1,3 +1,3 @@
-export const baseEndpoint = `https://api.livelifemindful.com`;
+const baseEndpoint = `https://api.livelifemindful.com`;
 
-export const makeEndpoint = (route: string) => `${baseEndpoint}${route}`;
+export const makeEndpoint = (route: string) => `${baseEndpoint}/${route}`;

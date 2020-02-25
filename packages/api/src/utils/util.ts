@@ -1,4 +1,5 @@
 import { ServiceError } from "./ServiceError";
+import { MailchimpResponse__Error } from "@heather-turano-coaching/domain";
 
 export const isDev = process.env.NODE_ENV === "development";
 
@@ -24,4 +25,10 @@ export const parseRequestBody = async <RequestBody>(
       error
     );
   }
+};
+
+export const isMailchimpError = <ResponseType>(
+  pet: MailchimpResponse__Error | ResponseType
+): pet is MailchimpResponse__Error => {
+  return (pet as MailchimpResponse__Error).detail !== undefined;
 };

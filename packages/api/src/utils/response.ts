@@ -6,7 +6,7 @@ import {
 
 type SuccessStatusCode = 200;
 
-export const RequestSuccess = (code: SuccessStatusCode, json?: any) => {
+export const ResponseSuccess = (code: SuccessStatusCode, json?: any) => {
   if (json) {
     return new Response(JSON.stringify(json), {
       statusText: "OK"
@@ -17,14 +17,14 @@ export const RequestSuccess = (code: SuccessStatusCode, json?: any) => {
   });
 };
 
-export const RequestFailure = ({
+export const ResponseFailure = ({
   code,
   errorMessage,
   errorContext
-}: ErrorResponse & { code: ServiceErrorStatusCodes }) => {
-  console.log(code, errorMessage, errorContext);
-  return new Response(JSON.stringify({ errorMessage, errorContext }), {
+}: ErrorResponse & { code: ServiceErrorStatusCodes }) =>
+  new Response(JSON.stringify({ errorMessage, errorContext }), {
     status: code,
     statusText: transposedServiceErrorCodes[code]
   });
-};
+
+export const autoApprove = async () => ResponseSuccess(200);

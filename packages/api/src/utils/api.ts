@@ -1,5 +1,5 @@
 import { Router, Route } from "./router";
-import { RequestFailure } from "./response";
+import { ResponseFailure } from "./response";
 
 export class Api {
   routers: Router[];
@@ -25,7 +25,7 @@ export class Api {
       return route.handler(request);
     }
 
-    return RequestFailure({
+    return ResponseFailure({
       code: 404,
       errorMessage: `The route "${request.url}" does not exist.`
     });
