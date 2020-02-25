@@ -1,9 +1,11 @@
 require("dotenv").config();
 
+const path = require(`path`);
+
 module.exports = {
   siteMetadata: {
     title: `100 Days of Mindful Movement`,
-    description: ``,
+    description: `Signup to join the 100 Days of Mindful Movement!`,
     author: `drew@imaginedelements.com`
   },
   plugins: [
@@ -31,8 +33,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`
+        path: path.join(__dirname, `src`, `images`),
+        name: `images`
       }
     },
     `gatsby-transformer-sharp`,
@@ -40,13 +42,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `100 Days of Mindful Movement`,
+        short_name: `Mindful Movement 100`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/ghost-icon.png` // This path is relative to the root of the site.
+        background_color: `#fff`,
+        theme_color: `#fff`,
+        display: `Mindful Movement 100`,
+        icon: `src/static/favicon.png` // This path is relative to the root of the site.
       }
     }
     // this (optional) plugin enables Progressive Web App + Offline functionality
