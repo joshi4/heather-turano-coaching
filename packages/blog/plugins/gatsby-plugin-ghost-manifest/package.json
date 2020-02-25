@@ -1,7 +1,7 @@
 {
   "name": "gatsby-plugin-ghost-manifest",
   "description": "Gatsby plugin which adds a manifest.webmanifest to make sites progressive web apps",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Ghost Foundation",
   "dependencies": {
     "@babel/runtime": "7.7.2",

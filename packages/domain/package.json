@@ -1,6 +1,6 @@
 {
   "name": "@heather-turano-coaching/domain",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Domain typings, api typings and configurations for shared HTC api",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",

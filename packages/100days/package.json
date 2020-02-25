@@ -2,7 +2,7 @@
   "name": "@live-life-mindful/100days",
   "private": true,
   "description": "100 days of mindful movement web space",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Drew DeCarme (dre@imaginedelements.com)",
   "dependencies": {
     "@heather-turano-coaching/components": "file:../components",

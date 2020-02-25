@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/components@0.4.2...@heather-turano-coaching/components@0.5.0) (2020-02-25)
+
+
+### Bug Fixes
+
+* Change error icon to sad tear face ([b218a62](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/b218a625851a79b5ef8c60b025504a51fe53bb68))
+
+
+### Features
+
+* **100days:** Add new application and abstract out API ([6a531a8](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/6a531a88819b92ee04d342889572c30ca1030116))
+* Add form notifications ([d285c9a](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/d285c9a6f21afe98eaad6ff4df4681bd2c6e4a7f))
+* Add form notifications and retype API errors ([e2d4d9f](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/e2d4d9f85010703bf48e6ef986f0b7b97150769d))
+* **404:** Add custom 404 page ([234a6b9](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/234a6b9124b4b6676d56cf3f107002a759dcb63a))
+
+
+
+
+
 ## [0.4.2](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/components@0.4.1...@heather-turano-coaching/components@0.4.2) (2020-02-19)
 
 **Note:** Version bump only for package @heather-turano-coaching/components

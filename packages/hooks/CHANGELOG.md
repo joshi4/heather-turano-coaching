@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/hooks@0.1.3...@heather-turano-coaching/hooks@0.2.0) (2020-02-25)
+
+
+### Features
+
+* **100days:** Add new application and abstract out API ([6a531a8](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/6a531a88819b92ee04d342889572c30ca1030116))
+* Add form notifications and retype API errors ([e2d4d9f](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/commit/e2d4d9f85010703bf48e6ef986f0b7b97150769d))
+
+
+
+
+
 ## [0.1.3](https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful/compare/@heather-turano-coaching/hooks@0.1.2...@heather-turano-coaching/hooks@0.1.3) (2020-02-19)
 
 
