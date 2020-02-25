@@ -112,12 +112,13 @@ const IndexPage = () => {
           <FormContainer>
             {error && (
               <FormNotification type="error">
-                Oh no, it didn't work.
+                {`Oh no! It looks like something went wrong. Error: "${error.errorMessage}". If this is something that seems tough to fix, reach out to Heater at heather@livelifemindful.com`}
               </FormNotification>
             )}
             {data && (
               <FormNotification type="success">
-                Horay! Welcome to the list
+                Horay! Thanks for signing up! You'll receive an welcome email at
+                the email address you provided.
               </FormNotification>
             )}
             {!data && (
