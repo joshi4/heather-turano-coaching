@@ -58,10 +58,6 @@ const StyledLayoutPageHeader = styled.header`
 
     & p {
       text-transform: uppercase;
-      /* ${makeFont({
-        fontSize: "sm",
-        fontWeight: "bold"
-      })} */
     }
   }
 
@@ -118,7 +114,6 @@ export const PageHeader: FC<PageHeaderProps> = ({
   const r = routes.map(route =>
     route.indexOf("-") !== -1 ? route.split("-")[1] : route
   );
-  console.log(r);
 
   return (
     <StyledLayoutPageHeader>

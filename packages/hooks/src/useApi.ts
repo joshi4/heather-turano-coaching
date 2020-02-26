@@ -74,7 +74,6 @@ export function useApi<RequestBody, ResponseObj>(
         }
       })
       .catch((error: Required<AxiosError<ErrorResponse>>) => {
-        console.log(error.response.data);
         setApiResponse({
           loading: false,
           data: null,
