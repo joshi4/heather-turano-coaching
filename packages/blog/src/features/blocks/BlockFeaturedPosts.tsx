@@ -1,6 +1,6 @@
 import React, { FC, useState, useRef, useLayoutEffect } from "react";
 import { PostOrPage } from "@tryghost/content-api";
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 import { rgba } from "polished";
 import {
   sharedHorizontalBodyPadding,
@@ -29,6 +29,7 @@ import {
 } from "@heather-turano-coaching/design-system/utils";
 import { useStaticQuery, graphql } from "gatsby";
 import { destructureNodes } from "../../utils";
+import { BlogWelcome } from "../blog";
 
 interface BlockFeaturedPostsProps {
   featuredPosts: PostOrPage[];
@@ -197,6 +198,14 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
           {springProps.map(({ x, scale, overlay, filter }, i) => {
             // only attach the drag action to the visible card
             const action = i === index.current ? bind : () => ({});
+
+            const absStyle: CSSProperties = {
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              top: 0,
+              left: 0
+            };
             return (
               <animated.div
                 {...action()}
@@ -217,14 +226,21 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
                     transform: scale.interpolate(s => `scale(${s})`)
                   }}
                 >
-                  <BlogCardFeature featuredPost={featuredPosts[i]} />
+                  {i === 0 ? (
+                    <div
+                      style={{
+                        height: containerHeight,
+                        maxHeight: containerHeight
+                      }}
+                    >
+                      <BlogWelcome />
+                    </div>
+                  ) : (
+                    <BlogCardFeature featuredPost={featuredPosts[i]} />
+                  )}
                   <animated.div
                     style={{
-                      position: "absolute",
-                      width: "100%",
-                      height: "100%",
-                      top: 0,
-                      left: 0,
+                      ...absStyle,
                       zIndex: 10,
                       pointerEvents: "none",
                       background: overlay.interpolate(ov =>
@@ -258,9 +274,7 @@ export const BlockFeaturedPosts: FC = () => {
   `);
 
   const featuredPosts = destructureNodes(edges);
-  const [visibleFeaturedPost, setVisibleFeaturedPost] = useState(
-    featuredPosts[0]
-  );
+  const [visibleFeaturedPost, setVisibleFeaturedPost] = useState();
   const [windowWidth, { tabletPortrait, tabletLandscape }] = useBreakpoints();
 
   const gutterWidth =
@@ -274,7 +288,12 @@ export const BlockFeaturedPosts: FC = () => {
     />
   ) : (
     <StyledDesktopBlockFeaturedPosts>
-      <BlogCardFeature featuredPost={visibleFeaturedPost} />
+      {!visibleFeaturedPost ? (
+        <BlogWelcome />
+      ) : (
+        <BlogCardFeature featuredPost={visibleFeaturedPost} />
+      )}
+
       <BlogCardFeatureSelector
         posts={featuredPosts}
         currentlySelectedPost={visibleFeaturedPost}

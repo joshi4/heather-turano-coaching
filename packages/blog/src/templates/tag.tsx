@@ -46,7 +46,7 @@ const TagPage: FC<TagsPageProps> = ({ data, location }) => {
   return (
     <>
       <MetaData data={data} location={location} type="series" />
-      <Layout pageTitle={tag.name}>
+      <Layout pageTitle={tag.name as string}>
         <PageContainer>
           <LayoutContainer layoutType="stacked">
             <LayoutColumn>

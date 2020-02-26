@@ -27,9 +27,10 @@ interface BlogCardFeatureProps {
   featuredPost: PostOrPage;
 }
 
-const StyledFeaturedBlogCardContainer = styled.div`
+export const StyledFeaturedBlogCardContainer = styled.div`
   overflow: hidden;
   border-radius: ${makeSize({ custom: 8 })};
+  height: 100%;
 
   a {
     text-decoration: none;

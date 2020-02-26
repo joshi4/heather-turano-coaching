@@ -15,7 +15,7 @@ import {
 import { PostOrPage } from "@tryghost/content-api";
 
 interface BlogCardFeatureSelectorProps {
-  currentlySelectedPost: PostOrPage;
+  currentlySelectedPost: PostOrPage | undefined;
   posts: PostOrPage[];
   setFp: (featuredPost: PostOrPage) => void;
 }
@@ -89,13 +89,15 @@ export const BlogCardFeatureSelector: FC<BlogCardFeatureSelectorProps> = ({
         <StyledFeaturePostButton
           key={post.id}
           onClick={() => setFp(post)}
-          isActive={post.id === currentlySelectedPost.id}
+          isActive={
+            currentlySelectedPost ? post.id === currentlySelectedPost.id : false
+          }
         >
           <Copy
             type="label"
             fontSize="xs"
             fontColor={
-              post.id === currentlySelectedPost.id
+              currentlySelectedPost && post.id === currentlySelectedPost.id
                 ? { scalable: { color: "secondary" } }
                 : { scalable: { color: "gray", scale: 2 } }
             }
