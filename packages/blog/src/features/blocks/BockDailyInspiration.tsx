@@ -31,7 +31,7 @@ export const BockDailyInspiration: FC = () => {
 
   return (
     <LayoutBlock>
-      <LayoutBlockTitle title={data.block.title} />
+      <LayoutBlockTitle title={data.block[0].title} />
       <LayoutBlockContent>
         <StyledBockDailyInspiration>
           <img
