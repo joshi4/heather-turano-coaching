@@ -10,7 +10,6 @@ import {
   makeFlex
 } from "@heather-turano-coaching/components";
 import { TagsSection } from "../sections";
-import { FrameworkLink } from "../general";
 import { useBreakpoints } from "@heather-turano-coaching/hooks";
 import styled from "styled-components";
 import {
@@ -21,6 +20,8 @@ import {
   makeColor
 } from "@heather-turano-coaching/design-system/utils";
 import { formatLongDate } from "../../utils";
+import { Link } from "@reach/router";
+import { FrameworkLink } from "..";
 
 interface BlogCardFeatureProps {
   featuredPost: PostOrPage;
@@ -29,6 +30,10 @@ interface BlogCardFeatureProps {
 const StyledFeaturedBlogCardContainer = styled.div`
   overflow: hidden;
   border-radius: ${makeSize({ custom: 8 })};
+
+  a {
+    text-decoration: none;
+  }
 
   & + * {
     border-radius: ${makeSize({ custom: 8 })};
@@ -139,7 +144,7 @@ const StyledCardContent = styled.div`
 
 const StyledAvatarContainer = styled.div`
   ${makeResponsive({
-    endAt: "tabletPortrait",
+    endAt: "laptop",
     style: `
       position: absolute;
       left: ${makeSize("sm")};
@@ -151,7 +156,10 @@ const StyledAvatarContainer = styled.div`
 export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
   featuredPost: fp
 }) => {
-  const [windowWidth, { tabletPortrait, tabletLandscape }] = useBreakpoints();
+  const [
+    windowWidth,
+    { tabletPortrait, tabletLandscape, laptop }
+  ] = useBreakpoints();
 
   const authorName = fp.authors ? (fp.authors[0].name as string) : "";
   const avatarImg = fp.authors ? (fp.authors[0].profile_image as string) : "";
@@ -159,18 +167,18 @@ export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
   const title = fp.title as string;
   const excerpt = fp.excerpt as string;
 
-  return (
-    <StyledFeaturedBlogCardContainer>
+  const Content = (
+    <>
       <StyledBlogFeaturedImage>
         <img src={fp.feature_image as string} alt={fp.slug} />
       </StyledBlogFeaturedImage>
       <StyledCardContent>
-        {windowWidth < tabletPortrait && (
+        {windowWidth < laptop && (
           <StyledAvatarContainer>
             <Avatar image={avatarImg} alt={authorName} size="xxl" />
           </StyledAvatarContainer>
         )}
-        {!(windowWidth < tabletPortrait) && (
+        {!(windowWidth < laptop) && (
           <TagsSection
             tags={fp.tags}
             alignment={windowWidth < tabletLandscape ? "left" : "right"}
@@ -212,6 +220,14 @@ export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
           </FrameworkLink>
         )}
       </StyledCardContent>
+    </>
+  );
+
+  return windowWidth < laptop ? (
+    <StyledFeaturedBlogCardContainer>
+      <Link to={fp.slug as string}>{Content}</Link>
     </StyledFeaturedBlogCardContainer>
+  ) : (
+    <StyledFeaturedBlogCardContainer>{Content}</StyledFeaturedBlogCardContainer>
   );
 };
