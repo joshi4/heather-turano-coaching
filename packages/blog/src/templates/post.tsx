@@ -47,7 +47,6 @@ const StyledBlogHeading = styled.div`
  */
 const PostPage: FC<BlogPostProps> = ({ data, location }) => {
   const {
-    id,
     feature_image,
     primary_author,
     published_at,
@@ -62,7 +61,7 @@ const PostPage: FC<BlogPostProps> = ({ data, location }) => {
       <Helmet>
         <script src="https://community.blog.livelifemindful.com/js/commento.js"></script>
       </Helmet>
-      <Layout>
+      <Layout pageTitle={title as string}>
         <StyledBlogHero>
           {feature_image && <Hero image={feature_image} alt="hero" />}
         </StyledBlogHero>

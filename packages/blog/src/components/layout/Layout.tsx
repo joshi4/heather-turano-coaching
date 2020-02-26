@@ -1,13 +1,13 @@
+import React, { Fragment, ReactNode, FC } from "react";
 import Helmet from "react-helmet";
 import { StaticQuery, graphql } from "gatsby";
+import { createGlobalStyle } from "styled-components";
 
 /**
  * @todo Convert images to gatsby-image
  */
 // import Img from "gatsby-image";
 
-import React, { Fragment, ReactNode } from "react";
-import { createGlobalStyle } from "styled-components";
 import {
   makeResponsive,
   makeFontFace
@@ -102,7 +102,7 @@ const footerNavLinks = {
   ]
 };
 
-export const Layout = (props: any) => (
+export const Layout: FC<{ pageTitle: string }> = ({ pageTitle, children }) => (
   <StaticQuery
     query={graphql`
       query GhostSettings {
@@ -123,6 +123,11 @@ export const Layout = (props: any) => (
           <Helmet>
             <html lang={site.lang} />
             {fontFaceLinks}
+            <title>{`${pageTitle
+              .substring(0, 1)
+              .toUpperCase()}${pageTitle.substring(
+              1
+            )} | Live Life Mindful`}</title>
           </Helmet>
           <GlobalStyle />
           <HeaderNav
@@ -136,7 +141,7 @@ export const Layout = (props: any) => (
               </HeaderNavLink>
             ))}
           />
-          {props.children}
+          {children}
           <FooterNav
             leftNav={{
               title: "Browse",

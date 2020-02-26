@@ -1,12 +1,11 @@
 import React from "react";
-import { Link, useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
 
 import {
   Section,
   Heading,
   Copy,
-  Image,
-  Button
+  Image
 } from "@heather-turano-coaching/components";
 import yoga from "../../static/images/meditation.svg";
 
@@ -47,7 +46,7 @@ const NotFoundPage = () => {
   `);
 
   return (
-    <Layout>
+    <Layout pageTitle="Not Found">
       <Section styleType="layered">
         <Styled404Container>
           <Heading>{data.title}</Heading>

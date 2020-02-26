@@ -4,7 +4,6 @@ import { Copy, Heading, makeFlex } from "@heather-turano-coaching/components";
 import styled from "styled-components";
 import {
   makeRhythm,
-  makeFont,
   makeInset,
   makeSize,
   makeColor,
@@ -33,7 +32,7 @@ const StyledLayoutPageHeader = styled.header`
     ${makeResponsive({
       beginAt: "tabletLandscape",
       style: `
-        ${makeRhythm({ fontSize: "sm", top: 3, bottom: 0 })};
+        ${makeRhythm({ fontSize: "sm", top: 1, bottom: 0 })};
       `
     })}
 
@@ -109,33 +108,29 @@ export const PageHeader: FC<PageHeaderProps> = ({
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
   const routes = location.pathname.split("/");
   routes.pop();
-  routes[routes.length - 1] = routes[routes.length - 1];
-
-  const r = routes.map(route =>
-    route.indexOf("-") !== -1 ? route.split("-")[1] : route
-  );
+  routes[routes.length - 1] = pageTitle;
 
   return (
     <StyledLayoutPageHeader>
       <div>
-        {r.map((route, index) =>
-          index !== r.length - 1 ? (
+        {routes.map((route, index) =>
+          index !== routes.length - 1 ? (
             <Fragment key={route}>
               <FrameworkLink to={`/${route}`}>
                 {copy({
                   label: index === 0 ? basePathName : route,
-                  scale: index !== r.length - 1 ? 2 : 0
+                  scale: index !== routes.length - 1 ? 3 : 0
                 })}
               </FrameworkLink>
               {copy({
                 label: "/",
-                scale: 2
+                scale: 3
               })}
             </Fragment>
           ) : (
             copy({
               label: index === 0 ? basePathName : route,
-              scale: index !== r.length - 1 ? 2 : 0
+              scale: index !== routes.length - 1 ? 3 : 0
             })
           )
         )}

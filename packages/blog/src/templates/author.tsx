@@ -91,13 +91,13 @@ const AuthorPage: FC<{ data: any; location: Location; pageContext: any }> = ({
   const justTags = removeCategoriesFromTags(tags);
 
   return (
-    <Layout>
+    <Layout pageTitle={author.name as string}>
       <MetaData data={data} location={location} type="profile" />
       <PageContainer>
         <LayoutContainer layoutType="stacked">
           <LayoutColumn>
             <PageHeader
-              pageName="author"
+              pageName={author.name as string}
               pageTitle={author.name as string}
               titleColor={{ scalable: { color: "accent" } }}
             />

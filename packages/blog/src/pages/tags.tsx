@@ -31,13 +31,13 @@ const TagsPage: FC = () => {
   const tags: Tag[] = destructureNodes(edges);
 
   return (
-    <Layout>
+    <Layout pageTitle="Tags">
       <PageContainer>
         <LayoutContainer layoutType="stacked">
           <LayoutColumn>
             <PageHeader
               pageName="tags"
-              pageTitle="All tags"
+              pageTitle="tags"
               titleColor={{ scalable: { color: "primary" } }}
             />
           </LayoutColumn>

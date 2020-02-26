@@ -64,7 +64,7 @@ const Index = ({ data, location, pageContext }) => {
 
   return (
     <>
-      <Layout>
+      <Layout pageTitle="Home">
         <MetaData location={location} />
         <PageContainer>
           <LayoutContainer layoutType="stacked">

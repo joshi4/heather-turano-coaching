@@ -90,13 +90,13 @@ export const AuthorsPage: FC = () => {
   const authors = destructureNodes<Author>(edges);
 
   return (
-    <Layout>
+    <Layout pageTitle="Authors">
       <PageContainer>
         <LayoutContainer layoutType="stacked">
           <LayoutColumn colWidth="100%">
             <PageHeader
               pageName="authors"
-              pageTitle="All authors"
+              pageTitle="authors"
               titleColor={{ scalable: { color: "accent" } }}
             />
           </LayoutColumn>

@@ -46,18 +46,16 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, location }) => {
     )
     .flatMap(({ tags }) => tags);
   const tagsUnique = uniqBy(removeCategoriesFromTags(tags as Tag[]), "id");
+  const categoryName = category.name ? category.name.split("-")[1] : "";
 
   return (
     <>
       <MetaData data={data} location={location} type="series" />
-      <Layout>
+      <Layout pageTitle={categoryName}>
         <PageContainer>
           <LayoutContainer layoutType="stacked">
             <LayoutColumn>
-              <PageHeader
-                pageName="category"
-                pageTitle={category.name ? category.name.split("-")[1] : ""}
-              />
+              <PageHeader pageName="category" pageTitle={categoryName} />
             </LayoutColumn>
           </LayoutContainer>
           <LayoutContainer>
