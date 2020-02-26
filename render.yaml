@@ -92,7 +92,7 @@ services:
       - key: COMMENTO_SMTP_USERNAME
         value: comments@mail.livelifemindful.com
       - key: COMMENTO_SMTP_FROM_ADDRESS
-        value: "'The Friendly Comment Robot' <no-reply@livelifemindful.com>"
+        value: no-reply@livelifemindful.com
       - key: COMMENTO_SMTP_PASSWORD
         sync: false
       - key: COMMENTO_POSTGRES
