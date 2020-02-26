@@ -60,10 +60,7 @@ const PostPage: FC<BlogPostProps> = ({ data, location }) => {
     <>
       <MetaData data={data} location={location} type="article" />
       <Helmet>
-        <script
-          data-page-id={id}
-          src="https://community.blog.livelifemindful.com/js/commento.js"
-        ></script>
+        <script src="https://community.blog.livelifemindful.com/js/commento.js"></script>
       </Helmet>
       <Layout>
         <StyledBlogHero>
