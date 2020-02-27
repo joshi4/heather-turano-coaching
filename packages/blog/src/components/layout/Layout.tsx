@@ -1,4 +1,4 @@
-import React, { Fragment, ReactNode, FC } from "react";
+import React, { ReactNode, FC } from "react";
 import Helmet from "react-helmet";
 import { StaticQuery, graphql } from "gatsby";
 import { createGlobalStyle } from "styled-components";
@@ -17,8 +17,6 @@ import {
   HeaderNavLink,
   HeaderNavLinkContent,
   FooterNav,
-  FooterNavLink,
-  FooterNavLinkContent,
   logos
 } from "../../components";
 
@@ -62,6 +60,11 @@ const fontFaceLinks = fontFaceDefs.reduce(
   [] as ReactNode[]
 );
 
+export interface NavLinkType {
+  label: string;
+  route: string;
+}
+
 /**
  * @todo Get this data from Contentful API
  */
@@ -84,23 +87,20 @@ const headerNavLinks = [
     forceActiveState: true
   }
 ];
-const footerNavLinks = {
-  rightNavItems: [],
-  terms: [
-    {
-      label: "Privacy Policy",
-      route: "/privacy-policy"
-    },
-    {
-      label: "Terms of Service",
-      route: "/terms-of-service"
-    },
-    {
-      label: "Cookie Policy",
-      route: "/cookie-policy"
-    }
-  ]
-};
+const usefulLinks: NavLinkType[] = [
+  {
+    label: "Privacy Policy",
+    route: "/privacy-policy"
+  },
+  {
+    label: "Terms of Service",
+    route: "/terms-of-service"
+  },
+  {
+    label: "Cookie Policy",
+    route: "/cookie-policy"
+  }
+];
 
 export const Layout: FC<{ pageTitle: string }> = ({ pageTitle, children }) => (
   <StaticQuery
@@ -123,11 +123,9 @@ export const Layout: FC<{ pageTitle: string }> = ({ pageTitle, children }) => (
           <Helmet>
             <html lang={site.lang} />
             {fontFaceLinks}
-            <title>{`${pageTitle
+            <title>{`Live Life Mindful | ${pageTitle
               .substring(0, 1)
-              .toUpperCase()}${pageTitle.substring(
-              1
-            )} | Live Life Mindful`}</title>
+              .toUpperCase()}${pageTitle.substring(1)}`}</title>
           </Helmet>
           <GlobalStyle />
           <HeaderNav
@@ -143,41 +141,19 @@ export const Layout: FC<{ pageTitle: string }> = ({ pageTitle, children }) => (
           />
           {children}
           <FooterNav
-            leftNav={{
-              title: "Browse",
-              items: headerNavLinks.map(({ label, route }) => (
-                <FooterNavLink key={label}>
-                  <a href={route}>
-                    <FooterNavLinkContent>{label}</FooterNavLinkContent>
-                  </a>
-                </FooterNavLink>
-              ))
+            attribution="Copyright © 2018, Heather Turano Coaching, LLC, All Rights
+            Reserved. Live Life Mindful is a trademark of Heather Turano Coaching,
+            LLC. The use of the trademark Live Life Mindful outside the bounds of
+            this website requires exclusive written consent from Heather Turano
+            Coaching, LLC."
+            createdBy={{
+              intro:
+                "This we\bsite was designed and developed by the amazing people at",
+              link: "http://www.imaginedelements.com",
+              name: "Imagined Elements, LLC"
             }}
-            rightNav={{
-              title: "Explore",
-              items:
-                footerNavLinks.rightNavItems.length > 0
-                  ? footerNavLinks.rightNavItems.map(({ label, route }) => (
-                      <FooterNavLink key={label}>
-                        <a href={route}>
-                          <FooterNavLinkContent>{label}</FooterNavLinkContent>
-                        </a>
-                      </FooterNavLink>
-                    ))
-                  : null
-            }}
-            terms={footerNavLinks.terms.map(({ label, route }, index) => (
-              <Fragment key={label}>
-                <FooterNavLink>
-                  <a href={route}>
-                    <FooterNavLinkContent>{label}</FooterNavLinkContent>
-                  </a>
-                </FooterNavLink>
-                {index !== footerNavLinks.terms.length - 1 && (
-                  <FooterNavLinkContent>&nbsp;|&nbsp;</FooterNavLinkContent>
-                )}
-              </Fragment>
-            ))}
+            mainMenu={headerNavLinks}
+            usefulLinks={usefulLinks}
           />
         </>
       );

@@ -27,6 +27,7 @@ interface HeaderNavProps {
 }
 
 export const headerNavVerticalPadding = 20;
+export const maxNavWidth = makeSize({ custom: 1024 });
 
 const StyledHeaderNav = styled.header`
   box-sizing: border-box;
@@ -130,7 +131,7 @@ const StyledNavList = styled.ul`
 `;
 
 const StyledNavContent = styled.div`
-  max-width: ${makeSize({ custom: 1024 })};
+  max-width: ${maxNavWidth};
   margin: 0 auto;
   width: 100%;
   height: inherit;

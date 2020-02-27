@@ -1,267 +1,117 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 import { darken } from "polished";
-import {
-  ColorProperties,
-  FontProperties
-} from "@heather-turano-coaching/design-system/types/composite";
+import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
 import {
   makeColor,
   makeResponsive,
   makeInset,
-  makeOutset,
-  makeReset
+  makeOutset
 } from "@heather-turano-coaching/design-system/utils";
 
 import {
-  InputGroup,
-  Input,
-  Button,
   Copy,
-  CopyProps,
-  makeFlex
+  makeFlex,
+  sharedHorizontalBodyPadding
 } from "@heather-turano-coaching/components";
 
-import { useBreakpoints } from "@heather-turano-coaching/hooks";
-
-interface NavBlock {
-  title: string;
-  items: ReactNode;
-}
+import { FormSubscribe } from "../../features";
+import { NavLinkType } from "../layout";
+import { FooterNavLinkList } from "./FooterNavLinkList";
+import { FooterNavSection } from "./FooterNavSection";
+import { maxNavWidth } from "./HeaderNav";
 
 interface FooterProps {
-  leftNav: NavBlock;
-  rightNav: NavBlock;
-  terms: ReactNode;
+  attribution: string;
+  createdBy: {
+    intro: string;
+    link: string;
+    name: string;
+  };
+  mainMenu: NavLinkType[];
+  usefulLinks: NavLinkType[];
 }
 
-const fontColor: ColorProperties = {
+export const fontColor: ColorProperties = {
   fixed: "light"
 };
 
-const StyledFooter = styled.footer`
+const StyledFooterContainer = styled.footer`
   width: 100%;
-
-  & > * {
-    box-sizing: border-box;
-  }
-`;
-
-const StyledFooterBottom = styled.div`
   background: ${darken(0.1, makeColor({ scalable: { color: "secondary" } }))};
-  width: inherit;
-  text-align: center;
   ${makeInset({
-    horizontal: 32,
-    vertical: 32
+    vertical: 40,
+    horizontal: sharedHorizontalBodyPadding.tabletPortrait
   })};
-
-  ${makeResponsive({
-    beginAt: "tabletPortrait",
-    style: `
-      text-align: left;
-      ${makeInset({
-        horizontal: 40,
-        vertical: 40
-      })};
-
-      & > div {
-        ${makeFlex("row", "space-between", "flex-end")};
-        flex-wrap: wrap;
-      }
-    `
-  })}
 `;
 
-const StyledFooterInfo = styled.div`
-  ${makeOutset({ bottom: 20 })};
+const StyledFooter = styled.div`
+  ${makeFlex("column-reverse", "flex-start", "flex-start")};
 
   ${makeResponsive({
     beginAt: "tabletPortrait",
     style: `
-      ${makeFlex("row", "flex-start", "center")};
-      ${makeOutset({ bottom: 12 })};
+    ${makeFlex("row", "flex-start", "flex-start")};
+      padding-bottom: 0;
+      max-width: ${maxNavWidth};
+      margin: 0 auto;
 
       & > * {
+        &:not(:last-child) {
+          ${makeOutset({ right: 20 })};
+        }
         &:not(:first-child) {
-          &:before {
-            content: ", ";
-          }
+          ${makeOutset({ left: 20 })};
+        }
+        &:first-child {
+          flex: 2;
+        }
+        &:last-child {
+          flex: 2;
         }
       }
     `
   })};
 `;
 
-const StyledFooterCreatedBy = styled.div`
-  display: none;
-
-  & a {
-    color: ${makeColor({ fixed: "light" })};
-  }
-  ${makeResponsive({
-    beginAt: "tabletPortrait",
-    style: makeFlex("row", "flex-start", "center")
-  })}
-`;
-
-const StyledFooterPrivacy = styled.div`
-  ${makeResponsive({
-    beginAt: "tabletPortrait",
-    style: makeFlex("row", "flex-end", "center")
-  })}
-
-  & > p {
-    ${makeResponsive({
-      endAt: "tabletPortrait",
-      style: `
-        display: none;
-      `
-    })}
-  }
-
-  & > a {
-    display: block;
-    ${makeOutset({ vertical: 8 })}
-
-    ${makeResponsive({
-      beginAt: "tabletPortrait",
-      style: `
-        ${makeOutset({ horizontal: 8 })}
-      `
-    })}
-  }
-`;
-
-const StyledFooterTop = styled.div`
-  display: none;
-  background: ${makeColor({ scalable: { color: "secondary" } })};
-  padding: 40px;
-
-  ${makeResponsive({
-    beginAt: "tabletPortrait",
-    style: `
-      ${makeFlex("row", "space-between", "flex-start")};
-    `
-  })};
-`;
-
-const StyledFooterTopBlock = styled.div`
-  text-align: center;
-
-  & > p {
-    ${makeOutset({ bottom: 24 })}
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-`;
-
-const StyledTopBlogContent = styled.ul`
-  ${makeReset("list")};
-
-  & > li {
-    ${makeOutset({ bottom: 12 })}
-  }
-`;
-
-const StyledFooterLinks = styled.li`
-  a ${makeReset("list")} a {
-    ${makeReset("anchor")}
-  }
-`;
-
-// @ts-ignore
-export const FooterNavLink = StyledFooterLinks;
-
-// const StyledFooterMail = styled.div`
-//   max-width: ${makeSize({ custom: 480 })};
-//   width: ${makeSize({ custom: 480 })};
-// `;
-
-const useFooterNavFontSize = (): FontProperties["fontSize"] => {
-  const [window, { tabletPortrait }] = useBreakpoints();
-
-  const fontSize: FontProperties["fontSize"] =
-    window < tabletPortrait ? "xs" : "sm";
-
-  return fontSize;
-};
-
-export const FooterNavLinkContent: FC<{ type?: CopyProps["type"] }> = ({
-  type = "paragraph",
-  children
-}) => {
-  const fontSize = useFooterNavFontSize();
-
-  return (
-    <Copy type={type} fontSize={fontSize} fontColor={fontColor}>
-      {children}
-    </Copy>
-  );
-};
-
 export const FooterNav: FC<FooterProps> = ({
-  leftNav: { title: leftNavTitle = "Browse", items: leftNavItems },
-  rightNav: { title: rightNavTitle = "Explore", items: rightNavItems },
-  terms
-}) => {
-  const fontSize = useFooterNavFontSize();
-
-  return (
+  attribution,
+  usefulLinks,
+  mainMenu,
+  createdBy
+}) => (
+  <StyledFooterContainer>
     <StyledFooter>
-      <StyledFooterTop>
-        <StyledFooterTopBlock>
-          <Copy type="label" fontSize={fontSize} fontColor={fontColor}>
-            {leftNavTitle}
-          </Copy>
-          <StyledTopBlogContent>{leftNavItems}</StyledTopBlogContent>
-        </StyledFooterTopBlock>
-        <StyledFooterTopBlock>
-          <Copy type="label" fontSize={fontSize} fontColor={fontColor}>
-            Subscribe
-          </Copy>
-          <InputGroup layout="inline">
-            <Input
-              type="text"
-              name="email"
-              placeholder="youremailaddress@awesome.com"
-            />
-            <Button styleType="primary" label="Join!" type="submit" />
-          </InputGroup>
-        </StyledFooterTopBlock>
-        <StyledFooterTopBlock>
-          <Copy type="label" fontSize={fontSize} fontColor={fontColor}>
-            {rightNavTitle}
-          </Copy>
-          <StyledTopBlogContent>{rightNavItems}</StyledTopBlogContent>
-        </StyledFooterTopBlock>
-      </StyledFooterTop>
-      <StyledFooterBottom>
-        <StyledFooterInfo>
-          <Copy type="paragraph" fontSize={fontSize} fontColor={fontColor}>
-            Copyright &copy; 2018, Heather Turano Coaching, LLC, All Rights
-            Reserved
-          </Copy>
-        </StyledFooterInfo>
-        <div>
-          <StyledFooterCreatedBy>
-            <Copy type="text" fontSize={fontSize} fontColor={fontColor}>
-              Designed and developed by
-            </Copy>
-            <span>&nbsp;</span>
-            <Copy type="text" fontSize={fontSize} fontColor={fontColor}>
-              <a
-                href="http://www.imaginedelements.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Imagined Elements, LLC
-              </a>
-            </Copy>
-          </StyledFooterCreatedBy>
-          <StyledFooterPrivacy>{terms}</StyledFooterPrivacy>
-        </div>
-      </StyledFooterBottom>
+      <FooterNavSection title="Heather Turano Coaching, LLC">
+        <Copy type="paragraph" fontSize="xs" fontColor={fontColor}>
+          {attribution}
+        </Copy>
+        <br />
+        <Copy type="paragraph" fontSize="xs" fontColor={fontColor}>
+          {createdBy.intro}{" "}
+          <a
+            href={createdBy.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inlineBlock",
+              textDecorationColor: `${makeColor(fontColor)}`,
+              color: `${makeColor(fontColor)}`
+            }}
+          >
+            {createdBy.name}
+          </a>
+        </Copy>
+      </FooterNavSection>
+      <FooterNavSection title="main menu">
+        <FooterNavLinkList list={mainMenu} />
+      </FooterNavSection>
+      <FooterNavSection title="useful links">
+        <FooterNavLinkList list={usefulLinks} />
+      </FooterNavSection>
+      <FooterNavSection title="Subscribe">
+        <FormSubscribe fieldPrefix="footer" />
+      </FooterNavSection>
     </StyledFooter>
-  );
-};
+  </StyledFooterContainer>
+);
