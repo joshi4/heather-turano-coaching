@@ -9,10 +9,12 @@ import {
   LayoutContainer,
   LayoutColumn,
   PageHeader,
-  BlogPostList
+  BlogPostList,
+  LoadMorePostsButton
 } from "../components";
 import { BlockSubscribe, BlockContributors, BlockTagsList } from "../features";
 import { destructureNodes } from "../utils";
+import { useProgressiveLoader } from "@heather-turano-coaching/hooks";
 
 /**
  * Tag page (/tag/:slug)
@@ -43,6 +45,10 @@ const TagPage: FC<TagsPageProps> = ({ data, location }) => {
   const posts = destructureNodes(data.allGhostPost.edges);
   const tags = destructureNodes(data.allGhostTag.edges);
 
+  const [postList, loadMorePosts, morePostsExist] = useProgressiveLoader<
+    PostOrPage
+  >({ list: posts });
+
   return (
     <>
       <MetaData data={data} location={location} type="series" />
@@ -59,11 +65,17 @@ const TagPage: FC<TagsPageProps> = ({ data, location }) => {
           </LayoutContainer>
           <LayoutContainer>
             <LayoutColumn colWidth={700}>
-              <BlogPostList posts={posts} />
+              <BlogPostList posts={postList} />
+              {morePostsExist && (
+                <LoadMorePostsButton loadMorePosts={loadMorePosts} />
+              )}
             </LayoutColumn>
             <LayoutColumn>
               <BlockSubscribe displayBlockTitle={false} />
-              <BlockContributors title="Authors of tag posts" posts={posts} />
+              <BlockContributors
+                title="Authors of tag posts"
+                posts={postList}
+              />
               <BlockTagsList title="recent tags" tags={tags} />
             </LayoutColumn>
           </LayoutContainer>

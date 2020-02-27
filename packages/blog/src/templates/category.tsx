@@ -9,11 +9,13 @@ import {
   LayoutContainer,
   LayoutColumn,
   PageHeader,
-  BlogPostList
+  BlogPostList,
+  LoadMorePostsButton
 } from "../components";
 import { BlockSubscribe, BlockContributors, BlockTagsList } from "../features";
 import { destructureNodes, removeCategoriesFromTags } from "../utils";
 import { uniqBy } from "lodash";
+import { useProgressiveLoader } from "@heather-turano-coaching/hooks";
 
 /**
  * Tag page (/tag/:slug)
@@ -48,6 +50,10 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, location }) => {
   const tagsUnique = uniqBy(removeCategoriesFromTags(tags as Tag[]), "id");
   const categoryName = category.name ? category.name.split("-")[1] : "";
 
+  const [postList, loadMorePosts, morePostsExist] = useProgressiveLoader<
+    PostOrPage
+  >({ list: posts });
+
   return (
     <>
       <MetaData data={data} location={location} type="series" />
@@ -60,13 +66,16 @@ const CategoryPage: FC<CategoryPageProps> = ({ data, location }) => {
           </LayoutContainer>
           <LayoutContainer>
             <LayoutColumn colWidth={700}>
-              <BlogPostList posts={posts} />
+              <BlogPostList posts={postList} />
+              {morePostsExist && (
+                <LoadMorePostsButton loadMorePosts={loadMorePosts} />
+              )}
             </LayoutColumn>
             <LayoutColumn>
               <BlockSubscribe displayBlockTitle={false} />
               <BlockContributors
                 title="Authors of this category"
-                posts={posts}
+                posts={postList}
               />
               <BlockTagsList title="Tags in this category" tags={tagsUnique} />
             </LayoutColumn>

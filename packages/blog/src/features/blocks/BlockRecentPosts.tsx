@@ -5,7 +5,8 @@ import {
   LayoutBlock,
   LayoutBlockContent,
   BlogPostList,
-  headerNavVerticalPadding
+  headerNavVerticalPadding,
+  LoadMorePostsButton
 } from "../../components";
 import { PostOrPage } from "@tryghost/content-api";
 import {
@@ -13,9 +14,13 @@ import {
   makeColor,
   makeSpace
 } from "@heather-turano-coaching/design-system/utils";
-import { useSticky } from "@heather-turano-coaching/hooks";
+import {
+  useSticky,
+  useProgressiveLoader
+} from "@heather-turano-coaching/hooks";
 import { useStaticQuery, graphql } from "gatsby";
 import { destructureNodes } from "../../utils";
+import { Button } from "@heather-turano-coaching/components";
 
 interface BlockRecentPostsProps {
   posts: PostOrPage[];
@@ -48,13 +53,6 @@ const StyledStickyTarget = styled.div<{ isSticky: boolean }>`
     `};
 `;
 
-// Recent posts will always contain infinite scroll
-// query params could be author
-
-/**
- * @todo infinite scroll
- */
-
 export const BlockRecentPosts: FC<BlockRecentPostsProps> = ({
   title = "recent posts"
 }) => {
@@ -81,6 +79,10 @@ export const BlockRecentPosts: FC<BlockRecentPostsProps> = ({
     offset: headerNavVerticalPadding
   });
 
+  const [postList, loadMorePosts, morePostsExist] = useProgressiveLoader<
+    PostOrPage
+  >({ list: posts });
+
   return (
     <LayoutBlock>
       <StyledStickyWrapper
@@ -96,7 +98,10 @@ export const BlockRecentPosts: FC<BlockRecentPostsProps> = ({
         </StyledStickyTarget>
       </StyledStickyWrapper>
       <LayoutBlockContent>
-        <BlogPostList posts={posts} />
+        <BlogPostList posts={postList} />
+        {morePostsExist && (
+          <LoadMorePostsButton loadMorePosts={loadMorePosts} />
+        )}
       </LayoutBlockContent>
     </LayoutBlock>
   );
