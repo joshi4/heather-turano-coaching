@@ -125,8 +125,6 @@ export const Layout: FC<{ pageTitle: string }> = ({
     .substring(0, 1)
     .toUpperCase()}${pageTitle.substring(1)}`;
 
-  console.log(pTitle);
-
   return (
     <>
       <Helmet>

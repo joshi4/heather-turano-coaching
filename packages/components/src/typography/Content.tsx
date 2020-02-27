@@ -161,11 +161,18 @@ const StyledContent = styled.section`
   }
 `;
 
-export const Content: FC<{ htmlContent: string }> = ({ htmlContent }) => (
+export const Content: FC<{ htmlContent?: string }> = ({
+  htmlContent,
+  children
+}) => (
   <StyledContent>
-    <div
-      className="content"
-      dangerouslySetInnerHTML={{ __html: htmlContent }}
-    />
+    {htmlContent ? (
+      <div
+        className="content"
+        dangerouslySetInnerHTML={{ __html: htmlContent }}
+      />
+    ) : (
+      <div className="content">{children}</div>
+    )}
   </StyledContent>
 );

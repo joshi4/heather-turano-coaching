@@ -10,7 +10,8 @@ import {
   makeInset,
   makeSpace,
   makeSize,
-  makeFont
+  makeFont,
+  makeRhythm
 } from "@heather-turano-coaching/design-system/utils";
 import { PostOrPage } from "@tryghost/content-api";
 

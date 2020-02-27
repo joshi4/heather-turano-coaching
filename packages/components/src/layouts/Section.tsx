@@ -42,7 +42,7 @@ const CSSSectionMap: {
     })}
 
     ${makeResponsive({
-      endAt: "desktop",
+      endAt: "laptop",
       style: `
         background: ${makeColor({ scalable: { color: "light", scale: 3 } })};
       `
@@ -58,7 +58,7 @@ const CSSSectionMap: {
     ${makeInset({ vertical: 180, bottom: 48, horizontal: 32 })};
 
     ${makeResponsive({
-      endAt: "desktop",
+      endAt: "laptop",
       style: makeInset({ top: 160, bottom: 48, horizontal: 32 })
     })}
   `,
@@ -73,7 +73,7 @@ const CSSSectionContentMap: {
   blank: css``,
   layered: css`
     ${makeResponsive({
-      beginAt: "desktop",
+      beginAt: "laptop",
       style: `
         position: relative;
         margin-bottom: ${makeSpace(56)};
