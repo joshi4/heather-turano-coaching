@@ -77,7 +77,7 @@ const StyledFooter = styled.div`
 export const FooterNav: FC<FooterProps> = ({
   attribution,
   usefulLinks,
-  mainMenu,
+  // mainMenu,
   createdBy
 }) => (
   <StyledFooterContainer>
@@ -103,9 +103,9 @@ export const FooterNav: FC<FooterProps> = ({
           </a>
         </Copy>
       </FooterNavSection>
-      <FooterNavSection title="main menu">
+      {/* <FooterNavSection title="main menu">
         <FooterNavLinkList list={mainMenu} />
-      </FooterNavSection>
+      </FooterNavSection> */}
       <FooterNavSection title="useful links">
         <FooterNavLinkList list={usefulLinks} />
       </FooterNavSection>
