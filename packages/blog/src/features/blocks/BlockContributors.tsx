@@ -108,7 +108,7 @@ export const BlockContributors: FC<BlockContributorsProps> = ({
           {postAuthors.map((author: Author) => {
             const color = generateRandomColor();
             return (
-              <StyledLinks hoverColor={color} key={author.id}>
+              <StyledLinks hoverColor={color} key={author.slug}>
                 <FrameworkLink to={`/authors/${author.slug}`}>
                   <AvatarListItem
                     name={author.name as string}

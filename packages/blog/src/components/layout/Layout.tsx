@@ -1,6 +1,6 @@
 import React, { ReactNode, FC } from "react";
 import Helmet from "react-helmet";
-import { StaticQuery, graphql } from "gatsby";
+import { StaticQuery, graphql, useStaticQuery } from "gatsby";
 import { createGlobalStyle } from "styled-components";
 
 /**
@@ -102,61 +102,66 @@ const usefulLinks: NavLinkType[] = [
   }
 ];
 
-export const Layout: FC<{ pageTitle: string }> = ({ pageTitle, children }) => (
-  <StaticQuery
-    query={graphql`
-      query GhostSettings {
-        allGhostSettings {
-          edges {
-            node {
-              ...GhostSettingsFields
-            }
+export const Layout: FC<{ pageTitle: string }> = ({
+  pageTitle = "",
+  children
+}) => {
+  const {
+    allGhostSettings: { edges }
+  } = useStaticQuery(graphql`
+    {
+      allGhostSettings {
+        edges {
+          node {
+            id
           }
         }
       }
-    `}
-    render={data => {
-      const site = data.allGhostSettings.edges[0].node;
+    }
+  `);
 
-      return (
-        <>
-          <Helmet>
-            <html lang={site.lang} />
-            {fontFaceLinks}
-            <title>{`Live Life Mindful | ${pageTitle
-              .substring(0, 1)
-              .toUpperCase()}${pageTitle.substring(1)}`}</title>
-          </Helmet>
-          <GlobalStyle />
-          <HeaderNav
-            homeRoute="https://heatherturanocoaching.com"
-            logos={logos}
-            navItems={headerNavLinks.map(({ label, route }) => (
-              <HeaderNavLink key={label} forceActiveState={label === "blog"}>
-                <a href={route}>
-                  <HeaderNavLinkContent>{label}</HeaderNavLinkContent>
-                </a>
-              </HeaderNavLink>
-            ))}
-          />
-          {children}
-          <FooterNav
-            attribution="Copyright © 2018, Heather Turano Coaching, LLC, All Rights
+  const site = edges[0].node;
+  const pTitle = `${pageTitle
+    .substring(0, 1)
+    .toUpperCase()}${pageTitle.substring(1)}`;
+
+  console.log(pTitle);
+
+  return (
+    <>
+      <Helmet>
+        <html lang={site.lang} />
+        {fontFaceLinks}
+        <title>{`${pTitle} | Live Life Mindful`}</title>
+      </Helmet>
+      <GlobalStyle />
+      <HeaderNav
+        homeRoute="https://heatherturanocoaching.com"
+        logos={logos}
+        navItems={headerNavLinks.map(({ label, route }) => (
+          <HeaderNavLink key={label} forceActiveState={label === "blog"}>
+            <a href={route}>
+              <HeaderNavLinkContent>{label}</HeaderNavLinkContent>
+            </a>
+          </HeaderNavLink>
+        ))}
+      />
+      {children}
+      <FooterNav
+        attribution="Copyright © 2018, Heather Turano Coaching, LLC, All Rights
             Reserved. Live Life Mindful is a trademark of Heather Turano Coaching,
             LLC. The use of the trademark Live Life Mindful outside the bounds of
             this website requires exclusive written consent from Heather Turano
             Coaching, LLC."
-            createdBy={{
-              intro:
-                "This we\bsite was designed and developed by the amazing people at",
-              link: "http://www.imaginedelements.com",
-              name: "Imagined Elements, LLC"
-            }}
-            mainMenu={headerNavLinks}
-            usefulLinks={usefulLinks}
-          />
-        </>
-      );
-    }}
-  />
-);
+        createdBy={{
+          intro:
+            "This website was designed and developed by the amazing people at",
+          link: "http://www.imaginedelements.com",
+          name: "Imagined Elements, LLC"
+        }}
+        mainMenu={headerNavLinks}
+        usefulLinks={usefulLinks}
+      />
+    </>
+  );
+};
