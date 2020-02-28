@@ -1,6 +1,5 @@
 const path = require(`path`);
 const { postsPerPage } = require(`./src/utils/siteConfig`);
-const { paginate } = require(`gatsby-awesome-pagination`);
 
 /**
  * Here is the place where Gatsby creates the URLs for all the
@@ -50,7 +49,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const posts = result.data.allGhostPost.edges;
 
   // Load templates
-  const indexTemplate = path.resolve(`./src/templates/index.tsx`);
+  // const indexTemplate = path.resolve(`./src/templates/index.tsx`);
   const tagTemplate = path.resolve(`./src/templates/tag.tsx`);
   const categoryTemplate = path.resolve(`./src/templates/category.tsx`);
   const authorTemplate = path.resolve(`./src/templates/author.tsx`);
@@ -200,20 +199,5 @@ exports.createPages = async ({ graphql, actions }) => {
         slug: node.slug
       }
     });
-  });
-
-  // Create pagination
-  paginate({
-    createPage,
-    items: posts,
-    itemsPerPage: postsPerPage,
-    component: indexTemplate,
-    pathPrefix: ({ pageNumber }) => {
-      if (pageNumber === 0) {
-        return `/`;
-      } else {
-        return `/page`;
-      }
-    }
   });
 };
