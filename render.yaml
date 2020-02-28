@@ -4,10 +4,10 @@ services:
     env: static
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
-    buildCommand: npm run build:blog
-    staticPublishPath: ./packages/blog/public
+    buildCommand: npm run build:website
+    staticPublishPath: ./packages/website/public
     domains:
-      - blog.livelifemindful.com
+      - livelifemindful.com
     envVars:
       - fromGroup: npm
       - fromGroup: htc-ghost

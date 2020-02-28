@@ -15,12 +15,12 @@
     "update": "npm run check -- -u && npm run bootstrap",
     "test": "jest",
     "lint:fix": "eslint './packages/**/src/**/*.js' --fix",
-    "build:all": "npm run build:ds && npm run build:components && npm run build:domain && npm run build:blog && npm run build:api",
+    "build:all": "npm run build:ds && npm run build:components && npm run build:domain && npm run build:website && npm run build:api",
     "build:components": "npm run build:hooks && lerna run build --scope=@heather-turano-coaching/components  --stream",
     "build:components:storybook": "npm run build:ds && npm run build:hooks && lerna run build:storybook --scope=@heather-turano-coaching/components --stream",
     "build:ds": "lerna run build --scope=@heather-turano-coaching/design-system --stream",
     "build:hooks": "lerna run build --scope=@heather-turano-coaching/hooks --stream",
-    "build:blog": "npm run build:ds && npm run build:components && npm run build:domain && lerna run build --scope=@live-life-mindful/blog --stream",
+    "build:website": "npm run build:ds && npm run build:components && npm run build:domain && lerna run build --scope=@live-life-mindful/website --stream",
     "build:100days": "npm run build:ds && npm run build:components && npm run build:domain && lerna run build --scope=@live-life-mindful/100days --stream",
     "build:api": "lerna run build --scope=@heather-turano-coaching/api --stream",
     "build:domain": "lerna run build --scope=@heather-turano-coaching/domain --stream",
@@ -30,12 +30,12 @@
     "start:ds": "lerna run start --scope=@heather-turano-coaching/design-system --stream",
     "start:components": "npm run build:ds && npm run build:hooks && cd ./packages/components && npm run start",
     "start:components:storybook": "npm run build:ds && npm run build:hooks && cd ./packages/components && npm run buildDevUtils && npm run start:storybook",
-    "start:blog": "cd packages/blog && npm run start",
+    "start:website": "cd packages/website && npm run start",
     "start:100days": "cd packages/100days && npm run start",
     "start:api": "cd packages/api && npm run start",
     "start:domain": "cd packages/domain && npm run start",
     "start:hooks": "cd packages/hooks && npm run start",
-    "preview:blog": "cd packages/blog && npm run serve",
+    "preview:website": "cd packages/website && npm run serve",
     "preview:100days": "cd packages/100days && npm run serve"
   },
   "repository": {
@@ -65,9 +65,9 @@
     "@heather-turano-coaching/typescript": "file:packages/typescript",
     "@heather-turano-coaching/website": "file:packages/__archive__/website",
     "@live-life-mindful/100days": "file:packages/100days",
-    "@live-life-mindful/blog": "file:packages/blog",
+    "@live-life-mindful/website": "file:packages/website",
     "@live-life-mindful/blog-archive": "file:packages/__archive__/blog-archive",
-    "gatsby-plugin-ghost-manifest": "file:packages/blog/plugins/gatsby-plugin-ghost-manifest"
+    "gatsby-plugin-ghost-manifest": "file:packages/website/plugins/gatsby-plugin-ghost-manifest"
   },
   "devDependencies": {
     "@babel/cli": "7.7.0",
