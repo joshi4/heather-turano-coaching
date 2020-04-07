@@ -1,13 +1,13 @@
 {
-  "name": "@live-life-mindful/100days",
+  "name": "@heather-turano-coaching/100-days",
   "private": true,
   "description": "100 days of mindful movement web space",
   "version": "0.2.0",
   "author": "Drew DeCarme (dre@imaginedelements.com)",
   "dependencies": {
-    "@heather-turano-coaching/components": "file:../components",
-    "@heather-turano-coaching/design-system": "file:../design-system",
-    "@heather-turano-coaching/hooks": "file:../hooks",
+    "@heather-turano-coaching/components": "^0.5.0",
+    "@heather-turano-coaching/design-system": "^0.2.5",
+    "@heather-turano-coaching/hooks": "^0.2.0",
     "gatsby": "^2.19.7",
     "gatsby-image": "^2.2.39",
     "gatsby-plugin-manifest": "^2.2.39",
@@ -22,8 +22,8 @@
     "react-helmet": "^5.2.1"
   },
   "devDependencies": {
-    "@heather-turano-coaching/domain": "file:../domain",
-    "@heather-turano-coaching/typescript": "file:../typescript"
+    "@heather-turano-coaching/domain": "^1.1.0",
+    "@heather-turano-coaching/typescript": "^0.2.1"
   },
   "license": "MIT",
   "scripts": {

@@ -17,6 +17,6 @@
     "typescript": "^3.7.5"
   },
   "devDependencies": {
-    "@heather-turano-coaching/typescript": "file:../typescript"
+    "@heather-turano-coaching/typescript": "^0.2.1"
   }
 }

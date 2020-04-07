@@ -18,7 +18,7 @@ import {
   HeaderNavLinkContent,
   FooterNav,
   logos
-} from "../../components";
+} from "..";
 
 const GlobalStyle = createGlobalStyle`
   html,body {
