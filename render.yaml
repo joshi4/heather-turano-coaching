@@ -4,8 +4,8 @@ services:
     env: static
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
-    buildCommand: npm run build:website
-    staticPublishPath: ./packages/website/public
+    buildCommand: npm run build:live-life-mindful
+    staticPublishPath: ./packages/websites/live-life-mindful/public
     domains:
       - livelifemindful.com
     envVars:
@@ -20,8 +20,8 @@ services:
     env: static
     branch: master
     repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
-    buildCommand: npm run build:100days
-    staticPublishPath: ./packages/100days/public
+    buildCommand: npm run build:100-days
+    staticPublishPath: ./packages/websites/100-days/public
     domains:
       - mindfulmovement100.com
     envVars:
