@@ -1,25 +1,23 @@
-import React from "react";
-import { graphql } from "gatsby";
-
-import {
-  PageContainer,
-  MetaData,
-  Layout,
-  LayoutContainer,
-  LayoutColumn
-} from "../components";
-
-import {
-  BlockSubscribe,
-  BockDailyInspiration,
-  BlockFeaturedPosts,
-  BlockContributors,
-  BlockRecentPosts,
-  BlockFeaturedCategory,
-  BlockTagsList
-} from "../features";
-
 import { useBreakpoints } from "@heather-turano-coaching/hooks";
+import { graphql } from "gatsby";
+import React from "react";
+
+import {
+  Layout,
+  LayoutColumn,
+  LayoutContainer,
+  MetaData,
+  PageContainer,
+} from "../components";
+import {
+  BlockContributors,
+  BlockFeaturedCategory,
+  BlockFeaturedPosts,
+  BlockRecentPosts,
+  BlockSubscribe,
+  BlockTagsList,
+  BockDailyInspiration,
+} from "../features";
 
 /**
  * Main index page (home page)
@@ -30,7 +28,7 @@ import { useBreakpoints } from "@heather-turano-coaching/hooks";
  *
  */
 // @ts-ignore
-const Index = ({ data, location, pageContext }) => {
+const BlogPage = ({ data, location, pageContext }) => {
   const posts = data.allGhostPost.edges;
 
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
@@ -89,7 +87,7 @@ const Index = ({ data, location, pageContext }) => {
   );
 };
 
-export default Index;
+export default BlogPage;
 
 // This page query loads all posts sorted descending by published date
 // The `limit` and `skip` values are used for pagination

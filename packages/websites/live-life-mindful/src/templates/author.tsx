@@ -1,39 +1,36 @@
-import React, { FC } from "react";
-import { graphql } from "gatsby";
-
-import { Author, PostOrPage } from "@tryghost/content-api";
 import { Avatar, Copy, makeFlex } from "@heather-turano-coaching/components";
-import { MetaData, Layout } from "../components";
-
 import {
-  PageContainer,
-  LayoutContainer,
-  PageHeader,
-  LayoutColumn,
-  LayoutBlockContent,
-  LayoutBlock
-} from "../components";
-
-import {
-  BlockSubscribe,
-  BlockRecentPosts,
-  BlockTagsList,
-  BlockCategoriesList
-} from "../features";
-
-import styled from "styled-components";
-import {
-  makeInset,
   makeColor,
+  makeInset,
   makeOutset,
-  makeResponsive
+  makeResponsive,
 } from "@heather-turano-coaching/design-system/utils";
+import { Author, PostOrPage } from "@tryghost/content-api";
+import { graphql } from "gatsby";
+import { uniqBy } from "lodash";
+import React, { FC } from "react";
+import styled from "styled-components";
+
+import { Layout, MetaData } from "../components";
+import {
+  LayoutBlock,
+  LayoutBlockContent,
+  LayoutColumn,
+  LayoutContainer,
+  PageContainer,
+  PageHeader,
+} from "../components";
+import {
+  BlockCategoriesList,
+  BlockRecentPosts,
+  BlockSubscribe,
+  BlockTagsList,
+} from "../features";
 import {
   destructureNodes,
   getCategoriesFromTags,
-  removeCategoriesFromTags
+  removeCategoriesFromTags,
 } from "../utils";
-import { uniqBy } from "lodash";
 
 const StyledBioBlock = styled.div`
   text-align: center;
@@ -47,7 +44,7 @@ const StyledBioBlock = styled.div`
     beginAt: "tabletPortrait",
     style: `
       ${makeFlex("row", "flex-start", "stretch")};
-    `
+    `,
   })}
 `;
 
@@ -63,7 +60,7 @@ const StyledBioArea = styled.div`
     beginAt: "tabletPortrait",
     style: `
     ${makeOutset({ left: 16 })};
-    `
+    `,
   })}
 `;
 
@@ -76,14 +73,14 @@ const StyledBioPlaceholder = styled.div``;
  */
 const AuthorPage: FC<{ data: any; location: Location; pageContext: any }> = ({
   data,
-  location
+  location,
   // pageContext
 }) => {
   const author: Author = data.ghostAuthor;
   const posts = destructureNodes<PostOrPage>(data.allGhostPost.edges);
 
   const tags = uniqBy(
-    posts.flatMap(post => (post.tags ? post.tags : [])),
+    posts.flatMap((post) => (post.tags ? post.tags : [])),
     "id"
   );
 
