@@ -40,7 +40,9 @@
     "start:domain": "cd packages/domain && yarn start",
     "start:hooks": "cd packages/hooks && yarn start",
     "preview:live-life-mindful": "yarn build:packages && cd packages/websites/live-life-mindful && yarn serve",
-    "preview:100-days": "yarn build:packages && cd packages/100-days && yarn serve"
+    "preview:100-days": "yarn build:packages && cd packages/100-days && yarn serve",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -59,5 +61,6 @@
   "license": "ISC",
   "devDependencies": {
     "lerna": "3.20.2"
-  }
+  },
+  "dependencies": {}
 }
