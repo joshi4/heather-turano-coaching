@@ -29,3 +29,11 @@ This repository is a Lerna managed mono-repo that contains all of the packages n
 - React components that serve the brand are contained in their own package and built & tested using [Storybook](https://storybook.js.org/)
 - The styles are built using the [css-in-ts](https://github.com/css-in-ts/design-system) methodology by defining primitive and composite design types & interfacing them with utilities.
 - The API is a typescript based serverless API built using Cloudflare workers that operate on the network edge; based upon the template from [cloudflare-workers-ts-router](https://github.com/drewdecarme/cloudflare-workers-ts-router)
+- Ghost
+- Commento
+
+# Content Management
+
+- Commento
+- Ghost
+- Contentful
