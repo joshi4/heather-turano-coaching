@@ -1,16 +1,13 @@
-import React, { FC } from "react";
-import styled, {
-  SimpleInterpolation,
-  css
-  // FlattenSimpleInterpolation
-} from "styled-components";
 import {
+  makeColor,
   makeInset,
+  makeOutset,
   makeResponsive,
   makeSize,
-  makeColor,
-  makeSpace
+  makeSpace,
 } from "@heather-turano-coaching/design-system/utils";
+import React, { FC } from "react";
+import styled, { SimpleInterpolation, css } from "styled-components";
 
 export interface SectionProps {
   styleType:
@@ -30,7 +27,7 @@ const CSSSectionMap: {
 
     ${makeResponsive<string>({
       beginAt: "tabletPortrait",
-      style: makeInset({ vertical: 56 })
+      style: makeInset({ vertical: 56 }),
     })}
   `,
   layered: css`
@@ -38,14 +35,14 @@ const CSSSectionMap: {
 
     ${makeResponsive<string>({
       beginAt: "tabletPortrait",
-      style: makeInset({ vertical: 56 })
+      style: makeInset({ vertical: 56 }),
     })}
 
     ${makeResponsive({
       endAt: "laptop",
       style: `
         background: ${makeColor({ scalable: { color: "light", scale: 3 } })};
-      `
+      `,
     })}
   `,
   hero: css`
@@ -59,12 +56,12 @@ const CSSSectionMap: {
 
     ${makeResponsive({
       endAt: "laptop",
-      style: makeInset({ top: 160, bottom: 48, horizontal: 32 })
+      style: makeInset({ top: 160, bottom: 48, horizontal: 32 }),
     })}
   `,
   "blog-page": css`
     ${makeInset({ top: 0, bottom: 56, horizontal: 32 })};
-  `
+  `,
 };
 
 const CSSSectionContentMap: {
@@ -78,12 +75,12 @@ const CSSSectionContentMap: {
         position: relative;
         margin-bottom: ${makeSpace(56)};
         background: ${makeColor({
-          scalable: { color: "light", scale: 3 }
+          scalable: { color: "light", scale: 3 },
         })};
 
         & > * {
           background: ${makeColor({
-            scalable: { color: "light", scale: 3 }
+            scalable: { color: "light", scale: 3 },
           })};
           ${makeInset({ vertical: 56, horizontal: 56 })};
         }
@@ -96,11 +93,11 @@ const CSSSectionContentMap: {
           right: -${makeSize({ custom: 56 })};
           bottom: -${makeSize({ custom: 56 })};
           background: ${makeColor({
-            scalable: { color: "secondary", scale: 3 }
+            scalable: { color: "secondary", scale: 3 },
           })};
           z-index: -1;
         }
-      `
+      `,
     })}
   `,
   hero: css``,
@@ -112,7 +109,7 @@ const CSSSectionContentMap: {
   `,
   "blog-page": css`
     max-width: ${makeSize({ custom: 680 })};
-  `
+  `,
 };
 
 const StyledSection = styled.article<SectionProps>`
@@ -128,7 +125,7 @@ const StyledSectionContent = styled.div<SectionProps>`
     style: `
       margin: 0 auto;
       max-width: ${makeSize({ custom: 700 })};
-    `
+    `,
   })}
 
   ${({ styleType }) => CSSSectionContentMap[styleType]};
@@ -137,7 +134,23 @@ const StyledSectionContent = styled.div<SectionProps>`
 export const Section: FC<SectionProps> = ({ styleType, children }) => (
   <StyledSection styleType={styleType}>
     <StyledSectionContent styleType={styleType}>
-      {children}
+      <div>{children}</div>
     </StyledSectionContent>
   </StyledSection>
+);
+
+const StyledSectionCopy = styled.div`
+  max-width: ${makeSize({ custom: 600 })};
+  margin: 0 auto;
+`;
+
+export const SectionCopy: FC = ({ children }) => (
+  <StyledSectionCopy>{children}</StyledSectionCopy>
+);
+
+const StyledSectionFooter = styled.div`
+  ${makeOutset({ top: "xl", bottom: 0, horizontal: "auto" })}
+`;
+export const SectionFooter: FC = ({ children }) => (
+  <StyledSectionFooter>{children}</StyledSectionFooter>
 );

@@ -1,29 +1,29 @@
-import React, { FC, useRef } from "react";
-import styled, { css } from "styled-components";
+import { Button } from "@heather-turano-coaching/components";
 import {
-  LayoutBlockTitle,
-  LayoutBlock,
-  LayoutBlockContent,
-  BlogPostList,
-  headerNavVerticalPadding,
-  LoadMorePostsButton
-} from "../../components";
-import { PostOrPage } from "@tryghost/content-api";
-import {
-  makeSize,
   makeColor,
-  makeSpace
+  makeSize,
+  makeSpace,
 } from "@heather-turano-coaching/design-system/utils";
 import {
+  useProgressiveLoader,
   useSticky,
-  useProgressiveLoader
 } from "@heather-turano-coaching/hooks";
-import { useStaticQuery, graphql } from "gatsby";
+import { PostOrPage } from "@tryghost/content-api";
+import { graphql, useStaticQuery } from "gatsby";
+import React, { FC, useRef } from "react";
+import styled, { css } from "styled-components";
+
+import {
+  BlogPostList,
+  LayoutBlock,
+  LayoutBlockContent,
+  LayoutBlockTitle,
+  LoadMorePostsButton,
+  headerNavVerticalPadding,
+} from "../../components";
 import { destructureNodes } from "../../utils";
-import { Button } from "@heather-turano-coaching/components";
 
 interface BlockRecentPostsProps {
-  posts: PostOrPage[];
   title?: string;
 }
 
@@ -54,10 +54,10 @@ const StyledStickyTarget = styled.div<{ isSticky: boolean }>`
 `;
 
 export const BlockRecentPosts: FC<BlockRecentPostsProps> = ({
-  title = "recent posts"
+  title = "recent posts",
 }) => {
   const {
-    allGhostPost: { edges }
+    allGhostPost: { edges },
   } = useStaticQuery(graphql`
     {
       allGhostPost {
@@ -76,7 +76,7 @@ export const BlockRecentPosts: FC<BlockRecentPostsProps> = ({
   const targetRef = useRef<HTMLDivElement>(null);
   const isSticky = useSticky<HTMLDivElement>({
     ref: wrapperRef,
-    offset: headerNavVerticalPadding
+    offset: headerNavVerticalPadding,
   });
 
   const [postList, loadMorePosts, morePostsExist] = useProgressiveLoader<

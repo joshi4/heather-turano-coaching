@@ -1,21 +1,19 @@
-import React, { FC, ReactNode, useRef } from "react";
-import styled, { css } from "styled-components";
-
 import {
   Copy,
   Image,
   makeFlex,
-  sharedHorizontalBodyPadding
+  sharedHorizontalBodyPadding,
 } from "@heather-turano-coaching/components";
 import {
   makeColor,
-  makeResponsive,
   makeInset,
+  makeReset,
+  makeResponsive,
   makeSize,
-  makeReset
 } from "@heather-turano-coaching/design-system/utils";
-
 import { useBreakpoints, useSticky } from "@heather-turano-coaching/hooks";
+import React, { FC, ReactNode, useRef } from "react";
+import styled, { css } from "styled-components";
 
 interface HeaderNavProps {
   homeRoute?: string;
@@ -32,7 +30,7 @@ export const maxNavWidth = makeSize({ custom: 1024 });
 const StyledHeaderNav = styled.header`
   box-sizing: border-box;
   box-shadow: ${`0 1px 15px 0 ${makeColor({
-    scalable: { color: "gray", scale: 3 }
+    scalable: { color: "gray", scale: 3 },
   })}`};
 
   * {
@@ -49,7 +47,7 @@ const StyledLogo = styled.div`
     style: `
       ${makeFlex("row", "space-between", "center")};
       height: initial;
-    `
+    `,
   })};
 
   & > a {
@@ -79,14 +77,14 @@ const StyledNav = styled.nav<{ isSticky: boolean }>`
   width: 100%;
   ${makeInset({
     horizontal: sharedHorizontalBodyPadding.phone,
-    vertical: headerNavVerticalPadding
+    vertical: headerNavVerticalPadding,
   })};
 
   ${makeResponsive({
     endAt: "tabletPortrait",
     style: `
       background: ${makeColor({ scalable: { color: "light", scale: 3 } })};
-    `
+    `,
   })}
 
   width: 100%;
@@ -100,9 +98,9 @@ const StyledNav = styled.nav<{ isSticky: boolean }>`
       ${makeFlex("row", "space-between", "center")};
       ${makeInset({
         horizontal: sharedHorizontalBodyPadding.tabletPortrait,
-        vertical: headerNavVerticalPadding
+        vertical: headerNavVerticalPadding,
       })};
-    `
+    `,
   })}
 
   ${({ isSticky }) =>
@@ -112,7 +110,7 @@ const StyledNav = styled.nav<{ isSticky: boolean }>`
       top: 0;
       background: ${makeColor({ fixed: "light" })} !important;
       box-shadow: ${`0 1px 15px 0 ${makeColor({
-        scalable: { color: "gray", scale: 3 }
+        scalable: { color: "gray", scale: 3 },
       })}`};
     `}
 `;
@@ -126,7 +124,7 @@ const StyledNavList = styled.ul`
     style: `
       ${makeFlex("row", "flex-end", "center")};
       flex: 1;
-    `
+    `,
   })};
 `;
 
@@ -138,7 +136,7 @@ const StyledNavContent = styled.div`
 
   ${makeResponsive({
     beginAt: "tabletPortrait",
-    style: makeFlex("row", "space-between", "center")
+    style: makeFlex("row", "space-between", "center"),
   })};
 `;
 
@@ -152,7 +150,7 @@ const CSSNavItemActive = css`
   }
 `;
 
-const StyledNavListItem = styled.li<{ forceActiveState: boolean }>`
+const StyledNavListItem = styled.li<{ isActive: boolean }>`
   align-self: stretch;
 
   ${makeResponsive({
@@ -161,7 +159,7 @@ const StyledNavListItem = styled.li<{ forceActiveState: boolean }>`
       &:not(:last-child) {
         ${makeInset({ right: 32 })};
       }
-    `
+    `,
   })};
 
   & > a {
@@ -191,7 +189,7 @@ const StyledNavListItem = styled.li<{ forceActiveState: boolean }>`
       ${CSSNavItemActive};
     }
 
-    ${({ forceActiveState }) => forceActiveState && CSSNavItemActive};
+    ${({ isActive }) => isActive && CSSNavItemActive};
   }
 `;
 
@@ -217,7 +215,7 @@ type HeaderTopLogoProps = Omit<HeaderNavProps, "navItems">;
 
 const HeaderTopLogo: FC<HeaderTopLogoProps> = ({
   homeRoute,
-  logos: { stacked }
+  logos: { stacked },
 }) => {
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
   return windowWidth < tabletPortrait ? (
@@ -233,7 +231,7 @@ type HeaderInlineLogoProps = Omit<HeaderNavProps, "navItems">;
 
 const HeaderInlineLogo: FC<HeaderInlineLogoProps> = ({
   homeRoute,
-  logos: { inline }
+  logos: { inline },
 }) => {
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
   const isWindowMobile = windowWidth < tabletPortrait;
@@ -251,7 +249,7 @@ export const HeaderNav: FC<HeaderNavProps> = ({ navItems, ...restProps }) => {
   const targetRef = useRef<HTMLDivElement>(null);
   const isSticky = useSticky<HTMLElement>({
     ref: wrapperRef,
-    testId: "test"
+    testId: "test",
   });
 
   return (

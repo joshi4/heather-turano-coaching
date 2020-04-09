@@ -92,8 +92,8 @@ exports.createPages = async ({ graphql, actions }) => {
           prevPageNumber: prevPageNumber,
           nextPageNumber: nextPageNumber,
           previousPagePath: previousPagePath,
-          nextPagePath: nextPagePath
-        }
+          nextPagePath: nextPagePath,
+        },
       });
     });
   });
@@ -135,8 +135,8 @@ exports.createPages = async ({ graphql, actions }) => {
           prevPageNumber: prevPageNumber,
           nextPageNumber: nextPageNumber,
           previousPagePath: previousPagePath,
-          nextPagePath: nextPagePath
-        }
+          nextPagePath: nextPagePath,
+        },
       });
     });
   });
@@ -178,8 +178,8 @@ exports.createPages = async ({ graphql, actions }) => {
           prevPageNumber: prevPageNumber,
           nextPageNumber: nextPageNumber,
           previousPagePath: previousPagePath,
-          nextPagePath: nextPagePath
-        }
+          nextPagePath: nextPagePath,
+        },
       });
     });
   });
@@ -188,7 +188,7 @@ exports.createPages = async ({ graphql, actions }) => {
   posts.forEach(({ node }) => {
     // This part here defines, that our posts will use
     // a `/:slug/` permalink.
-    node.url = `/${node.slug}/`;
+    node.url = `/blog/${node.slug}/`;
 
     createPage({
       path: node.url,
@@ -196,8 +196,8 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         // Data passed to context is available
         // in page queries as GraphQL variables.
-        slug: node.slug
-      }
+        slug: node.slug,
+      },
     });
   });
 };

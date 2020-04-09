@@ -1,20 +1,19 @@
-import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
-
 import {
-  Section,
-  Heading,
   Copy,
-  Image
+  Heading,
+  Image,
+  Section,
 } from "@heather-turano-coaching/components";
-import yoga from "../../static/images/meditation.svg";
-
-import { Layout } from "../components";
-import styled from "styled-components";
 import {
   makeRhythm,
-  makeSize
+  makeSize,
 } from "@heather-turano-coaching/design-system/utils";
+import { graphql, useStaticQuery } from "gatsby";
+import React from "react";
+import styled from "styled-components";
+
+import yoga from "../../static/images/meditation.svg";
+import { Layout } from "../components";
 import { FormSubscribe } from "../features";
 
 const Styled404Container = styled.div`
@@ -35,9 +34,9 @@ const Styled404Container = styled.div`
 `;
 
 const NotFoundPage = () => {
-  const { contentfulPageNotFound: data } = useStaticQuery(graphql`
+  const { contentful404NotFound: data } = useStaticQuery(graphql`
     {
-      contentfulPageNotFound {
+      contentful404NotFound {
         title
         subTitle
         formTitle

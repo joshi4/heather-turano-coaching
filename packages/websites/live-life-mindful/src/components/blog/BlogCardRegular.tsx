@@ -1,26 +1,26 @@
-import React, { FC } from "react";
-import { PostOrPage } from "@tryghost/content-api";
-
 import {
-  Heading,
   BlogCardAvatar,
   Copy,
+  Heading,
   makeFlex,
-  universalShadow
+  universalShadow,
 } from "@heather-turano-coaching/components";
-import { useBreakpoints } from "@heather-turano-coaching/hooks";
-import { formatLongDate } from "../../utils";
-import { TagsSection } from "..";
-import { FrameworkLink } from "../general";
-import styled from "styled-components";
 import {
   makeColor,
   makeInset,
-  makeResponsive,
   makeOutset,
+  makeResponsive,
   makeRhythm,
-  makeSize
+  makeSize,
 } from "@heather-turano-coaching/design-system/utils";
+import { useBreakpoints } from "@heather-turano-coaching/hooks";
+import { PostOrPage } from "@tryghost/content-api";
+import React, { FC } from "react";
+import styled from "styled-components";
+
+import { formatLongDate } from "../../utils";
+import { FrameworkLink } from "../general";
+import { TagsSection } from "..";
 
 interface BlogPost {
   post: PostOrPage;
@@ -36,7 +36,7 @@ const StyledRegularBlogCardContainer = styled.div`
       border-radius: ${makeSize({ custom: 2 })};
       overflow: hidden;
       box-shadow: ${universalShadow};
-    `
+    `,
   })};
 
   ${makeResponsive({
@@ -44,7 +44,7 @@ const StyledRegularBlogCardContainer = styled.div`
     style: `
       position: relative;
       ${makeFlex("row", "flex-start", "stretch")};
-    `
+    `,
   })};
 
   ${makeResponsive({
@@ -57,17 +57,17 @@ const StyledRegularBlogCardContainer = styled.div`
         cursor: pointer;
         transform: scale(1.01);
         box-shadow: 0 2px 15px 0px ${makeColor({
-          scalable: { color: "gray" }
+          scalable: { color: "gray" },
         })};
       }
-    `
+    `,
   })};
 `;
 
 const StyledBlogImage = styled.div`
   ${makeResponsive({
     endAt: "tabletPortrait",
-    style: `width: 100%;`
+    style: `width: 100%;`,
   })};
 
   ${makeResponsive({
@@ -75,18 +75,18 @@ const StyledBlogImage = styled.div`
     style: `
       width: 100%;
       height: ${makeSize({ custom: 200 })};
-    `
+    `,
   })};
 
   ${makeResponsive({
     beginAt: "tabletPortrait",
-    style: `width: 40%;`
+    style: `width: 40%;`,
   })};
 
   & > * {
     ${makeResponsive({
       endAt: "tabletPortrait",
-      style: `width: 100%;`
+      style: `width: 100%;`,
     })};
 
     ${makeResponsive({
@@ -94,7 +94,7 @@ const StyledBlogImage = styled.div`
       style: `
         height: 100%;
         width: 100%;
-      `
+      `,
     })}
 
     & > img {
@@ -110,7 +110,7 @@ const StyledBlogImage = styled.div`
             width: 100%;
             height: 100%;
           }
-        `
+        `,
       })};
     }
   }
@@ -125,7 +125,7 @@ const StyledCardContent = styled.div`
     beginAt: "tabletPortrait",
     style: `
       ${makeInset({ horizontal: 36, vertical: 32 })};
-    `
+    `,
   })}
 
   h2,
@@ -138,7 +138,7 @@ const StyledCardContent = styled.div`
       beginAt: "tabletPortrait",
       style: `
         ${makeRhythm({ fontSize: "sm", top: 1, bottom: 1 })};
-      `
+      `,
     })}
   }
 
@@ -149,7 +149,7 @@ const StyledCardContent = styled.div`
       beginAt: "tabletPortrait",
       style: `
         ${makeRhythm({ fontSize: "sm", top: 1, bottom: 1 })};
-      `
+      `,
     })}
   }
 
@@ -157,12 +157,12 @@ const StyledCardContent = styled.div`
     beginAt: "tabletPortrait",
     style: `
       flex: 1;
-    `
+    `,
   })}
 `;
 
 export const BlogPost: FC<BlogPost> = ({
-  post: { feature_image, slug, authors, published_at, title, excerpt, tags }
+  post: { feature_image, slug, authors, published_at, title, excerpt, tags },
 }) => {
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
   const isWindowMobile = windowWidth < tabletPortrait;
@@ -183,13 +183,13 @@ export const BlogPost: FC<BlogPost> = ({
   return (
     <StyledRegularBlogCardContainer>
       <StyledBlogImage>
-        <FrameworkLink to={`/${slug}`}>
+        <FrameworkLink to={`/blog/${slug}`}>
           <img src={feature_image as string} alt={slug} />
         </FrameworkLink>
       </StyledBlogImage>
       <StyledCardContent>
         {!isWindowMobile && Tags}
-        <FrameworkLink to={`/${slug}`}>
+        <FrameworkLink to={`/blog/${slug}`}>
           <Heading
             fontSize={isWindowMobile ? "h3" : "h2"}
             fontColor={{ fixed: "dark" }}

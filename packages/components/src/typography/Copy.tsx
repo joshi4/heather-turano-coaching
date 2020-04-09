@@ -1,13 +1,14 @@
-import React, { FC } from "react";
-import styled, { css } from "styled-components";
 import {
   ColorProperties,
-  FontProperties
+  FontProperties,
 } from "@heather-turano-coaching/design-system/types/composite";
 import {
+  makeFont,
   makeReset,
-  makeFont
 } from "@heather-turano-coaching/design-system/utils";
+import React, { FC } from "react";
+import styled, { css } from "styled-components";
+
 import { HTMLParagraph } from "../types";
 
 export type CopyProps = HTMLParagraph & {
@@ -25,19 +26,20 @@ export const copyFontMap: {
   [key in CopyProps["type"]]: Partial<FontProperties>;
 } = {
   paragraph: {
-    fontFamily: "Muli"
+    fontFamily: "Muli",
   },
   caption: {
     fontFamily: "Muli",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   text: {
-    fontFamily: "Muli"
+    fontFamily: "Muli",
+    fontWeight: "light",
   },
   label: {
     fontFamily: "Muli",
-    fontWeight: "medium"
-  }
+    fontWeight: "medium",
+  },
 };
 
 export const StyledCopy = styled.p<
@@ -50,7 +52,7 @@ export const StyledCopy = styled.p<
       ...copyFontMap[type],
       fontSize: fontSize,
       fontColor,
-      lineHeight
+      lineHeight,
     })};
 `;
 
@@ -60,7 +62,7 @@ export const Copy: FC<CopyProps> = ({
   fontColor = { scalable: { color: "gray" } },
   lineHeight,
   copy = undefined,
-  children = undefined
+  children = undefined,
 }) => (
   <StyledCopy
     type={type}

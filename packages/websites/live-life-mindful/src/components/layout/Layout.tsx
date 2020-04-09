@@ -1,24 +1,24 @@
-import React, { ReactNode, FC } from "react";
+import {
+  makeFontFace,
+  makeResponsive,
+} from "@heather-turano-coaching/design-system/utils";
+import { graphql, useStaticQuery } from "gatsby";
+import React, { FC, ReactNode } from "react";
 import Helmet from "react-helmet";
-import { StaticQuery, graphql, useStaticQuery } from "gatsby";
 import { createGlobalStyle } from "styled-components";
+
+import {
+  FooterNav,
+  HeaderNav,
+  HeaderNavLink,
+  HeaderNavLinkContent,
+  logos,
+} from "..";
 
 /**
  * @todo Convert images to gatsby-image
  */
 // import Img from "gatsby-image";
-
-import {
-  makeResponsive,
-  makeFontFace
-} from "@heather-turano-coaching/design-system/utils";
-import {
-  HeaderNav,
-  HeaderNavLink,
-  HeaderNavLinkContent,
-  FooterNav,
-  logos
-} from "..";
 
 const GlobalStyle = createGlobalStyle`
   html,body {
@@ -35,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
       beginAt: "desktop",
       style: `
         font-size: 18px;
-      `
+      `,
     })}
   }
 
@@ -54,7 +54,7 @@ const fontFaceLinks = fontFaceDefs.reduce(
             key={`link-${i.toString()}`}
             rel="stylesheet"
             href={fontFaceDef.split('("')[1].split('")')[0]}
-          />
+          />,
         ]
       : accum,
   [] as ReactNode[]
@@ -71,43 +71,42 @@ export interface NavLinkType {
 const headerNavLinks = [
   {
     label: "home",
-    route: "https://heatherturanocoaching.com"
+    route: "/",
   },
   {
     label: "about",
-    route: "https://heatherturanocoaching.com/about"
+    route: "/about",
   },
   {
     label: "services",
-    route: "https://heatherturanocoaching.com/services"
+    route: "/services",
   },
   {
     label: "blog",
-    route: "/",
-    forceActiveState: true
-  }
+    route: "/blog",
+  },
 ];
 const usefulLinks: NavLinkType[] = [
   {
     label: "Privacy Policy",
-    route: "/privacy-policy"
+    route: "/privacy-policy",
   },
   {
     label: "Terms of Service",
-    route: "/terms-of-service"
+    route: "/terms-of-service",
   },
   {
     label: "Cookie Policy",
-    route: "/cookie-policy"
-  }
+    route: "/cookie-policy",
+  },
 ];
 
 export const Layout: FC<{ pageTitle: string }> = ({
   pageTitle = "",
-  children
+  children,
 }) => {
   const {
-    allGhostSettings: { edges }
+    allGhostSettings: { edges },
   } = useStaticQuery(graphql`
     {
       allGhostSettings {
@@ -137,7 +136,10 @@ export const Layout: FC<{ pageTitle: string }> = ({
         homeRoute="https://heatherturanocoaching.com"
         logos={logos}
         navItems={headerNavLinks.map(({ label, route }) => (
-          <HeaderNavLink key={label} forceActiveState={label === "blog"}>
+          <HeaderNavLink
+            key={label}
+            isActive={label === pageTitle.toLowerCase()}
+          >
             <a href={route}>
               <HeaderNavLinkContent>{label}</HeaderNavLinkContent>
             </a>
@@ -155,7 +157,7 @@ export const Layout: FC<{ pageTitle: string }> = ({
           intro:
             "This website was designed and developed by the amazing people at",
           link: "http://www.imaginedelements.com",
-          name: "Imagined Elements, LLC"
+          name: "Imagined Elements, LLC",
         }}
         mainMenu={headerNavLinks}
         usefulLinks={usefulLinks}

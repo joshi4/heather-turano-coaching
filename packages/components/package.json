@@ -5,7 +5,7 @@
   "author": "Drew DeCarme (drew@imaginedelements.com)",
   "license": "MIT",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git@gitlab.com:imaginedelements/heather-turano-coaching/live-life-mindful.git"
