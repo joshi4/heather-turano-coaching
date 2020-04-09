@@ -9,6 +9,8 @@ import {
 import React, { FC } from "react";
 import styled, { SimpleInterpolation, css } from "styled-components";
 
+import { makeFlex } from "../utils";
+
 export interface SectionProps {
   styleType:
     | "blank"
@@ -16,6 +18,7 @@ export interface SectionProps {
     | "hero"
     | "blog"
     | "featured-blog"
+    | "split"
     | "blog-page";
 }
 
@@ -61,6 +64,11 @@ const CSSSectionMap: {
   `,
   "blog-page": css`
     ${makeInset({ top: 0, bottom: 56, horizontal: 32 })};
+  `,
+  split: css`
+    ${makeFlex("row", "center", "center")};
+    max-width: 100%;
+    width: 100%;
   `,
 };
 
@@ -110,6 +118,7 @@ const CSSSectionContentMap: {
   "blog-page": css`
     max-width: ${makeSize({ custom: 680 })};
   `,
+  split: css``,
 };
 
 const StyledSection = styled.article<SectionProps>`
@@ -133,9 +142,13 @@ const StyledSectionContent = styled.div<SectionProps>`
 
 export const Section: FC<SectionProps> = ({ styleType, children }) => (
   <StyledSection styleType={styleType}>
-    <StyledSectionContent styleType={styleType}>
-      <div>{children}</div>
-    </StyledSectionContent>
+    {styleType !== "split" ? (
+      <StyledSectionContent styleType={styleType}>
+        <div>{children}</div>
+      </StyledSectionContent>
+    ) : (
+      children
+    )}
   </StyledSection>
 );
 
