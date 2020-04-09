@@ -32,7 +32,7 @@ This repository is a Lerna managed mono-repo that contains all of the packages n
 - Ghost
 - Commento
 
-# Content Management
+## Content Management
 
 - Commento
 - Ghost
