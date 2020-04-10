@@ -1,3 +1,5 @@
+import { ResponsiveBreakpoints } from "@heather-turano-coaching/design-system/configs";
+import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
 import {
   makeColor,
   makeInset,
@@ -6,6 +8,7 @@ import {
   makeSize,
   makeSpace,
 } from "@heather-turano-coaching/design-system/utils";
+import { useBreakpoints } from "@heather-turano-coaching/hooks";
 import React, { FC } from "react";
 import styled, { SimpleInterpolation, css } from "styled-components";
 
@@ -22,23 +25,41 @@ export interface SectionProps {
     | "blog-page";
 }
 
+type SpaceBreakpoints = Pick<ResponsiveBreakpoints, "phone" | "tabletPortrait">;
+
+export const sectionVSpace: SpaceBreakpoints = {
+  phone: 80,
+  tabletPortrait: 100,
+};
+
+export const sectionHSpace: SpaceBreakpoints = {
+  phone: 32,
+  tabletPortrait: 60,
+};
+
 const CSSSectionMap: {
   [key in SectionProps["styleType"]]: SimpleInterpolation;
 } = {
   blank: css`
-    ${makeInset({ vertical: 56, horizontal: 32 })};
+    ${makeInset({
+      vertical: sectionVSpace.phone,
+      horizontal: sectionHSpace.phone,
+    })};
 
     ${makeResponsive<string>({
       beginAt: "tabletPortrait",
-      style: makeInset({ vertical: 56 }),
+      style: makeInset({ vertical: sectionVSpace.tabletPortrait }),
     })}
   `,
   layered: css`
-    ${makeInset({ vertical: 56, horizontal: 32 })};
+    ${makeInset({
+      vertical: sectionVSpace.phone,
+      horizontal: sectionHSpace.phone,
+    })};
 
     ${makeResponsive<string>({
       beginAt: "tabletPortrait",
-      style: makeInset({ vertical: 56 }),
+      style: makeInset({ vertical: sectionVSpace.tabletPortrait }),
     })}
 
     ${makeResponsive({
@@ -63,12 +84,29 @@ const CSSSectionMap: {
     })}
   `,
   "blog-page": css`
-    ${makeInset({ top: 0, bottom: 56, horizontal: 32 })};
+    ${makeInset({
+      top: 0,
+      bottom: sectionVSpace.phone,
+      horizontal: sectionHSpace.phone,
+    })};
   `,
   split: css`
-    ${makeFlex("row", "center", "center")};
-    max-width: 100%;
-    width: 100%;
+    background: ${makeColor({ fixed: "light" })};
+    /* border-top: ${makeSize({
+      custom: sectionVSpace.phone,
+    })} solid transparent;
+    border-bottom: ${makeSize({ custom: sectionVSpace.phone })} solid
+      transparent; */
+
+    ${makeResponsive({
+      beginAt: "tabletLandscape",
+      style: `
+        ${makeFlex("row", "center", "center")};
+        max-width: 100%;
+        width: 100%;
+        ${makeOutset({ vertical: sectionVSpace.phone })};
+      `,
+    })}
   `,
 };
 
@@ -118,7 +156,16 @@ const CSSSectionContentMap: {
   "blog-page": css`
     max-width: ${makeSize({ custom: 680 })};
   `,
-  split: css``,
+  split: css`
+    ${makeInset({ top: sectionVSpace.phone })};
+
+    ${makeResponsive({
+      beginAt: "tabletLandscape",
+      style: `
+        ${makeInset({ top: sectionVSpace.tabletPortrait })};
+      `,
+    })}
+  `,
 };
 
 const StyledSection = styled.article<SectionProps>`
@@ -140,17 +187,21 @@ const StyledSectionContent = styled.div<SectionProps>`
   ${({ styleType }) => CSSSectionContentMap[styleType]};
 `;
 
-export const Section: FC<SectionProps> = ({ styleType, children }) => (
-  <StyledSection styleType={styleType}>
-    {styleType !== "split" ? (
-      <StyledSectionContent styleType={styleType}>
-        <div>{children}</div>
-      </StyledSectionContent>
-    ) : (
-      children
-    )}
-  </StyledSection>
-);
+export const Section: FC<SectionProps> = ({ styleType, children }) => {
+  const [windowWidth, { phoneLg }] = useBreakpoints();
+
+  return (
+    <StyledSection styleType={styleType}>
+      {styleType !== "split" || windowWidth < phoneLg ? (
+        <StyledSectionContent styleType={styleType}>
+          <div>{children}</div>
+        </StyledSectionContent>
+      ) : (
+        children
+      )}
+    </StyledSection>
+  );
+};
 
 const StyledSectionCopy = styled.div`
   max-width: ${makeSize({ custom: 600 })};
@@ -166,4 +217,44 @@ const StyledSectionFooter = styled.div`
 `;
 export const SectionFooter: FC = ({ children }) => (
   <StyledSectionFooter>{children}</StyledSectionFooter>
+);
+
+interface SectionSplitPaneProps {
+  background: ColorProperties;
+  spaceType?: "flush" | "padded";
+}
+
+const StyledSectionSplitPane = styled.div<SectionSplitPaneProps>`
+  background: ${({ background }) => makeColor(background)};
+  flex: 1;
+  align-self: stretch;
+
+  ${({ spaceType = "padded" }) => {
+    if (spaceType === "flush") {
+      return css``;
+    }
+    return css`
+      ${makeInset({
+        bottom: sectionVSpace.phone,
+        horizontal: sectionHSpace.phone,
+      })};
+
+      ${makeResponsive({
+        beginAt: "phoneLg",
+        style: `
+          ${makeInset({
+            vertical: sectionVSpace.tabletPortrait,
+            horizontal: sectionHSpace.tabletPortrait,
+          })};
+        `,
+      })}
+    `;
+  }}
+`;
+
+export const SectionSplitPane: FC<SectionSplitPaneProps> = ({
+  children,
+  ...restProps
+}) => (
+  <StyledSectionSplitPane {...restProps}>{children}</StyledSectionSplitPane>
 );

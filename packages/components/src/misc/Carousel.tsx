@@ -1,27 +1,24 @@
-import React, { useState, FC, ReactNode } from "react";
-import styled, { css } from "styled-components";
+import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
 import {
+  makeColor,
   makeOutset,
   makeSize,
-  makeColor
 } from "@heather-turano-coaching/design-system/utils";
+import React, { FC } from "react";
+import styled, { css } from "styled-components";
 
-export interface CarouselProps {
-  entries: any[];
-  children: (props: any) => ReactNode;
-}
-
-const StyledCarousel = styled.div``;
+const StyledCarousel = styled.div`
+  position: relative;
+`;
 
 const CSSCarouselBubble = css<{
   isActive: boolean;
+  activeColor: ColorProperties;
 }>`
-  height: ${makeSize("md")};
-  width: ${makeSize("md")};
-  background: ${({ isActive }) =>
-    isActive
-      ? makeColor({ scalable: { color: "secondary" } })
-      : makeColor({ scalable: { color: "light" } })};
+  height: ${makeSize("xs")};
+  width: ${makeSize("xs")};
+  background: ${({ isActive, activeColor }) =>
+    isActive ? makeColor(activeColor) : "transparent"};
   border: 1px solid ${makeColor({ scalable: { color: "secondary", scale: 3 } })};
   border-radius: 50%;
   transition: background 0.15s ease-in-out;
@@ -34,6 +31,7 @@ const CSSCarouselBubble = css<{
 
 const StyledCarouselBubble = styled.button.attrs({ type: "button" })<{
   isActive: boolean;
+  activeColor: ColorProperties;
 }>`
   ${CSSCarouselBubble};
 
@@ -47,23 +45,31 @@ const StyledCarouselFooter = styled.footer`
   text-align: center;
 `;
 
-export const Carousel: FC<CarouselProps> = ({ entries, children }) => {
-  const [currentEntry, setCurrentEntry] = useState(0);
+export const Carousel: FC = ({ children }) => {
+  return <StyledCarousel>{children}</StyledCarousel>;
+};
 
-  const goToEntry = (index: number) => setCurrentEntry(index);
+export interface CarouselFooterProps {
+  entries: any;
+  goToEntry: (i: number) => void;
+  currentEntry: number;
+  activeColor: ColorProperties;
+}
 
-  return (
-    <StyledCarousel>
-      <div>{children({ ...entries[currentEntry] })}</div>
-      <StyledCarouselFooter>
-        {entries.map((_: any, index: number) => (
-          <StyledCarouselBubble
-            isActive={index === currentEntry}
-            key={index.toString()}
-            onClick={() => goToEntry(index)}
-          />
-        ))}
-      </StyledCarouselFooter>
-    </StyledCarousel>
-  );
+export const CarouselFooter: FC<CarouselFooterProps> = ({
+  entries,
+  currentEntry,
+  goToEntry,
+  activeColor,
+}) => {
+  const bubbles = entries.map((_: any, index: number) => (
+    <StyledCarouselBubble
+      isActive={index === currentEntry}
+      key={index.toString()}
+      onClick={() => goToEntry(index)}
+      activeColor={activeColor}
+    />
+  ));
+  console.log(bubbles);
+  return <StyledCarouselFooter>{bubbles}</StyledCarouselFooter>;
 };

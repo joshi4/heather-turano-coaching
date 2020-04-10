@@ -1,19 +1,20 @@
-import React, { FC } from "react";
-import styled from "styled-components";
-import { darken } from "polished";
-import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
-import {
-  makeColor,
-  makeResponsive,
-  makeInset,
-  makeOutset
-} from "@heather-turano-coaching/design-system/utils";
-
 import {
   Copy,
   makeFlex,
-  sharedHorizontalBodyPadding
+  sectionVSpace,
+  sharedHorizontalBodyPadding,
 } from "@heather-turano-coaching/components";
+import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
+import {
+  makeColor,
+  makeInset,
+  makeOutset,
+  makeResponsive,
+  makeSize,
+} from "@heather-turano-coaching/design-system/utils";
+import { darken } from "polished";
+import React, { FC } from "react";
+import styled from "styled-components";
 
 import { FormSubscribe } from "../../features";
 import { NavLinkType } from "../layout";
@@ -33,7 +34,7 @@ interface FooterProps {
 }
 
 export const fontColor: ColorProperties = {
-  fixed: "light"
+  fixed: "light",
 };
 
 const StyledFooterContainer = styled.footer`
@@ -41,8 +42,18 @@ const StyledFooterContainer = styled.footer`
   background: ${darken(0.1, makeColor({ scalable: { color: "secondary" } }))};
   ${makeInset({
     vertical: 40,
-    horizontal: sharedHorizontalBodyPadding.tabletPortrait
+    horizontal: sharedHorizontalBodyPadding.phone,
   })};
+
+  ${makeResponsive({
+    beginAt: "tabletLandscape",
+    style: `
+      ${makeInset({
+        vertical: sectionVSpace.tabletPortrait,
+        horizontal: sharedHorizontalBodyPadding.tabletPortrait,
+      })};
+    `,
+  })}
 `;
 
 const StyledFooter = styled.div`
@@ -70,7 +81,7 @@ const StyledFooter = styled.div`
           flex: 2;
         }
       }
-    `
+    `,
   })};
 `;
 
@@ -78,7 +89,7 @@ export const FooterNav: FC<FooterProps> = ({
   attribution,
   usefulLinks,
   // mainMenu,
-  createdBy
+  createdBy,
 }) => (
   <StyledFooterContainer>
     <StyledFooter>
@@ -96,7 +107,7 @@ export const FooterNav: FC<FooterProps> = ({
             style={{
               display: "inlineBlock",
               textDecorationColor: `${makeColor(fontColor)}`,
-              color: `${makeColor(fontColor)}`
+              color: `${makeColor(fontColor)}`,
             }}
           >
             {createdBy.name}
