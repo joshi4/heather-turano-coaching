@@ -27,7 +27,8 @@ const StyledFooter = styled.div`
 `;
 
 const StyledContainer = styled.div`
-  height: 100%;
+  height: ${makeSize({ custom: 760 })};
+
   & > * {
     height: 100%;
   }
