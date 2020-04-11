@@ -8,21 +8,18 @@ import {
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 
+import { ContentfulRichText } from "../../components";
 import { FormQuickContact } from "../forms/FormQuickContact";
 
-export const HomeContact = () => {
-  const { contentfulPageHome: queryData } = useStaticQuery(graphql`
+export const AboutContact = () => {
+  const { contentfulPageAbout: queryData } = useStaticQuery(graphql`
     {
-      contentfulPageHome {
+      contentfulPageAbout {
         contactTitle
         contactDescription {
-          content {
-            content {
-              value
-            }
-          }
+          json
         }
-        contactFormButtonLabel
+        contactFormSubmitLabel
       }
     }
   `);
@@ -32,13 +29,16 @@ export const HomeContact = () => {
       <Title size="lg">{queryData.contactTitle}</Title>
       <SectionCopy>
         <Copy fontSize="md" type="text">
-          {queryData.contactDescription.content[0].content[0].value}
+          <ContentfulRichText
+            richText={queryData.contactDescription.json}
+            copy={{ fontSize: "md" }}
+          />
         </Copy>
       </SectionCopy>
       <SectionFooter>
         <div style={{ maxWidth: "80%", margin: "0 auto" }}>
           <FormQuickContact
-            submitButtonLabel={queryData.contactFormButtonLabel}
+            submitButtonLabel={queryData.contactFormSubmitLabel}
             submitButtonColor="secondary"
           />
         </div>

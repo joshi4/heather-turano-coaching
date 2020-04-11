@@ -23,6 +23,7 @@ export interface SectionProps {
     | "featured-blog"
     | "split"
     | "blog-page";
+  background?: ColorProperties;
 }
 
 type SpaceBreakpoints = Pick<ResponsiveBreakpoints, "phone" | "tabletPortrait">;
@@ -92,11 +93,6 @@ const CSSSectionMap: {
   `,
   split: css`
     background: ${makeColor({ fixed: "light" })};
-    /* border-top: ${makeSize({
-      custom: sectionVSpace.phone,
-    })} solid transparent;
-    border-bottom: ${makeSize({ custom: sectionVSpace.phone })} solid
-      transparent; */
 
     ${makeResponsive({
       beginAt: "tabletLandscape",
@@ -104,7 +100,6 @@ const CSSSectionMap: {
         ${makeFlex("row", "center", "center")};
         max-width: 100%;
         width: 100%;
-        ${makeOutset({ vertical: sectionVSpace.phone })};
       `,
     })}
   `,
@@ -170,6 +165,12 @@ const CSSSectionContentMap: {
 
 const StyledSection = styled.article<SectionProps>`
   ${({ styleType }) => CSSSectionMap[styleType]};
+
+  ${({ background }) =>
+    background &&
+    css`
+      background: ${makeColor(background)};
+    `}
 `;
 
 const StyledSectionContent = styled.div<SectionProps>`
@@ -187,13 +188,17 @@ const StyledSectionContent = styled.div<SectionProps>`
   ${({ styleType }) => CSSSectionContentMap[styleType]};
 `;
 
-export const Section: FC<SectionProps> = ({ styleType, children }) => {
+export const Section: FC<SectionProps> = ({
+  styleType,
+  children,
+  background = undefined,
+}) => {
   const [windowWidth, { phoneLg }] = useBreakpoints();
 
   return (
-    <StyledSection styleType={styleType}>
+    <StyledSection styleType={styleType} background={background}>
       {styleType !== "split" || windowWidth < phoneLg ? (
-        <StyledSectionContent styleType={styleType}>
+        <StyledSectionContent styleType={styleType} background={background}>
           <div>{children}</div>
         </StyledSectionContent>
       ) : (
@@ -258,3 +263,9 @@ export const SectionSplitPane: FC<SectionSplitPaneProps> = ({
 }) => (
   <StyledSectionSplitPane {...restProps}>{children}</StyledSectionSplitPane>
 );
+
+const StyledSectionSpacer = styled.div`
+  height: ${makeSize({ custom: sectionVSpace.phone })};
+`;
+
+export const SectionSpacer: FC = () => <StyledSectionSpacer />;

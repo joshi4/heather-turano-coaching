@@ -73,7 +73,7 @@ export const TestimonialContent: FC<Testimonial> = ({
       <StyledTesimonialTextConatiner>
         <ContentfulRichText
           richText={testimonialDescription.testimonialDescription}
-          copy={{ fontColor: { fixed: "light" }, fontSize: "md" }}
+          copy={{ fontColor: { fixed: "light" }, fontSize: "sm" }}
         />
       </StyledTesimonialTextConatiner>
     </SectionCopy>

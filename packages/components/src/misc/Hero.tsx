@@ -67,7 +67,7 @@ const StyledHeroImage = styled.img`
   height: 100%;
   width: 100%;
   object-fit: cover;
-  object-position: 100% 20%;
+  object-position: center;
 `;
 
 export const Hero: FC<HeroProps> = ({

@@ -10,6 +10,7 @@ import {
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 
+// @ts-ignore
 export const HomeServices = () => {
   const { contentfulPageHome: queryData } = useStaticQuery(graphql`
     {
