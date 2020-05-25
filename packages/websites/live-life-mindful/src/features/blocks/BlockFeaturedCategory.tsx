@@ -1,26 +1,27 @@
-import React, { FC } from "react";
-import { Tag } from "@tryghost/content-api";
-import styled from "styled-components";
-import { useStaticQuery, graphql } from "gatsby";
 import {
+  Button,
+  ButtonAction,
+  ButtonGroup,
+  Heading,
+  Typography,
+} from "@heather-turano-coaching/components";
+import { FontProperties } from "@heather-turano-coaching/design-system";
+import {
+  makeColor,
   makeInset,
   makeRhythm,
-  makeColor
-} from "@heather-turano-coaching/design-system/utils";
-import {
-  Heading,
-  Copy,
-  Button,
-  ButtonGroup,
-  ButtonAction
-} from "@heather-turano-coaching/components";
-import { FontProperties } from "@heather-turano-coaching/design-system/types/composite";
+} from "@heather-turano-coaching/design-system";
 import { useBreakpoints } from "@heather-turano-coaching/hooks";
+import { Tag } from "@tryghost/content-api";
+import { graphql, useStaticQuery } from "gatsby";
+import React, { FC } from "react";
+import styled from "styled-components";
+
 import {
+  FrameworkLink,
+  LayoutBlock,
   LayoutBlockContent,
   LayoutBlockTitle,
-  LayoutBlock,
-  FrameworkLink
 } from "../../components";
 import { destructureNodes, featuredCategoryDelimiter } from "../../utils";
 
@@ -44,7 +45,7 @@ const StyledBlockFeaturedCategory = styled.div`
 
 export const BlockFeaturedCategory: FC = () => {
   const {
-    allGhostTag: { edges }
+    allGhostTag: { edges },
   } = useStaticQuery(graphql`
     {
       allGhostTag(
@@ -89,9 +90,9 @@ export const BlockFeaturedCategory: FC = () => {
           <Heading fontSize="h3" fontColor={{ scalable: { color: "gray" } }}>
             {cat.name?.split("-")[1]}
           </Heading>
-          <Copy type="paragraph" fontSize={componentFontSize}>
+          <Typography variant="paragraph" fontSize={componentFontSize}>
             {cat.description?.split(featuredCategoryDelimiter)[1]}
-          </Copy>
+          </Typography>
           <ButtonGroup layout={isWindowMobile ? "stacked-full" : "inline"}>
             <FrameworkLink to={`/categories/${cat.slug}`}>
               <Button styleType="secondary" label="Explore this category" />

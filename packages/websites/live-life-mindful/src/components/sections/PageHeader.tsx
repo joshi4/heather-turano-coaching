@@ -1,20 +1,24 @@
-import React, { FC, Fragment } from "react";
-import { useLocation } from "@reach/router";
-import { Copy, Heading, makeFlex } from "@heather-turano-coaching/components";
-import styled from "styled-components";
 import {
-  makeRhythm,
-  makeInset,
-  makeSize,
-  makeColor,
-  makeOutset,
-  makeResponsive
-} from "@heather-turano-coaching/design-system/utils";
+  Heading,
+  Typography,
+  makeFlex,
+} from "@heather-turano-coaching/components";
 import {
   ColorProperties,
-  ColorScalePosition
-} from "@heather-turano-coaching/design-system/types/composite";
+  ColorScalePosition,
+} from "@heather-turano-coaching/design-system";
+import {
+  makeColor,
+  makeInset,
+  makeOutset,
+  makeResponsive,
+  makeRhythm,
+  makeSize,
+} from "@heather-turano-coaching/design-system";
 import { useBreakpoints } from "@heather-turano-coaching/hooks";
+import { useLocation } from "@reach/router";
+import React, { FC, Fragment } from "react";
+import styled from "styled-components";
 
 import { FrameworkLink } from "../general";
 
@@ -33,7 +37,7 @@ const StyledLayoutPageHeader = styled.header`
       beginAt: "tabletLandscape",
       style: `
         ${makeRhythm({ fontSize: "sm", top: 1, bottom: 0 })};
-      `
+      `,
     })}
 
     & > * {
@@ -44,7 +48,7 @@ const StyledLayoutPageHeader = styled.header`
 
     a {
       text-decoration-color: ${makeColor({
-        scalable: { color: "gray", scale: 2 }
+        scalable: { color: "gray", scale: 2 },
       })};
       cursor: pointer;
       transition: all 0.15s ease-in-out;
@@ -80,29 +84,29 @@ const basePathName = "blog";
 
 const copy = ({
   label,
-  scale
+  scale,
 }: {
   label: string;
   scale: ColorScalePosition;
 }) => (
-  <Copy
+  <Typography
     key={label}
-    type="label"
-    size="xs"
+    variant="label"
+    fontSize="xs"
     fontColor={{
       scalable: {
         color: "gray",
-        scale: scale
-      }
+        scale: scale,
+      },
     }}
   >
     {label}
-  </Copy>
+  </Typography>
 );
 
 export const PageHeader: FC<PageHeaderProps> = ({
   pageTitle,
-  titleColor = { scalable: { color: "secondary" } }
+  titleColor = { scalable: { color: "secondary" } },
 }) => {
   const location = useLocation();
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
@@ -119,18 +123,18 @@ export const PageHeader: FC<PageHeaderProps> = ({
               <FrameworkLink to={`/${route}`}>
                 {copy({
                   label: index === 0 ? basePathName : route,
-                  scale: index !== routes.length - 1 ? 3 : 0
+                  scale: index !== routes.length - 1 ? 3 : 0,
                 })}
               </FrameworkLink>
               {copy({
                 label: "/",
-                scale: 3
+                scale: 3,
               })}
             </Fragment>
           ) : (
             copy({
               label: index === 0 ? basePathName : route,
-              scale: index !== routes.length - 1 ? 3 : 0
+              scale: index !== routes.length - 1 ? 3 : 0,
             })
           )
         )}

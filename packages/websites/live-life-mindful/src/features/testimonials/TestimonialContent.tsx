@@ -8,7 +8,7 @@ import {
   makeInset,
   makeResponsive,
   makeSize,
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
 import React, { FC } from "react";
 import styled from "styled-components";
 
@@ -73,7 +73,11 @@ export const TestimonialContent: FC<Testimonial> = ({
       <StyledTesimonialTextConatiner>
         <ContentfulRichText
           richText={testimonialDescription.testimonialDescription}
-          copy={{ fontColor: { fixed: "light" }, fontSize: "sm" }}
+          copy={{
+            fontColor: { fixed: "light" },
+            fontSize: "sm",
+            variant: "paragraph",
+          }}
         />
       </StyledTesimonialTextConatiner>
     </SectionCopy>

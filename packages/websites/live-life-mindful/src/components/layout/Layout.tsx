@@ -1,10 +1,10 @@
 import {
   makeFontFace,
   makeResponsive,
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
 import { graphql, useStaticQuery } from "gatsby";
 import React, { FC, ReactNode } from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { createGlobalStyle } from "styled-components";
 
 import {

@@ -1,24 +1,20 @@
-import React, { FC } from "react";
-import { graphql } from "gatsby";
-import styled from "styled-components";
-import { PostOrPage } from "@tryghost/content-api";
-
 import {
-  Section,
-  Hero,
   BlogCardAvatar,
-  Heading,
+  BlogSocialLinks,
   Content,
-  BlogSocialLinks
+  Heading,
+  Hero,
+  Section,
 } from "@heather-turano-coaching/components";
-import {
-  makeColor,
-  makeRhythm
-} from "@heather-turano-coaching/design-system/utils";
+import { makeColor, makeRhythm } from "@heather-turano-coaching/design-system";
+import { PostOrPage } from "@tryghost/content-api";
+import { graphql } from "gatsby";
+import React, { FC } from "react";
+import { Helmet } from "react-helmet";
+import styled from "styled-components";
 
 import { Layout, MetaData, TagsSection } from "../components";
 import { formatLongDate } from "../utils";
-import Helmet from "react-helmet";
 
 interface BlogPostProps {
   data: {
@@ -52,7 +48,7 @@ const PostPage: FC<BlogPostProps> = ({ data, location }) => {
     published_at,
     title,
     html,
-    tags
+    tags,
   }: PostOrPage = data.ghostPost;
 
   return (
@@ -83,7 +79,7 @@ const PostPage: FC<BlogPostProps> = ({ data, location }) => {
               facebook: "test-facebook",
               twitter: "test-twitter",
               pinterest: "test-pinterest",
-              instagram: "test-instagram"
+              instagram: "test-instagram",
             }}
           />
         </Section>

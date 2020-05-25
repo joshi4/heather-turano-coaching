@@ -1,15 +1,16 @@
-import React, { FC } from "react";
-import { BlogMetaInformation, BlogAuthor } from "./blog.types";
-import styled, { css } from "styled-components";
 import {
-  makeSize,
+  makeInset,
   makeOutset,
-  makeInset
-} from "@heather-turano-coaching/design-system/utils";
-import { makeFlex } from "../utils";
-import { Copy } from "../typography";
+  makeSize,
+} from "@heather-turano-coaching/design-system";
+import { ColorProperties } from "@heather-turano-coaching/design-system";
+import React, { FC } from "react";
+import styled, { css } from "styled-components";
+
 import { Avatar } from "../assets";
-import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
+import { Typography } from "../typography";
+import { makeFlex } from "../utils";
+import { BlogAuthor, BlogMetaInformation } from "./blog.types";
 
 type BlogCardAvatarProps = BlogAuthor &
   BlogMetaInformation & {
@@ -19,7 +20,7 @@ type BlogCardAvatarProps = BlogAuthor &
 
 const avatarSize: { [key in BlogCardAvatarProps["layoutType"]]: number } = {
   stacked: 144,
-  inline: 60
+  inline: 60,
 };
 
 const StyledBlogCardAvatar = styled.div<
@@ -66,7 +67,7 @@ export const BlogCardAvatar: FC<BlogCardAvatarProps> = ({
   avatarImg,
   authorName,
   datePublished,
-  themeType = "dark"
+  themeType = "dark",
 }) => {
   const copyColor: ColorProperties =
     themeType === "dark"
@@ -81,8 +82,8 @@ export const BlogCardAvatar: FC<BlogCardAvatarProps> = ({
         size={{ custom: avatarSize[layoutType] }}
       />
       <div className="alt">
-        <Copy
-          type="caption"
+        <Typography
+          variant="caption"
           fontSize="xs"
           fontColor={
             themeType === "dark"
@@ -91,15 +92,15 @@ export const BlogCardAvatar: FC<BlogCardAvatarProps> = ({
           }
         >
           {authorName}
-        </Copy>
+        </Typography>
         {layoutType === "stacked" && (
-          <Copy type="caption" fontSize="xs" fontColor={copyColor}>
+          <Typography variant="caption" fontSize="xs" fontColor={copyColor}>
             &nbsp;|&nbsp;
-          </Copy>
+          </Typography>
         )}
-        <Copy type="label" fontSize="xs" fontColor={copyColor}>
+        <Typography variant="label" fontSize="xs" fontColor={copyColor}>
           {datePublished}
-        </Copy>
+        </Typography>
       </div>
     </StyledBlogCardAvatar>
   );

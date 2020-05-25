@@ -1,27 +1,28 @@
-import React, { FC } from "react";
-import { useStaticQuery, graphql } from "gatsby";
-import {
-  LayoutBlockTitle,
-  LayoutBlock,
-  LayoutBlockContent,
-  FrameworkLink
-} from "../../components";
-import { PostOrPage, Author } from "@tryghost/content-api";
 import {
   AvatarListItem,
+  ButtonAction,
   RandomColor,
   generateRandomColor,
-  ButtonAction
 } from "@heather-turano-coaching/components";
-import styled from "styled-components";
 import {
+  makeColor,
+  makeOutset,
   makeReset,
   makeSize,
-  makeColor,
-  makeOutset
-} from "@heather-turano-coaching/design-system/utils";
-import { destructureNodes } from "../../utils";
+} from "@heather-turano-coaching/design-system";
+import { Author, PostOrPage } from "@tryghost/content-api";
+import { graphql, useStaticQuery } from "gatsby";
 import { uniqBy } from "lodash";
+import React, { FC } from "react";
+import styled from "styled-components";
+
+import {
+  FrameworkLink,
+  LayoutBlock,
+  LayoutBlockContent,
+  LayoutBlockTitle,
+} from "../../components";
+import { destructureNodes } from "../../utils";
 
 interface BlockContributorsProps {
   title?: string;
@@ -52,17 +53,17 @@ const StyledLinks = styled.li<{ hoverColor: RandomColor }>`
     cursor: pointer;
     border-color: ${({ hoverColor }) =>
       makeColor({
-        scalable: { color: hoverColor, scale: 1 }
+        scalable: { color: hoverColor, scale: 1 },
       })};
   }
 `;
 
 export const BlockContributors: FC<BlockContributorsProps> = ({
   title = "Authors",
-  posts
+  posts,
 }) => {
   const {
-    allGhostAuthor: { edges }
+    allGhostAuthor: { edges },
   } = useStaticQuery(graphql`
     {
       allGhostAuthor(filter: { postCount: { gt: 0 } }) {

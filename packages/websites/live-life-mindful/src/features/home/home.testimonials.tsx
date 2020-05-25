@@ -40,8 +40,6 @@ export const HomeTestimonials = () => {
     }
   `);
 
-  console.log(queryData.testimonialsListOfTestimonials);
-
   return (
     <Section styleType="split">
       <SectionSplitPane background={{ fixed: "light" }}>
@@ -50,6 +48,7 @@ export const HomeTestimonials = () => {
           <ContentfulRichText
             copy={{
               fontSize: "md",
+              variant: "text",
             }}
             richText={queryData.testimonialsDescription.testimonialsDescription}
           />

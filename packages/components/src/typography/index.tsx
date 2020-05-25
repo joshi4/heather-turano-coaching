@@ -1,5 +1,5 @@
 export * from "./Heading";
 export * from "./Title";
-export * from "./Copy";
+export * from "./Typography";
 export * from "./Icon";
 export * from "./Content";

@@ -1,15 +1,14 @@
-import React, { FC, useState, ReactNode } from "react";
-import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
-
-import { Icon, Copy } from "../typography";
-
 import { IconName } from "@fortawesome/pro-light-svg-icons";
-import styled from "styled-components";
+import { ColorProperties } from "@heather-turano-coaching/design-system";
 import {
-  makeOutset,
   makeColor,
-  makeSize
-} from "@heather-turano-coaching/design-system/utils";
+  makeOutset,
+  makeSize,
+} from "@heather-turano-coaching/design-system";
+import React, { FC, ReactNode, useState } from "react";
+import styled from "styled-components";
+
+import { Icon, Typography } from "../typography";
 
 export interface Step {
   icon: IconName;
@@ -89,7 +88,7 @@ const StyledProgressLine = styled.div<{
 
 const createFontColor = ({
   isActive,
-  isPassed
+  isPassed,
 }: DerrivedValue): ColorProperties => {
   if (isActive) {
     return { scalable: { color: "secondary" } };
@@ -115,13 +114,13 @@ export const Stepper: FC<StepperProps> = ({ steps, children }) => {
           return (
             <div key={label}>
               <StyledStepLabel>
-                <Copy
-                  type="caption"
+                <Typography
+                  variant="caption"
                   fontSize="sm"
                   fontColor={createFontColor({ isActive, isPassed })}
                 >
                   {label}
-                </Copy>
+                </Typography>
               </StyledStepLabel>
               <StyledStepBubble
                 isActive={isActive}

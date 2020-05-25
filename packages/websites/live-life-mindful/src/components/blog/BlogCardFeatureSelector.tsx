@@ -1,19 +1,19 @@
-import React, { FC } from "react";
-import { Copy, makeFlex } from "@heather-turano-coaching/components";
-import styled, { css } from "styled-components";
-import { useBreakpoints } from "@heather-turano-coaching/hooks";
+import { Typography, makeFlex } from "@heather-turano-coaching/components";
 import {
-  makeResponsive,
   makeColor,
+  makeFont,
+  makeInset,
   makeOutset,
   makeReset,
-  makeInset,
-  makeSpace,
+  makeResponsive,
+  makeRhythm,
   makeSize,
-  makeFont,
-  makeRhythm
-} from "@heather-turano-coaching/design-system/utils";
+  makeSpace,
+} from "@heather-turano-coaching/design-system";
+import { useBreakpoints } from "@heather-turano-coaching/hooks";
 import { PostOrPage } from "@tryghost/content-api";
+import React, { FC } from "react";
+import styled, { css } from "styled-components";
 
 interface BlogCardFeatureSelectorProps {
   currentlySelectedPost: PostOrPage | undefined;
@@ -28,7 +28,7 @@ const StyledFeatureBlogSelector = styled.div`
       ${makeFlex("row", "distribute-evently", "center")};
       background: ${makeColor({ fixed: "light" })};
       ${makeOutset({ bottom: 32 })};
-    `
+    `,
   })};
 `;
 
@@ -70,7 +70,7 @@ const StyledFeaturePostButton = styled.button.attrs({ type: "button" })<{
       ${makeFont({
         fontSize: "xs",
         fontFamily: "Montserrat",
-        fontWeight: isActive ? "medium" : "regular"
+        fontWeight: isActive ? "medium" : "regular",
       })}
     `}
   }
@@ -79,14 +79,14 @@ const StyledFeaturePostButton = styled.button.attrs({ type: "button" })<{
 export const BlogCardFeatureSelector: FC<BlogCardFeatureSelectorProps> = ({
   currentlySelectedPost,
   posts,
-  setFp
+  setFp,
 }) => {
   const [windowWidth, { tabletPortrait }] = useBreakpoints();
   const isWindowMobile = windowWidth < tabletPortrait;
 
   return !isWindowMobile ? (
     <StyledFeatureBlogSelector>
-      {posts.map(post => (
+      {posts.map((post) => (
         <StyledFeaturePostButton
           key={post.id}
           onClick={() => setFp(post)}
@@ -94,8 +94,8 @@ export const BlogCardFeatureSelector: FC<BlogCardFeatureSelectorProps> = ({
             currentlySelectedPost ? post.id === currentlySelectedPost.id : false
           }
         >
-          <Copy
-            type="label"
+          <Typography
+            variant="label"
             fontSize="xs"
             fontColor={
               currentlySelectedPost && post.id === currentlySelectedPost.id
@@ -104,7 +104,7 @@ export const BlogCardFeatureSelector: FC<BlogCardFeatureSelectorProps> = ({
             }
           >
             {post.title}
-          </Copy>
+          </Typography>
         </StyledFeaturePostButton>
       ))}
     </StyledFeatureBlogSelector>

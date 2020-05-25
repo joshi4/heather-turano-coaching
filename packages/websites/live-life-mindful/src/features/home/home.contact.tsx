@@ -1,9 +1,9 @@
 import {
-  Copy,
   Section,
   SectionCopy,
   SectionFooter,
   Title,
+  Typography,
 } from "@heather-turano-coaching/components";
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
@@ -31,9 +31,9 @@ export const HomeContact = () => {
     <Section styleType="layered">
       <Title size="lg">{queryData.contactTitle}</Title>
       <SectionCopy>
-        <Copy fontSize="md" type="text">
+        <Typography fontSize="md" variant="text">
           {queryData.contactDescription.content[0].content[0].value}
-        </Copy>
+        </Typography>
       </SectionCopy>
       <SectionFooter>
         <div style={{ maxWidth: "80%", margin: "0 auto" }}>

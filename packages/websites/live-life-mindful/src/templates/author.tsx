@@ -1,10 +1,14 @@
-import { Avatar, Copy, makeFlex } from "@heather-turano-coaching/components";
+import {
+  Avatar,
+  Typography,
+  makeFlex,
+} from "@heather-turano-coaching/components";
 import {
   makeColor,
   makeInset,
   makeOutset,
   makeResponsive,
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
 import { Author, PostOrPage } from "@tryghost/content-api";
 import { graphql } from "gatsby";
 import { uniqBy } from "lodash";
@@ -89,7 +93,7 @@ const AuthorPage: FC<{ data: any; location: Location; pageContext: any }> = ({
 
   return (
     <Layout pageTitle={author.name as string}>
-      <MetaData data={data} location={location} type="profile" />
+      <MetaData data={data} location={location} variant="profile" />
       <PageContainer>
         <LayoutContainer layoutType="stacked">
           <LayoutColumn>
@@ -113,13 +117,13 @@ const AuthorPage: FC<{ data: any; location: Location; pageContext: any }> = ({
                   <StyledBioArea>
                     <StyledBioPlaceholder>
                       {author.bio ? (
-                        <Copy type="paragraph" fontSize="md">
+                        <Typography variant="paragraph" fontSize="md">
                           {author.bio}
-                        </Copy>
+                        </Typography>
                       ) : (
-                        <Copy type="paragraph" fontSize="md">
+                        <Typography variant="paragraph" fontSize="md">
                           This author has not created a bio yet
-                        </Copy>
+                        </Typography>
                       )}
                     </StyledBioPlaceholder>
                   </StyledBioArea>

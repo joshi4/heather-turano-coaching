@@ -27,7 +27,7 @@ export const AboutMyStyle: FC = () => {
         <SectionCopy>
           <ContentfulRichText
             richText={queryData.myStyleDescription.json}
-            copy={{ fontSize: "md" }}
+            copy={{ fontSize: "md", variant: "paragraph" }}
           />
         </SectionCopy>
       </Section>

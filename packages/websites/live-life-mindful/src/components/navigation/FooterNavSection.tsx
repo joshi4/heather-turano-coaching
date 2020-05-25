@@ -1,17 +1,16 @@
-import React, { FC } from "react";
-import styled from "styled-components";
-
+import { Typography } from "@heather-turano-coaching/components";
+import { FontProperties } from "@heather-turano-coaching/design-system";
 import {
+  makeColor,
   makeInset,
   makeOutset,
   makeReset,
+  makeResponsive,
   makeSize,
-  makeColor,
-  makeResponsive
-} from "@heather-turano-coaching/design-system/utils";
-import { FontProperties } from "@heather-turano-coaching/design-system/types/composite";
+} from "@heather-turano-coaching/design-system";
 import { useBreakpoints } from "@heather-turano-coaching/hooks";
-import { Copy } from "@heather-turano-coaching/components";
+import React, { FC } from "react";
+import styled from "styled-components";
 
 import { fontColor } from ".";
 
@@ -27,7 +26,7 @@ const StyledFooterNavSection = styled.div`
       &:not(:first-child){
         ${makeInset({ bottom: 40 })};
       }
-    `
+    `,
   })}
 
   & > p {
@@ -70,7 +69,7 @@ const StyledFooterSectionTitle = styled.div`
 
 export const FooterNavSection: FC<{ title: string }> = ({
   title,
-  children
+  children,
 }) => {
   const [window, { tabletPortrait }] = useBreakpoints();
 
@@ -80,9 +79,9 @@ export const FooterNavSection: FC<{ title: string }> = ({
   return (
     <StyledFooterNavSection>
       <StyledFooterSectionTitle>
-        <Copy type="label" fontSize={fontSize} fontColor={fontColor}>
+        <Typography variant="label" fontSize={fontSize} fontColor={fontColor}>
           {title}
-        </Copy>
+        </Typography>
       </StyledFooterSectionTitle>
       <StyledFooterNavSectionBody>{children}</StyledFooterNavSectionBody>
     </StyledFooterNavSection>

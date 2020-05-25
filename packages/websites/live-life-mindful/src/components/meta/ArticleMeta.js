@@ -1,15 +1,15 @@
-import React from "react";
-import Helmet from "react-helmet";
-import { StaticQuery, graphql } from "gatsby";
-import PropTypes from "prop-types";
-import _ from "lodash";
 import url from "url";
 
+import { tags as tagsHelper } from "@tryghost/helpers";
+import { StaticQuery, graphql } from "gatsby";
+import _ from "lodash";
+import PropTypes from "prop-types";
+import React from "react";
+import { Helmet } from "react-helmet";
+
+import config from "../../utils/siteConfig";
 import getAuthorProperties from "./getAuthorProperties";
 import ImageMeta from "./ImageMeta";
-import config from "../../utils/siteConfig";
-
-import { tags as tagsHelper } from "@tryghost/helpers";
 
 const ArticleMetaGhost = ({ data, settings, canonical }) => {
   const ghostPost = data;
@@ -17,7 +17,7 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
 
   const author = getAuthorProperties(ghostPost.primary_author);
   const publicTags = _.map(
-    tagsHelper(ghostPost, { visibility: `public`, fn: tag => tag }),
+    tagsHelper(ghostPost, { visibility: `public`, fn: (tag) => tag }),
     `name`
   );
   const primaryTag = publicTags[0] || ``;
@@ -36,7 +36,7 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
       "@type": `Person`,
       name: author.name,
       image: author.image ? author.image : undefined,
-      sameAs: author.sameAsArray ? author.sameAsArray : undefined
+      sameAs: author.sameAsArray ? author.sameAsArray : undefined,
     },
     keywords: publicTags.length ? publicTags.join(`, `) : undefined,
     headline: ghostPost.meta_title || ghostPost.title,
@@ -48,7 +48,7 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
           "@type": `ImageObject`,
           url: shareImage,
           width: config.shareImageWidth,
-          height: config.shareImageHeight
+          height: config.shareImageHeight,
         }
       : undefined,
     publisher: {
@@ -58,14 +58,14 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
         "@type": `ImageObject`,
         url: publisherLogo,
         width: 60,
-        height: 60
-      }
+        height: 60,
+      },
     },
     description: ghostPost.meta_description || ghostPost.excerpt,
     mainEntityOfPage: {
       "@type": `WebPage`,
-      "@id": config.siteUrl
-    }
+      "@id": config.siteUrl,
+    },
   };
 
   return (
@@ -161,28 +161,28 @@ ArticleMetaGhost.propTypes = {
       PropTypes.shape({
         name: PropTypes.string,
         slug: PropTypes.string,
-        visibility: PropTypes.string
+        visibility: PropTypes.string,
       })
     ),
     primaryTag: PropTypes.shape({
-      name: PropTypes.string
+      name: PropTypes.string,
     }),
     og_title: PropTypes.string,
     og_description: PropTypes.string,
     twitter_title: PropTypes.string,
     twitter_description: PropTypes.string,
-    excerpt: PropTypes.string.isRequired
+    excerpt: PropTypes.string.isRequired,
   }).isRequired,
   settings: PropTypes.shape({
     logo: PropTypes.object,
     title: PropTypes.string,
     twitter: PropTypes.string,
-    allGhostSettings: PropTypes.object.isRequired
+    allGhostSettings: PropTypes.object.isRequired,
   }).isRequired,
-  canonical: PropTypes.string.isRequired
+  canonical: PropTypes.string.isRequired,
 };
 
-const ArticleMetaQuery = props => (
+const ArticleMetaQuery = (props) => (
   <StaticQuery
     query={graphql`
       query GhostSettingsArticleMeta {
@@ -195,7 +195,7 @@ const ArticleMetaQuery = props => (
         }
       }
     `}
-    render={data => <ArticleMetaGhost settings={data} {...props} />}
+    render={(data) => <ArticleMetaGhost settings={data} {...props} />}
   />
 );
 

@@ -1,16 +1,16 @@
-import React, { FC } from "react";
-import { rgba } from "polished";
-import styled from "styled-components";
 import {
-  makeReset,
+  makeColor,
   makeInset,
   makeOutset,
+  makeReset,
   makeSize,
-  makeColor,
-  makeSpace
-} from "@heather-turano-coaching/design-system/utils";
+  makeSpace,
+} from "@heather-turano-coaching/design-system";
+import { rgba } from "polished";
+import React, { FC } from "react";
+import styled from "styled-components";
 
-import { Copy } from "../typography";
+import { Typography } from "../typography";
 
 export interface BlogCategory {
   rawLabel: string;
@@ -134,9 +134,13 @@ export const BlogCategories: FC<BlogCategoriesProps> = ({ categories }) => (
     <StyledBlogCategories>
       {categories.map(({ label, img }) => (
         <StyledBlogCategory key={img}>
-          <Copy type="paragraph" fontSize="md" fontColor={{ fixed: "light" }}>
+          <Typography
+            variant="paragraph"
+            fontSize="md"
+            fontColor={{ fixed: "light" }}
+          >
             {label}
-          </Copy>
+          </Typography>
           <StyledBackground img={img} />
         </StyledBlogCategory>
       ))}

@@ -2,10 +2,11 @@
   "extends": "@heather-turano-coaching/typescript/tsconfig.react.json",
   "include": ["src", "types"],
   "compilerOptions": {
+    "noEmit": false,
     "outDir": "./dist",
     "declaration": true,
-    "noEmit": false,
-    "declarationDir": "./dist"
+    "declarationMap": true,
+    "noUnusedLocals": true
   },
   "exclude": ["**/*.spec.ts", "**/*.stories.tsx"]
 }

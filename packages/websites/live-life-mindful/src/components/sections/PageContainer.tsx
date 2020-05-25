@@ -4,7 +4,7 @@ import {
   makeResponsive,
   makeSize,
   makeSpace,
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
 import styled, { css } from "styled-components";
 
 const mandala = require("../../../static/images/mandala.png").default;

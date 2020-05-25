@@ -1,22 +1,19 @@
+import { Heading, Typography } from "@heather-turano-coaching/components";
+import {
+  makeColor,
+  makeInset,
+  makeRhythm,
+  makeSize,
+} from "@heather-turano-coaching/design-system";
+import { graphql, useStaticQuery } from "gatsby";
 import React, { FC } from "react";
 import styled from "styled-components";
-import { useStaticQuery, graphql } from "gatsby";
-
-import { Copy, Heading } from "@heather-turano-coaching/components";
 
 import {
-  LayoutBlockTitle,
   LayoutBlock,
-  LayoutBlockContent
+  LayoutBlockContent,
+  LayoutBlockTitle,
 } from "../../components";
-
-import {
-  makeInset,
-  makeColor,
-  makeRhythm,
-  makeSize
-} from "@heather-turano-coaching/design-system/utils";
-
 import { FormSubscribe } from "../forms";
 
 interface BlockSubscribeProps {
@@ -47,7 +44,7 @@ const StyledContentCopy = styled.div`
 `;
 
 export const BlockSubscribe: FC<BlockSubscribeProps> = ({
-  displayBlockTitle = true
+  displayBlockTitle = true,
 }) => {
   const { contentfulBlockSubscribe: queryData } = useStaticQuery(graphql`
     {
@@ -72,9 +69,9 @@ export const BlockSubscribe: FC<BlockSubscribeProps> = ({
             >
               {queryData.contentTitle}
             </Heading>
-            <Copy type="text" fontColor={{ fixed: "light" }}>
+            <Typography variant="text" fontColor={{ fixed: "light" }}>
               {queryData.description}
-            </Copy>
+            </Typography>
           </StyledContentCopy>
           <FormSubscribe fieldPrefix="BlockSubscribe" />
         </StyledSubscribeContnet>

@@ -10,7 +10,7 @@ import {
   makeInset,
   makeResponsive,
   makeSize,
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
 import { useBreakpoints } from "@heather-turano-coaching/hooks";
 import { graphql, useStaticQuery } from "gatsby";
 import React, { FC } from "react";
@@ -107,7 +107,7 @@ export const AboutIntro: FC = () => {
           <SectionCopy>
             <ContentfulRichText
               richText={queryData.introTitle.json}
-              copy={{ fontSize: "md" }}
+              copy={{ fontSize: "md", variant: "paragraph" }}
             />
           </SectionCopy>
         </StyledAboutTitleSection>
@@ -130,7 +130,7 @@ export const AboutIntro: FC = () => {
         <SectionCopy>
           <ContentfulRichText
             richText={queryData.introDescription.json}
-            copy={{ fontSize: "md" }}
+            copy={{ fontSize: "md", variant: "paragraph" }}
           />
         </SectionCopy>
       </Section>

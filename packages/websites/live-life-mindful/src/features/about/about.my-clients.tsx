@@ -11,7 +11,7 @@ import {
 import {
   makeInset,
   makeResponsive,
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
 import { graphql, useStaticQuery } from "gatsby";
 import React, { FC, useMemo } from "react";
 import styled from "styled-components";
@@ -74,7 +74,7 @@ export const AboutMyClients: FC = () => {
   const clients = useMemo(
     () =>
       queryData.myClientsImages.map((clientImage: any) => (
-        <div key={clientImage.title}>
+        <div key={clientImage.url}>
           <Image
             src={clientImage.file.url}
             alt={clientImage.title}
@@ -100,7 +100,7 @@ export const AboutMyClients: FC = () => {
           <SectionCopy>
             <ContentfulRichText
               richText={queryData.myClientsDescription.json}
-              copy={{ fontSize: "md" }}
+              copy={{ fontSize: "md", variant: "paragraph" }}
             />
           </SectionCopy>
           <SectionFooter>

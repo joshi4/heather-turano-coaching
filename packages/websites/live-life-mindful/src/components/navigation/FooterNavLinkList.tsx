@@ -1,11 +1,10 @@
+import { Typography } from "@heather-turano-coaching/components";
+import { makeReset } from "@heather-turano-coaching/design-system";
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { makeReset } from "@heather-turano-coaching/design-system/utils";
-import { Copy } from "@heather-turano-coaching/components";
-
-import { NavLinkType } from "../layout";
 import { FrameworkLink } from "../general";
+import { NavLinkType } from "../layout";
 import { fontColor } from "./FooterNav";
 
 const StyledFooterNavLinkList = styled.ul`
@@ -18,12 +17,12 @@ const StyledFooterNavLinkList = styled.ul`
 
 export const FooterNavLinkList: FC<{ list: NavLinkType[] }> = ({ list }) => (
   <StyledFooterNavLinkList>
-    {list.map(item => (
+    {list.map((item) => (
       <li key={item.route}>
         <FrameworkLink to={item.route}>
-          <Copy fontSize="xs" fontColor={fontColor}>
+          <Typography fontSize="xs" fontColor={fontColor} variant="paragraph">
             {item.label}
-          </Copy>
+          </Typography>
         </FrameworkLink>
       </li>
     ))}

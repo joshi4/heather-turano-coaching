@@ -1,9 +1,9 @@
-import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
+import { ColorProperties } from "@heather-turano-coaching/design-system";
 import {
   makeColor,
   makeResponsive,
   makeSize,
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
 import React, { FC } from "react";
 import styled from "styled-components";
 

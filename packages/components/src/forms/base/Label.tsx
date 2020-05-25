@@ -1,9 +1,9 @@
+import { makeOutset } from "@heather-turano-coaching/design-system";
 import React, { FC } from "react";
-
-import { Copy } from "../../typography";
 import styled from "styled-components";
-import { makeOutset } from "@heather-turano-coaching/design-system/utils";
+
 import { HTMLLabel } from "../../types";
+import { Typography } from "../../typography";
 
 export type LabelProps = HTMLLabel & {
   label?: string;
@@ -18,22 +18,22 @@ const StyledLabel = styled.label`
 export const Label: FC<LabelProps> = ({
   label = undefined,
   htmlFor,
-  isValid = true
+  isValid = true,
 }) => (
   <>
     {label && (
       <StyledLabel htmlFor={htmlFor}>
-        <Copy
-          type="label"
+        <Typography
+          variant="label"
           fontSize="sm"
           fontColor={{
             scalable: {
-              color: isValid ? "secondary" : "error"
-            }
+              color: isValid ? "secondary" : "error",
+            },
           }}
         >
           {label}
-        </Copy>
+        </Typography>
       </StyledLabel>
     )}
   </>

@@ -1,25 +1,26 @@
+import { AvatarCard, makeFlex } from "@heather-turano-coaching/components";
+import {
+  makeInset,
+  makeOutset,
+  makeReset,
+  makeResponsive,
+  makeSize,
+} from "@heather-turano-coaching/design-system";
+import { Author } from "@tryghost/content-api";
+import { graphql, useStaticQuery } from "gatsby";
 import React, { FC } from "react";
 import styled from "styled-components";
+
 import {
-  makeReset,
-  makeSize,
-  makeInset,
-  makeResponsive,
-  makeOutset
-} from "@heather-turano-coaching/design-system/utils";
-import {
-  PageContainer,
-  LayoutContainer,
-  PageHeader,
-  LayoutColumn,
   FrameworkLink,
-  Layout
+  Layout,
+  LayoutColumn,
+  LayoutContainer,
+  PageContainer,
+  PageHeader,
 } from "../components";
-import { Author } from "@tryghost/content-api";
-import { AvatarCard, makeFlex } from "@heather-turano-coaching/components";
 import { universalHover } from "../styles";
 import { destructureNodes } from "../utils";
-import { useStaticQuery, graphql } from "gatsby";
 
 const StyledAuthorPageContent = styled.ul`
   ${makeReset("list")};
@@ -28,7 +29,7 @@ const StyledAuthorPageContent = styled.ul`
     beginAt: "tabletPortrait",
     style: `
       ${makeFlex("row", "flex-start", "flex-start")};
-    `
+    `,
   })}
 
   & > li {
@@ -39,7 +40,7 @@ const StyledAuthorPageContent = styled.ul`
       endAt: "tabletPortrait",
       style: `
         ${makeOutset({ bottom: 24 })};
-      `
+      `,
     })}
 
     ${makeResponsive({
@@ -52,14 +53,14 @@ const StyledAuthorPageContent = styled.ul`
         &:not(:last-child) {
           ${makeInset({ right: 12 })};
         }
-      `
+      `,
     })}
 
     ${makeResponsive({
       beginAt: "tabletLandscape",
       style: `
       flex-basis: 33.33%;
-    `
+    `,
     })}
 
     a {
@@ -74,7 +75,7 @@ const StyledAuthorPageContent = styled.ul`
 
 export const AuthorsPage: FC = () => {
   const {
-    allGhostAuthor: { edges }
+    allGhostAuthor: { edges },
   } = useStaticQuery(graphql`
     {
       allGhostAuthor(filter: { postCount: { gt: 0 } }) {

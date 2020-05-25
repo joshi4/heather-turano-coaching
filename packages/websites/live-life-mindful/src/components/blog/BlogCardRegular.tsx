@@ -1,7 +1,7 @@
 import {
   BlogCardAvatar,
-  Copy,
   Heading,
+  Typography,
   makeFlex,
   universalShadow,
 } from "@heather-turano-coaching/components";
@@ -12,7 +12,7 @@ import {
   makeResponsive,
   makeRhythm,
   makeSize,
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
 import { useBreakpoints } from "@heather-turano-coaching/hooks";
 import { PostOrPage } from "@tryghost/content-api";
 import React, { FC } from "react";
@@ -202,13 +202,13 @@ export const BlogPost: FC<BlogPost> = ({
             datePublished={datePublished}
             layoutType="inline"
           />
-          <Copy
-            type="paragraph"
+          <Typography
+            variant="paragraph"
             fontSize={isWindowMobile ? { custom: 14 } : "sm"}
             fontColor={{ scalable: { color: "gray", scale: 0 } }}
           >
             {pExcerpt}
-          </Copy>
+          </Typography>
         </FrameworkLink>
         {isWindowMobile && Tags}
       </StyledCardContent>

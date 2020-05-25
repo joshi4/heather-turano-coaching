@@ -4,7 +4,7 @@ import {
   Title,
   makeFlex,
 } from "@heather-turano-coaching/components";
-import { makeOutset } from "@heather-turano-coaching/design-system/utils";
+import { makeOutset } from "@heather-turano-coaching/design-system";
 import { graphql, useStaticQuery } from "gatsby";
 import React, { FC, useMemo } from "react";
 import styled from "styled-components";

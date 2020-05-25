@@ -1,26 +1,27 @@
-import React, { FC } from "react";
-import { PostOrPage } from "@tryghost/content-api";
 import {
+  Avatar,
+  BlogCardAvatar,
   Button,
   Heading,
-  Copy,
-  Avatar,
+  Typography,
+  makeFlex,
   universalShadow,
-  BlogCardAvatar,
-  makeFlex
 } from "@heather-turano-coaching/components";
-import { TagsSection } from "../sections";
-import { useBreakpoints } from "@heather-turano-coaching/hooks";
-import styled from "styled-components";
 import {
+  makeColor,
   makeInset,
+  makeResponsive,
   makeRhythm,
   makeSize,
-  makeResponsive,
-  makeColor
-} from "@heather-turano-coaching/design-system/utils";
-import { formatLongDate } from "../../utils";
+} from "@heather-turano-coaching/design-system";
+import { useBreakpoints } from "@heather-turano-coaching/hooks";
 import { Link } from "@reach/router";
+import { PostOrPage } from "@tryghost/content-api";
+import React, { FC } from "react";
+import styled from "styled-components";
+
+import { formatLongDate } from "../../utils";
+import { TagsSection } from "../sections";
 import { FrameworkLink } from "..";
 
 interface BlogCardFeatureProps {
@@ -46,7 +47,7 @@ export const StyledFeaturedBlogCardContainer = styled.div`
       border-radius: ${makeSize({ custom: 8 })};
       box-shadow: ${universalShadow};
       background: ${makeColor({ fixed: "light" })};
-    `
+    `,
   })};
 
   ${makeResponsive({
@@ -54,7 +55,7 @@ export const StyledFeaturedBlogCardContainer = styled.div`
     style: `
       position: relative;
       width: ${makeSize({ custom: 500 })};
-    `
+    `,
   })};
 
   ${makeResponsive({
@@ -64,7 +65,7 @@ export const StyledFeaturedBlogCardContainer = styled.div`
       ${makeFlex("row", "flex-start", "stretch")};
       height: ${makeSize({ custom: 520 })};
       border-radius: 0;
-    `
+    `,
   })};
 `;
 
@@ -83,7 +84,7 @@ const StyledBlogFeaturedImage = styled.div`
       img {
         height: 100%;
       }
-    `
+    `,
   })}
 
   ${makeResponsive({
@@ -97,7 +98,7 @@ const StyledBlogFeaturedImage = styled.div`
           max-height: 100%;
           width: ${makeSize({ custom: 380 })};
         }
-      `
+      `,
   })};
 `;
 
@@ -117,7 +118,7 @@ const StyledCardContent = styled.div`
       beginAt: "tabletPortrait",
       style: `
       ${makeRhythm({ fontSize: "xs", top: 1, bottom: 1 })};
-    `
+    `,
     })}
   }
   & > p {
@@ -129,7 +130,7 @@ const StyledCardContent = styled.div`
     style: `
       height: ${makeSize({ custom: 412 })};
       ${makeInset({ horizontal: 32, top: 32 })};
-    `
+    `,
   })}
 
   ${makeResponsive({
@@ -139,7 +140,7 @@ const StyledCardContent = styled.div`
       background: ${makeColor({ scalable: { color: "secondary" } })};
       box-sizing: border-box;
       height: 100%;
-    `
+    `,
   })};
 `;
 
@@ -150,16 +151,16 @@ const StyledAvatarContainer = styled.div`
       position: absolute;
       left: ${makeSize("sm")};
       top: ${`calc(${makeSize({ custom: 42 })} / -1)`};
-    `
+    `,
   })}
 `;
 
 export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
-  featuredPost: fp
+  featuredPost: fp,
 }) => {
   const [
     windowWidth,
-    { tabletPortrait, tabletLandscape, laptop }
+    { tabletPortrait, tabletLandscape, laptop },
   ] = useBreakpoints();
 
   const authorName = fp.authors ? (fp.authors[0].name as string) : "";
@@ -189,7 +190,7 @@ export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
         <Heading
           fontSize={windowWidth < tabletPortrait ? "h3" : "h2"}
           fontColor={{
-            fixed: windowWidth >= tabletLandscape ? "light" : "dark"
+            fixed: windowWidth >= tabletLandscape ? "light" : "dark",
           }}
         >
           {title}
@@ -203,8 +204,8 @@ export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
             themeType={windowWidth >= tabletLandscape ? "light" : "dark"}
           />
         )}
-        <Copy
-          type="paragraph"
+        <Typography
+          variant="paragraph"
           fontSize={windowWidth < tabletPortrait ? { custom: 14 } : "sm"}
           fontColor={
             windowWidth >= tabletLandscape
@@ -213,7 +214,7 @@ export const BlogCardFeature: FC<BlogCardFeatureProps> = ({
           }
         >
           {excerpt}
-        </Copy>
+        </Typography>
 
         {windowWidth >= tabletLandscape && (
           <FrameworkLink to={`/${fp.slug}`}>

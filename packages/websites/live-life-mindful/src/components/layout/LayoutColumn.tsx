@@ -1,10 +1,11 @@
+import {
+  makeOutset,
+  makeResponsive,
+  makeSize,
+} from "@heather-turano-coaching/design-system";
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
-import {
-  makeSize,
-  makeOutset,
-  makeResponsive
-} from "@heather-turano-coaching/design-system/utils";
+
 import { gutter } from "./LayoutContainer";
 
 interface LayoutColumnProps {
@@ -28,7 +29,7 @@ const StyledLayoutColumn = styled.div<LayoutColumnProps>`
                 ? makeSize({ custom: colWidth })
                 : colWidth
             };
-          `
+          `,
         })};
       `;
     }
@@ -43,7 +44,7 @@ const StyledLayoutColumn = styled.div<LayoutColumnProps>`
       &:not(:first-child) {
         ${makeOutset({ left: gutter })};
       }
-    `
+    `,
   })}
 `;
 

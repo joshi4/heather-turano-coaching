@@ -1,17 +1,17 @@
 import {
-  Copy,
+  Typography,
   makeFlex,
   sectionVSpace,
   sharedHorizontalBodyPadding,
 } from "@heather-turano-coaching/components";
-import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
+import { ColorProperties } from "@heather-turano-coaching/design-system";
 import {
   makeColor,
   makeInset,
   makeOutset,
   makeResponsive,
   makeSize,
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
 import { darken } from "polished";
 import React, { FC } from "react";
 import styled from "styled-components";
@@ -94,11 +94,11 @@ export const FooterNav: FC<FooterProps> = ({
   <StyledFooterContainer>
     <StyledFooter>
       <FooterNavSection title="Heather Turano Coaching, LLC">
-        <Copy type="paragraph" fontSize="xs" fontColor={fontColor}>
+        <Typography variant="paragraph" fontSize="xs" fontColor={fontColor}>
           {attribution}
-        </Copy>
+        </Typography>
         <br />
-        <Copy type="paragraph" fontSize="xs" fontColor={fontColor}>
+        <Typography variant="paragraph" fontSize="xs" fontColor={fontColor}>
           {createdBy.intro}{" "}
           <a
             href={createdBy.link}
@@ -112,7 +112,7 @@ export const FooterNav: FC<FooterProps> = ({
           >
             {createdBy.name}
           </a>
-        </Copy>
+        </Typography>
       </FooterNavSection>
       {/* <FooterNavSection title="main menu">
         <FooterNavLinkList list={mainMenu} />

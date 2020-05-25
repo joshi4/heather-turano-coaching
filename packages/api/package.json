@@ -14,7 +14,7 @@
   "author": "Drew DeCarme <drewdecarme@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "query-string": "^6.10.1"
+    "query-string": "^6.12.1"
   },
   "devDependencies": {
     "@heather-turano-coaching/domain": "^1.1.0"

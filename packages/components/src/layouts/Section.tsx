@@ -1,5 +1,4 @@
-import { ResponsiveBreakpoints } from "@heather-turano-coaching/design-system/configs";
-import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
+import { ColorProperties } from "@heather-turano-coaching/design-system";
 import {
   makeColor,
   makeInset,
@@ -7,7 +6,8 @@ import {
   makeResponsive,
   makeSize,
   makeSpace,
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
+import { ResponsiveBreakpoints } from "@heather-turano-coaching/design-system";
 import { useBreakpoints } from "@heather-turano-coaching/hooks";
 import React, { FC } from "react";
 import styled, { SimpleInterpolation, css } from "styled-components";

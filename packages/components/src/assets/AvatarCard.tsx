@@ -1,21 +1,22 @@
-import React, { FC } from "react";
 import {
   SizeProperties,
-  SpaceProperties
-} from "@heather-turano-coaching/design-system/types/composite";
-import { BlogAuthor } from "../blog/blog.types";
-import { RandomColor, generateRandomColor } from "../utils";
-import styled, { css } from "styled-components";
+  SpaceProperties,
+} from "@heather-turano-coaching/design-system";
 import {
   makeColor,
-  makeSize,
   makeInset,
   makeOutset,
-  makeRhythm
-} from "@heather-turano-coaching/design-system/utils";
-import { Avatar } from "./Avatar";
-import { Heading, Copy } from "../typography";
+  makeRhythm,
+  makeSize,
+} from "@heather-turano-coaching/design-system";
 import { rgba } from "polished";
+import React, { FC } from "react";
+import styled, { css } from "styled-components";
+
+import { BlogAuthor } from "../blog/blog.types";
+import { Heading, Typography } from "../typography";
+import { RandomColor, generateRandomColor } from "../utils";
+import { Avatar } from "./Avatar";
 
 type AvatarCardProps = BlogAuthor & {
   bio?: string | null;
@@ -74,7 +75,7 @@ export const AvatarCard: FC<AvatarCardProps> = ({
   authorName,
   avatarImg,
   bio,
-  featureImage
+  featureImage,
 }) => {
   const randomColor = generateRandomColor();
   return (
@@ -86,7 +87,7 @@ export const AvatarCard: FC<AvatarCardProps> = ({
       <StyledAvatarSection>
         <Avatar image={avatarImg} alt={authorName} size={headerHeight} />
         <Heading fontSize="h3">{authorName}</Heading>
-        <Copy type="text">{bio}</Copy>
+        <Typography variant="text">{bio}</Typography>
       </StyledAvatarSection>
     </StyledAvatarCard>
   );

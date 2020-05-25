@@ -1,11 +1,8 @@
 import {
   ColorProperties,
   SizeProperties,
-} from "@heather-turano-coaching/design-system/types/composite";
-import {
-  makeColor,
-  makeSize,
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
+import { makeColor, makeSize } from "@heather-turano-coaching/design-system";
 import { rgba } from "polished";
 import React, { FC } from "react";
 import styled, { css } from "styled-components";

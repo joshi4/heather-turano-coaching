@@ -1,8 +1,8 @@
+import { makeOutset } from "@heather-turano-coaching/design-system";
 import React, { FC } from "react";
 import styled from "styled-components";
-import { makeOutset } from "@heather-turano-coaching/design-system/utils";
 
-import { Copy } from "../../typography";
+import { Typography } from "../../typography";
 
 export interface ErrorProps {
   errorMessage?: string;
@@ -16,13 +16,13 @@ export const Error: FC<ErrorProps> = ({ errorMessage = undefined }) => (
   <>
     {errorMessage && (
       <StyledError>
-        <Copy
-          type="label"
+        <Typography
+          variant="label"
           fontSize="xs"
           fontColor={{ scalable: { color: "error" } }}
         >
           {errorMessage}
-        </Copy>
+        </Typography>
       </StyledError>
     )}
   </>

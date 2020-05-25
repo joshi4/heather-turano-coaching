@@ -1,6 +1,9 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
-import { Copy, CopyProps } from "@heather-turano-coaching/components";
+import {
+  Typography,
+  TypographyProps,
+} from "@heather-turano-coaching/components";
 import React, { FC, ReactNode } from "react";
 import styled from "styled-components";
 
@@ -11,7 +14,7 @@ const StyledRichText = styled.div`
 `;
 
 export const ContentfulRichText: FC<{
-  copy: CopyProps;
+  copy: TypographyProps;
   richText: string | JSON;
 }> = ({ copy, richText }) => {
   const json = typeof richText === "string" ? JSON.parse(richText) : richText;
@@ -23,7 +26,7 @@ export const ContentfulRichText: FC<{
         },
         renderNode: {
           [BLOCKS.PARAGRAPH]: (_node: any, children: ReactNode): ReactNode => (
-            <Copy {...copy}>{children}</Copy>
+            <Typography {...copy}>{children}</Typography>
           ),
         },
       })}

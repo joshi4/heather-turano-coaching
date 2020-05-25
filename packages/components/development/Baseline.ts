@@ -1,6 +1,5 @@
+import { sizeConfig } from "@heather-turano-coaching/design-system";
 import { createGlobalStyle } from "styled-components";
-
-import { sizeConfig } from "@heather-turano-coaching/design-system/configs";
 
 export const Baseline = createGlobalStyle`
   :root{

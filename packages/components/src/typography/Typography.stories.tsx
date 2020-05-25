@@ -1,241 +1,241 @@
 import React from "react";
 
-import { Copy } from "./Copy";
+import { Typography } from "./Typography";
 
 export default {
-  component: Copy,
-  title: "Core|Typography/Copy"
+  component: Typography,
+  title: "Core|Typography/Typography",
 };
 
 export const caption = () => (
   <>
-    <Copy type="caption" fontSize="xl">
+    <Typography variant="caption" fontSize="xl">
       Caption xl
-    </Copy>
-    <Copy type="caption" fontSize="lg">
+    </Typography>
+    <Typography variant="caption" fontSize="lg">
       Caption lg
-    </Copy>
-    <Copy type="caption" fontSize="md">
+    </Typography>
+    <Typography variant="caption" fontSize="md">
       Caption md
-    </Copy>
-    <Copy type="caption" fontSize="sm">
+    </Typography>
+    <Typography variant="caption" fontSize="sm">
       Caption sm
-    </Copy>
-    <Copy type="caption" fontSize="xs">
+    </Typography>
+    <Typography variant="caption" fontSize="xs">
       Caption xs
-    </Copy>
+    </Typography>
   </>
 );
 export const captionWithColor = () => (
   <>
-    <Copy
-      type="caption"
+    <Typography
+      variant="caption"
       fontSize="xl"
       fontColor={{ scalable: { color: "error" } }}
     >
       Caption xl
-    </Copy>
-    <Copy
-      type="caption"
+    </Typography>
+    <Typography
+      variant="caption"
       fontSize="lg"
       fontColor={{ scalable: { color: "warning" } }}
     >
       Caption lg
-    </Copy>
-    <Copy
-      type="caption"
+    </Typography>
+    <Typography
+      variant="caption"
       fontSize="md"
       fontColor={{ scalable: { color: "warning" } }}
     >
       Caption md
-    </Copy>
-    <Copy
-      type="caption"
+    </Typography>
+    <Typography
+      variant="caption"
       fontSize="sm"
       fontColor={{ scalable: { color: "primary" } }}
     >
       Caption sm
-    </Copy>
-    <Copy
-      type="caption"
+    </Typography>
+    <Typography
+      variant="caption"
       fontSize="xs"
       fontColor={{ scalable: { color: "secondary" } }}
     >
       Caption xs
-    </Copy>
+    </Typography>
   </>
 );
 export const paragraph = () => (
   <>
-    <Copy type="paragraph" fontSize="xl">
+    <Typography variant="paragraph" fontSize="xl">
       Paragraph xl
-    </Copy>
-    <Copy type="paragraph" fontSize="lg">
+    </Typography>
+    <Typography variant="paragraph" fontSize="lg">
       Paragraph lg
-    </Copy>
-    <Copy type="paragraph" fontSize="md">
+    </Typography>
+    <Typography variant="paragraph" fontSize="md">
       Paragraph md
-    </Copy>
-    <Copy type="paragraph" fontSize="sm">
+    </Typography>
+    <Typography variant="paragraph" fontSize="sm">
       Paragraph sm
-    </Copy>
-    <Copy type="paragraph" fontSize="xs">
+    </Typography>
+    <Typography variant="paragraph" fontSize="xs">
       Paragraph xs
-    </Copy>
+    </Typography>
   </>
 );
 export const paragraphWithColor = () => (
   <>
-    <Copy
-      type="paragraph"
+    <Typography
+      variant="paragraph"
       fontSize="xl"
       fontColor={{ scalable: { color: "error" } }}
     >
       Paragraph xl
-    </Copy>
-    <Copy
-      type="paragraph"
+    </Typography>
+    <Typography
+      variant="paragraph"
       fontSize="lg"
       fontColor={{ scalable: { color: "warning" } }}
     >
       Paragraph lg
-    </Copy>
-    <Copy
-      type="paragraph"
+    </Typography>
+    <Typography
+      variant="paragraph"
       fontSize="md"
       fontColor={{ scalable: { color: "warning" } }}
     >
       Paragraph md
-    </Copy>
-    <Copy
-      type="paragraph"
+    </Typography>
+    <Typography
+      variant="paragraph"
       fontSize="sm"
       fontColor={{ scalable: { color: "primary" } }}
     >
       Paragraph sm
-    </Copy>
-    <Copy
-      type="paragraph"
+    </Typography>
+    <Typography
+      variant="paragraph"
       fontSize="xs"
       fontColor={{ scalable: { color: "secondary" } }}
     >
       Paragraph xs
-    </Copy>
+    </Typography>
   </>
 );
 export const label = () => (
   <>
-    <Copy type="label" fontSize="xl">
+    <Typography variant="label" fontSize="xl">
       Label xl
-    </Copy>
-    <Copy type="label" fontSize="lg">
+    </Typography>
+    <Typography variant="label" fontSize="lg">
       Label lg
-    </Copy>
-    <Copy type="label" fontSize="md">
+    </Typography>
+    <Typography variant="label" fontSize="md">
       Label md
-    </Copy>
-    <Copy type="label" fontSize="sm">
+    </Typography>
+    <Typography variant="label" fontSize="sm">
       Label sm
-    </Copy>
-    <Copy type="label" fontSize="xs">
+    </Typography>
+    <Typography variant="label" fontSize="xs">
       Label xs
-    </Copy>
+    </Typography>
   </>
 );
 export const labelWithColor = () => (
   <>
-    <Copy
-      type="label"
+    <Typography
+      variant="label"
       fontSize="xl"
       fontColor={{ scalable: { color: "error" } }}
     >
       Label xl
-    </Copy>
-    <Copy
-      type="label"
+    </Typography>
+    <Typography
+      variant="label"
       fontSize="lg"
       fontColor={{ scalable: { color: "warning" } }}
     >
       Label lg
-    </Copy>
-    <Copy
-      type="label"
+    </Typography>
+    <Typography
+      variant="label"
       fontSize="md"
       fontColor={{ scalable: { color: "warning" } }}
     >
       Label md
-    </Copy>
-    <Copy
-      type="label"
+    </Typography>
+    <Typography
+      variant="label"
       fontSize="sm"
       fontColor={{ scalable: { color: "primary" } }}
     >
       Label sm
-    </Copy>
-    <Copy
-      type="label"
+    </Typography>
+    <Typography
+      variant="label"
       fontSize="xs"
       fontColor={{ scalable: { color: "secondary" } }}
     >
       Label xs
-    </Copy>
+    </Typography>
   </>
 );
 export const text = () => (
   <>
-    <Copy type="text" fontSize="xl">
+    <Typography variant="text" fontSize="xl">
       Label xl
-    </Copy>
-    <Copy type="text" fontSize="lg">
+    </Typography>
+    <Typography variant="text" fontSize="lg">
       Label lg
-    </Copy>
-    <Copy type="text" fontSize="md">
+    </Typography>
+    <Typography variant="text" fontSize="md">
       Label md
-    </Copy>
-    <Copy type="text" fontSize="sm">
+    </Typography>
+    <Typography variant="text" fontSize="sm">
       Label sm
-    </Copy>
-    <Copy type="text" fontSize="xs">
+    </Typography>
+    <Typography variant="text" fontSize="xs">
       Label xs
-    </Copy>
+    </Typography>
   </>
 );
 export const textWithColor = () => (
   <>
-    <Copy
-      type="text"
+    <Typography
+      variant="text"
       fontSize="xl"
       fontColor={{ scalable: { color: "error" } }}
     >
       Label xl
-    </Copy>
-    <Copy
-      type="text"
+    </Typography>
+    <Typography
+      variant="text"
       fontSize="lg"
       fontColor={{ scalable: { color: "warning" } }}
     >
       Label lg
-    </Copy>
-    <Copy
-      type="text"
+    </Typography>
+    <Typography
+      variant="text"
       fontSize="md"
       fontColor={{ scalable: { color: "warning" } }}
     >
       Label md
-    </Copy>
-    <Copy
-      type="text"
+    </Typography>
+    <Typography
+      variant="text"
       fontSize="sm"
       fontColor={{ scalable: { color: "primary" } }}
     >
       Label sm
-    </Copy>
-    <Copy
-      type="text"
+    </Typography>
+    <Typography
+      variant="text"
       fontSize="xs"
       fontColor={{ scalable: { color: "secondary" } }}
     >
       Label xs
-    </Copy>
+    </Typography>
   </>
 );

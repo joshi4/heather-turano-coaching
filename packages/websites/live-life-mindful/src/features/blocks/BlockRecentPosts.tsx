@@ -3,7 +3,7 @@ import {
   makeColor,
   makeSize,
   makeSpace,
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
 import {
   useProgressiveLoader,
   useSticky,

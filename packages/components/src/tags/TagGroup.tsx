@@ -1,14 +1,14 @@
-import React, { FC } from "react";
-import styled, { css } from "styled-components";
 import {
+  makeInset,
   makeOutset,
   makeReset,
   makeSpace,
-  makeInset
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
+import { Position } from "@heather-turano-coaching/design-system";
+import React, { FC } from "react";
+import styled, { css } from "styled-components";
 
-import { Tag, TagProps, StyledTag } from "./Tag";
-import { Position } from "@heather-turano-coaching/design-system/types/primitive";
+import { StyledTag, Tag, TagProps } from "./Tag";
 
 export interface TagGroupProps {
   tags?: TagProps[];
@@ -59,7 +59,7 @@ const StyledTagGroup = styled.ul<Required<Pick<TagGroupProps, "alignment">>>`
 export const TagGroup: FC<TagGroupProps> = ({
   tags = [],
   alignment = "left",
-  children
+  children,
 }) => (
   <>
     {tags && tags.length !== 0 && (

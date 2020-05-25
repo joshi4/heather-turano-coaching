@@ -1,9 +1,9 @@
-import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
+import { ColorProperties } from "@heather-turano-coaching/design-system";
 import {
   makeColor,
   makeOutset,
   makeSize,
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
 
@@ -70,6 +70,5 @@ export const CarouselFooter: FC<CarouselFooterProps> = ({
       activeColor={activeColor}
     />
   ));
-  console.log(bubbles);
   return <StyledCarouselFooter>{bubbles}</StyledCarouselFooter>;
 };

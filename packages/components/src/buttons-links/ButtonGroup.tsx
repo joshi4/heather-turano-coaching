@@ -1,4 +1,4 @@
-import { Layout } from "@heather-turano-coaching/design-system/types/primitive";
+import { Layout } from "@heather-turano-coaching/design-system";
 import React, { FC } from "react";
 import styled, { SimpleInterpolation, css } from "styled-components";
 

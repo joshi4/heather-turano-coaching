@@ -4,7 +4,7 @@ import {
   makeInset,
   makeReset,
   makeSpace,
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
 import React, { forwardRef } from "react";
 import styled, { css } from "styled-components";
 

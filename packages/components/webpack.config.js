@@ -14,15 +14,15 @@ module.exports = {
     path: path.resolve(__dirname, "./dist/"),
     filename: "index.js",
     libraryTarget: "umd",
-    globalObject: "this"
+    globalObject: "this",
   },
   externals: [
     nodeExternals({
-      modulesFromFile: true
-    })
+      modulesFromFile: true,
+    }),
   ],
   resolve: {
-    extensions: [".ts", ".tsx", ".js"]
+    extensions: [".ts", ".tsx", ".js"],
   },
   plugins: [new webpack.ProgressPlugin(handler), new CleanWebpackPlugin()],
   module: {
@@ -31,12 +31,12 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         use: [
           {
-            loader: "awesome-typescript-loader",
+            loader: "ts-loader",
             options: {
-              configFileName: path.resolve(__dirname, "./tsconfig.json")
-            }
-          }
-        ]
+              configFile: path.resolve(__dirname, "./tsconfig.json"),
+            },
+          },
+        ],
       },
       {
         test: /\.svg$/,
@@ -44,17 +44,17 @@ module.exports = {
           {
             loader: "@svgr/webpack",
             options: {
-              dimensions: false
-            }
+              dimensions: false,
+            },
           },
           {
             loader: "url-loader",
             options: {
-              limit: Infinity
-            }
-          }
-        ]
-      }
-    ]
-  }
+              limit: Infinity,
+            },
+          },
+        ],
+      },
+    ],
+  },
 };

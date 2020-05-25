@@ -1,13 +1,18 @@
+import {
+  Heading,
+  Typography,
+  makeFlex,
+} from "@heather-turano-coaching/components";
+import {
+  makeColor,
+  makeInset,
+  makeRhythm,
+} from "@heather-turano-coaching/design-system";
+import { useBreakpoints } from "@heather-turano-coaching/hooks";
 import React, { FC } from "react";
 import styled from "styled-components";
-import {
-  makeInset,
-  makeColor,
-  makeRhythm
-} from "@heather-turano-coaching/design-system/utils";
-import { Heading, Copy, makeFlex } from "@heather-turano-coaching/components";
+
 import { StyledFeaturedBlogCardContainer } from "./BlogCardFeature";
-import { useBreakpoints } from "@heather-turano-coaching/hooks";
 
 export interface BlogCardWelcomeProps {
   title: string;
@@ -48,7 +53,7 @@ export const BlogCardWelcome: FC<BlogCardWelcomeProps> = ({
   subTitle,
   description,
   descriptionMobilePrompt,
-  descriptionDesktopPrompt
+  descriptionDesktopPrompt,
 }) => {
   const [windowWidth, { laptop }] = useBreakpoints();
 
@@ -68,17 +73,20 @@ export const BlogCardWelcome: FC<BlogCardWelcomeProps> = ({
               iconColor={{ scalable: { color: "primary", scale: 0 } }}
             /> */}
           </Heading>
-          <Copy type="label" fontSize={windowWidth < laptop ? "md" : "lg"}>
+          <Typography
+            variant="label"
+            fontSize={windowWidth < laptop ? "md" : "lg"}
+          >
             {subTitle}
-          </Copy>
+          </Typography>
         </div>
-        <Copy type="text">{description}</Copy>
+        <Typography variant="text">{description}</Typography>
         <br />
-        <Copy type="caption">
+        <Typography variant="caption">
           {windowWidth < laptop
             ? descriptionMobilePrompt
             : descriptionDesktopPrompt}
-        </Copy>
+        </Typography>
       </StyledBlogCardWelcome>
     </StyledFeaturedBlogCardContainer>
   );

@@ -1,11 +1,11 @@
-import { Color } from "@heather-turano-coaching/design-system/types/primitive";
+import { Color } from "@heather-turano-coaching/design-system";
 
 export type RandomColor = Extract<Color, "primary" | "secondary" | "accent">;
 
 const possibleColor: [RandomColor, RandomColor, RandomColor] = [
   "primary",
   "secondary",
-  "accent"
+  "accent",
 ];
 
 export const generateRandomColor = () => {

@@ -1,11 +1,11 @@
 import {
   Button,
   ButtonGroup,
-  Copy,
   Section,
   SectionCopy,
   SectionFooter,
   Title,
+  Typography,
 } from "@heather-turano-coaching/components";
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
@@ -29,9 +29,9 @@ export const HomeServices = () => {
     <Section styleType="layered">
       <Title size="lg">{queryData.servicesTitle}</Title>
       <SectionCopy>
-        <Copy fontSize="md" type="text">
+        <Typography fontSize="md" variant="text">
           {queryData.servicesDescription.servicesDescription}
-        </Copy>
+        </Typography>
         <SectionFooter>
           <ButtonGroup layout="inline" align="center">
             <Button label={queryData.servicesLinkText} styleType="primary" />

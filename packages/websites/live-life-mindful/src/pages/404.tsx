@@ -1,13 +1,10 @@
 import {
-  Copy,
   Heading,
   Image,
   Section,
+  Typography,
 } from "@heather-turano-coaching/components";
-import {
-  makeRhythm,
-  makeSize,
-} from "@heather-turano-coaching/design-system/utils";
+import { makeRhythm, makeSize } from "@heather-turano-coaching/design-system";
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import styled from "styled-components";
@@ -49,10 +46,16 @@ const NotFoundPage = () => {
       <Section styleType="layered">
         <Styled404Container>
           <Heading>{data.title}</Heading>
-          <Copy fontSize="sm">&nbsp;</Copy>
-          <Copy fontSize="sm">{data.subTitle}</Copy>
+          <Typography variant="text" fontSize="sm">
+            &nbsp;
+          </Typography>
+          <Typography variant="text" fontSize="sm">
+            {data.subTitle}
+          </Typography>
           <Image src={yoga} alt="yoga-404" manualWidth={256} />
-          <Copy fontSize="sm">{data.formTitle}</Copy>
+          <Typography variant="text" fontSize="sm">
+            {data.formTitle}
+          </Typography>
           <FormSubscribe fieldPrefix="NotFoundPage" />
         </Styled404Container>
       </Section>

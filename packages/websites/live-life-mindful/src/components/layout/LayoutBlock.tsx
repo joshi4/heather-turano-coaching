@@ -1,6 +1,7 @@
+import { makeOutset } from "@heather-turano-coaching/design-system";
 import React, { FC } from "react";
 import styled from "styled-components";
-import { makeOutset } from "@heather-turano-coaching/design-system/utils";
+
 import { gutter } from "./LayoutContainer";
 
 interface LayoutBlockProps {}

@@ -1,6 +1,6 @@
 import {
-  Copy,
   Image,
+  Typography,
   makeFlex,
   sharedHorizontalBodyPadding,
 } from "@heather-turano-coaching/components";
@@ -10,7 +10,7 @@ import {
   makeReset,
   makeResponsive,
   makeSize,
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
 import { useBreakpoints, useSticky } from "@heather-turano-coaching/hooks";
 import React, { FC, ReactNode, useRef } from "react";
 import styled, { css } from "styled-components";
@@ -200,14 +200,14 @@ export const HeaderNavLinkContent: FC = ({ children }) => {
   const [windowWidth, { phoneMd }] = useBreakpoints();
 
   return (
-    <Copy
-      type="label"
+    <Typography
+      variant="label"
       fontSize={windowWidth < phoneMd ? "xs" : "sm"}
       lineHeight="lg"
       fontColor={{ scalable: { color: "gray", scale: 0 } }}
     >
       {children}
-    </Copy>
+    </Typography>
   );
 };
 

@@ -4,7 +4,7 @@ import {
   Hero,
   Section,
 } from "@heather-turano-coaching/components";
-import { makeOutset } from "@heather-turano-coaching/design-system/utils";
+import { makeOutset } from "@heather-turano-coaching/design-system";
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import styled from "styled-components";
@@ -53,7 +53,6 @@ export const HomeHero = () => {
             fontSize="h1"
             fontColor={{ fixed: "light" }}
             fontFamily="Montserrat"
-            fontStyle="bold"
           >
             {queryData.heroTitle.split(" ").map((word: string) => (
               <div key={word}>{word}</div>

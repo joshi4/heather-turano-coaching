@@ -1,10 +1,10 @@
-import React, { FC } from "react";
-import { Layout } from "@heather-turano-coaching/design-system/types/primitive";
-import styled from "styled-components";
 import {
   makeOutset,
-  makeResponsive
-} from "@heather-turano-coaching/design-system/utils";
+  makeResponsive,
+} from "@heather-turano-coaching/design-system";
+import { Layout } from "@heather-turano-coaching/design-system";
+import React, { FC } from "react";
+import styled from "styled-components";
 
 interface FormContainerProps {
   layout?: Layout;
@@ -16,11 +16,11 @@ const StyledFormContainer = styled.div<FormContainerProps>`
 
   ${makeResponsive({
     beginAt: "tabletPortrait",
-    style: makeOutset({ vertical: 32, horizontal: "auto" })
+    style: makeOutset({ vertical: 32, horizontal: "auto" }),
   })}
 `;
 
 export const FormContainer: FC<FormContainerProps> = ({
   layout = "stacked",
-  children
+  children,
 }) => <StyledFormContainer layout={layout}>{children}</StyledFormContainer>;

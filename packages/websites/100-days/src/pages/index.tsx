@@ -1,35 +1,33 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { useStaticQuery, graphql } from "gatsby";
-
 import {
-  SubscribeRequest,
-  SubscribeResponse
-} from "@heather-turano-coaching/domain";
-
-import {
-  Heading,
-  Copy,
+  Button,
   FormContainer,
   FormNotification,
-  InputGroup,
-  Input,
-  Button,
+  Heading,
   Image,
-  Section
+  Input,
+  InputGroup,
+  Section,
+  Typography,
 } from "@heather-turano-coaching/components";
-import { useApi } from "@heather-turano-coaching/hooks";
-
-import { Layout, SEO } from "../components";
-import { subscribeToBlog } from "../api";
-import styled from "styled-components";
 import {
-  makeOutset,
-  makeSize,
   makeColor,
+  makeOutset,
+  makeResponsive,
   makeRhythm,
-  makeResponsive
-} from "@heather-turano-coaching/design-system/utils";
+  makeSize,
+} from "@heather-turano-coaching/design-system";
+import {
+  SubscribeRequest,
+  SubscribeResponse,
+} from "@heather-turano-coaching/domain";
+import { useApi } from "@heather-turano-coaching/hooks";
+import { graphql, useStaticQuery } from "gatsby";
+import React from "react";
+import { useForm } from "react-hook-form";
+import styled from "styled-components";
+
+import { subscribeToBlog } from "../api";
+import { Layout, SEO } from "../components";
 
 const StyledFormConatiner = styled.div`
   ${makeOutset({ horizontal: 24 })};
@@ -44,14 +42,14 @@ const StyledFormConatiner = styled.div`
     beginAt: "laptop",
     style: `
       ${makeOutset({ horizontal: 120 })};
-    `
+    `,
   })}
 
   ${makeResponsive({
     beginAt: "desktop",
     style: `
       ${makeOutset({ horizontal: 200 })};
-    `
+    `,
   })}
 
   & > * {
@@ -108,7 +106,7 @@ const IndexPage = () => {
           >
             {queryData.title}
           </Heading>
-          <Copy>{queryData.description}</Copy>
+          <Typography>{queryData.description}</Typography>
           <FormContainer>
             {error && (
               <FormNotification type="error">

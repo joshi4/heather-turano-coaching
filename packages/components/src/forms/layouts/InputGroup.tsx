@@ -1,12 +1,11 @@
-import React, { FC } from "react";
-import styled, { SimpleInterpolation, css } from "styled-components";
-
-import { Layout } from "@heather-turano-coaching/design-system/types/primitive";
 import {
   makeOutset,
   makeResponsive,
-  makeSpace
-} from "@heather-turano-coaching/design-system/utils";
+  makeSpace,
+} from "@heather-turano-coaching/design-system";
+import { Layout } from "@heather-turano-coaching/design-system";
+import React, { FC } from "react";
+import styled, { SimpleInterpolation, css } from "styled-components";
 
 import { sharedElementSpacing } from "../../shared";
 
@@ -73,10 +72,10 @@ const CSSInputGroupMap: {
             }
           }
         }
-      `
+      `,
     })}
   `,
-  standalone: css``
+  standalone: css``,
 };
 
 const StyledInputGroup = styled.div<InputGroupProps>`
@@ -85,5 +84,5 @@ const StyledInputGroup = styled.div<InputGroupProps>`
 
 export const InputGroup: FC<InputGroupProps> = ({
   layout = "stacked",
-  children
+  children,
 }) => <StyledInputGroup layout={layout}>{children}</StyledInputGroup>;

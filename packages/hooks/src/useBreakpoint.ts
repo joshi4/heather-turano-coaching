@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
-
 import {
   ResponsiveBreakpoints,
-  responsiveBreakpoints
-} from "@heather-turano-coaching/design-system/configs";
+  responsiveBreakpoints,
+} from "@heather-turano-coaching/design-system";
+import { useEffect, useState } from "react";
 
 export const useBreakpoints = (
   userDefinedBreakpoints?: ResponsiveBreakpoints

@@ -1,33 +1,32 @@
-import React, { FC, useState, useRef, useLayoutEffect } from "react";
-import { PostOrPage } from "@tryghost/content-api";
-import styled, { CSSProperties } from "styled-components";
-import { rgba } from "polished";
 import {
+  makeFlex,
   sharedHorizontalBodyPadding,
-  makeFlex
 } from "@heather-turano-coaching/components";
-import { useBreakpoints } from "@heather-turano-coaching/hooks";
-
-import { clamp } from "lodash";
-import { useSprings, animated } from "react-spring";
-import { useDrag } from "react-use-gesture";
-
 import {
-  LayoutBlock,
-  LayoutBlockTitle,
-  LayoutBlockContent
-} from "../../components/layout";
-import {
-  BlogCardFeature,
-  BlogCardFeatureSelector
-} from "../../components/blog";
-import {
-  makeSize,
   makeColor,
   makeOutset,
-  makeReset
-} from "@heather-turano-coaching/design-system/utils";
-import { useStaticQuery, graphql } from "gatsby";
+  makeReset,
+  makeSize,
+} from "@heather-turano-coaching/design-system";
+import { useBreakpoints } from "@heather-turano-coaching/hooks";
+import { PostOrPage } from "@tryghost/content-api";
+import { graphql, useStaticQuery } from "gatsby";
+import { clamp } from "lodash";
+import { rgba } from "polished";
+import React, { FC, useLayoutEffect, useRef, useState } from "react";
+import { animated, useSprings } from "react-spring";
+import { useDrag } from "react-use-gesture";
+import styled, { CSSProperties } from "styled-components";
+
+import {
+  BlogCardFeature,
+  BlogCardFeatureSelector,
+} from "../../components/blog";
+import {
+  LayoutBlock,
+  LayoutBlockContent,
+  LayoutBlockTitle,
+} from "../../components/layout";
 import { destructureNodes } from "../../utils";
 import { BlogWelcome } from "../blog";
 
@@ -61,8 +60,8 @@ const StyledBubble = styled.li<{ isActive: boolean }>`
   background: ${({ isActive }) =>
     makeColor({
       scalable: {
-        color: isActive ? "secondary" : "light"
-      }
+        color: isActive ? "secondary" : "light",
+      },
     })};
 
   &:not(:first-child) {
@@ -80,7 +79,7 @@ type BlogFeaturedMobileProps = BlockFeaturedPostsProps & {
 const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
   featuredPosts,
   gutterWidth,
-  layoutType = "middle"
+  layoutType = "middle",
 }) => {
   const initialSelectedCardIndex = 0;
   const [containerHeight, setContainerHeight] = useState();
@@ -155,10 +154,10 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
     x: getPosition(cardNum, movement),
     scale: getScale(cardNum),
     overlay: getOverlay(cardNum),
-    filter: getFilter(cardNum)
+    filter: getFilter(cardNum),
   });
 
-  const [springProps, set] = useSprings(numberOfCards, i => setSprings(i));
+  const [springProps, set] = useSprings(numberOfCards, (i) => setSprings(i));
 
   const bind = useDrag(
     ({ down, movement: [xMove], direction: [xDir], cancel, last }) => {
@@ -172,7 +171,7 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
       }
 
       //@ts-ignore
-      return set(i => {
+      return set((i) => {
         if (last) {
           setCurrentBubble(index.current);
         }
@@ -204,7 +203,7 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
               width: "100%",
               height: "100%",
               top: 0,
-              left: 0
+              left: 0,
             };
             return (
               <animated.div
@@ -214,23 +213,23 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
                   position: "absolute",
                   top: 0,
                   bottom: 0,
-                  transform: x.interpolate(xv => `translate3d(${xv}px,0,0)`),
+                  transform: x.interpolate((xv) => `translate3d(${xv}px,0,0)`),
                   zIndex: getZ(i),
-                  filter: filter.interpolate(f => `blur(${f}px)`)
+                  filter: filter.interpolate((f) => `blur(${f}px)`),
                 }}
               >
                 <animated.div
                   ref={cardRef}
                   style={{
                     position: "relative",
-                    transform: scale.interpolate(s => `scale(${s})`)
+                    transform: scale.interpolate((s) => `scale(${s})`),
                   }}
                 >
                   {i === 0 ? (
                     <div
                       style={{
                         height: containerHeight,
-                        maxHeight: containerHeight
+                        maxHeight: containerHeight,
                       }}
                     >
                       <BlogWelcome />
@@ -243,9 +242,9 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
                       ...absStyle,
                       zIndex: 10,
                       pointerEvents: "none",
-                      background: overlay.interpolate(ov =>
+                      background: overlay.interpolate((ov) =>
                         rgba(makeColor({ fixed: "dark" }), ov)
-                      )
+                      ),
                     }}
                   />
                 </animated.div>
@@ -260,7 +259,7 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
 
 export const BlockFeaturedPosts: FC = () => {
   const {
-    allGhostPost: { edges }
+    allGhostPost: { edges },
   } = useStaticQuery(graphql`
     {
       allGhostPost(filter: { featured: { eq: true } }) {

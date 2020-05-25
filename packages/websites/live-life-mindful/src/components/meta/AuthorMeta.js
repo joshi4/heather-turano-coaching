@@ -1,12 +1,12 @@
-import React from "react";
-import Helmet from "react-helmet";
-import PropTypes from "prop-types";
-import _ from "lodash";
 import { StaticQuery, graphql } from "gatsby";
+import _ from "lodash";
+import PropTypes from "prop-types";
+import React from "react";
+import { Helmet } from "react-helmet";
 
-import ImageMeta from "./ImageMeta";
-import getAuthorProperties from "./getAuthorProperties";
 import config from "../../utils/siteConfig";
+import getAuthorProperties from "./getAuthorProperties";
+import ImageMeta from "./ImageMeta";
 
 const AuthorMeta = ({ data, settings, canonical }) => {
   settings = settings.allGhostSettings.edges[0].node;
@@ -28,14 +28,14 @@ const AuthorMeta = ({ data, settings, canonical }) => {
           "@type": `ImageObject`,
           url: shareImage,
           width: config.shareImageWidth,
-          height: config.shareImageHeight
+          height: config.shareImageHeight,
         }
       : undefined,
     mainEntityOfPage: {
       "@type": `WebPage`,
-      "@id": config.siteUrl
+      "@id": config.siteUrl,
     },
-    description
+    description,
   };
 
   return (
@@ -80,18 +80,18 @@ AuthorMeta.propTypes = {
     profile_image: PropTypes.string,
     website: PropTypes.string,
     twitter: PropTypes.string,
-    facebook: PropTypes.string
+    facebook: PropTypes.string,
   }).isRequired,
   settings: PropTypes.shape({
     title: PropTypes.string,
     twitter: PropTypes.string,
     description: PropTypes.string,
-    allGhostSettings: PropTypes.object.isRequired
+    allGhostSettings: PropTypes.object.isRequired,
   }).isRequired,
-  canonical: PropTypes.string.isRequired
+  canonical: PropTypes.string.isRequired,
 };
 
-const AuthorMetaQuery = props => (
+const AuthorMetaQuery = (props) => (
   <StaticQuery
     query={graphql`
       query GhostSettingsAuthorMeta {
@@ -104,7 +104,7 @@ const AuthorMetaQuery = props => (
         }
       }
     `}
-    render={data => <AuthorMeta settings={data} {...props} />}
+    render={(data) => <AuthorMeta settings={data} {...props} />}
   />
 );
 

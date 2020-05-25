@@ -1,11 +1,10 @@
-import React, { FC, ReactNode } from "react";
-import { createGlobalStyle } from "styled-components";
-
 import {
   makeFontFace,
-  makeResponsive
-} from "@heather-turano-coaching/design-system/utils";
-import Helmet from "react-helmet";
+  makeResponsive,
+} from "@heather-turano-coaching/design-system";
+import React, { FC, ReactNode } from "react";
+import { Helmet } from "react-helmet";
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   html,body {
@@ -18,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
       beginAt: "desktop",
       style: `
         font-size: 18px;
-      `
+      `,
     })}
   }
 
@@ -37,7 +36,7 @@ const fontFaceLinks = fontFaceDefs.reduce(
             key={`link-${i.toString()}`}
             rel="stylesheet"
             href={fontFaceDef.split('("')[1].split('")')[0]}
-          />
+          />,
         ]
       : accum,
   [] as ReactNode[]
