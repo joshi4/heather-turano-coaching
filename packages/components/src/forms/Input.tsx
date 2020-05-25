@@ -1,20 +1,20 @@
-import React, { forwardRef } from "react";
-
-import { Control, Label, Error, ErrorProps } from "./base";
-
-import styled, { css } from "styled-components";
 import {
-  makeReset,
-  makeSpace,
   makeColor,
   makeFont,
-  makeInset
+  makeInset,
+  makeReset,
+  makeSpace,
 } from "@heather-turano-coaching/design-system/utils";
+import React, { forwardRef } from "react";
+import styled, { css } from "styled-components";
+
 import {
   shareButtonAndInputFontSize,
-  sharedButtonAndInputVerticalPadding
+  sharedButtonAndInputVerticalPadding,
 } from "../shared";
 import { HTMLInput } from "../types";
+import { Control, Error, ErrorProps, Label } from "./base";
+import { TextareaProps } from "./Textarea";
 
 export type InputProps = Partial<Omit<HTMLInput, "ref" | "type">> &
   ErrorProps & {
@@ -45,7 +45,7 @@ export const CSSPlaceholders = css`
   }
 `;
 
-export const CSSInputValidity = css<InputProps>`
+export const CSSInputValidity = css<InputProps | TextareaProps>`
   ${({ isValid }) =>
     !isValid &&
     css`
@@ -58,13 +58,13 @@ export const CSSInputValidity = css<InputProps>`
  * This is done like this so we can share this base style with
  * the Textarea component
  */
-export const CSSInputStyle = css<InputProps>`
+export const CSSInputStyle = css<InputProps | TextareaProps>`
   box-sizing: border-box;
   ${CSSPlaceholders};
   ${makeReset("input")};
   ${makeInset({
     vertical: sharedButtonAndInputVerticalPadding,
-    horizontal: 12
+    horizontal: 12,
   })};
   ${makeFont({ fontSize: shareButtonAndInputFontSize })};
   border: 1px solid ${makeColor({ scalable: { color: "gray", scale: 3 } })};
