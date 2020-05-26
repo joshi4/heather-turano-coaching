@@ -10,6 +10,7 @@ export default {
 const items = ["item1", "item2", "item3", "item4"];
 
 export const base: FC = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [currentEntry, setCurrentEntry] = useState<number>(0);
   const goToEntry = (index: number) => setCurrentEntry(index);
 
