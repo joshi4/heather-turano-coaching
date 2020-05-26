@@ -23,24 +23,6 @@ const StyledAboutMyClientsImageSection = styled.div`
   flex: 1;
   flex-wrap: wrap;
   align-self: stretch;
-
-  & > div {
-    width: 33.333%;
-    border: 1px solid #ccc;
-    ${makeFlex("row", "center", "center")};
-    overflow: hidden;
-
-    & > .image {
-      max-width: 100%;
-      max-height: 100%;
-      transform: scale(1.5);
-    }
-
-    img {
-      object-fit: cover;
-      object-position: center;
-    }
-  }
 `;
 
 const StyledAboutMyClientsTitle = styled.div`
@@ -50,6 +32,37 @@ const StyledAboutMyClientsTitle = styled.div`
     beginAt: "tabletLandscape",
     style: `
       ${makeInset({ horizontal: 60, vertical: 60 })};
+      max-width: 60%;
+    `,
+  })}
+`;
+
+const StyledClientImage = styled.div`
+  width: 33.333%;
+  ${makeFlex("row", "center", "center")};
+  overflow: hidden;
+
+  & > .image {
+    max-width: 100%;
+    max-height: 100%;
+    transform: scale(1.5);
+  }
+
+  img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  ${makeResponsive({
+    beginAt: "laptop",
+    style: `
+      & > .image { 
+        height: 100%;
+        
+        & > img {
+          height: 100%;
+        }
+      }
     `,
   })}
 `;
@@ -74,13 +87,13 @@ export const AboutMyClients: FC = () => {
   const clients = useMemo(
     () =>
       queryData.myClientsImages.map((clientImage: any) => (
-        <div key={clientImage.url}>
+        <StyledClientImage key={clientImage.url}>
           <Image
             src={clientImage.file.url}
             alt={clientImage.title}
             manualWidth="100%"
           />
-        </div>
+        </StyledClientImage>
       )),
     [queryData.myClientsImages]
   );
@@ -108,7 +121,6 @@ export const AboutMyClients: FC = () => {
           </SectionFooter>
         </StyledAboutMyClientsTitle>
       </Section>
-      <SectionSpacer />
     </>
   );
 };

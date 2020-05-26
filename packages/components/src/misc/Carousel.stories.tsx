@@ -1,26 +1,29 @@
-import React from "react";
+import React, { FC, useState } from "react";
 
-import { Carousel } from "./Carousel";
-import { Heading } from "../typography";
+import { Carousel, CarouselFooter } from "./Carousel";
 
 export default {
   component: Carousel,
-  title: "Basic|Carousel"
+  title: "Basic|Carousel",
 };
 
-export const base = () => (
-  <Carousel
-    entries={[
-      { country: "Marshall Islands", name: "Craig Steele" },
-      { country: "Diego Garcia", name: "Clifford Carlson" },
-      { country: "Madagascar", name: "Ethan Goodman" }
-    ]}
-  >
-    {({ country, name }) => (
-      <>
-        <Heading fontSize="h2">{name}</Heading>
-        <Heading fontSize="h5">{country}</Heading>
-      </>
-    )}
-  </Carousel>
-);
+const items = ["item1", "item2", "item3", "item4"];
+
+export const base: FC = () => {
+  const [currentEntry, setCurrentEntry] = useState<number>(0);
+  const goToEntry = (index: number) => setCurrentEntry(index);
+
+  return (
+    <div>
+      <Carousel>
+        <div>{items[currentEntry]}</div>
+        <CarouselFooter
+          entries={items}
+          currentEntry={currentEntry}
+          goToEntry={goToEntry}
+          activeColor={{ scalable: { color: "secondary", scale: 0 } }}
+        />
+      </Carousel>
+    </div>
+  );
+};

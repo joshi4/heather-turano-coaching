@@ -13,7 +13,9 @@ import {
 
 // @ts-ignore
 const AboutPage = ({ location }) => {
-  const { contentfulPageAbout: queryData } = useStaticQuery(graphql`
+  const { contentfulPageAbout: queryData } = useStaticQuery<{
+    contentfulPageAbout: { pageTitle: string };
+  }>(graphql`
     {
       contentfulPageAbout {
         pageTitle
@@ -23,8 +25,8 @@ const AboutPage = ({ location }) => {
 
   return (
     <Layout pageTitle={queryData.pageTitle}>
-      <MetaData location={location} />
       <PageContainer>
+        <MetaData location={location} />
         <AboutIntro />
         <AboutMyStory />
         <AboutMyStyle />

@@ -38,7 +38,6 @@ export const TestimonialCarousel: FC<{ testimonials: Testimonial[] }> = ({
   testimonials,
 }) => {
   const [currentEntry, setCurrentEntry] = useState<number>(0);
-
   const goToEntry = (index: number) => setCurrentEntry(index);
 
   return (

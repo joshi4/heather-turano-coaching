@@ -82,7 +82,7 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
   layoutType = "middle",
 }) => {
   const initialSelectedCardIndex = 0;
-  const [containerHeight, setContainerHeight] = useState();
+  const [containerHeight, setContainerHeight] = useState<number>();
   const [currentBubble, setCurrentBubble] = useState(initialSelectedCardIndex);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -225,18 +225,7 @@ const BlogFeaturedMobile: FC<BlogFeaturedMobileProps> = ({
                     transform: scale.interpolate((s) => `scale(${s})`),
                   }}
                 >
-                  {i === 0 ? (
-                    <div
-                      style={{
-                        height: containerHeight,
-                        maxHeight: containerHeight,
-                      }}
-                    >
-                      <BlogWelcome />
-                    </div>
-                  ) : (
-                    <BlogCardFeature featuredPost={featuredPosts[i]} />
-                  )}
+                  <BlogCardFeature featuredPost={featuredPosts[i]} />
                   <animated.div
                     style={{
                       ...absStyle,
@@ -273,7 +262,9 @@ export const BlockFeaturedPosts: FC = () => {
   `);
 
   const featuredPosts = destructureNodes(edges);
-  const [visibleFeaturedPost, setVisibleFeaturedPost] = useState();
+  const [visibleFeaturedPost, setVisibleFeaturedPost] = useState(
+    featuredPosts[0]
+  );
   const [windowWidth, { tabletPortrait, tabletLandscape }] = useBreakpoints();
 
   const gutterWidth =
@@ -287,12 +278,7 @@ export const BlockFeaturedPosts: FC = () => {
     />
   ) : (
     <StyledDesktopBlockFeaturedPosts>
-      {!visibleFeaturedPost ? (
-        <BlogWelcome />
-      ) : (
-        <BlogCardFeature featuredPost={visibleFeaturedPost} />
-      )}
-
+      <BlogCardFeature featuredPost={visibleFeaturedPost} />
       <BlogCardFeatureSelector
         posts={featuredPosts}
         currentlySelectedPost={visibleFeaturedPost}

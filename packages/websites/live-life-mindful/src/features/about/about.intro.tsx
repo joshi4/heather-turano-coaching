@@ -13,7 +13,7 @@ import {
 } from "@heather-turano-coaching/design-system";
 import { useBreakpoints } from "@heather-turano-coaching/hooks";
 import { graphql, useStaticQuery } from "gatsby";
-import React, { FC } from "react";
+import React, { FC, memo, useMemo } from "react";
 import styled from "styled-components";
 
 import { ContentfulRichText } from "../../components";
@@ -72,13 +72,23 @@ const StyledAboutTitleSection = styled.div`
   p {
     ${makeFont({
       fontSize: "h1",
-      fontFamily: "Playfair Display",
+      fontFamily: "Montserrat",
     })}
   }
 `;
 
-export const AboutIntro: FC = () => {
-  const { contentfulPageAbout: queryData } = useStaticQuery(graphql`
+export const AboutIntro: FC = memo(() => {
+  const { contentfulPageAbout: queryData } = useStaticQuery<{
+    contentfulPageAbout: {
+      pageTitle: string;
+      introTitle: { json: string };
+      introImageAltText: string;
+      introImage: { file: { url: string } };
+      introDescription: {
+        json: string;
+      };
+    };
+  }>(graphql`
     {
       contentfulPageAbout {
         pageTitle
@@ -99,6 +109,7 @@ export const AboutIntro: FC = () => {
   `);
 
   const [windowWidth, { tabletLandscape }] = useBreakpoints();
+  const isLessThanLandscape = windowWidth < tabletLandscape;
 
   return (
     <>
@@ -119,22 +130,27 @@ export const AboutIntro: FC = () => {
           />
         </StyledAboutImageSection>
       </Section>
-      <Section
-        styleType="blank"
-        background={
-          windowWidth < tabletLandscape
-            ? { fixed: "light" }
-            : { scalable: { color: "light", scale: 3 } }
-        }
-      >
-        <SectionCopy>
-          <ContentfulRichText
-            richText={queryData.introDescription.json}
-            copy={{ fontSize: "md", variant: "paragraph" }}
-          />
-        </SectionCopy>
-      </Section>
+      {useMemo(
+        () => (
+          <Section
+            styleType="blank"
+            background={
+              isLessThanLandscape
+                ? { fixed: "light" }
+                : { scalable: { color: "light", scale: 3 } }
+            }
+          >
+            <SectionCopy>
+              <ContentfulRichText
+                richText={queryData.introDescription.json}
+                copy={{ fontSize: "md", variant: "paragraph" }}
+              />
+            </SectionCopy>
+          </Section>
+        ),
+        [isLessThanLandscape, queryData]
+      )}
       <SectionSpacer />
     </>
   );
-};
+});
