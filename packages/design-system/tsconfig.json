@@ -1,9 +1,12 @@
 {
   "extends": "@heather-turano-coaching/typescript/tsconfig.react.json",
-  "include": ["src/configs", "src/types", "src/utils"],
   "compilerOptions": {
     "module": "CommonJS",
-    "outDir": "./"
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationMap": true,
+    "noUnusedLocals": true
   },
+  "include": ["src/"],
   "exclude": ["**/*.spec.ts"]
 }

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { ColorHex } from "@heather-turano-coaching/design-system/types/composite";
+import { ColorHex } from "@heather-turano-coaching/design-system";
 import styled from "styled-components";
 
 interface ColorCardProps {

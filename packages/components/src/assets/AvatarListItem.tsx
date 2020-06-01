@@ -1,14 +1,15 @@
-import React, { FC } from "react";
-import { AvatarProps, Avatar } from "./Avatar";
-import styled from "styled-components";
 import {
-  makeInset,
-  makeSize,
   makeColor,
-  makeOutset
-} from "@heather-turano-coaching/design-system/utils";
-import { makeFlex, RandomColor } from "../utils";
-import { Copy } from "../typography";
+  makeInset,
+  makeOutset,
+  makeSize,
+} from "@heather-turano-coaching/design-system";
+import React, { FC } from "react";
+import styled from "styled-components";
+
+import { Typography } from "../typography";
+import { RandomColor, makeFlex } from "../utils";
+import { Avatar, AvatarProps } from "./Avatar";
 
 type AvatarListItemProps = Omit<AvatarProps, "size"> & {
   accentColor?: RandomColor;
@@ -55,7 +56,7 @@ export const AvatarListItem: FC<AvatarListItemProps> = ({
   accentColor = "primary",
   image,
   alt,
-  name
+  name,
   // bio
 }) => (
   <StyledAvatarListItem accentColor={accentColor}>
@@ -63,13 +64,13 @@ export const AvatarListItem: FC<AvatarListItemProps> = ({
       <Avatar alt={alt} image={image} size={{ custom: 60 }} />
     </div>
     <div>
-      <Copy type="label" fontSize="sm">
+      <Typography variant="label" fontSize="sm">
         {name}
-      </Copy>
+      </Typography>
       {/* {bio && (
-        <Copy type="paragraph" fontSize="xs">
+        <Typography type="paragraph" fontSize="xs">
           {bio.length > 196 ? `${bio.substring(0, 196)} ...` : bio}
-        </Copy>
+        </Typography>
       )} */}
     </div>
   </StyledAvatarListItem>

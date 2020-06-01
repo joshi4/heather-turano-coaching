@@ -1,9 +1,13 @@
+import {
+  ColorProperties,
+  SizeProperties,
+} from "@heather-turano-coaching/design-system";
+import { makeColor, makeSize } from "@heather-turano-coaching/design-system";
+import { rgba } from "polished";
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
 
 import { makeFlex } from "../utils";
-import { SizeProperties } from "@heather-turano-coaching/design-system/types/composite";
-import { makeSize } from "@heather-turano-coaching/design-system/utils";
 
 type CustomImageSizeValues = number | null;
 
@@ -13,6 +17,9 @@ interface ImageProps {
   size?: SizeProperties | string;
   manualHeight?: CustomImageSizeValues | string;
   manualWidth?: CustomImageSizeValues | string;
+  mask?: boolean;
+  maskColor?: ColorProperties;
+  maskOpacity?: number;
 }
 
 const StyledImageContainer = styled.div<
@@ -20,6 +27,7 @@ const StyledImageContainer = styled.div<
     Required<Pick<ImageProps, "size">>
 >`
   ${makeFlex("row", "center", "center")};
+  position: relative;
 
   & > img {
     ${({ manualHeight, manualWidth, size }) => {
@@ -47,12 +55,28 @@ const StyledImageContainer = styled.div<
   }
 `;
 
+const StyledImageMask = styled.div<{
+  maskColor: ColorProperties;
+  maskOpacity: number;
+}>`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: ${({ maskColor, maskOpacity }) =>
+    rgba(makeColor(maskColor), maskOpacity)};
+`;
+
 export const Image: FC<ImageProps> = ({
   src,
   alt,
   size = "sm",
   manualHeight = null,
   manualWidth = null,
+  mask = false,
+  maskColor = { scalable: { color: "secondary", scale: 0 } },
+  maskOpacity = 0.5,
   ...restProps
 }) => (
   <StyledImageContainer
@@ -61,6 +85,9 @@ export const Image: FC<ImageProps> = ({
     manualHeight={manualHeight}
     manualWidth={manualWidth}
   >
+    {mask && (
+      <StyledImageMask maskColor={maskColor} maskOpacity={maskOpacity} />
+    )}
     <img src={src} alt={alt} {...restProps} />
   </StyledImageContainer>
 );

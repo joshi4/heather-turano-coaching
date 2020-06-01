@@ -4,7 +4,7 @@ import { Section } from "./Section";
 
 export default {
   component: Section,
-  title: "Basic|Section"
+  title: "Basic|Section",
 };
 
 const Container: FC = ({ children }) => (
@@ -65,6 +65,32 @@ export const hero = () => (
     </Container>
     <Container>
       <Section styleType="blank">
+        <Content />
+      </Section>
+    </Container>
+  </>
+);
+
+export const split = () => (
+  <>
+    <Container>
+      <Section styleType="hero">
+        <Content />
+      </Section>
+    </Container>
+    <Container>
+      <Section styleType="layered">
+        <Content />
+      </Section>
+    </Container>
+    <Container>
+      <Section styleType="split">
+        <Content>left</Content>
+        <Content>right</Content>
+      </Section>
+    </Container>
+    <Container>
+      <Section styleType="layered">
         <Content />
       </Section>
     </Container>

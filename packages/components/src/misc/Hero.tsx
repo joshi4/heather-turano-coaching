@@ -1,12 +1,11 @@
-import React, { FC } from "react";
-import styled from "styled-components";
-
+import { ColorProperties } from "@heather-turano-coaching/design-system";
 import {
+  makeColor,
   makeResponsive,
   makeSize,
-  makeColor
-} from "@heather-turano-coaching/design-system/utils";
-import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
+} from "@heather-turano-coaching/design-system";
+import React, { FC } from "react";
+import styled from "styled-components";
 
 import { createImageBorder } from "../shared";
 
@@ -23,20 +22,20 @@ const StyledHero = styled.section`
   box-sizing: border-box;
   position: relative;
   width: 100%;
-  height: ${makeSize({ custom: 400 })};
+  min-height: ${makeSize({ custom: 400 })};
 
   ${makeResponsive({
     beginAt: "tabletPortrait",
     style: `
       min-height: ${makeSize({ custom: 450 })};
-    `
+    `,
   })}
 
   ${makeResponsive({
     beginAt: "desktop",
     style: `
       min-height: ${makeSize({ custom: 450 })};
-    `
+    `,
   })}
 `;
 
@@ -68,7 +67,7 @@ const StyledHeroImage = styled.img`
   height: 100%;
   width: 100%;
   object-fit: cover;
-  object-position: 100% 20%;
+  object-position: center;
 `;
 
 export const Hero: FC<HeroProps> = ({
@@ -76,12 +75,11 @@ export const Hero: FC<HeroProps> = ({
   alt,
   children,
   borderColor = defaultBorderColor,
-  gradient = undefined
+  gradient = undefined,
 }) => (
   <StyledHero>
     <StyledHeroImage src={image} alt={alt} />
-    <StyledHeroGradient gradient={gradient} borderColor={borderColor}>
-      {children}
-    </StyledHeroGradient>
+    <StyledHeroGradient gradient={gradient} borderColor={borderColor} />
+    {children}
   </StyledHero>
 );

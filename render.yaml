@@ -1,13 +1,27 @@
 services:
+  # Design System
   - type: web
-    name: HTC | Live Life Mindful | Blog (Static)
+    name: Design System
     env: static
     branch: master
-    repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
-    buildCommand: npm run build:blog
-    staticPublishPath: ./packages/blog/public
+    repo: git@github.com:heather-turano-coaching/heather-turano-coaching.git
+    buildCommand: npm run build:components:storybook
+    staticPublishPath: ./packages/components/storybook-static
     domains:
-      - blog.livelifemindful.com
+      - design.livelifemindful.com
+    envVars:
+      - fromGroup: npm
+
+  # Websites
+  - type: web
+    name: Live Life Mindful
+    env: static
+    branch: master
+    repo: git@github.com:heather-turano-coaching/heather-turano-coaching.git
+    buildCommand: npm run build:live-life-mindful
+    staticPublishPath: ./packages/websites/live-life-mindful/public
+    domains:
+      - livelifemindful.com
     envVars:
       - fromGroup: npm
       - fromGroup: htc-ghost
@@ -19,34 +33,46 @@ services:
     name: 100 Days of Mindful Movement
     env: static
     branch: master
-    repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
-    buildCommand: npm run build:100days
-    staticPublishPath: ./packages/100days/public
+    repo: git@github.com:heather-turano-coaching/heather-turano-coaching.git
+    buildCommand: npm run build:mindful-movement
+    staticPublishPath: ./packages/websites/mindful-movement/public
     domains:
       - mindfulmovement100.com
     envVars:
       - fromGroup: npm
       - fromGroup: htc-contentful
+      - key: HTC_MINDFUL_MOVEMENT_CONTENTFUL_SPACE_ID
+        sync: false
+      - key: HTC_MINDFUL_MOVEMENT_CONTENTFUL_ACCESS_TOKEN
+        sync: false
+      - key: GATSBY_HTC_API
+        sync: https://api.heatherturanocoaching.com
 
+  # API
   - type: web
-    name: HTC | Live Life Mindful | Design
-    env: static
+    name: Api
+    env: node
     branch: master
-    repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
-    buildCommand: npm run build:components:storybook
-    staticPublishPath: ./packages/components/storybook-static
+    repo: git@github.com:heather-turano-coaching/heather-turano-coaching.git
+    buildCommand: npm run build:platform
+    startCommand: npm run serve:platform
     domains:
-      - design.livelifemindful.com
+      - api.heatherturanocoaching.com
     envVars:
-      - fromGroup: npm
+      - key: HTC_DB_CONNECTION_STRING
+        fromDatabase:
+          name: htc-db
+          property: connectionString
+      - key: HTC_MINDFUL_MOVEMENT_REDIRECT_ROOT_URL
+        value: https://mindfulmovement100.com
 
   - type: web
-    name: HTC | Live Life Mindful | Blog (CMS)
+    name: Ghost
     env: docker
     dockerfilePath: ./ghost/Dockerfile
     dockerContext: ./ghost
     branch: master
-    repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
+    repo: git@github.com:heather-turano-coaching/heather-turano-coaching.git
     domains:
       - admin.blog.livelifemindful.com
     disk:
@@ -74,12 +100,12 @@ services:
         sync: false
 
   - type: web
-    name: HTC | Live Life Mindful | Blog (Comments)
+    name: Commento
     env: docker
     dockerfilePath: ./commento/Dockerfile
     dockerContext: ./commento
     branch: master
-    repo: https://gitlab.com/imaginedelements/heather-turano-coaching/live-life-mindful.git
+    repo: git@github.com:heather-turano-coaching/heather-turano-coaching.git
     domains:
       - community.blog.livelifemindful.com
     envVars:
@@ -104,3 +130,6 @@ databases:
   - name: htc-commento-db-prod
     databaseName: htc_commento_db_prod
     user: admin_prod
+  - name: htc-db
+    databaseName: htc_db
+    user: admin

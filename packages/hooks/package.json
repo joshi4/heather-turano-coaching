@@ -31,11 +31,11 @@
     "hooks"
   ],
   "peerDependencies": {
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "unfetch": "^4.1.0"
   },
   "devDependencies": {
-    "@heather-turano-coaching/typescript": "file:../typescript"
+    "@heather-turano-coaching/typescript": "^0.2.1"
   }
 }

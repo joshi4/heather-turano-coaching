@@ -1,22 +1,21 @@
-import React, { FC } from "react";
-import styled, { css } from "styled-components";
-import { darken } from "polished";
-
-import { ColorProperties } from "@heather-turano-coaching/design-system/types/composite";
-import { Color } from "@heather-turano-coaching/design-system/types/primitive";
+import { ColorProperties } from "@heather-turano-coaching/design-system";
 import {
   makeColor,
+  makeInset,
   makeReset,
   makeSpace,
-  makeInset
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
+import { Color } from "@heather-turano-coaching/design-system";
+import { darken } from "polished";
+import React, { FC } from "react";
+import styled, { css } from "styled-components";
 
-import { Icon, Copy } from "../typography";
 import {
   shareButtonAndInputFontSize,
-  sharedButtonAndInputVerticalPadding
+  sharedButtonAndInputVerticalPadding,
 } from "../shared";
 import { HTMLButton } from "../types";
+import { Icon, Typography } from "../typography";
 
 type ButtonStyleTypes = Extract<
   Color,
@@ -45,7 +44,7 @@ const buttonStyleMap: {
     bgColorActive: makeColor({ scalable: { color: "secondary", scale: 2 } }),
     borderColor: makeColor({ scalable: { color: "gray" } }),
     borderColorHover: makeColor({ scalable: { color: "gray" } }),
-    borderColorActive: makeColor({ scalable: { color: "gray" } })
+    borderColorActive: makeColor({ scalable: { color: "gray" } }),
   },
   secondary: {
     bgColor: makeColor({ scalable: { color: "secondary" } }),
@@ -53,7 +52,7 @@ const buttonStyleMap: {
     bgColorActive: darken(0.1, makeColor({ scalable: { color: "secondary" } })),
     borderColor: makeColor({ scalable: { color: "secondary" } }),
     borderColorHover: makeColor({ scalable: { color: "secondary" } }),
-    borderColorActive: makeColor({ scalable: { color: "secondary" } })
+    borderColorActive: makeColor({ scalable: { color: "secondary" } }),
   },
   accent: {
     bgColor: makeColor({ scalable: { color: "accent" } }),
@@ -61,7 +60,7 @@ const buttonStyleMap: {
     bgColorActive: makeColor({ scalable: { color: "accent", scale: 2 } }),
     borderColor: makeColor({ scalable: { color: "accent" } }),
     borderColorHover: makeColor({ scalable: { color: "accent" } }),
-    borderColorActive: makeColor({ scalable: { color: "accent" } })
+    borderColorActive: makeColor({ scalable: { color: "accent" } }),
   },
   warning: {
     bgColor: makeColor({ scalable: { color: "warning" } }),
@@ -69,7 +68,7 @@ const buttonStyleMap: {
     bgColorActive: darken(0.1, makeColor({ scalable: { color: "warning" } })),
     borderColor: makeColor({ scalable: { color: "warning" } }),
     borderColorHover: makeColor({ scalable: { color: "warning" } }),
-    borderColorActive: makeColor({ scalable: { color: "warning" } })
+    borderColorActive: makeColor({ scalable: { color: "warning" } }),
   },
   error: {
     bgColor: makeColor({ scalable: { color: "error" } }),
@@ -77,8 +76,8 @@ const buttonStyleMap: {
     bgColorActive: darken(0.1, makeColor({ scalable: { color: "error" } })),
     borderColor: makeColor({ scalable: { color: "error" } }),
     borderColorHover: makeColor({ scalable: { color: "error" } }),
-    borderColorActive: makeColor({ scalable: { color: "error" } })
-  }
+    borderColorActive: makeColor({ scalable: { color: "error" } }),
+  },
 };
 
 export const StyledButton = styled.button<
@@ -87,7 +86,7 @@ export const StyledButton = styled.button<
   ${makeReset("button")}
   ${makeInset({
     vertical: sharedButtonAndInputVerticalPadding,
-    horizontal: 28
+    horizontal: 28,
   })};
   border-radius: ${makeSpace({ custom: 2 })};
   transition: all ease-in-out 0.15s;
@@ -137,8 +136,8 @@ export const Button: FC<ButtonProps> = ({
     {loading ? (
       <Icon iconSize="sm" icon="spinner" spin />
     ) : (
-      <Copy
-        type="label"
+      <Typography
+        variant="label"
         fontSize={shareButtonAndInputFontSize}
         fontColor={((): ColorProperties => {
           if (
@@ -155,7 +154,7 @@ export const Button: FC<ButtonProps> = ({
         })()}
       >
         {label}
-      </Copy>
+      </Typography>
     )}
   </StyledButton>
 );

@@ -1,14 +1,15 @@
-import React, { FC } from "react";
-import { Copy, Icon } from "../typography";
-import styled, { css, SimpleInterpolation } from "styled-components";
-import {
-  makeInset,
-  makeColor,
-  makeSize,
-  makeOutset
-} from "@heather-turano-coaching/design-system/utils";
-import { makeFlex } from "../utils";
 import { IconName } from "@fortawesome/pro-light-svg-icons";
+import {
+  makeColor,
+  makeInset,
+  makeOutset,
+  makeSize,
+} from "@heather-turano-coaching/design-system";
+import React, { FC } from "react";
+import styled, { SimpleInterpolation, css } from "styled-components";
+
+import { Icon, Typography } from "../typography";
+import { makeFlex } from "../utils";
 
 interface FormNotificationProps {
   type: "success" | "error" | "warning";
@@ -25,7 +26,7 @@ const formNotificationStyleMap: {
   `,
   error: css`
     background: ${makeColor({ scalable: { color: "error" } })};
-  `
+  `,
 };
 
 const StyledFormNotification = styled.div<FormNotificationProps>`
@@ -46,7 +47,7 @@ const StyledFormNotification = styled.div<FormNotificationProps>`
 
 export const FormNotification: FC<FormNotificationProps> = ({
   type,
-  children
+  children,
 }) => {
   let stateIcon;
   if (type === "error") stateIcon = "sad-tear";
@@ -62,13 +63,13 @@ export const FormNotification: FC<FormNotificationProps> = ({
           iconWeight="fas"
           iconColor={{ fixed: type !== "warning" ? "light" : "dark" }}
         />
-        <Copy
-          type="text"
+        <Typography
+          variant="text"
           fontSize="xs"
           fontColor={{ fixed: type !== "warning" ? "light" : "dark" }}
         >
           {children}
-        </Copy>
+        </Typography>
       </StyledFormNotification>
     </div>
   );

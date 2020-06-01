@@ -1,20 +1,17 @@
-import React, { FC } from "react";
-import styled, { css } from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { library, IconName } from "@fortawesome/fontawesome-svg-core";
-import { fal } from "@fortawesome/pro-light-svg-icons";
-import { fas } from "@fortawesome/pro-solid-svg-icons";
-import { far } from "@fortawesome/pro-regular-svg-icons";
-import { fad } from "@fortawesome/pro-duotone-svg-icons";
+import { IconName, library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
+import { fad } from "@fortawesome/pro-duotone-svg-icons";
+import { fal } from "@fortawesome/pro-light-svg-icons";
+import { far } from "@fortawesome/pro-regular-svg-icons";
+import { fas } from "@fortawesome/pro-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   ColorProperties,
-  FontProperties
-} from "@heather-turano-coaching/design-system/types/composite";
-import {
-  makeColor,
-  makeFont
-} from "@heather-turano-coaching/design-system/utils";
+  FontProperties,
+} from "@heather-turano-coaching/design-system";
+import { makeColor, makeFont } from "@heather-turano-coaching/design-system";
+import React, { FC } from "react";
+import styled, { css } from "styled-components";
 
 library.add(fal, fas, fab, fad, far);
 
@@ -57,7 +54,7 @@ export const Icon: FC<IconProps> = ({
   iconWeight = "fal",
   iconSize = "sm",
   iconColor = { scalable: { color: "gray" } },
-  spin = false
+  spin = false,
 }) => (
   <StyledIcon iconSize={iconSize} iconColor={iconColor}>
     <FontAwesomeIcon icon={[iconWeight, icon]} spin={spin} />

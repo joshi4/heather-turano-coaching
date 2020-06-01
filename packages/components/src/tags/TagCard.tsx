@@ -1,12 +1,13 @@
-import React, { FC } from "react";
-import { Heading, Copy } from "../typography";
-import styled, { SimpleInterpolation, css } from "styled-components";
 import {
-  makeInset,
-  makeSize,
   makeColor,
-  makeRhythm
-} from "@heather-turano-coaching/design-system/utils";
+  makeInset,
+  makeRhythm,
+  makeSize,
+} from "@heather-turano-coaching/design-system";
+import React, { FC } from "react";
+import styled, { SimpleInterpolation, css } from "styled-components";
+
+import { Heading, Typography } from "../typography";
 
 export type TagTypes = "tag" | "category";
 
@@ -26,7 +27,7 @@ const CSSTagCardMap: { [key in TagTypes]: SimpleInterpolation } = {
     border: ${makeSize({ custom: 1 })} solid
       ${makeColor({ scalable: { color: "primary" } })};
     background: ${makeColor({ scalable: { color: "primary", scale: 3 } })};
-  `
+  `,
 };
 
 const StyledTagCard = styled.div<Pick<TagCardProps, "type">>`
@@ -65,9 +66,9 @@ export const TagCard: FC<TagCardProps> = ({ type, name, description }) => (
     <Heading fontSize="h4">{name}</Heading>
     {description && (
       <StyledContent hasDescription={typeof description !== "undefined"}>
-        <Copy type="paragraph" fontSize="sm">
+        <Typography variant="paragraph" fontSize="sm">
           {description}
-        </Copy>
+        </Typography>
       </StyledContent>
     )}
   </StyledTagCard>

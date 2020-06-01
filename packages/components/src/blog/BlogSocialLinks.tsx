@@ -1,18 +1,18 @@
-import React, { FC } from "react";
-import styled, { css } from "styled-components";
 import {
   ColorProperties,
-  SizeProperties
-} from "@heather-turano-coaching/design-system/types/composite";
-
-import { Icon } from "../typography";
+  SizeProperties,
+} from "@heather-turano-coaching/design-system";
 import {
   makeColor,
-  makeSize,
-  makeResponsive,
   makeOutset,
-  makeReset
-} from "@heather-turano-coaching/design-system/utils";
+  makeReset,
+  makeResponsive,
+  makeSize,
+} from "@heather-turano-coaching/design-system";
+import React, { FC } from "react";
+import styled, { css } from "styled-components";
+
+import { Icon } from "../typography";
 import { makeFlex } from "../utils";
 import { BlogSocialOptions } from "./blog.types";
 
@@ -64,7 +64,7 @@ const StyledBlogSocialLink = styled.li<
         beginAt: "tabletPortrait",
         style: `
           width: ${makeSize({ custom: 80 })};
-        `
+        `,
       })}
     `;
   }}
@@ -73,7 +73,7 @@ const StyledBlogSocialLink = styled.li<
 export const BlogSocialLinks: FC<BlogSocialLinksProps> = ({
   linkStyle = "color",
   orientation = "vertical",
-  social
+  social,
 }) => {
   const iconColor: ColorProperties =
     linkStyle !== "grayscale"

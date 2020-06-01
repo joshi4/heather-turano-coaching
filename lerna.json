@@ -1,36 +1,17 @@
 {
   "version": "independent",
   "packages": ["packages/**"],
-  "npmClient": "npm",
-  "ignore": [
-    "@live-life-mindful/blog-archive",
-    "@heather-turano-coaching/legacy",
-    "@heather-turano-coaching/website",
-    "@heather-turano-coaching/styles"
-  ],
+  "npmClient": "yarn",
+  "useWorkspaces": true,
   "command": {
-    "bootstrap": {},
     "publish": {
-      "ignore": [
-        "@live-life-mindful/blog-archive",
-        "@heather-turano-coaching/legacy",
-        "@heather-turano-coaching/website",
-        "@heather-turano-coaching/styles"
-      ],
       "ignoreChanges": ["*.md", "*.spec.ts", "*.spec.tsx"],
       "message": "chore(release): Publish",
       "conventionalCommits": true
     },
     "version": {
-      "ignore": [
-        "@live-life-mindful/blog-archive",
-        "@heather-turano-coaching/legacy",
-        "@heather-turano-coaching/website",
-        "@heather-turano-coaching/styles"
-      ],
       "message": "chore(release): Version",
       "conventionalCommits": true
-    },
-    "exec": {}
+    }
   }
 }

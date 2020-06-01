@@ -1,18 +1,14 @@
-import React, { FC } from "react";
 import { IconName } from "@fortawesome/pro-light-svg-icons";
 import {
   ColorProperties,
-  FontProperties
-} from "@heather-turano-coaching/design-system/types/composite";
-
-import { Icon, Copy, IconProps } from "../typography";
-
+  FontProperties,
+} from "@heather-turano-coaching/design-system";
+import { makeOutset, makeReset } from "@heather-turano-coaching/design-system";
+import React, { FC } from "react";
 import styled from "styled-components";
-import {
-  makeReset,
-  makeOutset
-} from "@heather-turano-coaching/design-system/utils";
+
 import { HTMLButton } from "../types";
+import { Icon, IconProps, Typography } from "../typography";
 
 type ButtonActionProps = HTMLButton & {
   label?: string;
@@ -57,9 +53,9 @@ export const ButtonAction: FC<ButtonActionProps> = ({
       />
     )}
     {label && (
-      <Copy type="label" fontSize={buttonSize} fontColor={buttonColor}>
+      <Typography variant="label" fontSize={buttonSize} fontColor={buttonColor}>
         {label}
-      </Copy>
+      </Typography>
     )}
   </StyledButtonAction>
 );

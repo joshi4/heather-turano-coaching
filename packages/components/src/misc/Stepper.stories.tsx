@@ -1,11 +1,11 @@
 import React from "react";
 
+import { Typography } from "../typography";
 import { Stepper } from "./Stepper";
-import { Copy } from "../typography";
 
 export default {
   component: Stepper,
-  title: "Basic|Stepper"
+  title: "Basic|Stepper",
 };
 
 export const base = () => (
@@ -16,29 +16,31 @@ export const base = () => (
           icon: "hammer",
           label: "option 1",
           description:
-            "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam porta sem malesuada magna mollis euismod."
+            "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam porta sem malesuada magna mollis euismod.",
         },
         {
           icon: "thumbs-up",
           label: "option 2",
           description:
-            "Vestibulum id ligula porta felis euismod semper. Nullam id dolor id nibh ultricies vehicula ut id elit."
+            "Vestibulum id ligula porta felis euismod semper. Nullam id dolor id nibh ultricies vehicula ut id elit.",
         },
         {
           icon: "traffic-cone",
           label: "option 3",
           description:
-            "Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus."
+            "Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
         },
         {
           icon: "trophy",
           label: "option 4",
           description:
-            "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."
-        }
+            "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.",
+        },
       ]}
     >
-      {({ description }) => <Copy type="text">{description}</Copy>}
+      {({ description }) => (
+        <Typography variant="text">{description}</Typography>
+      )}
     </Stepper>
   </div>
 );
@@ -51,35 +53,37 @@ export const with5Options = () => (
           icon: "hammer",
           label: "option 1",
           description:
-            "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam porta sem malesuada magna mollis euismod."
+            "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam porta sem malesuada magna mollis euismod.",
         },
         {
           icon: "thumbs-up",
           label: "option 2",
           description:
-            "Vestibulum id ligula porta felis euismod semper. Nullam id dolor id nibh ultricies vehicula ut id elit."
+            "Vestibulum id ligula porta felis euismod semper. Nullam id dolor id nibh ultricies vehicula ut id elit.",
         },
         {
           icon: "traffic-cone",
           label: "option 3",
           description:
-            "Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus."
+            "Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
         },
         {
           icon: "trophy",
           label: "option 4",
           description:
-            "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."
+            "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.",
         },
         {
           icon: "map-marker-smile",
           label: "option 5",
           description:
-            "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."
-        }
+            "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.",
+        },
       ]}
     >
-      {({ description }) => <Copy type="text">{description}</Copy>}
+      {({ description }) => (
+        <Typography variant="text">{description}</Typography>
+      )}
     </Stepper>
   </div>
 );

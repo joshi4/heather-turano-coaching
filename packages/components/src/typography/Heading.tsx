@@ -1,14 +1,12 @@
+import {
+  ColorProperties,
+  FontProperties,
+  SizeHeadings,
+} from "@heather-turano-coaching/design-system";
+import { makeFont, makeReset } from "@heather-turano-coaching/design-system";
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
-import {
-  SizeHeadings,
-  ColorProperties,
-  FontProperties
-} from "@heather-turano-coaching/design-system/types/composite";
-import {
-  makeReset,
-  makeFont
-} from "@heather-turano-coaching/design-system/utils";
+
 import { HTMLHeading } from "../types";
 
 export type HeadingProps = HTMLHeading & {
@@ -25,8 +23,8 @@ const BaseHeading = css`
 const defaultFontColor: ColorProperties = {
   scalable: {
     color: "gray",
-    scale: 0
-  }
+    scale: 0,
+  },
 };
 
 type HeadingStyleProps = Pick<HeadingProps, "fontColor" | "fontFamily">;
@@ -83,7 +81,7 @@ export const Heading: FC<HeadingProps> = ({
   fontColor = { scalable: { color: "gray" } },
   fontFamily,
   copy = undefined,
-  children = undefined
+  children = undefined,
 }) => {
   switch (fontSize) {
     case "h1":

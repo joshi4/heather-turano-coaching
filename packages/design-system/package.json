@@ -3,20 +3,17 @@
   "version": "0.2.5",
   "license": "MIT",
   "author": "Drew DeCarme (drew@imaginedelements.com)",
-  "files": [
-    "configs/",
-    "types/",
-    "utils/"
-  ],
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "start": "tsc -w --pretty -p tsconfig.json",
     "build": "tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "polished": "^3.4.2",
-    "typescript": "^3.7.5"
+    "polished": "^3.6.3",
+    "typescript": "3.9.3"
   },
   "devDependencies": {
-    "@heather-turano-coaching/typescript": "file:../typescript"
+    "@heather-turano-coaching/typescript": "^0.2.1"
   }
 }

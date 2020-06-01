@@ -1,10 +1,10 @@
-import React, { FC } from "react";
-import styled, { SimpleInterpolation, css } from "styled-components";
 import {
   makeColor,
+  makeFont,
   makeReset,
-  makeFont
-} from "@heather-turano-coaching/design-system/utils";
+} from "@heather-turano-coaching/design-system";
+import React, { FC } from "react";
+import styled, { SimpleInterpolation, css } from "styled-components";
 
 type TitleProps = {
   size: "lg" | "md" | "sm";
@@ -19,7 +19,7 @@ const styledTitleStyleMap: {
     padding: 0 2rem 1.5rem 2rem;
     &::after {
       background-color: ${makeColor({
-        scalable: { color: "primary" }
+        scalable: { color: "primary" },
       })};
     }
   `,
@@ -30,7 +30,7 @@ const styledTitleStyleMap: {
       width: 14%;
       margin-left: -7%;
       background-color: ${makeColor({
-        scalable: { color: "primary" }
+        scalable: { color: "primary" },
       })};
     }
   `,
@@ -41,10 +41,10 @@ const styledTitleStyleMap: {
       width: 10%;
       margin-left: -5%;
       background-color: ${makeColor({
-        scalable: { color: "secondary" }
+        scalable: { color: "secondary" },
       })};
     }
-  `
+  `,
 };
 
 const BaseTitle = css`
@@ -73,9 +73,9 @@ const StyledTitleLg = styled.h3`
     fontWeight: "medium",
     fontColor: {
       scalable: {
-        color: "primary"
-      }
-    }
+        color: "primary",
+      },
+    },
   })};
   ${styledTitleStyleMap.lg}
 `;
@@ -88,9 +88,9 @@ const StyledTitleMd = styled.h4`
     fontWeight: "medium",
     fontColor: {
       scalable: {
-        color: "primary"
-      }
-    }
+        color: "primary",
+      },
+    },
   })};
 `;
 const StyledTitleSm = styled.h5`
@@ -101,9 +101,9 @@ const StyledTitleSm = styled.h5`
     fontFamily: "Montserrat",
     fontColor: {
       scalable: {
-        color: "secondary"
-      }
-    }
+        color: "secondary",
+      },
+    },
   })};
 `;
 
