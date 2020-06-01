@@ -133,3 +133,21 @@ databases:
   - name: htc-db
     databaseName: htc_db
     user: admin
+
+envVarGroups:
+  - name: htc-ghost
+  - envVars:
+      - key: GHOST_API_URL
+        value: https://admin.blog.livelifemindful.com
+      - key: GHOST_CONTENT_API_KEY
+        sync: false
+  - name: htc-contentful
+  - envVars:
+      - key: CONTENTFUL_SPACE_ID
+        sync: false
+      - key: CONTENTFUL_ACCESS_TOKEN
+        sync: false
+  - name: htc-npm
+  - envVars:
+      - key: FONTAWESOME_NPM_AUTH_TOKEN
+        sync: false
