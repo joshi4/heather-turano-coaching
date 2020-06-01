@@ -1,16 +1,3 @@
-services:
-  # Design System
-  - type: web
-    name: Design System
-    env: static
-    branch: master
-    repo: git@github.com:heather-turano-coaching/heather-turano-coaching.git
-    buildCommand: npm run build:components:storybook
-    staticPublishPath: ./packages/components/storybook-static
-    domains:
-      - design.livelifemindful.com
-    envVars:
-      - fromGroup: npm
 envVarGroups:
   - name: htc-ghost
   - envVars:
